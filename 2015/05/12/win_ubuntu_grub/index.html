@@ -1,0 +1,670 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+
+
+  <meta name="keywords" content="Medici.Yan,Medici,Yan,Python,Hacker" />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
+以下方法win7 win8都可以，暂时以win7为例子。
+（一）Win7下直接用wubi来装
+ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
+由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装win + ubuntu 双系统步骤及引导解决方案">
+<meta property="og:url" content="http://blog.evalbug.com/2015/05/12/win_ubuntu_grub/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
+以下方法win7 win8都可以，暂时以win7为例子。
+（一）Win7下直接用wubi来装
+ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
+由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
+<meta property="og:updated_time" content="2015-10-13T19:06:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装win + ubuntu 双系统步骤及引导解决方案">
+<meta name="twitter:description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
+以下方法win7 win8都可以，暂时以win7为例子。
+（一）Win7下直接用wubi来装
+ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
+由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 安装win + ubuntu 双系统步骤及引导解决方案 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              安装win + ubuntu 双系统步骤及引导解决方案
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-12T18:31:41+08:00" content="2015-05-12">
+            2015-05-12
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/12/win_ubuntu_grub/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/12/win_ubuntu_grub/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>现在装windows和ubuntu13.04双系统已经是很常见了。</p>
+<p>以下方法win7 win8都可以，暂时以win7为例子。</p>
+<p>（一）Win7下直接用wubi来装</p>
+<p>ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。</p>
+<p>由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。<br><a id="more"></a><br>（二）Win7下装ubuntu</p>
+<p>准备：UltraIS（软碟通）、U盘、Ubuntu13.04的ISO</p>
+<p>1.打开磁盘管理，压缩出30G的空间</p>
+<p>2.用UltraIS制作了U盘启动盘。</p>
+<blockquote>
+<p><strong>在此提示下：适用UltraIS制作U盘启动盘时，需要选 便携启动 里的添加syslinux引导扇区，否则会无法启动。之后修改/isolinux/目录下的 isolinux.cfg和syslinux.cfg 两个文件（两个文件内容相同），将 default vesamenu.c32 改为 #**</strong>default vesamenu.c32 这样就可以正确进入安装了。**</p>
+<p>正确配置文件的内容如下：</p>
+<p><div># D-I config version 2.0</div></p>
+<p><div>include menu.cfg</div></p>
+<p><div>#default vesamenu.c32</div></p>
+<p><div>prompt 0</div></p>
+<p><div>timeout 50</div></p>
+<p><div>ui gfxboot bootlogo</div></p>
+<p><div>3.开机进入Ubuntu安装界面进行安装，这里就不再赘述。</div></p>
+<p><div></div></p>
+<p><div></div></p>
+<p><div>安装后的具体问题，安装win7+ubuntu13.04双系统，ubuntu不能启动，具体如下：win7是先安装的，在C盘，然后有D、E、F、G四个逻辑分区，接着是ubuntu自己创建的ext与swap。安装ubuntu之后（提示安装完成）重启，直接进入win7，完全没有ubuntu的影子，包括grub。</div></p>
+</blockquote>
+<p>解决办法如下：</p>
+<p>用ubuntu安装盘启动试用，然后打开终端，用<strong>sudo -i</strong> 切换到超级用户，用 <strong>fdisk -l</strong> 命令查看分区，找到ubuntu所在的分区。挂载ubuntu所在的分区<strong>mount /dev/sda9  /mnt</strong> （注意：你的不一定是sda9） ，如果有单独的boot分区，则挂载boot分区<strong>mount /dev/sda10 /mnt/boot</strong>，sda10为boot所在的独立分区（你的也不一定是sda10），然后后依次执行如下内容：</p>
+<p><strong>mount  –bind  /dev/  /mnt/dev     </strong><br><strong>mount  –bind  /usr/  /mnt/usr     </strong><br><strong>mount  –bind  /proc/  /mnt/proc     </strong><br><strong>chroot  /mnt     </strong><br><strong>update-grub     </strong><br><strong>grub-install  /dev/sda </strong></p>
+<p>现在重新启动电脑（记得拿掉ubuntu安装盘），就进入ubuntu了，但是进不了win7<br>启动ubuntu之后，打开终端，执行<strong> sudo  update-grub </strong> 搞定。再启动的时候win7被列在最后一项。</p>
+<div></div><br><div></div><br><div>（三）Ubuntu下装Win</div><br><div></div><br><div><br><br>首先解释下ubuntu的 live CD即你将ubuntu系统的安装光盘或USB HDD硬盘镜象.<br><br>装好后情况：ubuntu一个主要盘（/dev/sda1），winodws7一个盘（/dev/sda2），还有两个ubuntu的（/dev/sda3，Extended； /dev/sda5， linux swap）<br><br>思路：ubuntu是用grub2引导的，装了windows7后mbr会被修改，grub2就会没用。<br><br>所以表现就是装好windows7后会直接进入windows，没有给你选择系统的grub2选择界面，也没有开机引导界面。<br><br>下面按我自己的情况说下过程（本人情况很简单）：<br><br>1、需要工具（2个）：一个windows7的安装光盘/安装U盘，一个ubuntu12.04的安装光盘/安装U盘。——-这两个都可以自己制作哦<br><br>2、分区：我是默认一个分区（装了ubuntu），所以要分区，已经有分区的孩子就可以跳过了。<br><br>我这里分区有点麻烦了。我是先用ubuntu安装光盘用光驱启动到ubuntu的install里面，用里面的正式安装前的“手动分区”选项把原来都给ubuntu的ext4的盘分出了50G的空闲区域，然后退出。<br><br>进入到ubuntu系统里，安装ubuntu的分区工具：<br><br>图形化分区工具：gparted 安装命令：<strong>sudo apt-get install gparted</strong><br><br>把之前分出来50G空闲做成ntfs主分区（不可以直接就在gparted里分出空闲然后再做ntfs）<br><br>3、安装windows7：分出个区后就可以用U盘启动安装windows7了（我是U盘的），选择那个你分出的区域，安装步骤不用多说了。<br><br>安装完毕后电脑表现为只能进入windows7（grub2没用了）<br><br>4、修复grub2：这里就用到ubuntu安装光盘（我是光盘）里的live CD了，就是CD盘里的ubuntu（这样简单点）。<br><br>进入live CD后打开terminal（终端），输入：<strong>sudo fdisk -l </strong>（小写的L哦），会显示你系统盘里系统的情况：<br><br>我的：<br><br>Disk /dev/sda: 100.0 GB, 100030242816 bytes<br>……………………………………<br><br>……………………<br>Device Boot      Start         End      Blocks   Id  System<br>/dev/sda1               1        5286    39956055   83  Linux<br>/dev/sda2   <em>        5286       12390    53710848    7  HPFS/NTFS<br>/dev/sda3           12391       12922     4016129    5  Extended<br>/dev/sda5           12391       12922     4016128   82  Linux swap / Solaris<br><br>那个/dev/sda1就是我ubuntu的盘了，在其他盘的同学可以看看Id和System，Id是83，System是Linux<br><br>然后输入：sudo -i （得到root权限，无需再输入密码，便于下面操作）<br><br>输入：<strong>mkdir /media/tempdir </strong>（用来挂载sda1的，就是创建一个tempdir，名字什么的自己定）<br><br>输入：<strong>mount /dev/sda1 /media/tempdir</strong> （将sda1挂载在tempdir下）<br><br>输入：<strong>grub-install –root-directory=/media/tempdir /dev/sda</strong> （重新安装grub2到硬盘的主引导记录（mbr））<br><br>操作成功出现：Installation finished.No Error Reported.<br><br>输入：reboot （重启电脑）<br><br>5、修复windows7在grub2下的引导：<br><br>重启后系统就可以进入ubuntu12.04了，但是windows暂时无法引导，下面就是更新grub2让它可以引导windows7.<br><br>进入到ubuntu后打开Terminal，输入：<strong>sudo update-grub2</strong><br><br>输入密码。<br><br>应该出现一堆表示成功的话，多少可以看懂一些。<br><br>最下面有windows7的什么什么。<br><br>done<br>没出现的话到新立得搜索grub，安装带ubuntu标志的grub-pc。<br><br>成功后再输入命令：<strong>sudo update-grub2</strong> 就可以了。<br><br><strong>小结：</strong><br><br><em>*针对两个双系统的安装方法，后面的恢复引导的办法其实是一样的，都是为了恢复被Windows破坏的MBR。</em></em><br><br></div></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/12/ubuntu_vpn_share_network/" rel="prev">Ubuntu建立vpn服务器实现共享网络</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/12/win_ubuntu_grub/"
+                   data-title="安装win + ubuntu 双系统步骤及引导解决方案" data-url="http://blog.evalbug.com/2015/05/12/win_ubuntu_grub/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

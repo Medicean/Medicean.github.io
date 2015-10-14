@@ -40,7 +40,7 @@
 <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Medici.Yan's Blog">
-<meta property="og:url" content="http://blog.evalbug.com/archives/2015/10/index.html">
+<meta property="og:url" content="http://blog.evalbug.com/page/2/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title> 归档 | Medici.Yan's Blog </title>
+  <title> Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -83,7 +83,9 @@
 
 
 
-  <div class="container one-column  page-archive ">
+  <div class="container one-column 
+   page-home 
+">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -167,60 +169,284 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 13 篇日志。 继续努力。
-    </span>
-
+  <section id="posts" class="posts-expand">
     
-
-      
-      
       
 
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/10/09/timetolive/" itemprop="url">
-              <span itemprop="name">Time to Live 杂谈</span>
-            </a>
-        
-      </h1>
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/12/linux_pptp_muti_users_hops/" itemprop="url">
+                Linux配置基于PPTP的多用户多出口IP的VPN
+              </a>
+            
+          
+        </h1>
+      
 
       <div class="post-meta">
-        <time class="post-time" datetime="2015-10-09T14:59:48.000Z" itemprop="dateCreated" content="2015-10-09"> 10-09 </time>
-      </div>
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-12T18:35:54+08:00" content="2015-05-12">
+            2015-05-12
+          </time>
+        </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/12/linux_pptp_muti_users_hops/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/12/linux_pptp_muti_users_hops/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
     </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>相信很多朋友都用过美国VPS或者日本VPS，不知道你是否也遇到过同样的问题，就是你的VPS有多个公网ip，而你配置出来的VPN却只能多个人共用一个公网ip；下面就指点大家如何突破，基于不同用户走不同出口的VPN。这里就不详细介绍VPN的配置，只是以PPTP VPN为例子说明问题。</p>
+<p><strong>关键点一：</strong><br>为不同的账号指定ip<br>添加登陆帐号和密码，并指定ip，这样一个用户就只能同时登陆一个。</p>
+<p>编辑用户配置文件，配置用户ip</p>
+<p>/etc/ppp/chap-secrets</p>
+<p><strong>user1 * password 10.10.10.2</strong><br><strong>user2 * password 10.10.10.3</strong></p>
+<p><strong>关键点二：</strong><br>通过防火墙策略，指点ip段走不同的出口<br>设置iptables转发：</p>
+<p><strong>iptables -t nat -A POSTROUTING -s 10.10.10.2 -j SNAT –to-source “1.1.1.1”</strong><br><strong>iptables -t nat -A POSTROUTING -s 10.10.10.3 -j SNAT –to-source “2.2.2.2”</strong></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/12/ubuntu_vpn_share_network/" itemprop="url">
+                Ubuntu建立vpn服务器实现共享网络
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-12T18:34:26+08:00" content="2015-05-12">
+            2015-05-12
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/12/ubuntu_vpn_share_network/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/12/ubuntu_vpn_share_network/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。">对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。</h2>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/12/ubuntu_vpn_share_network/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
+      
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/12/win_ubuntu_grub/" itemprop="url">
+                安装win + ubuntu 双系统步骤及引导解决方案
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-12T18:31:41+08:00" content="2015-05-12">
+            2015-05-12
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/12/win_ubuntu_grub/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/12/win_ubuntu_grub/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>现在装windows和ubuntu13.04双系统已经是很常见了。</p>
+<p>以下方法win7 win8都可以，暂时以win7为例子。</p>
+<p>（一）Win7下直接用wubi来装</p>
+<p>ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。</p>
+<p>由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/12/win_ubuntu_grub/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
  </div>
 
@@ -330,12 +556,6 @@
   
   
   
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
-  
     
 
   
@@ -378,12 +598,6 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   <script type="text/javascript">
     $(document).ready(function () {

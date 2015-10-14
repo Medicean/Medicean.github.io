@@ -1,0 +1,915 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+
+
+  <meta name="keywords" content="openwrt," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="先说TPLink 703N的。
+刷机最好是用线刷，什么是线刷？就是你用个网线把你的电脑和你的路由器连接起来，不要用无线，原因就不缀述。
+你要准备的东西：
+1.openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin
+这个是703刷到openwrt的固件，openwrt官网上是有的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置">
+<meta property="og:url" content="http://blog.evalbug.com/2015/05/14/fw150r_wr703n_openwrt/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="先说TPLink 703N的。
+刷机最好是用线刷，什么是线刷？就是你用个网线把你的电脑和你的路由器连接起来，不要用无线，原因就不缀述。
+你要准备的东西：
+1.openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin
+这个是703刷到openwrt的固件，openwrt官网上是有的。">
+<meta property="og:updated_time" content="2015-10-13T19:32:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置">
+<meta name="twitter:description" content="先说TPLink 703N的。
+刷机最好是用线刷，什么是线刷？就是你用个网线把你的电脑和你的路由器连接起来，不要用无线，原因就不缀述。
+你要准备的东西：
+1.openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin
+这个是703刷到openwrt的固件，openwrt官网上是有的。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-14T17:47:04+08:00" content="2015-05-14">
+            2015-05-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/校园网/" itemprop="url" rel="index">
+                  <span itemprop="name">校园网</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/14/fw150r_wr703n_openwrt/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/fw150r_wr703n_openwrt/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>先说TPLink 703N的。</p>
+<p>刷机最好是用线刷，什么是线刷？就是你用个网线把你的电脑和你的路由器连接起来，不要用无线，原因就不缀述。</p>
+<p>你要准备的东西：</p>
+<p>1.openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin</p>
+<p>这个是703刷到openwrt的固件，openwrt官网上是有的。<br><a id="more"></a><br>2.openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin</p>
+<p>注:<strong>openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin</strong>文件用于TL-WR703N从官方固件刷为openwrt固件。而<strong>openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin</strong>是用来对openwrt升级的</p>
+<p>3.局域网文件共享软件，例如：HFS或者tftpd.</p>
+<p>4.ssh登陆软件 putty或者其他。</p>
+<p>可以开始了。</p>
+<p>1.用网线把计算机和路由器的LAN口连接，看看自己有没有192网段的IP，如果没有就手动配置一个。记住不能配置网关的IP。</p>
+<p>2.在浏览器地址输入192.168.1.1（不一定是这个地址，具体看你的网关地址），进路由器的管理页面。</p>
+<p>3.打开HFS，把固件1拖进去。复制固件的URL地址。</p>
+<p>4.在管理界面选择固件升级，固件的地址就填复制的URL地址。</p>
+<p>5.确定。这个时候不要断电或者是拔网线。静静等待路由器重启。</p>
+<p>6.官方的openwrt是默认关闭了无线的，所以看不到WIFI是正常的，给自己的电脑配置一个192的IP，然后打开CMD（windows下是cmd，linux下就是终端），然后输入 telnet 192.168.1.1</p>
+<p>telnet一般的禁用的，在控制面板中，找 程序和功能——&gt;启用或关闭windows功能—–&gt;然后勾选telnet客户端，就可以打开了。</p>
+<p>7.openwrt刚弄好telnet默认是不要密码的，连接成功后，就可以看到openwrt的欢迎界面了。然后输入 password 更改root的密码。</p>
+<p>8.一旦更改了root的密码，telnet就禁用了，需要用ssh登陆。打开putty，输入192.168.1.1，端口22，然后用户名root,密码是你刚才改的那个密码。</p>
+<p>9.  登陆成功后切到 tmp目录下。 cd /tmp</p>
+<p>10.下载固件2 wget 固件2的URL</p>
+<p>例如：wget <a href="http://192.168.1.100/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin" target="_blank" rel="external">http://192.168.1.100/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin</a></p>
+<p>11. 升级固件 sysupgrade openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin</p>
+<p>12.重启后重新登录路由器。刷机完成。</p>
+<p>再来说FW150R 的。</p>
+<p>OpenWrt 需要路由器的flash至少有4M， FW150R V1,V2版本都可以，但是市面上现在卖的都是v8,v10的了，直接被缩水到2M的flash，所以，V8，V10的，如果不改装的话，就放弃吧。</p>
+<p>FW150R首先刷到TPLink 741N，然后就和 703N的方法一样了。</p>
+<p>补充：sysupgrade是保存配置升级的，如果升级不成功就硬刷。</p>
+<p>1.先看看自己的当前系统分区信息：<strong>cat /proc/mtd</strong></p>
+<pre class="text">dev:    size   erasesize  name
+mtd0: 00020000 00020000 "CFE"
+mtd1: 000dff00 00020000 "kernel"
+mtd2: 00ee0000 00020000 "rootfs"
+mtd3: 00840000 00020000 "rootfs_data"
+mtd4: 00020000 00020000 "nvram"
+mtd5: 00fc0000 00020000 "linux"</pre>
+2.
+
+mtd -r write openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin linux
+
+或
+
+mtd -r write openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin mtd5
+
+可以参考网上的一篇博文：
+> 查看当前系统分区信息：cat /proc/mtd
+> <div class="codebox">
+> <pre class="text">dev:    size   erasesize  name
+> mtd0: 00020000 00020000 "CFE"
+> mtd1: 000dff00 00020000 "kernel"
+> mtd2: 00ee0000 00020000 "rootfs"
+> mtd3: 00840000 00020000 "rootfs_data"
+> mtd4: 00020000 00020000 "nvram"
+> mtd5: 00fc0000 00020000 "linux"</pre>
+> </div>
+> 备份系统CFE：
+> 
+> dd if=/dev/mtd0 of=/mnt/cfe.bin
+> 备份恢复Openwrt系统配置：
+> 
+> dd if=/dev/mtd3 of=/mnt/overlay.bin
+> <div class="codebox">
+> <pre class="bash">#备份自定义系统信息，包括新安装软件
+> mtd -r write /mnt/overlay.bin rootfs_data
+> #恢复备份设置
+> sysupgrade -b /mnt/back.tar.gz
+> #仅备份系统配置
+> sysupgrade -f /mnt/back.tar.gz
+> #恢复系统配置</pre>
+> </div>
+> 恢复Openwrt系统默认设置：
+> <div class="codebox">
+> <pre class="bash">rm -rf /overlay/* &amp;&amp; reboot
+> #删除/overlay分区所有文件，重启即恢复默认设置
+> mtd -r erase rootfs_data
+> #使用mtd清除/overlay分区信息后重启即恢复默认设置</pre>
+> </div>
+> 刷新系统：
+<div class="codebox">
+> <pre class="bash">mtd -r write openwrt.bin linux
+> #使用mtd更新系统
+> sysupgrade openwrt.bin
+> #使用sysupgrade更新系统，推荐。</pre>
+</div>
+
+* * *
+
+配置方面可以参考官网的配置，也可以参考我的：
+
+无线设置：vi /etc/config/wirless
+> config wifi-device radio1
+> option type mac80211
+> option channel 11
+> option hwmode 11ng
+> option path ‘platform/ar933x_wmac’
+> list ht_capab SHORT-GI-20
+> list ht_capab SHORT-GI-40
+> list ht_capab RX-STBC1
+> list ht_capab DSSS_CCK-40
+> option htmode HT20
+> # REMOVE THIS LINE TO ENABLE WIFI:
+> #option disabled 1  #这个是设置是否启用无线的。 1 是不启用，0是启用
+> 
+> config wifi-iface
+> option device radio1
+> option network lan
+> option mode ap
+> option ssid 'OpenWrt_Medici’
+> option encryption 'psk2’
+> option key '12345678’
+网络参数设置：vi /etc/config/network
+> config interface 'loopback’
+> option ifname 'lo’
+> option proto 'static’
+> option ipaddr '127.0.0.1’
+> option netmask '255.0.0.0’
+> 
+> #wan口设置，如果是pppoe拔号就把下面的wan的注释掉
+> 
+> #config interface 'wan’
+> #option ifname 'eth0’
+> #option proto 'pppoe’
+> #option username 'user’
+> #option password 'pass’
+> #option timeout '10’
+> 
+> config interface 'wan’
+> option ifname 'eth0’
+> option _orig_ifname 'eth0’
+> option _orig_bridge 'false’
+> option proto 'dhcp’
+> 
+> config interface 'lan’
+> option type 'bridge’
+> option proto 'static’
+> option ipaddr '192.168.29.1’
+> option netmask '255.255.255.0’
+> option ip6assign '60’
+> 
+> config interface 'vpn’
+> option ifname 'pptp-vpn’
+> option proto 'pptp’
+> option username 'username’
+> option password 'password’
+> option server 'your vpn server address’
+> option buffering '1’
+防火墙配置：vi /etc/config/firewall
+> config defaults
+> option syn_flood '1’
+> option input 'ACCEPT’
+> option output 'ACCEPT’
+> option forward 'REJECT’
+> 
+> config zone
+> option name 'lan’
+> option input 'ACCEPT’
+> option output 'ACCEPT’
+> option forward 'ACCEPT’
+> option network 'lan’
+> 
+> config zone
+> option name 'wan’
+> option input 'ACCEPT’
+> option output 'ACCEPT’
+> option forward 'ACCEPT’
+> option masq '1’
+> option mtu_fix '1’
+> option network 'wan vpn’
+> 
+> config forwarding
+> option src 'lan’
+> option dest 'wan’
+> 
+> config rule
+> option name 'Allow-DHCP-Renew’
+> option src 'wan’
+> option proto 'udp’
+> option dest_port '68’
+> option target 'ACCEPT’
+> option family 'ipv4’
+> 
+> config rule
+> option name 'Allow-Ping’
+> option src 'wan’
+> option proto 'icmp’
+> option icmp_type 'echo-request’
+> option family 'ipv4’
+> option target 'ACCEPT’
+> 
+> config rule
+> option name 'Allow-DHCPv6’
+> option src 'wan’
+> option proto 'udp’
+> option src_ip 'fe80::/10’
+> option src_port '547’
+> option dest_ip 'fe80::/10’
+> option dest_port '546’
+> option family 'ipv6’
+> option target 'ACCEPT’
+> 
+> config rule
+> option name 'Allow-ICMPv6-Input’
+> option src 'wan’
+> option proto 'icmp’
+> list icmp_type 'echo-request’
+> list icmp_type 'echo-reply’
+> list icmp_type 'destination-unreachable’
+> list icmp_type 'packet-too-big’
+> list icmp_type 'time-exceeded’
+> list icmp_type 'bad-header’
+> list icmp_type 'unknown-header-type’
+> list icmp_type 'router-solicitation’
+> list icmp_type 'neighbour-solicitation’
+> list icmp_type 'router-advertisement’
+> list icmp_type 'neighbour-advertisement’
+> option limit '1000/sec’
+> option family 'ipv6’
+> option target 'ACCEPT’
+> 
+> config rule
+> option name 'Allow-ICMPv6-Forward’
+> option src 'wan’
+> option dest ’*’
+> option proto 'icmp’
+> list icmp_type 'echo-request’
+> list icmp_type 'echo-reply’
+> list icmp_type 'destination-unreachable’
+> list icmp_type 'packet-too-big’
+> list icmp_type 'time-exceeded’
+> list icmp_type 'bad-header’
+> list icmp_type 'unknown-header-type’
+> option limit '1000/sec’
+> option family 'ipv6’
+> option target 'ACCEPT’
+> 
+> config include
+> option path ’/etc/firewall.user’
+字符界面下容易配置错误。建议使用图形化界面配置。
+
+安装luci 图形化界面：
+> opkg update
+> 
+> opkg install luci
+> 
+> /etc/init.d/uhttpd enable #开机启动
+> 
+> /etc/init.d/uhttpd start #开启服务
+安装vpn软件：
+
+_**注意，老版本中是opkg install pptp，现在的版本中不能用这个命令安装了，要使用下面的命令。**_
+> <span class="pln">opkg install ppp</span><span class="pun">-</span><span class="pln">mod</span><span class="pun">-</span><span class="pln">pptp kmod</span><span class="pun">-</span><span class="pln">pptp kmod</span><span class="pun">-</span><span class="pln">mpe kmod</span><span class="pun">-</span><span class="pln">gre</span>
+<span class="pln">然后在图形界面下配置吧。具体就不多说了。</span>
+<pre class="wp-code-highlight prettyprint prettyprinted"><span class="pln"> </span></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/openwrt/" rel="tag">#openwrt</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/14/openwrt_ram_flash/" rel="prev">查看OpenWrt的RAM和FLASH</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/12/ubuntu_nvidia_intel/" rel="next">Ubuntu下安装Nvidia和Intel双显卡驱动</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/14/fw150r_wr703n_openwrt/"
+                   data-title="FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置" data-url="http://blog.evalbug.com/2015/05/14/fw150r_wr703n_openwrt/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
