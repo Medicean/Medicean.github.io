@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/2015/10/20/dumpdatabase/</loc>
+    <lastmod>2015-10-22T09:50:01.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2015/05/12/ubuntu_vpn_share_network/</loc>
     <lastmod>2015-10-14T03:13:52.000Z</lastmod>
   </url>
