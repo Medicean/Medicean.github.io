@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/2015/10/28/osx_brew_sourcelist/</loc>
+    <lastmod>2015-10-29T11:30:51.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.evalbug.com/2015/10/29/rsyncinstall/</loc>
+    <lastmod>2015-10-29T11:20:54.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2015/10/20/dumpdatabase/</loc>
     <lastmod>2015-10-23T02:03:49.000Z</lastmod>
   </url>

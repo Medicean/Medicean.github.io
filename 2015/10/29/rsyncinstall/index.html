@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="ipv6,校园网," />
+  <meta name="keywords" content="linux,rsync,ubuntu," />
 
 
 
@@ -37,26 +37,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="前言：之前VPS没有来得及续费，关掉了，自己最近一直在忙着PoHash的事情，没空收拾博客，今天整理了一下，把博客搬到了SAE上了。先用SAE一段时间吧。
-操作：
-之前的套路都是先讲原理后讲操作，然后把人讲睡着了，这次来先讲操作吧。我以windows为例，Linux的同学，我相信这对你来说根本就不是事。">
+<meta name="description" content="Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="教你一步利用教育网IPv6免费上网免费翻墙">
-<meta property="og:url" content="http://blog.evalbug.com/2015/06/22/ipv6_free_network/index.html">
+<meta property="og:title" content="Rsync 安装及配置">
+<meta property="og:url" content="http://blog.evalbug.com/2015/10/29/rsyncinstall/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="前言：之前VPS没有来得及续费，关掉了，自己最近一直在忙着PoHash的事情，没空收拾博客，今天整理了一下，把博客搬到了SAE上了。先用SAE一段时间吧。
-操作：
-之前的套路都是先讲原理后讲操作，然后把人讲睡着了，这次来先讲操作吧。我以windows为例，Linux的同学，我相信这对你来说根本就不是事。">
-<meta property="og:image" content="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/查看自己ip-224x300.jpg">
-<meta property="og:image" content="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/开启ipv6.jpg">
-<meta property="og:image" content="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/ipv6dns.jpg">
-<meta property="og:image" content="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/访问网络.jpg">
-<meta property="og:updated_time" content="2015-10-13T19:06:56.000Z">
+<meta property="og:description" content="Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。">
+<meta property="og:updated_time" content="2015-10-29T11:20:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="教你一步利用教育网IPv6免费上网免费翻墙">
-<meta name="twitter:description" content="前言：之前VPS没有来得及续费，关掉了，自己最近一直在忙着PoHash的事情，没空收拾博客，今天整理了一下，把博客搬到了SAE上了。先用SAE一段时间吧。
-操作：
-之前的套路都是先讲原理后讲操作，然后把人讲睡着了，这次来先讲操作吧。我以windows为例，Linux的同学，我相信这对你来说根本就不是事。">
+<meta name="twitter:title" content="Rsync 安装及配置">
+<meta name="twitter:description" content="Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +56,7 @@
   };
 </script>
 
-  <title> 教你一步利用教育网IPv6免费上网免费翻墙 | Medici.Yan's Blog </title>
+  <title> Rsync 安装及配置 | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +207,7 @@
           
           
             
-              教你一步利用教育网IPv6免费上网免费翻墙
+              Rsync 安装及配置
             
           
         </h1>
@@ -226,8 +216,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-22T16:24:25+08:00" content="2015-06-22">
-            2015-06-22
+          <time itemprop="dateCreated" datetime="2015-10-29T22:59:48+08:00" content="2015-10-29">
+            2015-10-29
           </time>
         </span>
 
@@ -236,8 +226,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/校园网/" itemprop="url" rel="index">
-                  <span itemprop="name">校园网</span>
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
                 </a>
               </span>
 
@@ -252,8 +242,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/06/22/ipv6_free_network/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/22/ipv6_free_network/" itemprop="commentsCount"></span>
+              <a href="/2015/10/29/rsyncinstall/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/29/rsyncinstall/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -267,27 +257,31 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="前言：">前言：</h2><p>之前VPS没有来得及续费，关掉了，自己最近一直在忙着PoHash的事情，没空收拾博客，今天整理了一下，把博客搬到了SAE上了。先用SAE一段时间吧。</p>
-<p>操作：</p>
-<p>之前的套路都是先讲原理后讲操作，然后把人讲睡着了，这次来先讲操作吧。我以windows为例，Linux的同学，我相信这对你来说根本就不是事。<br><a id="more"></a></p>
-<h2 id="准备：">准备：</h2><p>保证自己能获取到IPv6地址.</p>
-<p>打开网络共享中心，查看连接信息。如图：</p>
-<p><a href="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/查看自己ip.jpg" target="_blank" rel="external"><img src="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/查看自己ip-224x300.jpg" alt="" title="查看自己ip"></a></p>
-<p>看到IPv6了吧。如果你的学校支持IPv6但是你在连接那里没有看到IPv6，参考下图：</p>
-<p>打开连接属性，然后在ipv6协议前面打上勾。</p>
-<p><a href="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/开启ipv6.jpg" target="_blank" rel="external"><img src="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/开启ipv6.jpg" alt="" title="开启ipv6"></a></p>
-<p><strong>正式开始：</strong></p>
-<p>1.打开 <strong>网络共享中心</strong>，然后点   <strong>更改适配器设置</strong>，找到你当前使用的连接，点<strong>属性</strong>。样子就是上面那张图。</p>
-<p>2.把IPv4协议前面的勾去掉，IPv6前面的勾打开，同时双击IPv6协议，进入如下图的样子：</p>
-<p>在DNS那里填写</p>
-<p><pre class="lang:python decode:true">2001:778::37</pre></p>
-<p>#或者可以填写<br>2001:df8:0:7::1<br>然后确定，确定。</p>
-<p><a href="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/ipv6dns.jpg" target="_blank" rel="external"><img src="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/ipv6dns.jpg" alt="" title="ipv6dns"></a></p>
-<p>最后，你可以访问下baidu,google看看。</p>
-<p><a href="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/访问网络.jpg" target="_blank" rel="external"><img src="http://mediceanblog-wordpress.stor.sinaapp.com/uploads/2015/06/访问网络.jpg" alt="" title="访问网络"></a></p>
-<h2 id="原理说明：">原理说明：</h2><p>2001:778::37是教育网NAT64/DNS64服务器地址，会将ipv4地址转换成ipv6地址。目前高校出外网只针对ipv4进行计费，ipv6暂时没有计费。</p>
-<h2 id="最后：">最后：</h2><p>这种办法上网并不是很快，但是，平时办公什么的，够用了。</p>
-<p>&nbsp;</p>
+        <span itemprop="articleBody"><p>Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。<br><a id="more"></a></p>
+<h4 id="安装">安装</h4><p>在 Ubuntu 下安装RSYNC通过以下步骤可以实现:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="keyword">get</span> install rsync xinetd</span><br></pre></td></tr></table></figure>
+<h4 id="配置">配置</h4><ol>
+<li><p>编辑/etc/default/rsync 启动rsync作为使用xinetd的守护进程</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim <span class="regexp">/etc/</span><span class="keyword">default</span>/rsync</span><br><span class="line">  RSYNC_ENABLE=inetd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 /etc/xinetd.d/rsync 通过xinetd使rsync开始工作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/xinetd.d/rsync</span><br><span class="line">  service rsync</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">disable</span>         = no</span><br><span class="line">        socket_<span class="built_in">type</span>     = stream</span><br><span class="line">        <span class="built_in">wait</span>            = no</span><br><span class="line">        user            = root</span><br><span class="line">        server          = /usr/bin/rsync</span><br><span class="line">        server_args     = --daemon</span><br><span class="line">        <span class="built_in">log</span>_on_failure  += USERID</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 /etc/rsyncd.conf  配置rsync使其在.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="keyword">vim</span> /etc/rsyncd.<span class="keyword">conf</span></span><br><span class="line">  <span class="built_in">max</span> connections = <span class="number">2</span></span><br><span class="line">  <span class="built_in">log</span> <span class="keyword">file</span> = /var/<span class="built_in">log</span>/rsync.<span class="built_in">log</span></span><br><span class="line">  timeout = <span class="number">300</span></span><br><span class="line"></span><br><span class="line">  [share]</span><br><span class="line">  comment = Public Share</span><br><span class="line">  path = /home/share</span><br><span class="line">  <span class="keyword">read</span> <span class="keyword">only</span> = <span class="keyword">no</span></span><br><span class="line">  <span class="keyword">list</span> = yes</span><br><span class="line">  uid = nobody</span><br><span class="line">  gid = nogroup</span><br><span class="line">  auth users = user</span><br><span class="line">  secrets <span class="keyword">file</span> = /etc/rsyncd.secrets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 /etc/rsyncd.secrets  配置用户名和密码.</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/rsyncd<span class="class">.secrets</span> </span><br><span class="line">  user:password</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改密码文件权限</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod <span class="number">600</span> /etc/rsyncd.secrets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动/重启 xinetd</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo /etc/init.d/xinetd restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="测试">测试</h4><p>运行下面的命令检查，确认rsync配置成功。</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rsync user@<span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>::share</span><br><span class="line">  Password: </span><br><span class="line">  drwxr-xr-x        <span class="number">4096</span> <span class="number">2006</span>/<span class="number">12</span>/<span class="number">13</span> <span class="number">09</span>:<span class="number">41</span>:<span class="number">59</span> .</span><br><span class="line">  drwxr-xr-x        <span class="number">4096</span> <span class="number">2006</span>/<span class="number">11</span>/<span class="number">23</span> <span class="number">18</span>:<span class="number">00</span>:<span class="number">03</span> folders</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -296,9 +290,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ipv6/" rel="tag">#ipv6</a>
+            <a href="/tags/linux/" rel="tag">#linux</a>
           
-            <a href="/tags/校园网/" rel="tag">#校园网</a>
+            <a href="/tags/rsync/" rel="tag">#rsync</a>
+          
+            <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
           
         </div>
       
@@ -307,13 +303,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/28/zoomeye_hack/" rel="prev">[3分钟黑掉目标] ZoomEye简单上手</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/14/socks5validate/" rel="next">Socks5代理用户名密码批量认证爆破工具</a>
+              <a href="/2015/10/28/osx_brew_sourcelist/" rel="next">OS X brew 更换源</a>
             
           </div>
         </div>
@@ -338,8 +332,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/06/22/ipv6_free_network/"
-                   data-title="教你一步利用教育网IPv6免费上网免费翻墙" data-url="http://blog.evalbug.com/2015/06/22/ipv6_free_network/">
+              <div class="ds-thread" data-thread-key="2015/10/29/rsyncinstall/"
+                   data-title="Rsync 安装及配置" data-url="http://blog.evalbug.com/2015/10/29/rsyncinstall/">
               </div>
             
           </div>
@@ -431,7 +425,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备："><span class="nav-number">2.</span> <span class="nav-text">准备：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理说明："><span class="nav-number">3.</span> <span class="nav-text">原理说明：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后："><span class="nav-number">4.</span> <span class="nav-text">最后：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
