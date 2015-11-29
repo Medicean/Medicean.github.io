@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="shadowsocks,翻墙," />
+  <meta name="keywords" content="OSX," />
 
 
 
@@ -37,22 +37,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。
-Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。
-进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。">
+<meta name="description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
+Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装Shadowsocks翻墙">
-<meta property="og:url" content="http://blog.evalbug.com/2015/05/14/shadowsocks/index.html">
+<meta property="og:title" content="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)">
+<meta property="og:url" content="http://blog.evalbug.com/2015/11/29/osx_plist_startup/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。
-Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。
-进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。">
-<meta property="og:updated_time" content="2015-10-13T19:33:27.000Z">
+<meta property="og:description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
+Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
+<meta property="og:updated_time" content="2015-11-29T15:05:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装Shadowsocks翻墙">
-<meta name="twitter:description" content="VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。
-Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。
-进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。">
+<meta name="twitter:title" content="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)">
+<meta name="twitter:description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
+Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -62,7 +59,7 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
   };
 </script>
 
-  <title> 安装Shadowsocks翻墙 | Medici.Yan's Blog </title>
+  <title> Mac OS X 开机启动脚本(自动构建 Bugscan 节点) | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -213,7 +210,7 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
           
           
             
-              安装Shadowsocks翻墙
+              Mac OS X 开机启动脚本(自动构建 Bugscan 节点)
             
           
         </h1>
@@ -222,8 +219,8 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-05-14T21:58:30+08:00" content="2015-05-14">
-            2015-05-14
+          <time itemprop="dateCreated" datetime="2015-11-29T23:04:48+08:00" content="2015-11-29">
+            2015-11-29
           </time>
         </span>
 
@@ -232,20 +229,8 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Linux/" itemprop="url" rel="index">
-                  <span itemprop="name">Linux</span>
-                </a>
-              </span>
-
-              
-              
-                ， 
-              
-
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Linux/校园网/" itemprop="url" rel="index">
-                  <span itemprop="name">校园网</span>
+                <a href="/categories/OSX/" itemprop="url" rel="index">
+                  <span itemprop="name">OSX</span>
                 </a>
               </span>
 
@@ -260,8 +245,8 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/05/14/shadowsocks/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/shadowsocks/" itemprop="commentsCount"></span>
+              <a href="/2015/11/29/osx_plist_startup/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/29/osx_plist_startup/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -275,22 +260,56 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
       
 
       
-        <span itemprop="articleBody"><p>VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。</p>
-<p>Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。</p>
-<p>进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。<br><a id="more"></a><br>Server:</p>
-<p>1.安装pip和shadowsocks<br>Debian<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure></p>
-<p>CentOS<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> python-setuptools &amp;&amp; easy_install pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure></p>
-<p>2.使用:<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#开启服务</span></span><br><span class="line">ssserver -p <span class="number">443</span> -k password -m rc4-md5</span><br><span class="line"><span class="preprocessor">#如果要后台运行：</span></span><br><span class="line">sudo ssserver -p <span class="number">443</span> -k password -m rc4-md5 --user nobody -d start</span><br><span class="line"><span class="preprocessor">#如果要停止：</span></span><br><span class="line">sudo ssserver -d stop</span><br><span class="line"><span class="preprocessor">#如果要检查日志：</span></span><br><span class="line">sudo less /<span class="keyword">var</span>/log/shadowsocks.log</span><br></pre></td></tr></table></figure></p>
-<p>使用配置文件：<br>创建一个配置文件/etc/shadowsock.json ,这里我走的是IPv6的代理，IPv4的自己在github上有<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">"<span class="attribute">server</span>":<span class="value"><span class="string">"::"</span></span>,</span><br><span class="line">"<span class="attribute">server_port</span>":<span class="value"><span class="number">8118</span></span>,</span><br><span class="line">"<span class="attribute">local_port</span>":<span class="value"><span class="number">1080</span></span>,</span><br><span class="line">"<span class="attribute">password</span>":<span class="value"><span class="string">"mypassword"</span></span>,</span><br><span class="line">"<span class="attribute">timeout</span>":<span class="value"><span class="number">300</span></span>,</span><br><span class="line">"<span class="attribute">method</span>":<span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>好吧大概说下，server是服务器的地址，ipv6就写成::就可以了。然后server_port是服务器的端口,local_port是本机端口。这里的password要说下，里面配置的是明文密码，然后在传输的时候会用aes加密，一开始我以为是密文，还纠结了一下。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">启动服务：</span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span></span><br><span class="line">以守护进程形式运行：</span><br><span class="line"></span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span> -d start</span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span> -d stop</span><br></pre></td></tr></table></figure></p>
-<p>Client:<br><strong>我这里说的Client其实不是真正在用的Client，是我一台在学校的服务器（172.18.19.xx），算是中继服务器吧，因为我拨号上网之后就没有IPv6了，所以我就用了这个。</strong></p>
-<p>Windows客户端就直接参见Line的博文吧：<a href="http://blog.l1n3.net/debian-7-5-install-shad0ws0cks/" target="_blank" rel="external">http://blog.l1n3.net/debian-7-5-install-shad0ws0cks/</a><br>下面我说下Linux的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//dl.chenyufei.info/shadowsocks/latest/shadowsocks-local-linux64-1.1.4.gz</span></span><br><span class="line">gunzip shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span>.gz</span><br><span class="line">chmod a+x shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span>.gz</span><br></pre></td></tr></table></figure></p>
-<p>然后：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-1.1.4 --help</span><br><span class="line"></span><br><span class="line">Usage of shadowsocks-local-linux64-1.1.4:</span><br><span class="line">-<span class="ruby">b=<span class="string">""</span><span class="symbol">:</span> local address, listen only to this address <span class="keyword">if</span> specified</span><br><span class="line"></span>-<span class="ruby">c=<span class="string">"config.json"</span><span class="symbol">:</span> specify config file</span><br><span class="line"></span>-<span class="ruby">d=<span class="symbol">false:</span> print debug message</span><br><span class="line"></span>-<span class="ruby">k=<span class="string">""</span><span class="symbol">:</span> password</span><br><span class="line"></span>-<span class="ruby">l=<span class="number">0</span><span class="symbol">:</span> local socks5 proxy port</span><br><span class="line"></span>-<span class="ruby">m=<span class="string">""</span><span class="symbol">:</span> encryption method, <span class="symbol">default:</span> aes-<span class="number">256</span>-cfb</span><br><span class="line"></span>-<span class="ruby">p=<span class="number">0</span><span class="symbol">:</span> server port</span><br><span class="line"></span>-<span class="ruby">s=<span class="string">""</span><span class="symbol">:</span> server address</span><br><span class="line"></span>-<span class="ruby">t=<span class="number">300</span><span class="symbol">:</span> timeout <span class="keyword">in</span> seconds</span><br><span class="line"></span>-<span class="ruby">version=<span class="symbol">false:</span> print version</span></span><br></pre></td></tr></table></figure></p>
-<p>于是我们直接：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span> -d=<span class="literal">false</span> -k=<span class="string">"服务器的密码"</span> -m=<span class="string">"aes-256-cfb"</span> -l=<span class="number">8118</span> -p=<span class="number">8118</span> -s=<span class="string">"服务器的IP,写成ipv6的"</span></span><br></pre></td></tr></table></figure></p>
-<p>这样其实就已经可以了。<br>但是呢我不想每次都在中继服务器上输入这么长的命令，那就搞配置文件吧。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@mediciyan ~]<span class="preprocessor"># cat /etc/shadowsocks.json</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"server"</span>:<span class="string">"xxxx:xxxx::xxxx:xxxx:xxxx:xxxxx"</span>,</span><br><span class="line"><span class="string">"server_port"</span>:<span class="number">8118</span>,</span><br><span class="line"><span class="string">"local_port"</span>:<span class="number">8118</span>,</span><br><span class="line"><span class="string">"password"</span>:<span class="string">"99cc41fa1xxxxxxxxxxxxxx"</span>,</span><br><span class="line"><span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>嗯，密码是明文的，我是为了好记就放了个md5上去了。<br>然后就可以运行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span> -c /etc/shadowsocks.json</span><br><span class="line"><span class="preprocessor">#这里记住不要和Server那里搞混了哈.</span></span><br></pre></td></tr></table></figure></p>
-<p>为了不挂断<br>我们使用screen就可以啦。</p>
-<p>好了暂时就这样吧。</p>
+        <span itemprop="articleBody"><h3 id="写在前面">写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
+<p>Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS X 从10.4 开始，采用 launchd 进程来管理整个操作系统的服务及进程。传统的 UNIX 会使用 /etc/rc.* 或其他的机制来管理开机时要启动的启动服务，而现在的 OS X 则使用 launchd 来管理，它的启动服务称为 Launch Daemon/Agents, 利用 Launch Daemon/Agent，我们就可以令脚本程序在系统启动的时候在后台运行了。 </p>
+<a id="more"></a>
+<p>首先来看下 Launch Daemon 和 Launch Agent 有什么区别</p>
+<p>Launch Daemon 和 Launch Agent 是同一种东西在不同应用范围的名称。Launch Daemon 是系统级别的服务，称为 daemon，Launch Agent 是用户级别的服务，称为agent，前者在开机时会加载，后者在用户登录后才会加载。</p>
+<p>于是我们就选用 Daemon，至于为什么，其实我最初的想法是在别人的 Mac 上写这个文件的，这样对于一些不懂 Launch 的人来说，使用 kill 杀掉我们的节点之后，还是会启动起来的，好了这个不能说太多。</p>
+<h3 id="配置开始">配置开始</h3><ol>
+<li><p>创建 plist 文件</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /<span class="keyword">Library</span>/LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
+<p>文件内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>com.bugscan.net<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>python<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>exec(__import__('urllib2').urlopen('https://www.bugscan.net/这里是你自己的用户标识').read())<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-m<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>5<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>StartCalendarInterval<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">key</span>&gt;</span>Minute<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">integer</span>&gt;</span>20<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Label (必须)</p>
+<blockquote>
+<p>该项服务的名称</p>
+</blockquote>
+</li>
+<li><p>Program</p>
+<blockquote>
+<p>指定可执行文件的路径和名称, 如果没有 ProgramArguments 的话, Program 是必选的</p>
+</blockquote>
+</li>
+<li><p>ProgramArguments (如果没指定 Program, 则必须指定)</p>
+<blockquote>
+<p>指定可执行文件路径及其参数，例如上面的配置就相当于在命令行下执行了 <code>python -c &quot;exec(__import__(&#39;urllib2&#39;).urlopen(&#39;https://www.bugscan.net/这里是你自己的用户标识&#39;).read())&quot; -m 5</code></p>
+</blockquote>
+</li>
+<li><p>RunAtLoad (可选)</p>
+<blockquote>
+<p>标识launchd在加载完该项服务之后立即启动路径指定的可执行文件。默认值为 false,设置为 true 即可实现开机运行脚本文件。</p>
+</blockquote>
+</li>
+<li><p>StartCalendarInterval (可选)</p>
+<blockquote>
+<p>该关键字可以用来设置定时执行可执行程序，可使用 Month, Day, Hour, Minute, Second等子关键字，它可以指定脚本在多少月，天，小时，分钟，秒，星期几等时间上执行，若缺少某个关键字则表示任意该时间点，类似于 Unix 的 Crontab 计划任务的设置方式，比如在该例子中设置为每小时的20分的时候执行该命令。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p> 所有key关键字详细使用说明可以在Mac OS X终端下使用命令 <code>man launchd.plist</code> 查询。</p>
+<ol>
+<li><p>修改 plist 文件权限</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown <span class="string">root:</span>wheel <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br><span class="line">sudo chmod <span class="number">644</span> <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生效配置</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 载入配置</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 卸载配置</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 检查语法是否正确</span></span><br><span class="line">plutil /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 查看服务运行状态</span></span><br><span class="line">sudo launchctl list</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="来源参考">来源参考</h4><p>《网络运维与管理》杂志 2014.02.3.4 期，感谢原文作者提供的思路</p>
 </span>
       
     </div>
@@ -299,9 +318,7 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
       
         <div class="post-tags">
           
-            <a href="/tags/shadowsocks/" rel="tag">#shadowsocks</a>
-          
-            <a href="/tags/翻墙/" rel="tag">#翻墙</a>
+            <a href="/tags/OSX/" rel="tag">#OSX</a>
           
         </div>
       
@@ -310,13 +327,11 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/25/swusec_job/" rel="prev">西南大学网络安全技术研究小组招聘启事</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/14/phpmysqldump/" rel="next">mysql脱库工具php版</a>
+              <a href="/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/" rel="next">PHP 不同数组之间比较由于整数键截断导致结果相同</a>
             
           </div>
         </div>
@@ -341,8 +356,8 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/05/14/shadowsocks/"
-                   data-title="安装Shadowsocks翻墙" data-url="http://blog.evalbug.com/2015/05/14/shadowsocks/">
+              <div class="ds-thread" data-thread-key="2015/11/29/osx_plist_startup/"
+                   data-title="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)" data-url="http://blog.evalbug.com/2015/11/29/osx_plist_startup/">
               </div>
             
           </div>
@@ -434,7 +449,7 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置开始"><span class="nav-number">2.</span> <span class="nav-text">配置开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#来源参考"><span class="nav-number">2.1.</span> <span class="nav-text">来源参考</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
