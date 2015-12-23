@@ -1,0 +1,751 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="PoC," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PoC 编写指南(第 0 章 基础知识)">
+<meta property="og:url" content="http://blog.evalbug.com/2015/12/23/poc_coding_0/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
+<meta property="og:updated_time" content="2015-12-23T19:16:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PoC 编写指南(第 0 章 基础知识)">
+<meta name="twitter:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> PoC 编写指南(第 0 章 基础知识) | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              PoC 编写指南(第 0 章 基础知识)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-23T23:39:48+08:00" content="2015-12-23">
+            2015-12-23
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/23/poc_coding_0/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/poc_coding_0/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
+<p>在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类旁通的，我相信，你会在学习了现有的章节之后，举一反三。</p>
+<p>没错，如果你在看了所有的章节之后学到的不是编写的思想，那恭喜你，你获得了再看一次的机会。</p>
+<a id="more"></a>
+<h2 id="第_0_章_基础知识">第 0 章 基础知识</h2><h3 id="什么是_PoC">什么是 PoC</h3><p>PoC(全称: Proof of Concept), 中文译作概念验证。在安全界，你可以理解成为漏洞验证程序(本教程中，如无特别说明，默认代表漏洞验证程序)，当然你要强行说我说的不对，我肯定支持你，反正我没打算反驳你。和一些应用程序相比，PoC 是一段不完整的程序，仅仅是为了证明提出者的观点的一段代码。因为是一些代码片段，所以到现在都没看到有一本书来讲怎么编写 PoC 的，因为这些东西对于会写代码的人来说，他们会很惊讶分分钟就会了的事为什么还要出本书。</p>
+<h3 id="什么是_Exp">什么是 Exp</h3><p>Exp(全称: Exploit),中文叫漏洞利用程序。名字上说的已经很清楚了，简单讲，就是一段可以发挥漏洞价值的程序，这话感觉和没说一样。想象一下这样的场景，目标存在一个 SQL 注入漏洞，然后被你知道了，然后你编写了一个程序，通过这个 SQL 注入漏洞，拿到了目标的权限，那么这个程序就是所谓的 Exp 了，当然，如果你没有使用这个漏洞，它就这么放着，那么这个漏洞，对你来说可以认为是没有价值的。</p>
+<h3 id="关于_PoC/Exp_的几个误区">关于 PoC/Exp 的几个误区</h3><ol>
+<li><p>写 PoC 要会 Python.</p>
+<p>这句话，毒害了很多人。PoC 的存在，只有一个目的：证明漏洞存在。而关于 PoC 的形式，或者说代码实现方式，<strong>你想用什么方式，就用什么方式</strong>。我们推荐 Python, 只是说安全界用 Python 的人居多，你写的东西能被更多人看懂，还有 Python 这门语言的灵活，类库强大等特性，给编写的人提供了很大便利。</p>
+<blockquote>
+<p>你可以这么理解啊，你要找工作了，你爸妈都推荐你去考公务员，你能说要工作就只能考公务员这种话吗？</p>
+</blockquote>
+</li>
+<li><p>PoC 就是 Exp.</p>
+<p>这话也不知道是谁第一个说的。其实严格来讲，PoC 和 Exp 是两个东西，你要强行说两个是一个，那你当我没说好了。在我看来，PoC 就是用来证明漏洞存在的，而 Exp 是用来利用这个漏洞的，在很多情况下，我们知道了漏洞存在，却不知道具体怎么利用，编写一个 PoC 非常简单，而编写一个 Exp 是相当有挑战性的。</p>
+<blockquote>
+<p>PoC 和 Exp 的区别就有点像你发现了家门口的超市的锁有问题，你给人家证明锁有问题和通过锁有问题这个现象偷到超市的钱 这是两码事。</p>
+</blockquote>
+</li>
+<li><p>暂时没想出来，后面想到了补上</p>
+</li>
+</ol>
+<h3 id="什么是漏洞靶场">什么是漏洞靶场</h3><p>漏洞靶场(Vulnerability Firing Range), 就是跑着有漏洞的程序的测试机器。一般用虚拟机来实现，当然现在也有用 Docker 来实现的，反正就是给你一个已经复现了漏洞的环境让你测试漏洞的东西。</p>
+<p>我们在学习 PoC 编写的时候，推荐自己搭建靶场来测试，不推荐直接使用互联网上跑着业务的机器，因为现实环境安全配置情况往往要比靶场复杂的多，不利于新手学习，这些都不是重点，重点是万一你不小心把人家机器搞坏了，你说这锅谁来背？你背的起吗？</p>
+<h3 id="PoC_编写流程">PoC 编写流程</h3><p>这里我们不讨论未公开的漏洞，对于一个已经公开的漏洞，PoC 的编写流程是这样的:</p>
+<ol>
+<li><p>根据漏洞详情，寻找受影响版本程序。</p>
+<p>如果是一些 CMS, 可以去 对应的官网下载历史版本程序,有些漏洞作者不会提具体版本号，那你就要根据漏洞作者提交的时间来判断了。当然除了官方网站之外，还可以去 github 上寻找源码，这些个官网都喜欢把历史版本的程序删除掉，善用 github 上的 tag, branch, release 功能，上面有你要的所有版本。</p>
+</li>
+<li><p>搭建对应漏洞靶场</p>
+<p>这里其实没什么好说的，下载了人家的源码之后，在你的虚拟机里面配置好环境就行了，还能顺便学一下运维的一些皮毛知识。</p>
+</li>
+<li><p>手动复现漏洞</p>
+<p>根据漏洞详情，手动将整个流程走一遍，熟悉下复现条件，比如使用 GET 还是 POST 请求，需不需要登陆，返回的页面会是什么样子的，我提交不同的参数，会不会出现其它结果，如果漏洞不存在的话，会出现什么样的结果……</p>
+<p>磨刀不误砍柴功，熟悉了这些之后，后面编码实现简直就是分分钟的事，因为一开始我们就说过了，PoC 就是一小段代码。</p>
+</li>
+<li><p>写代码</p>
+<p>手动复现了一次漏洞之后，分析漏洞证明步骤，根据自己的实际测试情况一步一步写代码，用我的话来说，写代码，其实就是用程序模拟人工操作的每一个步骤，如果你上一步认真做了，这一步只是经验问题，本教程将在后面丰富你在这方面的阅历。</p>
+</li>
+<li><p>测试 PoC</p>
+<p>其它测试和编码基本都是在同时进行的，为什么要单独提出来讲呢，我们在写 PoC 的时候，除了在存在漏洞的靶机上测试我们的代码，还要在不存在漏洞的站点测试，一般为说，一个优秀的 PoC 在后期测试的时候要求对 10000 个目标测试，误报不能超过 10 个。</p>
+</li>
+</ol>
+<h3 id="PoC_与_PoC_框架">PoC 与 PoC 框架</h3><p>PoC 框架就是一个批量管理，调度 PoC 的程序。因为是框架，要批量调度，那就要求 PoC 在编写的时候要遵守一些规范，这些规范常见的有:</p>
+<ol>
+<li><p>入口规范</p>
+<p>考虑到批量使用 PoC 的调度情况，统一入口框架调用该 PoC 的时候会非常之方便。这个就需要根据具体的框架的调度要求来看了，都有文档的，看一下就会了。</p>
+</li>
+<li><p>API 规范</p>
+<p>API 是该框架对一些基础类库的封装，比如说框架提供了一些网络请求工具。这些封装有什么好处呢？我还是举例子来说明，比如某次扫描，调用了 1000 个 PoC 去扫描目标主机了，假设这个扫描任务中有一部分是需要登录的，而有一些的作者在编写的时候忘记在 PoC 中接收用户自定义的 Cookie 了，那么此时就会因为接收不到 Cookie 而导致请求不成功。那么在使用了框架的情况下，即使在忘记了添加这些字段的情况下，框架也会自动将 Cookie 添加进请求中，为 PoC 开发者提供了极大的便利。</p>
+</li>
+</ol>
+<h3 id="国内_PoC_框架简介">国内 PoC 框架简介</h3><p>那些官方的话你可以去各自的平台看，我只说我知道的东西</p>
+<ul>
+<li><p><a href="http://www.beebeeto.com/" target="_blank" rel="external">Beebeeto</a></p>
+<p>Evi1m0 创办，民间社区。PoC 开发语言为 Python。白帽子互相学习并使用它人的 PoC。</p>
+</li>
+<li><p><a href="https://www.sebug.net/" target="_blank" rel="external">Sebug-Pocsuite</a></p>
+<p>早年学安全的人都听过 Sebug 的名号，以前的民间漏洞库，后来被知道创宇收购。Pocsuite 是 Sebug 平台上通用的远程漏洞验证框架，使用 Python 编写 PoC。写 PoC 可以直接兑换实物与现金奖励，兑换比例 1KB = ￥5（这是 RMB 不是日元）。</p>
+</li>
+<li><p><a href="http://bugscan.net/" target="_blank" rel="external">Bugscan</a></p>
+<p>西安四叶草安全驱动的国内首个基于社区的分布式漏洞扫描平台。PoC 在这里也被称作插件。使用 Python 编写 PoC, 要求只能使用 Python2.7 的标准库。写插件有 rank 奖励，可兑换实物奖励，兑换比例 1 Rank = ￥10，商城有个比亚迪秦，看着很诱人啊。</p>
+</li>
+<li><p><a href="http://www.tangscan.com/" target="_blank" rel="external">Tangscan</a></p>
+<p>Wooyun 社区驱动的针对企业的扫描器，使用 Python 编写 PoC。写 PoC 命中后有汤圆，可参与分红。</p>
+</li>
+<li><p>其它</p>
+<p>应该还有一些其它的平台，我暂时想不起来了。想起来了加上，想不起来就算了。</p>
+</li>
+</ul>
+<p>笔者只在 Bugscan 和 Sebug 上写过 PoC，所以本教程中会以这两个平台框架来编写 PoC，前者作为不用第三方库的代表，后者作为可使用第三方库的代表。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PoC/" rel="tag">#PoC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/29/osx_plist_startup/" rel="next">Mac OS X 开机启动脚本(自动构建 Bugscan 节点)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/12/23/poc_coding_0/"
+                   data-title="PoC 编写指南(第 0 章 基础知识)" data-url="http://blog.evalbug.com/2015/12/23/poc_coding_0/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第_0_章_基础知识"><span class="nav-number">2.</span> <span class="nav-text">第 0 章 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是_PoC"><span class="nav-number">2.1.</span> <span class="nav-text">什么是 PoC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是_Exp"><span class="nav-number">2.2.</span> <span class="nav-text">什么是 Exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于_PoC/Exp_的几个误区"><span class="nav-number">2.3.</span> <span class="nav-text">关于 PoC/Exp 的几个误区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是漏洞靶场"><span class="nav-number">2.4.</span> <span class="nav-text">什么是漏洞靶场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PoC_编写流程"><span class="nav-number">2.5.</span> <span class="nav-text">PoC 编写流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PoC_与_PoC_框架"><span class="nav-number">2.6.</span> <span class="nav-text">PoC 与 PoC 框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国内_PoC_框架简介"><span class="nav-number">2.7.</span> <span class="nav-text">国内 PoC 框架简介</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
