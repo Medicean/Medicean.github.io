@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/2015/12/25/py_fun_0/</loc>
+    <lastmod>2015-12-25T03:20:21.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2015/12/23/poc_coding_0/</loc>
-    <lastmod>2015-12-23T19:16:06.000Z</lastmod>
+    <lastmod>2015-12-24T05:43:49.000Z</lastmod>
   </url>
   
   <url>
