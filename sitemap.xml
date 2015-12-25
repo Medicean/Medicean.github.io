@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/2015/12/26/poc_coding_1/</loc>
+    <lastmod>2015-12-25T17:48:30.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2015/12/25/py_fun_0/</loc>
     <lastmod>2015-12-25T03:20:21.000Z</lastmod>
   </url>

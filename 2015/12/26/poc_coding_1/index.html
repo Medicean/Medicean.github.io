@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="OSX," />
+  <meta name="keywords" content="PoC," />
 
 
 
@@ -39,19 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
-Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
+<meta name="description" content="第 1 章 技能基础网络基础为什么要学网络安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。
+需要学什么对于写 PoC 来说，我们需要的并不是你去把 OSI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)">
-<meta property="og:url" content="http://blog.evalbug.com/2015/11/29/osx_plist_startup/index.html">
+<meta property="og:title" content="PoC 编写指南(第 1 章 技能基础)">
+<meta property="og:url" content="http://blog.evalbug.com/2015/12/26/poc_coding_1/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
-Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
-<meta property="og:updated_time" content="2015-11-29T15:05:00.000Z">
+<meta property="og:description" content="第 1 章 技能基础网络基础为什么要学网络安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。
+需要学什么对于写 PoC 来说，我们需要的并不是你去把 OSI">
+<meta property="og:updated_time" content="2015-12-25T17:48:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)">
-<meta name="twitter:description" content="写在前面扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。
-Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS">
+<meta name="twitter:title" content="PoC 编写指南(第 1 章 技能基础)">
+<meta name="twitter:description" content="第 1 章 技能基础网络基础为什么要学网络安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。
+需要学什么对于写 PoC 来说，我们需要的并不是你去把 OSI">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +61,7 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
   };
 </script>
 
-  <title> Mac OS X 开机启动脚本(自动构建 Bugscan 节点) | Medici.Yan's Blog </title>
+  <title> PoC 编写指南(第 1 章 技能基础) | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -212,7 +212,7 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
           
           
             
-              Mac OS X 开机启动脚本(自动构建 Bugscan 节点)
+              PoC 编写指南(第 1 章 技能基础)
             
           
         </h1>
@@ -221,8 +221,8 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-29T23:04:48+08:00" content="2015-11-29">
-            2015-11-29
+          <time itemprop="dateCreated" datetime="2015-12-26T01:47:48+08:00" content="2015-12-26">
+            2015-12-26
           </time>
         </span>
 
@@ -231,8 +231,8 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/OSX/" itemprop="url" rel="index">
-                  <span itemprop="name">OSX</span>
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
                 </a>
               </span>
 
@@ -247,8 +247,8 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/29/osx_plist_startup/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/29/osx_plist_startup/" itemprop="commentsCount"></span>
+              <a href="/2015/12/26/poc_coding_1/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/poc_coding_1/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -262,56 +262,65 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
       
 
       
-        <span itemprop="articleBody"><h3 id="写在前面">写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
-<p>Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS X 从10.4 开始，采用 launchd 进程来管理整个操作系统的服务及进程。传统的 UNIX 会使用 /etc/rc.* 或其他的机制来管理开机时要启动的启动服务，而现在的 OS X 则使用 launchd 来管理，它的启动服务称为 Launch Daemon/Agents, 利用 Launch Daemon/Agent，我们就可以令脚本程序在系统启动的时候在后台运行了。 </p>
+        <span itemprop="articleBody"><h2 id="第_1_章_技能基础">第 1 章 技能基础</h2><h3 id="网络基础">网络基础</h3><h3 id="为什么要学网络">为什么要学网络</h3><p>安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。</p>
+<h3 id="需要学什么">需要学什么</h3><p>对于写 PoC 来说，我们需要的并不是你去把 OSI 7 层模型的每一层都精通，你要精通了所有层的东西，你就不会坐在这里了。</p>
+<p>好了，大概说一下我们需要了解哪些,相关的专业知识你可以去百度我不浪费时间了</p>
 <a id="more"></a>
-<p>首先来看下 Launch Daemon 和 Launch Agent 有什么区别</p>
-<p>Launch Daemon 和 Launch Agent 是同一种东西在不同应用范围的名称。Launch Daemon 是系统级别的服务，称为 daemon，Launch Agent 是用户级别的服务，称为agent，前者在开机时会加载，后者在用户登录后才会加载。</p>
-<p>于是我们就选用 Daemon，至于为什么，其实我最初的想法是在别人的 Mac 上写这个文件的，这样对于一些不懂 Launch 的人来说，使用 kill 杀掉我们的节点之后，还是会启动起来的，好了这个不能说太多。</p>
-<h3 id="配置开始">配置开始</h3><ol>
-<li><p>创建 plist 文件</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /<span class="keyword">Library</span>/LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
-<p>文件内容如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>com.bugscan.net<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>python<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>exec(__import__('urllib2').urlopen('https://www.bugscan.net/这里是你自己的用户标识').read())<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-m<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>5<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>StartCalendarInterval<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">key</span>&gt;</span>Minute<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">integer</span>&gt;</span>20<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>Label (必须)</p>
-<blockquote>
-<p>该项服务的名称</p>
-</blockquote>
+<li>请求响应配对 </li>
+<li>域名系统</li>
+<li>IP 地址</li>
+<li>TCP 是做什么的</li>
+<li>HTTP 协议(请重点关注这个，后面很多地方都会用到)</li>
+<li>没想好，后面慢慢补</li>
+</ul>
+<h3 id="编码基础">编码基础</h3><p>编码基础这里不要求你精通, 毕竟一开始就深化了一下 PoC 的概念，他就是一个不完整的程序，所以你只要会一些常用的就 OK, 不要说你不会这种话，不会可以花一点时间来学，放心，根本不需要你达到一个什么样的深度。</p>
+<p>那我就大概写一下需要学什么东西了：</p>
+<ul>
+<li><p>HTML</p>
+<p>这里不单是看 HTML 语言，更多的要去理解什么是<strong>浏览器</strong>。你看到的漂亮的不像实力派的网页，在传输的时候是什么样子的，浏览器在接收到响应之后大概做了点什么事。</p>
 </li>
-<li><p>Program</p>
-<blockquote>
-<p>指定可执行文件的路径和名称, 如果没有 ProgramArguments 的话, Program 是必选的</p>
-</blockquote>
+<li><p>Javascript</p>
+<p>想学 XSS, CSRF 不会这两个可不行。</p>
 </li>
-<li><p>ProgramArguments (如果没指定 Program, 则必须指定)</p>
-<blockquote>
-<p>指定可执行文件路径及其参数，例如上面的配置就相当于在命令行下执行了 <code>python -c &quot;exec(__import__(&#39;urllib2&#39;).urlopen(&#39;https://www.bugscan.net/这里是你自己的用户标识&#39;).read())&quot; -m 5</code></p>
-</blockquote>
+<li><p>Python</p>
+<p>我们后面写 PoC 会用到，所以这个要必会。这里只需要你会一点点 Python 的语法和一些常用的功能库就够了。</p>
 </li>
-<li><p>RunAtLoad (可选)</p>
-<blockquote>
-<p>标识launchd在加载完该项服务之后立即启动路径指定的可执行文件。默认值为 false,设置为 true 即可实现开机运行脚本文件。</p>
-</blockquote>
+<li><p>SQL</p>
+<p>你要是连 SQL 都不知道是什么，还在这给别人讲 SQL 注入，我就呵呵哒了。</p>
 </li>
-<li><p>StartCalendarInterval (可选)</p>
-<blockquote>
-<p>该关键字可以用来设置定时执行可执行程序，可使用 Month, Day, Hour, Minute, Second等子关键字，它可以指定脚本在多少月，天，小时，分钟，秒，星期几等时间上执行，若缺少某个关键字则表示任意该时间点，类似于 Unix 的 Crontab 计划任务的设置方式，比如在该例子中设置为每小时的20分的时候执行该命令。</p>
-</blockquote>
+<li><p>正则表达式</p>
+<p>自动化过程中经常需要自动匹配，不需要精通，但是要多多少少会一些。怎么测试你会了呢？我给你任意一个 wooyun 的漏洞页面，然后你能用脚本把里面的</p>
 </li>
 </ul>
+<h3 id="关于_Python_的一些库">关于 Python 的一些库</h3><ul>
+<li>urllib</li>
+<li>urllib2</li>
+<li><p>requests</p>
+<p>发送 HTTP 请求的，当然还有一些我没提到的</p>
 </li>
-</ol>
-<p> 所有key关键字详细使用说明可以在Mac OS X终端下使用命令 <code>man launchd.plist</code> 查询。</p>
-<ol>
-<li><p>修改 plist 文件权限</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown <span class="string">root:</span>wheel <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br><span class="line">sudo chmod <span class="number">644</span> <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
+<li><p>urlparse</p>
+<p>处理 url 的</p>
 </li>
-<li><p>生效配置</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 载入配置</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 卸载配置</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 检查语法是否正确</span></span><br><span class="line">plutil /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 查看服务运行状态</span></span><br><span class="line">sudo launchctl list</span><br></pre></td></tr></table></figure>
+<li><p>re</p>
+<p>正则表达式</p>
 </li>
-</ol>
-<h4 id="来源参考">来源参考</h4><p>《网络运维与管理》杂志 2014.02.3.4 期，感谢原文作者提供的思路</p>
+<li><p>random</p>
+<p>看名字就知道是生成随机数的</p>
+</li>
+<li><p>hashlib</p>
+<p>md5 算法帮你集成在这里了</p>
+</li>
+<li><p>base64</p>
+<p>base64 编码全家福都在这里</p>
+</li>
+<li><p>socket</p>
+<p>如果你知道 TCP 和 HTTP 的关系的话，你就能理解 socket 和 urllib 的关系了。</p>
+</li>
+</ul>
+<blockquote>
+<p>下一章还是直接进入重点吧。</p>
+</blockquote>
 </span>
       
     </div>
@@ -320,7 +329,7 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
       
         <div class="post-tags">
           
-            <a href="/tags/OSX/" rel="tag">#OSX</a>
+            <a href="/tags/PoC/" rel="tag">#PoC</a>
           
         </div>
       
@@ -329,13 +338,11 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/23/poc_coding_0/" rel="prev">PoC 编写指南(第 0 章 基础知识)</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/" rel="next">PHP 不同数组之间比较由于整数键截断导致结果相同</a>
+              <a href="/2015/12/25/py_fun_0/" rel="next">(圣诞礼物)在终端下画个圣诞树陪你过节</a>
             
           </div>
         </div>
@@ -360,8 +367,8 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/29/osx_plist_startup/"
-                   data-title="Mac OS X 开机启动脚本(自动构建 Bugscan 节点)" data-url="http://blog.evalbug.com/2015/11/29/osx_plist_startup/">
+              <div class="ds-thread" data-thread-key="2015/12/26/poc_coding_1/"
+                   data-title="PoC 编写指南(第 1 章 技能基础)" data-url="http://blog.evalbug.com/2015/12/26/poc_coding_1/">
               </div>
             
           </div>
@@ -464,7 +471,7 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置开始"><span class="nav-number">2.</span> <span class="nav-text">配置开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#来源参考"><span class="nav-number">2.1.</span> <span class="nav-text">来源参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第_1_章_技能基础"><span class="nav-number">1.</span> <span class="nav-text">第 1 章 技能基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络基础"><span class="nav-number">1.1.</span> <span class="nav-text">网络基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要学网络"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要学网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要学什么"><span class="nav-number">1.3.</span> <span class="nav-text">需要学什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码基础"><span class="nav-number">1.4.</span> <span class="nav-text">编码基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于_Python_的一些库"><span class="nav-number">1.5.</span> <span class="nav-text">关于 Python 的一些库</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
