@@ -39,19 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
-在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
+<meta name="description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。
+这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。
+本教程为笔">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PoC 编写指南(第 0 章 基础知识)">
 <meta property="og:url" content="http://blog.evalbug.com/2015/12/23/poc_coding_0/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
-在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
-<meta property="og:updated_time" content="2015-12-24T05:43:49.000Z">
+<meta property="og:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。
+这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。
+本教程为笔">
+<meta property="og:updated_time" content="2015-12-28T03:20:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PoC 编写指南(第 0 章 基础知识)">
-<meta name="twitter:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
-在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类">
+<meta name="twitter:description" content="引言有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。
+这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。
+关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。
+本教程为笔">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -262,7 +268,10 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
+        <span itemprop="articleBody"><h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。</p>
+<p>这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
+<p>关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。</p>
+<p><strong>本教程为笔者原创，转载请征求笔者同意，笔者默认不同意</strong></p>
 <p>在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类旁通的，我相信，你会在学习了现有的章节之后，举一反三。</p>
 <p>没错，如果你在看了所有的章节之后学到的不是编写的思想，那恭喜你，你获得了再看一次的机会。</p>
 <a id="more"></a>
@@ -318,15 +327,19 @@
 <ul>
 <li><p><a href="http://www.beebeeto.com/" target="_blank" rel="external">Beebeeto</a></p>
 <p>Evi1m0 创办，民间社区。PoC 开发语言为 Python。白帽子互相学习并使用它人的 PoC。</p>
+<p><a href="http://docs.beebeeto.com/" target="_blank" rel="external">Beebeeto 开发文档地址</a></p>
 </li>
 <li><p><a href="https://www.sebug.net/" target="_blank" rel="external">Sebug-Pocsuite</a></p>
 <p>早年学安全的人都听过 Sebug 的名号，以前的民间漏洞库，后来被知道创宇收购。Pocsuite 是 Sebug 平台上通用的远程漏洞验证框架，使用 Python 编写 PoC。写 PoC 可以直接兑换实物与现金奖励，兑换比例 1KB = ￥5（这是 RMB 不是日元）。</p>
+<p><a href="https://github.com/knownsec/Pocsuite" target="_blank" rel="external">Pocsuite 开发文档地址</a></p>
 </li>
 <li><p><a href="http://bugscan.net/" target="_blank" rel="external">Bugscan</a></p>
 <p>西安四叶草安全驱动的国内首个基于社区的分布式漏洞扫描平台。PoC 在这里也被称作插件。使用 Python 编写 PoC, 要求只能使用 Python2.7 的标准库。写插件有 rank 奖励，可兑换实物奖励，兑换比例 1 Rank = ￥10，商城有个比亚迪秦，看着很诱人啊。</p>
+<p><a href="https://www.bugscan.net/#!/i/" target="_blank" rel="external">Bugscan 开发文档地址</a></p>
 </li>
 <li><p><a href="http://www.tangscan.com/" target="_blank" rel="external">Tangscan</a></p>
 <p>Wooyun 社区驱动的针对企业的扫描器，使用 Python 编写 PoC。写 PoC 命中后有汤圆，可参与分红。</p>
+<p><a href="http://tangscan.readthedocs.org/zh_CN/latest/" target="_blank" rel="external">Tangscan 开发文档地址</a></p>
 </li>
 <li><p>其它</p>
 <p>应该还有一些其它的平台，我暂时想不起来了。想起来了加上，想不起来就算了。</p>
@@ -422,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

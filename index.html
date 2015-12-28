@@ -210,6 +210,97 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/27/poc_coding_2/" itemprop="url">
+                PoC 编写指南(第 2 章 SQL 注入类 PoC 编写)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-27T00:00:48+08:00" content="2015-12-27">
+            2015-12-27
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/27/poc_coding_2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/27/poc_coding_2/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="2-1_SQL_注入基础">2.1 SQL 注入基础</h2><p>准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。</p>
+<h3 id="2-1-1_SQL_注入原理">2.1.1 SQL 注入原理</h3><p>SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的SQL指令而运行，因此遭到破坏或是入侵。</p>
+<h3 id="2-1-2_SQL_注入分类">2.1.2 SQL 注入分类</h3><p>分类这种东西对是相对的,看你站在什么角度了,我一直都很讨厌这些分类,如果你仔细去研究这些个分类,你会觉得这世界上的发明家太多了,想一出是一出啊。</p>
+<p>反正我也是发明家，下面这些个分类是我个人的见解。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/27/poc_coding_2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/26/poc_coding_1/" itemprop="url">
                 PoC 编写指南(第 1 章 技能基础)
               </a>
@@ -447,7 +538,10 @@
 
       
         
-          <h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
+          <h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。</p>
+<p>这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
+<p>关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。</p>
+<p><strong>本教程为笔者原创，转载请征求笔者同意，笔者默认不同意</strong></p>
 <p>在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类旁通的，我相信，你会在学习了现有的章节之后，举一反三。</p>
 <p>没错，如果你在看了所有的章节之后学到的不是编写的思想，那恭喜你，你获得了再看一次的机会。</p>
           <div class="post-more-link text-center">
@@ -1016,110 +1110,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/20/dumpdatabase/" itemprop="url">
-                脱库漫谈
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-10-20T22:59:48+08:00" content="2015-10-20">
-            2015-10-20
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/inn0team/" itemprop="url" rel="index">
-                  <span itemprop="name">inn0team</span>
-                </a>
-              </span>
-
-              
-              
-                ， 
-              
-
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/inn0team/SWUSEC/" itemprop="url" rel="index">
-                  <span itemprop="name">SWUSEC</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/10/20/dumpdatabase/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/dumpdatabase/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="引言">引言</h2><p>最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，<br>目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。<br>外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着<br>凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。</p>
-<p>UCloud：怪我喽？</p>
-<p>事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，<br>我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。</p>
-<p>上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前<br>两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。</p>
-<p>话说回来，今天我们就来谈谈脱库。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/20/dumpdatabase/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1158,7 +1148,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
