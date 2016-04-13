@@ -1,0 +1,1391 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="Medici.Yan,PoC,Python,Blog,inn0team,PoC编写,漏洞" />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="不是路人甲的闲人丁,娱乐型选手">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Medici.Yan's Blog">
+<meta property="og:url" content="http://blog.evalbug.com/page/2/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="不是路人甲的闲人丁,娱乐型选手">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Medici.Yan's Blog">
+<meta name="twitter:description" content="不是路人甲的闲人丁,娱乐型选手">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+  <section id="posts" class="posts-expand">
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/29/rsyncinstall/" itemprop="url">
+                Rsync 安装及配置
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-29T22:59:48+08:00" content="2015-10-29">
+            2015-10-29
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/29/rsyncinstall/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/29/rsyncinstall/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/29/rsyncinstall/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/28/osx_brew_sourcelist/" itemprop="url">
+                OS X brew 更换源
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-28T20:59:48+08:00" content="2015-10-28">
+            2015-10-28
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/OSX/" itemprop="url" rel="index">
+                  <span itemprop="name">OSX</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/28/osx_brew_sourcelist/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/28/osx_brew_sourcelist/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="什么是-brew"><a href="#什么是-brew" class="headerlink" title="什么是 brew"></a>什么是 brew</h2><p>Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。</p>
+<p>项目地址: <a href="https://github.com/Homebrew/homebrew">https://github.com/Homebrew/homebrew</a></p>
+<p>使用帮助: <a href="http://brew.sh">http://brew.sh</a></p>
+<p>但是国内有时候真是让人无语，于是还是考虑给 brew 换个国内的源。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/28/osx_brew_sourcelist/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/dumpdatabase/" itemprop="url">
+                脱库漫谈
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-20T22:59:48+08:00" content="2015-10-20">
+            2015-10-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/" itemprop="url" rel="index">
+                  <span itemprop="name">inn0team</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/SWUSEC/" itemprop="url" rel="index">
+                  <span itemprop="name">SWUSEC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/20/dumpdatabase/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/dumpdatabase/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，<br>目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。<br>外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着<br>凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。</p>
+<p>UCloud：怪我喽？</p>
+<p>事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，<br>我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。</p>
+<p>上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前<br>两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。</p>
+<p>话说回来，今天我们就来谈谈脱库。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/20/dumpdatabase/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/09/timetolive/" itemprop="url">
+                Time to Live 杂谈
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-09T22:59:48+08:00" content="2015-10-09">
+            2015-10-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/" itemprop="url" rel="index">
+                  <span itemprop="name">inn0team</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/SWUSEC/" itemprop="url" rel="index">
+                  <span itemprop="name">SWUSEC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/09/timetolive/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/09/timetolive/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>先来看张图：<br><img src="/images/145/0.png" alt="" title="ping"><br>ping 命令想必接触到计算机的人多少都用过，没用过？那你听过吧。没听过？额……你一秒钟前不是听过了吗？好了听我给你吹一下：</p>
+<p>Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定位。Ping 的目的是为了测试另一台主机是否可达。该程序发出一份 ICMP 回显请求报文给主机，并等待返回 ICMP 回显应答。以前有个 DOS 攻击的名字叫 “死亡之 Ping”，不过现在的主机没那么渣了，能经受住死亡之Ping了。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/09/timetolive/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/28/zoomeye_hack/" itemprop="url">
+                [3分钟黑掉目标] ZoomEye简单上手
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-07-28T17:34:34+08:00" content="2015-07-28">
+            2015-07-28
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/" itemprop="url" rel="index">
+                  <span itemprop="name">inn0team</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/inn0team/SWUSEC/" itemprop="url" rel="index">
+                  <span itemprop="name">SWUSEC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/07/28/zoomeye_hack/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/28/zoomeye_hack/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><span style="font-family: 'Liberation Sans', sans-serif; color: #00ccff;"><strong>ZoomEye</strong></span><span style="color: #777777;"><span><strong>是一个针对网络空间的搜索引擎</strong></span></span></p>
+<p><span style="color: #c6c6c6;">正如传说中的钟馗那样，</span><span style="font-family: 'Liberation Serif', serif;">ZoomEye </span><span style="color: #c6c6c6;">的职责是揪出网络空间中的“鬼”</span></p>
+<p><img src="/images/122/0.jpeg" alt="ZoomEye"></p>
+<p>平台地址:  <a href="http://zoomeye.org" title="ZoomEye">zoomeye.org</a></p>
+<p>不多介绍了,直接进入正题:教你怎么在3分钟内黑掉别人.<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/28/zoomeye_hack/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/22/ipv6_free_network/" itemprop="url">
+                教你一步利用教育网IPv6免费上网免费翻墙
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-06-22T16:24:25+08:00" content="2015-06-22">
+            2015-06-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/校园网/" itemprop="url" rel="index">
+                  <span itemprop="name">校园网</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/06/22/ipv6_free_network/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/22/ipv6_free_network/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>之前VPS没有来得及续费，关掉了，自己最近一直在忙着PoHash的事情，没空收拾博客，今天整理了一下，把博客搬到了SAE上了。先用SAE一段时间吧。</p>
+<p>操作：</p>
+<p>之前的套路都是先讲原理后讲操作，然后把人讲睡着了，这次来先讲操作吧。我以windows为例，Linux的同学，我相信这对你来说根本就不是事。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/22/ipv6_free_network/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/14/socks5validate/" itemprop="url">
+                Socks5代理用户名密码批量认证爆破工具
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-06-14T02:24:10+08:00" content="2015-06-14">
+            2015-06-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Python/" itemprop="url" rel="index">
+                  <span itemprop="name">Python</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Python/自制工具/" itemprop="url" rel="index">
+                  <span itemprop="name">自制工具</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/06/14/socks5validate/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/14/socks5validate/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h2><p>Angel有1w个socks5代理的账号,要验证哪些还能用,哪些不能用,然后就有了这个工具.</p>
+<p>在网上查了下相关的工具,基本上都是用curl设置代理,接着去请求一个公网上的一个脚本.也就是说你要批量验证,就得还有一个服务器.成本有些大.</p>
+<p>于是就有了现在这篇文章和下面的这个工具了.</p>
+<p>项目地址 <a href="https://coding.net/u/medicean/p/socks5validate/git">https://coding.net/u/medicean/p/socks5validate/git</a></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h2><p>先说下我们验证的思路吧,就是把用户名和密码发送给server,然后根据返回的报文来看有没有验证成功.这个过程不需要第三方参与.</p>
+<h2 id="从协议开始"><a href="#从协议开始" class="headerlink" title="从协议开始:"></a>从协议开始:</h2><p>老规矩,从协议开始.看协议的东西,RFC文档是最好的东西了.直接去查RFC文档了.<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/14/socks5validate/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/25/swusec_job/" itemprop="url">
+                西南大学网络安全技术研究小组招聘启事
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-25T20:38:20+08:00" content="2015-05-25">
+            2015-05-25
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/SWUSEC/" itemprop="url" rel="index">
+                  <span itemprop="name">SWUSEC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/25/swusec_job/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/25/swusec_job/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><em>2015/06/04:</em><br><strong>说点最新的消息，暂时因为某些原因，这个事情被搁置了.So,我继续努力吧。</strong></p>
+<blockquote>
+<p>在一开始要说的：</p>
+<p>最近一直在忙樟树林论坛十周年晚会的事，忙的都病倒了，于是就抽空把这个招聘启事写完了。嗯，打个广告，5月30号晚7点光大礼堂，欢迎各位来看晚会。</p>
+<p>之前我有发过一篇关于SWUSEC的构想的博文，<a href="http://www.cnblogs.com/mediciyan/p/4347498.html">swusec的构想，顺便送开学福利——校园网一号多登录演示</a> 经过和信息中心半个学期的协商，终于已经敲定下来了这个组织的事。下面就放出招聘启事的草稿。</p>
+<p>我的目的是笼络学校的黑客，安全人才。也希望能通过我自己的努力，建立起来西南大学的信息安全交流的一个平台。能够让更多的人注意到信息安全的重要性，我就很开心了。</p>
+<p>关于招人，现在已经开始在招了，男女不限，时间其实也不限。只是这个启事要正式下发下去的话，等过了层层审核，不知道要多久了。估计过几天你的辅导员会在你们班上说这个事了。于是我还是提前发出来了。有兴趣的人，来找我聊。怎么联系到我应该不是很难哈。</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/25/swusec_job/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/14/shadowsocks/" itemprop="url">
+                安装Shadowsocks翻墙
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-14T21:58:30+08:00" content="2015-05-14">
+            2015-05-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/校园网/" itemprop="url" rel="index">
+                  <span itemprop="name">校园网</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/14/shadowsocks/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/shadowsocks/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。</p>
+<p>Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。</p>
+<p>进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/14/shadowsocks/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/05/14/phpmysqldump/" itemprop="url">
+                mysql脱库工具php版
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-14T18:09:39+08:00" content="2015-05-14">
+            2015-05-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PHP/" itemprop="url" rel="index">
+                  <span itemprop="name">PHP</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PHP/自制工具/" itemprop="url" rel="index">
+                  <span itemprop="name">自制工具</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/14/phpmysqldump/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/phpmysqldump/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。</p>
+<p>写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：</p>
+<p>1.直接在浏览器上显示sql文件内容。</p>
+<p>2.直接导出到服务器上，要求目录要可写。</p>
+<p>3.直接下载到本地，脱库时感觉还不错。</p>
+<p>好了直接贴上代码：<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/14/phpmysqldump/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+  </nav>
+
+ </div>
+
+        
+
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

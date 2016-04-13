@@ -1,0 +1,729 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="Medici.Yan,PoC,Python,Blog,inn0team,PoC编写,漏洞" />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。
+写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：
+1.直接在浏览器上显示sql文件内容。
+2.直接导出到服务器上，要求目录要可写。
+3.直接下载到本地，脱库时感觉还不错。
+好了直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql脱库工具php版">
+<meta property="og:url" content="http://blog.evalbug.com/2015/05/14/phpmysqldump/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。
+写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：
+1.直接在浏览器上显示sql文件内容。
+2.直接导出到服务器上，要求目录要可写。
+3.直接下载到本地，脱库时感觉还不错。
+好了直接">
+<meta property="og:updated_time" content="2015-10-13T19:07:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql脱库工具php版">
+<meta name="twitter:description" content="发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。
+写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：
+1.直接在浏览器上显示sql文件内容。
+2.直接导出到服务器上，要求目录要可写。
+3.直接下载到本地，脱库时感觉还不错。
+好了直接">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> mysql脱库工具php版 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              mysql脱库工具php版
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-14T18:09:39+08:00" content="2015-05-14">
+            2015-05-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PHP/" itemprop="url" rel="index">
+                  <span itemprop="name">PHP</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PHP/自制工具/" itemprop="url" rel="index">
+                  <span itemprop="name">自制工具</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/14/phpmysqldump/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/phpmysqldump/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。</p>
+<p>写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：</p>
+<p>1.直接在浏览器上显示sql文件内容。</p>
+<p>2.直接导出到服务器上，要求目录要可写。</p>
+<p>3.直接下载到本地，脱库时感觉还不错。</p>
+<p>好了直接贴上代码：<br><a id="more"></a><br>sqldump.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    if (isset($_REQUEST[&apos;option&apos;])) &#123;</span><br><span class="line">        define(&apos;DOWNLOAD&apos;, $_REQUEST[&apos;option&apos;]);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        define(&apos;DOWNLOAD&apos;,0);//0代表直接显示,1代表下载,2代表导出在本地</span><br><span class="line">    &#125;</span><br><span class="line">    if (DOWNLOAD != 1) &#123;</span><br><span class="line">        header(&quot;Content-type:text/html;charset=utf-8&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $cfg_dbhost =&apos;localhost&apos;;</span><br><span class="line">    $cfg_dbname =&apos;mysql&apos;;</span><br><span class="line">    $cfg_dbuser =&apos;root&apos;;</span><br><span class="line">    $cfg_dbpwd =&apos;&apos;;</span><br><span class="line">    $cfg_db_language =&apos;utf8&apos;;</span><br><span class="line"></span><br><span class="line">    //配置信息</span><br><span class="line">    $cfg_dbhost = isset($_REQUEST[&apos;dbhost&apos;])?$_REQUEST[&apos;dbhost&apos;]:$cfg_dbhost;</span><br><span class="line">    $cfg_dbname = isset($_REQUEST[&apos;dbname&apos;])?$_REQUEST[&apos;dbname&apos;]:$cfg_dbname;</span><br><span class="line">    $cfg_dbuser = isset($_REQUEST[&apos;dbuser&apos;])?$_REQUEST[&apos;dbuser&apos;]:$cfg_dbuser;</span><br><span class="line">    $cfg_dbpwd = isset($_REQUEST[&apos;dbpwd&apos;])?$_REQUEST[&apos;dbpwd&apos;]:$cfg_dbpwd;</span><br><span class="line">    $cfg_db_language = isset($_REQUEST[&apos;dbc&apos;])?$_REQUEST[&apos;dbc&apos;]:$cfg_db_language;</span><br><span class="line"></span><br><span class="line">    $to_file_name =isset($_REQUEST[&apos;dbtable&apos;])?$_REQUEST[&apos;dbtable&apos;].&quot;.sql&quot;:$cfg_dbname.&quot;.sql&quot;;</span><br><span class="line"></span><br><span class="line">    if (DOWNLOAD==2) &#123;</span><br><span class="line">        $to_file_name =isset($_REQUEST[&apos;dbtable&apos;])?dirname(__FILE__).DIRECTORY_SEPARATOR.$_REQUEST[&apos;dbtable&apos;].&quot;.sql&quot;:dirname(__FILE__).DIRECTORY_SEPARATOR.$cfg_dbname.&quot;.sql&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    // END 配置</span><br><span class="line"></span><br><span class="line">    //链接数据库</span><br><span class="line">    $link = @mysql_connect($cfg_dbhost,$cfg_dbuser,$cfg_dbpwd);</span><br><span class="line">    $link==null?die(&apos;mysql connect error&apos;):&apos;&apos;;</span><br><span class="line">    @mysql_select_db($cfg_dbname);</span><br><span class="line">    //选择编码</span><br><span class="line">    @mysql_query(&quot;set names &quot;.$cfg_db_language);</span><br><span class="line">    //数据库中有哪些表</span><br><span class="line">    $tabList = isset($_REQUEST[&apos;dbtable&apos;])?array(&quot;&#123;$_REQUEST[&apos;dbtable&apos;]&#125;&quot;):list_tables($cfg_dbname);</span><br><span class="line">    $tabList==null?die(&apos;no tables found&apos;):&apos;&apos;;</span><br><span class="line">    if (DOWNLOAD==1) &#123;</span><br><span class="line">        Header(&quot;Content-type: application/octet-stream&quot;);</span><br><span class="line">        Header(&quot;Accept-Ranges: bytes&quot;);</span><br><span class="line">        Header(&quot;Content-Disposition: attachment; filename=&quot;.$to_file_name);</span><br><span class="line">    &#125;</span><br><span class="line">    if (DOWNLOAD==2) &#123;</span><br><span class="line">        echo &quot;正在导出...&lt;hr/&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    $info = &quot;-- ----------------------------rn&quot;;</span><br><span class="line">    $info .= &quot;-- 备份日期：&quot;.date(&quot;Y-m-d H:i:s&quot;,time()).&quot;rn&quot;;</span><br><span class="line">    $info .= &quot;-- ----------------------------rnrn&quot;;</span><br><span class="line">    if (DOWNLOAD==2) &#123;</span><br><span class="line">        file_put_contents($to_file_name,$info,FILE_APPEND);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo $info;</span><br><span class="line">    &#125;</span><br><span class="line">    //将每个表的表结构导出到文件</span><br><span class="line">    foreach($tabList as $val)&#123;</span><br><span class="line">        $sql = &quot;show create table &quot;.$val;</span><br><span class="line">        $res = @mysql_query($sql,$link);</span><br><span class="line">        if ($res==null) &#123;</span><br><span class="line">            die(&apos;table `&apos;.$val.&apos;` not EXISTS&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        $row = @mysql_fetch_array($res);</span><br><span class="line">        $info = &quot;-- ----------------------------rn&quot;;</span><br><span class="line">        $info .= &quot;-- Table structure for `&quot;.$val.&quot;`rn&quot;;</span><br><span class="line">        $info .= &quot;-- ----------------------------rn&quot;;</span><br><span class="line">        $info .= &quot;DROP TABLE IF EXISTS `&quot;.$val.&quot;`;rn&quot;;</span><br><span class="line">        $sqlStr = $info.$row[1].&quot;;rnrn&quot;;</span><br><span class="line">        if (DOWNLOAD==2) &#123;</span><br><span class="line">            //追加到文件</span><br><span class="line">            file_put_contents($to_file_name,$sqlStr,FILE_APPEND);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo $sqlStr;</span><br><span class="line">        &#125;</span><br><span class="line">        //释放资源</span><br><span class="line">        @mysql_free_result($res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //将每个表的数据导出到文件</span><br><span class="line">    foreach($tabList as $val)&#123;</span><br><span class="line">        if(DOWNLOAD==2)&#123;</span><br><span class="line">            echo &quot;正在导出表`&quot;.$val.&quot;`...&lt;br&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        $sql = &quot;select * from &quot;.$val;</span><br><span class="line">        $res = @mysql_query($sql,$link);</span><br><span class="line">        //如果表中没有数据，则继续下一张表</span><br><span class="line">        if(@mysql_num_rows($res)&lt;1) continue;</span><br><span class="line">        //</span><br><span class="line">        $info = &quot;-- ----------------------------rn&quot;;</span><br><span class="line">        $info .= &quot;-- Records for `&quot;.$val.&quot;`rn&quot;;</span><br><span class="line">        $info .= &quot;-- ----------------------------rn&quot;;</span><br><span class="line">        if (DOWNLOAD==2) &#123;</span><br><span class="line">            file_put_contents($to_file_name,$info,FILE_APPEND);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo $info;</span><br><span class="line">        &#125;</span><br><span class="line">        //读取数据</span><br><span class="line">        while($row = @mysql_fetch_row($res))&#123;</span><br><span class="line">            $sqlStr = &quot;INSERT INTO `&quot;.$val.&quot;` VALUES (&quot;;</span><br><span class="line">            foreach($row as $zd)&#123;</span><br><span class="line">                $sqlStr .= &quot;&apos;&quot;.$zd.&quot;&apos;, &quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            //去掉最后一个逗号和空格</span><br><span class="line">            $sqlStr = substr($sqlStr,0,strlen($sqlStr)-2);</span><br><span class="line">            $sqlStr .= &quot;);rn&quot;;</span><br><span class="line">            if (DOWNLOAD==2) &#123;</span><br><span class="line">                file_put_contents($to_file_name,$sqlStr,FILE_APPEND);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                echo $sqlStr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //释放资源</span><br><span class="line">        @mysql_free_result($res);</span><br><span class="line">        if (DOWNLOAD==2) &#123;</span><br><span class="line">            file_put_contents($to_file_name,&quot;rn&quot;,FILE_APPEND);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;rn&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(DOWNLOAD==2)&#123;</span><br><span class="line">        echo &quot;&lt;hr/&gt;导出成功。&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">//    echo &quot;End!&quot;;</span><br><span class="line">    function list_tables($database)</span><br><span class="line">    &#123;</span><br><span class="line">        $sql=&apos;SHOW TABLES FROM &apos;.$database;</span><br><span class="line">        $rs = mysql_query($sql);</span><br><span class="line">        $tables = array();</span><br><span class="line">        while ($row = mysql_fetch_row($rs)) &#123;</span><br><span class="line">            $tables[] = $row[0];</span><br><span class="line">        &#125;</span><br><span class="line">        mysql_free_result($rs);</span><br><span class="line">        return $tables;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后是界面的东西了，为的是不让自己去记这个烦人的参数。</p>
+<p>sqldumpclient.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;sqldump客户端&lt;/title&gt;</span><br><span class="line">&lt;meta charset=&apos;utf-8&apos;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    function setaction () &#123;</span><br><span class="line">        $(&apos;cform&apos;).action=$(&apos;act&apos;).value;</span><br><span class="line">        inputs=document.getElementsByTagName(&apos;input&apos;);</span><br><span class="line">        for(var i =1;i&lt;inputs.length-4;i++)&#123;</span><br><span class="line">            if (inputs[i].value!=&apos;&apos;) &#123;</span><br><span class="line">                inputs[i].name=inputs[i].id;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    function $(id)&#123;</span><br><span class="line">        return document.getElementById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;center&gt;    </span><br><span class="line">&lt;h1 align=&quot;center&quot;&gt;PHP sql dump&lt;/h1&gt;</span><br><span class="line">&lt;h3 align=&quot;right&quot;&gt;Author:Medici.Yan@gmail.com&lt;/h3&gt;</span><br><span class="line">    &lt;form method=&quot;post&quot; id=&apos;cform&apos; onsubmit=&quot;setaction()&quot;&gt;</span><br><span class="line">            &lt;fieldset&gt;</span><br><span class="line">            &lt;table&gt;</span><br><span class="line">                &lt;legend&gt;配置&lt;/legend&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;act&quot;&gt;脚本地址:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&apos;act&apos; placeholder=&quot;http://www.example.com/sqldump.php&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td rowspan=&quot;7&quot; width=&quot;100&quot;&gt;使用方法：把sqldump.php传到服务器上,然后在这里填写相关参数，也可以直接访问脚本&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbhost&quot;&gt;数据库地址:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;dbhost&quot; placeholder=&quot;默认:localhost&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbname&quot;&gt;数据库名:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;dbname&quot; placeholder=&quot;默认:mysql&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbuser&quot;&gt;用户名:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;dbuser&quot; placeholder=&quot;默认:root&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbpwd&quot;&gt;密码:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;dbpwd&quot; placeholder=&quot;默认:&lt;empty&gt;&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbc&quot;&gt;字符集:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;</span><br><span class="line">                    &lt;input list=&quot;charlist&quot; id=&quot;dbc&quot; placeholder=&quot;默认:utf8&quot; /&gt;</span><br><span class="line">                        &lt;datalist id=&quot;charlist&quot;&gt;</span><br><span class="line">                            &lt;option value=&quot;utf8&quot; /&gt;</span><br><span class="line">                            &lt;option value=&quot;gbk&quot; /&gt;</span><br><span class="line">                            &lt;option value=&quot;gb2312&quot; /&gt;</span><br><span class="line">                        &lt;/datalist&gt;    </span><br><span class="line">                    &lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;dbtable&quot;&gt;表名:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;text&quot; id=&quot;dbtable&quot; placeholder=&quot;为空代表所有表&quot;/&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;label for=&quot;option&quot;&gt;导出方式:&lt;/label&gt;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                &lt;input type=&quot;radio&quot; id=&quot;option&quot; name=&quot;option&quot; value=&quot;0&quot; checked=&quot;checked&quot;&gt;浏览器显示</span><br><span class="line">                &lt;input type=&quot;radio&quot; id=&quot;option&quot; name=&quot;option&quot; value=&quot;1&quot;&gt;下载到本地</span><br><span class="line">                &lt;input type=&quot;radio&quot; id=&quot;option&quot; name=&quot;option&quot; value=&quot;2&quot;&gt;导出至服务器</span><br><span class="line">                &lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;开始&quot; /&gt;&lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;/table&gt;</span><br><span class="line">            &lt;/fieldset&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>用法也很简单，把sqldump.php传到服务器上，然后在本地运行sqldumpclient.html，写上相关参数就OK。</p>
+<p>下面是客户端预览效果：</p>
+<hr>
+<html><br><head><br><title>sqldump客户端</title><br><meta charset="utf-8"><br><script type="text/javascript"><br>    function setaction () {<br>        $(‘cform’).action=$(‘act’).value;<br>        inputs=document.getElementsByTagName(‘input’);<br>        for(var i =1;i<inputs.length-4;i++){
+            if (inputs[i].value!='') {
+                inputs[i].name=inputs[i].id;
+            }
+        }
+
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script><br></head><br><body><br><center><br><br># PHP sql dump<br>### Author:Medici.Yan@gmail.com<br><br>    <form method="post" id="cform" onsubmit="setaction()"><br>            <fieldset><br>            <table><br>                <legend>配置</legend><br>                <tr><br>                <td><label for="act">脚本地址:</label></td><br>                <td><input type="text" id="act" placeholder="http://www.example.com/sqldump.php"></td><br>                <td rowspan="7" width="100">使用方法：把sqldump.php传到服务器上,然后在这里填写相关参数，也可以直接访问脚本</td><br>                </tr><br>                <tr><br>                <td><label for="dbhost">数据库地址:</label></td><br>                <td><input type="text" id="dbhost" placeholder="默认:localhost"></td><br>                </tr><br>                <tr><br>                <td><label for="dbname">数据库名:</label></td><br>                <td><input type="text" id="dbname" placeholder="默认:mysql"></td><br>                </tr><br>                <tr><br>                <td><label for="dbuser">用户名:</label></td><br>                <td><input type="text" id="dbuser" placeholder="默认:root"></td><br>                </tr><br>                <tr><br>                <td><label for="dbpwd">密码:</label></td><br>                <td><input type="text" id="dbpwd" placeholder="默认:<empty>"></td><br>                </tr><br>                <tr><br>                <td><label for="dbc">字符集:</label></td><br>                    <td><br>                    <input list="charlist" id="dbc" placeholder="默认:utf8"><br>                        <datalist id="charlist"><br>                            <option value="utf8"><br>                            </option><option value="gbk"><br>                            </option><option value="gb2312"><br>                        </option></datalist><br>                    </td><br>                </tr><br>                <tr><br>                <td><label for="dbtable">表名:</label></td><br>                <td><input type="text" id="dbtable" placeholder="为空代表所有表"></td><br>                </tr><br>                <tr><br>                <td><label for="option">导出方式:</label></td><br>                <td><br>                <input type="radio" id="option" name="option" value="0" checked="checked">浏览器显示<br>                <input type="radio" id="option" name="option" value="1">下载到本地<br>                <input type="radio" id="option" name="option" value="2">导出至服务器<br>                </td><br>                </tr><br>                <tr><br>                <td><input type="submit" value="开始"></td><br>                </tr><br>                </table><br>            </fieldset><br>    </form><br></center><br></body><br></html></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/14/shadowsocks/" rel="prev">安装Shadowsocks翻墙</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/14/openwrt_ram_flash/" rel="next">查看OpenWrt的RAM和FLASH</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/14/phpmysqldump/"
+                   data-title="mysql脱库工具php版" data-url="http://blog.evalbug.com/2015/05/14/phpmysqldump/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

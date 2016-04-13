@@ -1,0 +1,792 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="写在前面一年前在国外看到的 一篇文章 ，也是因为这个脚本，让我喜欢上了 Python。
+代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。
+今天突然想起来了，就靠着记忆重新写了一个。
+完成后的代码如下,我已经大概处理了一下，为了好看：
+123456789101112131415161718192021222324252627282930313233343536373839404">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 混乱代码解析">
+<meta property="og:url" content="http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="写在前面一年前在国外看到的 一篇文章 ，也是因为这个脚本，让我喜欢上了 Python。
+代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。
+今天突然想起来了，就靠着记忆重新写了一个。
+完成后的代码如下,我已经大概处理了一下，为了好看：
+123456789101112131415161718192021222324252627282930313233343536373839404">
+<meta property="og:updated_time" content="2015-11-08T16:39:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 混乱代码解析">
+<meta name="twitter:description" content="写在前面一年前在国外看到的 一篇文章 ，也是因为这个脚本，让我喜欢上了 Python。
+代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。
+今天突然想起来了，就靠着记忆重新写了一个。
+完成后的代码如下,我已经大概处理了一下，为了好看：
+123456789101112131415161718192021222324252627282930313233343536373839404">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Python 混乱代码解析 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Python 混乱代码解析
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-11-05T23:43:48+08:00" content="2015-11-05">
+            2015-11-05
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Python/" itemprop="url" rel="index">
+                  <span itemprop="name">Python</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/11/05/python_chaos_hello_world/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/05/python_chaos_hello_world/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>一年前在国外看到的 <a href="http://earwig.github.io/2014/06/01/obfuscating-hello-world.html" target="_blank" rel="external">一篇文章</a> ，也是因为这个脚本，让我喜欢上了 Python。</p>
+<p>代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。</p>
+<p>今天突然想起来了，就靠着记忆重新写了一个。</p>
+<p>完成后的代码如下,我已经大概处理了一下，为了好看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">  getattr(</span><br><span class="line">    __import__(True.__class__.__name__[_] +</span><br><span class="line">      [].__class__.__name__[__]),</span><br><span class="line">    ().__class__.__eq__.__class__.__name__[:__] +</span><br><span class="line">    ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">  )(</span><br><span class="line">    _, </span><br><span class="line">    (lambda _,__,___: _(_,__,___))</span><br><span class="line">    (lambda _,__,___: chr(___ % __) +</span><br><span class="line">      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">      ____&lt;&lt;______, </span><br><span class="line">      (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) +</span><br><span class="line">      (_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) -</span><br><span class="line">      _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) +_))</span><br><span class="line">      - (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) +</span><br><span class="line">      (((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) -</span><br><span class="line">        _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) +</span><br><span class="line">      _____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) -</span><br><span class="line">      ___) &lt;&lt; ((_____ &lt;&lt; ____) +___)) + (((((___ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) +</span><br><span class="line">      (((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) +</span><br><span class="line">      (((_____ &lt;&lt; ____) -___) &lt;&lt; ((_______ &lt;&lt; ___))) +</span><br><span class="line">      (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) +</span><br><span class="line">      _) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ((_ &lt;&lt; _____) - _)) -(((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) -</span><br><span class="line">      _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) +</span><br><span class="line">      (_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)(* (lambda _, __: _(_, __))(</span><br><span class="line">  lambda _, __:</span><br><span class="line">    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +</span><br><span class="line">    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],</span><br><span class="line">    (</span><br><span class="line">      lambda _: _,</span><br><span class="line">      lambda _, __: _,</span><br><span class="line">      lambda _, __, ___: _,</span><br><span class="line">      lambda _, __, ___, ____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>怎么样？是不是吓到了。当时我感叹：<font color="red">逼还是你会装啊</font>。</p>
+<p>好吧来看分析吧。</p>
+<a id="more"></a>
+<h2 id="功能及要求"><a href="#功能及要求" class="headerlink" title="功能及要求"></a>功能及要求</h2><p>这个脚本的效果就是在屏幕上输出一个字符串，比如我们最熟悉的<code>I love Medici.Yan!</code> </p>
+<p>要求是：</p>
+<blockquote>
+<ol>
+<li>不能使用 printf echo 等字符串输出的函数</li>
+<li>不能出现相关的字符串</li>
+</ol>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><ol>
+<li><p>不能出现 print echo 这些函数，那么我们就可以使用 write 方法， <code>write(1, &#39;I love Medici.Yan!\n&#39;)</code>, 1 是什么？1 就是类 Unix 系统下的标准输出，在类 Uninx 系统上，所有的设备都是文件，所以你向这个文件写东西，就会显示到屏幕上。</p>
+<p>那么在 Python 里面，我们用到了 os 这个模块，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">os.write(1, &apos;I love Medici.Yan\n&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>但是，又不能直接出现 <code>&#39;I love Medici.Yan\n&#39;</code> 这个字符串，应该怎么办呢？</p>
+<blockquote>
+<p>这里我们可以使用每个字母对应的 ASCII 码，然后通过 chr 来将其转换为字符</p>
+</blockquote>
+<p>比如要输出一个 <code>I</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.write(1, chr(73))</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p> 这种一堆的 chr 显然很不优雅，那么我们考虑用一个大数来存储每一位的字符的 ASCII 码数值.</p>
+<p> 公式是这样的：</p>
+<p> <code>(某字符的 ASCII 码) * 256^(字符的位置)</code></p>
+<p> 然后取其和。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">words = list(&quot;I love Medici.Yan\n&quot;)</span><br><span class="line">num = sum(ord(words[i]) * 256 ** i for i in xrange(len(words)))</span><br><span class="line">print num</span><br><span class="line"># 908683317850257809145804104980513101193289</span><br></pre></td></tr></table></figure>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><p>我们已经把字符串藏在了那个大数里面，那么写一个转换函数，通过递归把字符输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">def convert(num):</span><br><span class="line">	if num:</span><br><span class="line">		os.write(1, chr(num % 256))</span><br><span class="line">		return convert(num // 256)</span><br><span class="line">	else:</span><br><span class="line">		return</span><br><span class="line"></span><br><span class="line">num = 908683317850257809145804104980513101193289</span><br><span class="line">convert(num)</span><br></pre></td></tr></table></figure>
+<h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><p>嗯，我们把这个函数写成 lambda 表达式，lambda 在 Python 里面也可以看作是匿名函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">comb = lambda f, n: f(f,n)</span><br><span class="line">convert = lambda f, n: chr(n % 256) + f(f, n // 256) if n else &quot;&quot;</span><br><span class="line">num = 908683317850257809145804104980513101193289</span><br><span class="line">os.write(1, comb(convert, num))</span><br></pre></td></tr></table></figure>
+<p>这么调用是没问题的，但是太容易让人看懂了，怎么办？</p>
+<blockquote>
+<p>Python 有个内置方法叫 getattr，用于返回一个对象属性，或者方法</p>
+<p>我们知道 import 语句是用来导入外部模块的，当然还有 <code>from...import...</code> 也可以，但是其实 import 实际上是使用 builtin 函数 <code>__import__</code> 来工作的</p>
+</blockquote>
+<p>于是上面这段代码，我们可以写成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">comb = lambda f, n: f(f,n)</span><br><span class="line">convert = lambda f, n: chr(n % 256) + f(f, n // 256) if n else &quot;&quot;</span><br><span class="line">num = 908683317850257809145804104980513101193289</span><br><span class="line">getattr(__import__(&apos;os&apos;), &apos;write&apos;)(1, comb(convert, num))</span><br></pre></td></tr></table></figure>
+<p>写成一行吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(__import__(&apos;os&apos;), &apos;write&apos;)(1, (lambda f,n: f(f,n))(lambda f,n: chr(n % 256)+f(f, n // 256) if n else &quot;&quot;, 908683317850257809145804104980513101193289))</span><br></pre></td></tr></table></figure>
+<p>是不是有点感觉了，来，继续</p>
+<h3 id="Step-4"><a href="#Step-4" class="headerlink" title="Step 4"></a>Step 4</h3><p>我们知道 <code>__import__(&#39;os&#39;)</code> 这里的 os 是个字符串，直接写个 os 在那里容易就被人看出是做什么的了，那么我们就可以使用字符串拼接的方法来构造 os 和 write 这两个字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; True.__class__.__name__</span><br><span class="line">&apos;bool&apos;</span><br><span class="line">&gt;&gt;&gt; [].__class__.__name__</span><br><span class="line">&apos;list&apos;</span><br><span class="line">&gt;&gt;&gt; ().__class__.__eq__.__class__.__name__</span><br><span class="line">&apos;wrapper_descriptor&apos;</span><br><span class="line">&gt;&gt;&gt; ().__iter__().__class__.__name__</span><br><span class="line">&apos;tupleiterator&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们用 bool 的 o 和 list 的 s 来拼接成一个 os</li>
+<li>取 wrapper_descriptor 的前两个字符 wr 还有 tupleiterator 的 iter 拼成 writer</li>
+<li>把 lambda 局部变量的名字改成 _ 和 __ 来降代可读性</li>
+<li>convert 返回的空字符串 “” 用 (lambda:0).func_code.co_lnotab 来代替。</li>
+</ul>
+<blockquote>
+<p>func_code.co_lnotab 是查找函数中代码对象的行号表，我们用的是匿名函数，就没有行号，于是返回的就是空</p>
+</blockquote>
+<p>那么现在我们的代码就写成这个样子了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(__import__(True.__class__.__name__[1] +[].__class__.__name__[2]),().__class__.__eq__.__class__.__name__[:2] + ().__iter__().__class__.__name__[5:8])(1, (lambda _,__:_(_,__))(lambda _,__: chr(__%256) + _(_, __//256) if __ else (lambda: 0).func_code.co_lnotab, 908683317850257809145804104980513101193289))</span><br></pre></td></tr></table></figure>
+<p>嗯，看起来已经很不错了。我们下面要做的，就是把数字也藏起来，让读代码的人更加抓狂。</p>
+<h3 id="Step-5"><a href="#Step-5" class="headerlink" title="Step 5"></a>Step 5</h3><p>现在我们要做的就是在代码里面混淆数字，试着想一下如果每次都重新混淆一次这个数字的话，太痛苦了吧。那么我们就可以把 0-9 这些数字混淆后，再通过局部变量的方式传进来，这样不就可以了？</p>
+<p>于是我们的代码就可以写成下面这种形式了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(lambda n1,n2,n3,n4,n5,n6,n7,n8:</span><br><span class="line">	getattr(</span><br><span class="line">	...</span><br><span class="line">	)(</span><br><span class="line">	...</span><br><span class="line">	)</span><br><span class="line">)(*range(1,9))</span><br></pre></td></tr></table></figure>
+<p>于是我们现在要做的，就是想办法实现 range(1,9) 就可以了，这 8 个数字，完全可以通过四则运算组成我们的 256, 908683317850257809145804104980513101193289 还有 5,8</p>
+<blockquote>
+<p>我们可以通过函数的代码对象来获取它的参数个数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (lambda a, b, c: 0).func_code.co_argcount</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>于是思路就明朗了，我们只要改变参数的个数为 1-8,就能生成我们的 range(1,9) 了。</p>
+<p>构造一个元组，元素为 参数个数为 1-8 的函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">funcs = (</span><br><span class="line">    lambda _: _,</span><br><span class="line">    lambda _, __: _,</span><br><span class="line">    lambda _, __, ___: _,</span><br><span class="line">    lambda _, __, ___, ____: _,</span><br><span class="line">    lambda _, __, ___, ____, _____: _,</span><br><span class="line">    lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">    lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">    lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后通过一个递归函数把这个元组输出成 range(1,9):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; def convert(L):</span><br><span class="line">...     if L:</span><br><span class="line">...         return [L[0].func_code.co_argcount] + convert(L[1:])</span><br><span class="line">...     else:</span><br><span class="line">...         return []</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; convert(funcs)</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p>嗯，写成一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert = lambda L: [L[0].func_code.co_argcount] + convert(L[1:]) if L else []</span><br></pre></td></tr></table></figure>
+<p>再转成匿名递归函数形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (lambda f, L: f(f, L))(</span><br><span class="line">...     lambda f, L: [L[0].func_code.co_argcount] + f(f, L[1:]) if L else [],</span><br><span class="line">...     funcs)</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+<p>下面就是 怎么隐藏 0 和 1 了。我们可以通过 检查任意函数的局部变量的个数来得到 0 和 1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (lambda: _).func_code.co_nlocals</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; (lambda _: _).func_code.co_nlocals</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>于是我们现在的代码就成了下面的这个样子了。别急，256 和 908683317850257809145804104980513101193289 这两个数字还没有替换呢。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">	getattr(</span><br><span class="line">		__import__(True.__class__.__name__[_] + [].__class__.__name__[__]),</span><br><span class="line">		().__class__.__eq__.__class__.__name__[:__] + ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">	)(</span><br><span class="line">		_, (lambda _,__,___: _(_,__,___))(lambda _,__,___: chr(___ % __) + _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">			256, </span><br><span class="line">			908683317850257809145804104980513101193289</span><br><span class="line">		)</span><br><span class="line">	)</span><br><span class="line">)(* (lambda _, __: _(_, __))</span><br><span class="line">	(lambda _, __: [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] + _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [], </span><br><span class="line">		(</span><br><span class="line">		lambda _: _,</span><br><span class="line">		lambda _, __: _,</span><br><span class="line">		lambda _, __, ___: _,</span><br><span class="line">		lambda _, __, ___, ____: _,</span><br><span class="line">		lambda _, __, ___, ____, _____: _,</span><br><span class="line">		lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">		lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">		lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">		)</span><br><span class="line">	)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>嗯，我们现在已经有了 1-8 这 8 个数字了，怎么用它来表示成这两个数字呢？</p>
+<p>256 比较好办，我们用 <code>4&lt;&lt;6</code> 就可以表示成 256 了，于是 在上面代码中 256 的位置我们就可以表示成 <code>____&lt;&lt;______</code> 当然，1&lt;&lt;8 的结果也是 256,那么完全可以写成<code>_&lt;&lt;________</code> 没有固定的答案。</p>
+<p>对于 908683317850257809145804104980513101193289 这个大数，原文作者提供了一个拆分的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">from math import ceil, log</span><br><span class="line"></span><br><span class="line">def encode(num, depth):</span><br><span class="line">    if num == 0:</span><br><span class="line">        return &quot;_ - _&quot;</span><br><span class="line">    if num &lt;= 8:</span><br><span class="line">        return &quot;_&quot; * num</span><br><span class="line">    return &quot;(&quot; + convert(num, depth + 1) + &quot;)&quot;</span><br><span class="line"></span><br><span class="line">def convert(num, depth=0):</span><br><span class="line">    result = &quot;&quot;</span><br><span class="line">    while num:</span><br><span class="line">        base = shift = 0</span><br><span class="line">        diff = num</span><br><span class="line">        span = int(ceil(log(abs(num), 1.5))) + (16 &gt;&gt; depth)</span><br><span class="line">        for test_base in xrange(span):</span><br><span class="line">            for test_shift in xrange(span):</span><br><span class="line">                test_diff = abs(num) - (test_base &lt;&lt; test_shift)</span><br><span class="line">                if abs(test_diff) &lt; abs(diff):</span><br><span class="line">                    diff = test_diff</span><br><span class="line">                    base = test_base</span><br><span class="line">                    shift = test_shift</span><br><span class="line">        if result:</span><br><span class="line">            result += &quot; + &quot; if num &gt; 0 else &quot; - &quot;</span><br><span class="line">        elif num &lt; 0:</span><br><span class="line">            base = -base</span><br><span class="line">        if shift == 0:</span><br><span class="line">            result += encode(base, depth)</span><br><span class="line">        else:</span><br><span class="line">            result += &quot;(%s &lt;&lt; %s)&quot; % (encode(base, depth),</span><br><span class="line">                                      encode(shift, depth))</span><br><span class="line">        num = diff if num &gt; 0 else -diff</span><br><span class="line">    return result</span><br></pre></td></tr></table></figure>
+<p>这个算法不是特别难懂，就是测试在一个确定区间的不同的数字组合，直到我们找到 一个组合使得以一个为基数，一个为移位长度，然后是最接近 num 的（也就是 他们差的绝对值最小）。</p>
+<p>然后我们执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; convert(908683317850257809145804104980513101193289)</span><br><span class="line">&apos;(((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) + (_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) - _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) + _)) - (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) + (((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) - _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) + _____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) - ___) &lt;&lt; ((_____ &lt;&lt; ____) + ___)) + (((((___ &lt;&lt; __) - _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) + (((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) + (((_____ &lt;&lt; ____) - ___) &lt;&lt; ((_______ &lt;&lt; ___))) + (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) + _) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) - _) &lt;&lt; ((_ &lt;&lt; _____) - _)) - (((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) - _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) + (_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _&apos;</span><br></pre></td></tr></table></figure>
+<p>得到了一个很理想的分解，于是用这个来替换。</p>
+<h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><p>再回过头来看这段代码，是不是清晰了很多？<font color="red">逼还是你会装啊。</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">	getattr(</span><br><span class="line">		__import__(True.__class__.__name__[_] + [].__class__.__name__[__]),</span><br><span class="line">		().__class__.__eq__.__class__.__name__[:__] + ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">	)(</span><br><span class="line">		_, </span><br><span class="line">		(lambda _,__,___: _(_,__,___))</span><br><span class="line">		(lambda _,__,___: chr(___ % __) + _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">			____&lt;&lt;______,</span><br><span class="line">			(((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) +</span><br><span class="line">			(_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) - _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) +_))</span><br><span class="line">			- (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) +</span><br><span class="line">			(((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) - _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) +</span><br><span class="line">			_____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) - ___) &lt;&lt; ((_____ &lt;&lt; ____) +</span><br><span class="line">			___)) + (((((___ &lt;&lt; __) - _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) +</span><br><span class="line">			(((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) + (((_____ &lt;&lt; ____) -</span><br><span class="line">			___) &lt;&lt; ((_______ &lt;&lt; ___))) + (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) +</span><br><span class="line">			_) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) - _) &lt;&lt; ((_ &lt;&lt; _____) - _)) -</span><br><span class="line">			(((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) - _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) +</span><br><span class="line">			(_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _</span><br><span class="line">		)</span><br><span class="line">	)</span><br><span class="line">)(* (lambda _, __: _(_, __))(</span><br><span class="line">	lambda _, __:</span><br><span class="line">		[__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] + _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],</span><br><span class="line">		(</span><br><span class="line">			lambda _: _,</span><br><span class="line">			lambda _, __: _,</span><br><span class="line">			lambda _, __, ___: _,</span><br><span class="line">			lambda _, __, ___, ____: _,</span><br><span class="line">			lambda _, __, ___, ____, _____: _,</span><br><span class="line">			lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">			lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">			lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">		)</span><br><span class="line">	)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/08/python_why_m_in_medicean_is_true/" rel="prev">为什么 'm' in ('medicean') 是 True</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/29/rsyncinstall/" rel="next">Rsync 安装及配置</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/11/05/python_chaos_hello_world/"
+                   data-title="Python 混乱代码解析" data-url="http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能及要求"><span class="nav-number">2.</span> <span class="nav-text">功能及要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1"><span class="nav-number">3.1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2"><span class="nav-number">3.2.</span> <span class="nav-text">Step 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3"><span class="nav-number">3.3.</span> <span class="nav-text">Step 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4"><span class="nav-number">3.4.</span> <span class="nav-text">Step 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5"><span class="nav-number">3.5.</span> <span class="nav-text">Step 5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终结果"><span class="nav-number">4.</span> <span class="nav-text">最终结果</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
