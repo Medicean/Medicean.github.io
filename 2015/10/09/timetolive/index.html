@@ -47,23 +47,14 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
 <meta property="og:site_name" content="Medici.Yan's Blog">
 <meta property="og:description" content="前言先来看张图：ping 命令想必接触到计算机的人多少都用过，没用过？那你听过吧。没听过？额……你一秒钟前不是听过了吗？好了听我给你吹一下：
 Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定位。Ping 的目的是为了测试另一台主机是否可达。该程序发出一份 ICMP 回显请求报文给主机，并等待返回 ICMP 回显应答。以前有个 DOS 攻击的名字叫 “死亡">
-<<<<<<< HEAD
 <meta property="og:image" content="http://blog.evalbug.com/images/145/0.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/145/1.jpg">
 <meta property="og:updated_time" content="2016-04-13T02:37:47.000Z">
-=======
-<meta property="og:image" content="http://i13.tietuku.com/d3857b3dba846050.png">
-<meta property="og:image" content="http://i13.tietuku.com/f9574e78e075a671.jpg">
-<meta property="og:updated_time" content="2015-10-14T02:43:59.000Z">
->>>>>>> github/master
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Time to Live 杂谈">
 <meta name="twitter:description" content="前言先来看张图：ping 命令想必接触到计算机的人多少都用过，没用过？那你听过吧。没听过？额……你一秒钟前不是听过了吗？好了听我给你吹一下：
 Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定位。Ping 的目的是为了测试另一台主机是否可达。该程序发出一份 ICMP 回显请求报文给主机，并等待返回 ICMP 回显应答。以前有个 DOS 攻击的名字叫 “死亡">
-<<<<<<< HEAD
 <meta name="twitter:image" content="http://blog.evalbug.com/images/145/0.png">
-=======
->>>>>>> github/master
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -294,11 +285,7 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
       
 
       
-<<<<<<< HEAD
         <span itemprop="articleBody"><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>先来看张图：<br><img src="/images/145/0.png" alt="" title="ping"><br>ping 命令想必接触到计算机的人多少都用过，没用过？那你听过吧。没听过？额……你一秒钟前不是听过了吗？好了听我给你吹一下：</p>
-=======
-        <span itemprop="articleBody"><h4 id="前言">前言</h4><p>先来看张图：<br><img src="http://i13.tietuku.com/d3857b3dba846050.png" alt="" title="ping"><br>ping 命令想必接触到计算机的人多少都用过，没用过？那你听过吧。没听过？额……你一秒钟前不是听过了吗？好了听我给你吹一下：</p>
->>>>>>> github/master
 <p>Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定位。Ping 的目的是为了测试另一台主机是否可达。该程序发出一份 ICMP 回显请求报文给主机，并等待返回 ICMP 回显应答。以前有个 DOS 攻击的名字叫 “死亡之 Ping”，不过现在的主机没那么渣了，能经受住死亡之Ping了。<br><a id="more"></a><br>在我们普通人的眼里 Ping 是这样的：</p>
 <blockquote>
 <p>大神大神，我上不去网了怎么办？ 先 Ping 一下</p>
@@ -307,7 +294,6 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
 <p>大神 … … 好吧这次我要 Ping 什么？</p>
 </blockquote>
 <p>其实上面这些情况见得都不想见了，那为什么今天要发这篇水文呢？<br>咳咳咳，用了这么久，你能准确地说出上面图片上的每个字段的内容是什么含义不？<br>这还不简单，</p>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ping blog.evalbug.com</span><br><span class="line">blog.evalbug.com 是一条 CNAME 记录，是 hk.cname.saebbs.com 的别名</span><br><span class="line">36.51.255.136 是 IP 地址，是hk.cname.saebbs.com 解析后的 IP 地址</span><br><span class="line">56 data bytes 是指本机每次发 56 个字节给对方</span><br><span class="line">64 bytes 是从 36.51.255.136 收到的数据包的大小</span><br><span class="line">icmp_seq 是序号</span><br><span class="line">ttl 是 Time to Live</span><br><span class="line">time 是延迟</span><br></pre></td></tr></table></figure>
 <p>什么是 TTL 呢？额… … 这个 … …<br>好了，那今天来说说关于 TTL 的一些事。</p>
 <h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>想起来写这篇文章呢，是因为微博上的一张图。</p>
@@ -321,40 +307,16 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
 <p>举例子了啊，比如Ａ和Ｂ通信，Ａ与Ｂ之间有2台路由器，Ａ设定初值为64,然后经过两台路由之后，到Ｂ这里，显示的就是62。那么Ａ如果设置初值为100,到Ｂ这里显示的就是98, Ａ 设置的初值为1,对不起，Ｂ收不到。</p>
 <p>为什么要有这么个字段存在呢？如果有个管理员没有规划好路由，搞了个成环的路由出来了，你想想啊，你要下一个xx资源, 请求了资源，人家服务器愿意把数据给你了，但是到了半路上路由器不开心了，A把你的包裹给B, B又踢给Ｃ，Ｃ又传给Ａ，就是不给你，气死你气死你。这还不是主要的，你想想啊，这个包就一直存在这个网络当中了，就这么走啊，走啊，走啊，直到你的网络崩溃了。想想你去找有关部门的解决问题的时候，他说让你找相关部门… … 最后你没耐心了，于是你就不找了。</p>
 <h5 id="第一层意思"><a href="#第一层意思" class="headerlink" title="第一层意思"></a>第一层意思</h5><p><strong>好吧，回到正题，那么你就很容易想到了第一层意思。</strong></p>
-=======
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">ping</span> <span class="tag">blog</span><span class="class">.evalbug</span><span class="class">.com</span></span><br><span class="line"><span class="tag">blog</span><span class="class">.evalbug</span><span class="class">.com</span> 是一条 <span class="tag">CNAME</span> 记录，是 <span class="tag">hk</span><span class="class">.cname</span><span class="class">.saebbs</span><span class="class">.com</span> 的别名</span><br><span class="line">36<span class="class">.51</span><span class="class">.255</span><span class="class">.136</span> 是 <span class="tag">IP</span> 地址，是<span class="tag">hk</span><span class="class">.cname</span><span class="class">.saebbs</span><span class="class">.com</span> 解析后的 <span class="tag">IP</span> 地址</span><br><span class="line">56 <span class="tag">data</span> <span class="tag">bytes</span> 是指本机每次发 56 个字节给对方</span><br><span class="line">64 <span class="tag">bytes</span> 是从 36<span class="class">.51</span><span class="class">.255</span><span class="class">.136</span> 收到的数据包的大小</span><br><span class="line"><span class="tag">icmp_seq</span> 是序号</span><br><span class="line"><span class="tag">ttl</span> 是 <span class="tag">Time</span> <span class="tag">to</span> <span class="tag">Live</span></span><br><span class="line"><span class="tag">time</span> 是延迟</span><br></pre></td></tr></table></figure>
-<p>什么是 TTL 呢？额… … 这个 … …<br>好了，那今天来说说关于 TTL 的一些事。</p>
-<h4 id="起因">起因</h4><p>想起来写这篇文章呢，是因为微博上的一张图。</p>
-<p><img src="http://i13.tietuku.com/f9574e78e075a671.jpg" alt="" title="TTL"></p>
-<p>看出什么了没？我告诉你啊，上面的图里面 TTL 的值是随机的!随机的!随机的! 什么意思呢？嗯，先不说，后面会讲。</p>
-<h4 id="什么是_TTL">什么是 TTL</h4><p>先讲讲什么是 TTL：Time to Live ,该字段指定 IP 包被路由器丢弃之前允许通过的最大网段数量，中文翻译是 生存时间值。</p>
-<p>最初这个字段是每经过一个路由器，就减去在这台路由器上数据转发消耗的时间的整数值，就是说每个路由器上减的不一样。然后科技就发展嘛，现在那种转发数据包会花上1秒钟以上的古董路由器已经几乎没有了，所以每经过一个路由器，这个值都是减1。</p>
-<p>是不是有种数据包在打出租车的感觉？数据包在出门的时候，假设它带了 32 块钱，然后每经过一台路由，就交1块钱的过桥费，到达目的地的时候，兜兜里还有20块，然后问你经过了多少个收费站，是不是很好计算？<strong>所以发展到现在，这个字段的含义已经变成了跳数计数器了。</strong></p>
-<p>那么，当你自信满满，带了32块钱出门，实际你到目的地需要40块钱，这显然是到不了的，但是你不知道呀，你就出门了。每过一个收费站，你就给人家掏1块钱，掏着掏着，钱没了，下一个收费站问你要钱的时候你没钱了，呵呵呵，对不起，不给过，这个时候，这个数据包就会被路由器扔了。然后这个收费站就打电话给你家，说你没带的钱不够，那么下次你是依旧这么潇洒地带32块出门还是说多带点出门，这就不是这里要讨论的了。根据这个特性，我们把 ttl 的值从 1 增加到通了为止，这样就可以得到沿途的所有路由信息，有个程序叫 traceroute (windows 平台上叫 tracert) 就是做了这样一件事。</p>
-<h4 id="TTL_随机现象分析">TTL 随机现象分析</h4><p>现在我们再来看 TTL 随机的那张图，哦〜〜难道是中毒了所以 TTL 发出去的时候随机了？<strong>错啦</strong>。 <strong>Ping 命令里面显示给你看的那个 TTL ，并不是你发出去的数据包的 TTL ，而是和你通信的对方，他设定的初值，然后一路走到你这，扣了多少税之后，剩下的那个数字。</strong></p>
-<p>举例子了啊，比如Ａ和Ｂ通信，Ａ与Ｂ之间有2台路由器，Ａ设定初值为64,然后经过两台路由之后，到Ｂ这里，显示的就是62。那么Ａ如果设置初值为100,到Ｂ这里显示的就是98, Ａ 设置的初值为1,对不起，Ｂ收不到。</p>
-<p>为什么要有这么个字段存在呢？如果有个管理员没有规划好路由，搞了个成环的路由出来了，你想想啊，你要下一个xx资源, 请求了资源，人家服务器愿意把数据给你了，但是到了半路上路由器不开心了，A把你的包裹给B, B又踢给Ｃ，Ｃ又传给Ａ，就是不给你，气死你气死你。这还不是主要的，你想想啊，这个包就一直存在这个网络当中了，就这么走啊，走啊，走啊，直到你的网络崩溃了。想想你去找有关部门的解决问题的时候，他说让你找相关部门… … 最后你没耐心了，于是你就不找了。</p>
-<h5 id="第一层意思">第一层意思</h5><p><strong>好吧，回到正题，那么你就很容易想到了第一层意思。</strong></p>
->>>>>>> github/master
 <p>对方主机故意搞了个小程序逗你玩的。我靠，他傻啊，搞这个随机程序，很容易丢包的啊。我又想说个题外话了，刚刚我们说到这个 ttl 初始值是由对端设置的，但是呢，每种操作系统的默认的初值是不一样的，默认情况下，Linux系统的TTL值为64或255，Windows NT/2000/XP系统的TTL值为128，Windows 98系统的TTL值为32，UNIX主机的TTL值为255，所以，有些时候是可以靠这个来判断对方服务器是什么操作系统的。</p>
 <p>聪明的你想到了路由器的跳数不是一样的，那这个值就不靠谱了啊。其实你仔细看，这些数值的差值都是32,在 RIP 协议里面，跳数大于16就会被视为无穷大，也就是不可达。这个数字在很大的网络里面是不合适的，但是大部分情况下，两台主机之间通信不会经过32个以上路由器。</p>
 <p>那能不能改这个值呢？当然可以了。但是一般会想到去改这个的人，实在是太少了。Nmap 扫描操作系统的时候，其中一环就是利用了这个特性。</p>
 <p>所以，对方是想通过这种手段来防止黑客带着0day 来搞他？理论上来讲，这个是可以的，但是实际上来说，并没有什么卵用。</p>
-<<<<<<< HEAD
 <h5 id="第二层意思"><a href="#第二层意思" class="headerlink" title="第二层意思"></a>第二层意思</h5><p><strong>再来讲第二层意思，可能是在路由没有稳定的情况下发起的请求。</strong></p>
 <p>之前说了一大堆，现在讲起来就很好说了。形象地讲，就是走了条比较绕的路到你这了，这时的数值自然是不一样的了。其实多台路由器并不一定是比较绕，说不定这边的路由器很洋气呢，还很快。<br>这种情况也只是发生在路由没稳定的情况下，但是呢，浮动不会太大，刚刚已经讲过了，不可能超过32个路由器。看这张图，这浮动的有点厉害啊，显然我又白说了一大堆。</p>
 <h5 id="第三层意思"><a href="#第三层意思" class="headerlink" title="第三层意思"></a>第三层意思</h5><p><strong>讲最后一层吧。</strong></p>
 <p>路由器是中间设备，工作在网络层上，也就是在路由器上，每次都会把你的包拆到 IP 层这里，看一下目的地址是什么，然后它查路由表，选下一跳地址，然后重新封包，发给下一跳路由器。那么如果是传输的路上，有个路由器把节操吃了，改你的包的 ttl 行不行？当然可以了。想想你小时候上课和女神传纸条吧，再想想那些帮你传纸条然后改你写的东西的小伙伴。这尼玛上辈子都是折翼的良辰啊。</p>
 <p>那这改 ttl 有什么意思呢？我还是用例子来说啊，你们学校，为了不让你玩 LOL, 如果学校直接把 LOL 屏蔽了，那你肯定会想着办法出去上网打游戏。但是呢，机智的学校会把 TTL 给你改成随机的，一部分数据包能传到服务器那里，一部分呢，传不过去，传回来的包也是这样搞。嗯。。年轻的人会觉得是 LOL 服务器太渣了，慢慢地，这用户体验就下去了，再慢慢地，你就不玩了。我去，这才是最机智的办法好吗？</p>
 <h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><p>上面说的是 IP 包的 TTL ，配置过 DNS 服务的同学都知道，在配置 Zone 文件的时候需要指定下 TTL ,默认是600。这里的 TTL 指的是缓存的生存周期。</p>
-=======
-<h5 id="第二层意思">第二层意思</h5><p><strong>再来讲第二层意思，可能是在路由没有稳定的情况下发起的请求。</strong></p>
-<p>之前说了一大堆，现在讲起来就很好说了。形象地讲，就是走了条比较绕的路到你这了，这时的数值自然是不一样的了。其实多台路由器并不一定是比较绕，说不定这边的路由器很洋气呢，还很快。<br>这种情况也只是发生在路由没稳定的情况下，但是呢，浮动不会太大，刚刚已经讲过了，不可能超过32个路由器。看这张图，这浮动的有点厉害啊，显然我又白说了一大堆。</p>
-<h5 id="第三层意思">第三层意思</h5><p><strong>讲最后一层吧。</strong></p>
-<p>路由器是中间设备，工作在网络层上，也就是在路由器上，每次都会把你的包拆到 IP 层这里，看一下目的地址是什么，然后它查路由表，选下一跳地址，然后重新封包，发给下一跳路由器。那么如果是传输的路上，有个路由器把节操吃了，改你的包的 ttl 行不行？当然可以了。想想你小时候上课和女神传纸条吧，再想想那些帮你传纸条然后改你写的东西的小伙伴。这尼玛上辈子都是折翼的良辰啊。</p>
-<p>那这改 ttl 有什么意思呢？我还是用例子来说啊，你们学校，为了不让你玩 LOL, 如果学校直接把 LOL 屏蔽了，那你肯定会想着办法出去上网打游戏。但是呢，机智的学校会把 TTL 给你改成随机的，一部分数据包能传到服务器那里，一部分呢，传不过去，传回来的包也是这样搞。嗯。。年轻的人会觉得是 LOL 服务器太渣了，慢慢地，这用户体验就下去了，再慢慢地，你就不玩了。我去，这才是最机智的办法好吗？</p>
-<h4 id="写在最后">写在最后</h4><p>上面说的是 IP 包的 TTL ，配置过 DNS 服务的同学都知道，在配置 Zone 文件的时候需要指定下 TTL ,默认是600。这里的 TTL 指的是缓存的生存周期。</p>
->>>>>>> github/master
 <p>好了说下我的一个不切实际地想法。如果在公网上有两台主机Ａ和Ｂ，通过 netfilter 把 postrouting 的所有数据包的 ttl 值全改成 255, 并且，Ａ把源地址是Ｂ的数据包通通转发给B, 然后Ｂ上的配置和Ａ上差不多，就是把来自Ａ的数据包通通转发给Ａ。</p>
 <p>我书读的有些少，理论学的不扎实，至于这到底有没有可行性什么的，我也不知道，只 是一时兴起乱想了这么多。我的目的是想引出下一次的文章。《Python 版 Ping命令编写》。</p>
 </span>
@@ -448,33 +410,21 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
-=======
-              <span class="site-state-item-count">25</span>
->>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
-=======
-              <span class="site-state-item-count">12</span>
->>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
-=======
-              <span class="site-state-item-count">23</span>
->>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -523,11 +473,7 @@ Ping 全称是 Packet Internet Groper 网络诊断工具，名字源于声纳定
           <div class="post-toc">
             
             
-<<<<<<< HEAD
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">2.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-TTL"><span class="nav-number">3.</span> <span class="nav-text">什么是 TTL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TTL-随机现象分析"><span class="nav-number">4.</span> <span class="nav-text">TTL 随机现象分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一层意思"><span class="nav-number">4.1.</span> <span class="nav-text">第一层意思</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二层意思"><span class="nav-number">4.2.</span> <span class="nav-text">第二层意思</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三层意思"><span class="nav-number">4.3.</span> <span class="nav-text">第三层意思</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写在最后"><span class="nav-number">5.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
-=======
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">2.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是_TTL"><span class="nav-number">3.</span> <span class="nav-text">什么是 TTL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TTL_随机现象分析"><span class="nav-number">4.</span> <span class="nav-text">TTL 随机现象分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一层意思"><span class="nav-number">4.1.</span> <span class="nav-text">第一层意思</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二层意思"><span class="nav-number">4.2.</span> <span class="nav-text">第二层意思</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三层意思"><span class="nav-number">4.3.</span> <span class="nav-text">第三层意思</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写在最后"><span class="nav-number">5.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
->>>>>>> github/master
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

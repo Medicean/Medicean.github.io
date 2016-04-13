@@ -267,11 +267,7 @@
       
 
       
-<<<<<<< HEAD
         <span itemprop="articleBody"><h2 id="对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。"><a href="#对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。" class="headerlink" title="对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。"></a>对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。</h2><a id="more"></a>
-=======
-        <span itemprop="articleBody"><h2 id="对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。">对于想要在外部访问内部的网络，除了在防火墙上开启相应服务器所对应的端口，最好的方法应该是建立VPN-Server，使得用户可以在外网任何一台计算机上拨入到内网中进行操作，而且VPN可以记录详细的日志，出现问题也便于追查相应的责任人。</h2><a id="more"></a>
->>>>>>> github/master
 <div class="body-text"><br><br>    在Ubuntu下配置VPN服务器也是比较简单的。<br><br>（1）首先更新自己的软件源。<br><br><strong>                sudo apt-get update</strong><br><br>（2）安装pptpd软件。<br><br><strong> sudo apt-get install pptpd</strong><br><br>（3）安装完毕之后修改下面这三个配置文件<br><br><em>  /etc/pptpd.conf        //主要是对主机设置</em><br><br><em>           /etc/ppp/pptpd-options                //主要是对DNS的设置</em><br><br><em>           /etc/ppp/chap-secrets             //主要是设置VPN的用户</em><br><br>1.修改pptpd.conf文件<br><br><strong> sudo vi /etc/pptpd.conf</strong><br><br>在最下方添加如下配置：<br><br><strong>              localip 10.0.0.1</strong><br><br><strong>              remoteip 10.0.0.2-10</strong><br><br>#localip是主机的地址，remoteip是地址池，也就是远程拨进来的计算机所分配到的ip地址。<br><br>2.修改/etc/ppp/pptpd-options文件，设置DNS<br><br><strong> sudo vi /etc/ppp/pptpd-options</strong><br><br>改变其中的 ms-dns 选项，为 VPN 客户端指派 DNS 服务器地址。添加以下两行。<br><br><strong> ms-dns 202.202.96.33</strong><br><br><strong>           ms-dns 68.128.128.61</strong><br><br>3.修改/etc/ppp/chap-secrets文件，添加用户<br><br><strong>  sudo  vi /etc/ppp/chap-secrets</strong><br><br>添加的时候一行一个用户。格式如下：<br><br><strong> 用户名 pptpd 密码  *</strong><br><br>例如：mediciyan pptpd 123456 <em><br><br>注明：pptpd是你的服务名，如果你没修改的话，就填这个。后面</em>处应该填的是客户端拨入时候分配的IP，如果填<em>则代表启用DHCP服务，自动分配IP。<br><br>（4）现在重启pptpd服务应该是可以连接上了，但是，不能访问Internet。还需要设置IP转发。<br><br>（5）是否已经打开IP转发?<br>查看”<strong>/proc/sys/net/ipv4/ip_forward</strong>“文件中的值是否为”<strong>1</strong>“, 如果不是, 则需要在”<strong>/etc/sysctl.conf</strong>“文件中修改”<strong>net.ipv4.ip_forward=1</strong>“, 然后执行以下命令:<br><br><strong> sudo sysctl -p            //应用配置</strong><br><br><strong>           sudo /etc/init.d/procps restart   //重启服务</strong><br><br>（6）有些时候，到这里就已经可以上外网了，但是像实验室的电脑，还需要设置NAT。这里需要用到iptables。<br><br><strong>  sudo apt-get install iptables</strong><br><br>检查是否在VPN服务器上设置了对于客户端IP地址的NAT?<br>执行下面的命令查看表中是否有相应的表项:<br><br><strong>    sudo iptables –table nat -L POSTROUTING</strong><br><br>如果没有则执行以下命令:<br><br><strong>  sudo iptables -t nat -A POSTROUTING -s 10.0.0.1/10 -o eth0 -j MASQUERADE</strong><br><br><strong>       sudo iptables –table nat –append POSTROUTING –out-interface eth0 –jump MASQUERADE</strong><br><br>一般来说，两条命令随便一句都可以。这时候重启pptpd服务，就可以上外网了。<br><br>（7）但是重启服务器之后，就不能上了。所以需要保存iptables。<br><br>方法是使用 iptables-save 命令：<br><br><strong> sudo iptables-save &gt; /etc/iptables-rules</strong><br><br>然后修改 /etc/network/interfaces 文件，找到 eth0 那一节，在对 eth0 的<br><br>设置最末尾加上下面这句：<br><br><strong>  pre-up iptables-restore &lt; /etc/iptables-rules</strong><br><br>这样当网卡 eth0 被加载的时候就会自动载入我们预先用 iptables-save 保<br><br>存下的配置。<br><br>（8）到此，一个 VPN Server/Gateway 基本就算架设完毕。<br><br>当然，也许你按照我的方法做了，还是无法成功，那么下面总结一些我碰到的问题和解决方案：<br>无法建立 VPN 连接<br>安装好 pptpd 并设置后，客户端还是无法建立到服务器的连接。<br><br>造成的原因可能有以下几种：<br>1. 服务器端的防火墙设置：PPTP 服务需要使用 1723(tcp) 端口和 gre 协议，因此请确保您的防火墙设置允许这两者通行。<br>2. 如果服务器在路由器后面，请确保路由器上做好相应的设置和端口转发。<br>3. 如果服务器在路由器后面，那么请确保你的服务器支持 VPN Passthrough。<br>4. 如果客户端在路由器后面，那么客户端所使用的路由器也必须支持 VPN Passthrough。其实市面上稍微好点的路由器都是支持 VPN Passthrough 的，当然也不排除那些最最最便宜的便宜货确实不支持。当然，如果你的路由器可以刷 DD-Wrt 的话就刷上吧，DD-Wrt 是支持的。<br>能建立链接，但“几乎”无法访问互联网<br>这里我使用“几乎”这个词，是因为并不是完全不能访问互联网。症状为，打开 Google 搜索没问题，但其它网站均无法打开；SSH 可用，但 scp 不行；ftp 能握手，但传不了文件。我就遇到了这种情况，仔细 Google 后发现原来是 MTU 的问题，用 ping 探测了一下果然是包过大了。知道问题就好办了，我们可以通过 iptables 来修正这一问题。具体原理就不讲了，需要的自己 Google。这里只说解决方案，在 filter 表中添加下面的规则：<br><em>*sudo iptables -A FORWARD -s 10.0.0.0/24 -p tcp -m tcp –tcp-flags SYN,RST SYN -j TCPMSS –set-mss 1200</em></em><br><br>上面规则中的 1200 可以根据你的实际情况修改，为了保证最好的网络性能，这个值应该不断修改，直至能保证网络正常使用情况下的最大值。<br>好了，至此，一台单网卡 pptp-server 就算完成了。<br><br></div></span>
       
     </div>
@@ -355,33 +351,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
-=======
-              <span class="site-state-item-count">25</span>
->>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
-=======
-              <span class="site-state-item-count">12</span>
->>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
-=======
-              <span class="site-state-item-count">23</span>
->>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

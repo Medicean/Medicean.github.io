@@ -30,11 +30,7 @@
 
 
 
-<<<<<<< HEAD
   <meta name="keywords" content="linux,ubuntu,rsync," />
-=======
-  <meta name="keywords" content="linux,rsync,ubuntu," />
->>>>>>> github/master
 
 
 
@@ -272,7 +268,6 @@
 
       
         <span itemprop="articleBody"><p>Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。<br><a id="more"></a></p>
-<<<<<<< HEAD
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在 Ubuntu 下安装RSYNC通过以下步骤可以实现:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install rsync xinetd</span><br></pre></td></tr></table></figure>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ol>
@@ -297,32 +292,6 @@
 </ol>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>运行下面的命令检查，确认rsync配置成功。</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rsync user@192.168.0.1::share</span><br><span class="line">  Password: </span><br><span class="line">  drwxr-xr-x        4096 2006/12/13 09:41:59 .</span><br><span class="line">  drwxr-xr-x        4096 2006/11/23 18:00:03 folders</span><br></pre></td></tr></table></figure>
-=======
-<h4 id="安装">安装</h4><p>在 Ubuntu 下安装RSYNC通过以下步骤可以实现:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="keyword">get</span> install rsync xinetd</span><br></pre></td></tr></table></figure>
-<h4 id="配置">配置</h4><ol>
-<li><p>编辑/etc/default/rsync 启动rsync作为使用xinetd的守护进程</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim <span class="regexp">/etc/</span><span class="keyword">default</span>/rsync</span><br><span class="line">  RSYNC_ENABLE=inetd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建 /etc/xinetd.d/rsync 通过xinetd使rsync开始工作</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/xinetd.d/rsync</span><br><span class="line">  service rsync</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">disable</span>         = no</span><br><span class="line">        socket_<span class="built_in">type</span>     = stream</span><br><span class="line">        <span class="built_in">wait</span>            = no</span><br><span class="line">        user            = root</span><br><span class="line">        server          = /usr/bin/rsync</span><br><span class="line">        server_args     = --daemon</span><br><span class="line">        <span class="built_in">log</span>_on_failure  += USERID</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建 /etc/rsyncd.conf  配置rsync使其在.</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="keyword">vim</span> /etc/rsyncd.<span class="keyword">conf</span></span><br><span class="line">  <span class="built_in">max</span> connections = <span class="number">2</span></span><br><span class="line">  <span class="built_in">log</span> <span class="keyword">file</span> = /var/<span class="built_in">log</span>/rsync.<span class="built_in">log</span></span><br><span class="line">  timeout = <span class="number">300</span></span><br><span class="line"></span><br><span class="line">  [share]</span><br><span class="line">  comment = Public Share</span><br><span class="line">  path = /home/share</span><br><span class="line">  <span class="keyword">read</span> <span class="keyword">only</span> = <span class="keyword">no</span></span><br><span class="line">  <span class="keyword">list</span> = yes</span><br><span class="line">  uid = nobody</span><br><span class="line">  gid = nogroup</span><br><span class="line">  auth users = user</span><br><span class="line">  secrets <span class="keyword">file</span> = /etc/rsyncd.secrets</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建 /etc/rsyncd.secrets  配置用户名和密码.</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/rsyncd<span class="class">.secrets</span> </span><br><span class="line">  user:password</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改密码文件权限</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod <span class="number">600</span> /etc/rsyncd.secrets</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动/重启 xinetd</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo /etc/init.d/xinetd restart</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="测试">测试</h4><p>运行下面的命令检查，确认rsync配置成功。</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rsync user@<span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>::share</span><br><span class="line">  Password: </span><br><span class="line">  drwxr-xr-x        <span class="number">4096</span> <span class="number">2006</span>/<span class="number">12</span>/<span class="number">13</span> <span class="number">09</span>:<span class="number">41</span>:<span class="number">59</span> .</span><br><span class="line">  drwxr-xr-x        <span class="number">4096</span> <span class="number">2006</span>/<span class="number">11</span>/<span class="number">23</span> <span class="number">18</span>:<span class="number">00</span>:<span class="number">03</span> folders</span><br></pre></td></tr></table></figure>
->>>>>>> github/master
 </span>
       
     </div>
@@ -333,17 +302,10 @@
           
             <a href="/tags/linux/" rel="tag">#linux</a>
           
-<<<<<<< HEAD
             <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
           
             <a href="/tags/rsync/" rel="tag">#rsync</a>
           
-=======
-            <a href="/tags/rsync/" rel="tag">#rsync</a>
-          
-            <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
-          
->>>>>>> github/master
         </div>
       
 
@@ -423,33 +385,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
-=======
-              <span class="site-state-item-count">25</span>
->>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
-=======
-              <span class="site-state-item-count">12</span>
->>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
-=======
-              <span class="site-state-item-count">23</span>
->>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
