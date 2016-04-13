@@ -270,17 +270,29 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
       
 
       
+<<<<<<< HEAD
         <span itemprop="articleBody"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
+=======
+        <span itemprop="articleBody"><h3 id="写在前面">写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
+>>>>>>> github/master
 <p>Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS X 从10.4 开始，采用 launchd 进程来管理整个操作系统的服务及进程。传统的 UNIX 会使用 /etc/rc.* 或其他的机制来管理开机时要启动的启动服务，而现在的 OS X 则使用 launchd 来管理，它的启动服务称为 Launch Daemon/Agents, 利用 Launch Daemon/Agent，我们就可以令脚本程序在系统启动的时候在后台运行了。 </p>
 <a id="more"></a>
 <p>首先来看下 Launch Daemon 和 Launch Agent 有什么区别</p>
 <p>Launch Daemon 和 Launch Agent 是同一种东西在不同应用范围的名称。Launch Daemon 是系统级别的服务，称为 daemon，Launch Agent 是用户级别的服务，称为agent，前者在开机时会加载，后者在用户登录后才会加载。</p>
 <p>于是我们就选用 Daemon，至于为什么，其实我最初的想法是在别人的 Mac 上写这个文件的，这样对于一些不懂 Launch 的人来说，使用 kill 杀掉我们的节点之后，还是会启动起来的，好了这个不能说太多。</p>
+<<<<<<< HEAD
 <h3 id="配置开始"><a href="#配置开始" class="headerlink" title="配置开始"></a>配置开始</h3><ol>
 <li><p>创建 plist 文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /Library/LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
 <p>文件内容如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">    &lt;key&gt;Label&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;com.bugscan.net&lt;/string&gt;</span><br><span class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</span><br><span class="line">    &lt;array&gt;</span><br><span class="line">        &lt;string&gt;python&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;-c&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;exec(__import__(&apos;urllib2&apos;).urlopen(&apos;https://www.bugscan.net/这里是你自己的用户标识&apos;).read())&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;-m&lt;/string&gt;</span><br><span class="line">        &lt;string&gt;5&lt;/string&gt;</span><br><span class="line">    &lt;/array&gt;</span><br><span class="line">    &lt;key&gt;RunAtLoad&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">    &lt;key&gt;StartCalendarInterval&lt;/key&gt;</span><br><span class="line">    &lt;dict&gt;</span><br><span class="line">        &lt;key&gt;Minute&lt;/key&gt;</span><br><span class="line">        &lt;integer&gt;20&lt;/integer&gt;</span><br><span class="line">    &lt;/dict&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+=======
+<h3 id="配置开始">配置开始</h3><ol>
+<li><p>创建 plist 文件</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /<span class="keyword">Library</span>/LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
+<p>文件内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>com.bugscan.net<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>python<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>exec(__import__('urllib2').urlopen('https://www.bugscan.net/这里是你自己的用户标识').read())<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>-m<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>5<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>StartCalendarInterval<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">key</span>&gt;</span>Minute<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">integer</span>&gt;</span>20<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+>>>>>>> github/master
 <ul>
 <li><p>Label (必须)</p>
 <blockquote>
@@ -313,6 +325,7 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
 <p> 所有key关键字详细使用说明可以在Mac OS X终端下使用命令 <code>man launchd.plist</code> 查询。</p>
 <ol>
 <li><p>修改 plist 文件权限</p>
+<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root:wheel /Library/LaunchDaemons/bugscan.plist</span><br><span class="line">sudo chmod 644 /Library/LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>生效配置</p>
@@ -320,6 +333,15 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
 </li>
 </ol>
 <h4 id="来源参考"><a href="#来源参考" class="headerlink" title="来源参考"></a>来源参考</h4><p>《网络运维与管理》杂志 2014.02.3.4 期，感谢原文作者提供的思路</p>
+=======
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown <span class="string">root:</span>wheel <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br><span class="line">sudo chmod <span class="number">644</span> <span class="regexp">/Library/</span>LaunchDaemons/bugscan.plist</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生效配置</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 载入配置</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 卸载配置</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 检查语法是否正确</span></span><br><span class="line">plutil /Library/LaunchDaemons/bugscan.plist</span><br><span class="line"><span class="preprocessor"># 查看服务运行状态</span></span><br><span class="line">sudo launchctl list</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="来源参考">来源参考</h4><p>《网络运维与管理》杂志 2014.02.3.4 期，感谢原文作者提供的思路</p>
+>>>>>>> github/master
 </span>
       
     </div>
@@ -409,21 +431,33 @@ Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
+<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
+=======
+              <span class="site-state-item-count">25</span>
+>>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
+<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
+=======
+              <span class="site-state-item-count">12</span>
+>>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
+<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
+=======
+              <span class="site-state-item-count">23</span>
+>>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

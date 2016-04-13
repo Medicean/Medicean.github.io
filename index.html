@@ -218,6 +218,7 @@
           
           
             
+<<<<<<< HEAD
               <a class="post-title-link" href="/2016/04/12/funny_things_152/" itemprop="url">
                 进入妹子电脑偷照片和密码实录
               </a>
@@ -310,6 +311,8 @@
           
           
             
+=======
+>>>>>>> github/master
               <a class="post-title-link" href="/2016/01/27/poc_coding_3/" itemprop="url">
                 PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)
               </a>
@@ -363,8 +366,13 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><a href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.3 基于布尔的盲注的 SQL 注入 PoC 编写"></a>2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
 <h3 id="2-3-1-漏洞分析"><a href="#2-3-1-漏洞分析" class="headerlink" title="2.3.1 漏洞分析"></a>2.3.1 漏洞分析</h3><p>想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。</p>
+=======
+          <h2 id="2-3_基于布尔的盲注的_SQL_注入_PoC_编写">2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
+<h3 id="2-3-1_漏洞分析">2.3.1 漏洞分析</h3><p>想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。</p>
+>>>>>>> github/master
 <blockquote>
 <p>原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。</p>
 </blockquote>
@@ -458,15 +466,24 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="2-1-SQL-注入基础"><a href="#2-1-SQL-注入基础" class="headerlink" title="2.1 SQL 注入基础"></a>2.1 SQL 注入基础</h2><p>准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。</p>
 <h3 id="2-1-1-SQL-注入原理"><a href="#2-1-1-SQL-注入原理" class="headerlink" title="2.1.1 SQL 注入原理"></a>2.1.1 SQL 注入原理</h3><p>SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。</p>
+=======
+          <h2 id="2-1_SQL_注入基础">2.1 SQL 注入基础</h2><p>准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。</p>
+<h3 id="2-1-1_SQL_注入原理">2.1.1 SQL 注入原理</h3><p>SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。</p>
+>>>>>>> github/master
 <p>如果你不懂什么是 SQL 注入的话，这里我推荐去看 <a href="https://github.com/Audi-1/sqli-labs">sqli-labs</a> 这是目前我见过的最详细讲解 SQL 注入的资料了。不过都是纯英文的，但是也没多少难度。FreeBuf 上有两篇对应的中文介绍，你也可以去看看，相信对你是有帮助的。 </p>
 <p><a href="http://www.freebuf.com/articles/web/34619.html">安全科普：SQLi Labs 指南 Part 1</a></p>
 <p><a href="http://www.freebuf.com/articles/web/38315.html">安全科普：SQLi Labs 指南 Part 2</a></p>
 <blockquote>
 <p>倘若要是连 SQL 都不知道的话，我觉得吧，磨刀不误砍柴工，你觉得呢？</p>
 </blockquote>
+<<<<<<< HEAD
 <h3 id="2-1-2-SQL-注入分类"><a href="#2-1-2-SQL-注入分类" class="headerlink" title="2.1.2 SQL 注入分类"></a>2.1.2 SQL 注入分类</h3><p>分类这种东西对是相对的,看你站在什么角度了,我一直都很讨厌这些分类,如果你仔细去研究这些个分类,你会觉得这世界上的发明家太多了,想一出是一出啊。</p>
+=======
+<h3 id="2-1-2_SQL_注入分类">2.1.2 SQL 注入分类</h3><p>分类这种东西对是相对的,看你站在什么角度了,我一直都很讨厌这些分类,如果你仔细去研究这些个分类,你会觉得这世界上的发明家太多了,想一出是一出啊。</p>
+>>>>>>> github/master
 <p>反正我也是发明家，下面这些个分类是我个人的见解。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/27/poc_coding_2/#more" rel="contents">
@@ -555,8 +572,13 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="第-1-章-技能基础"><a href="#第-1-章-技能基础" class="headerlink" title="第 1 章 技能基础"></a>第 1 章 技能基础</h2><h3 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h3><h3 id="为什么要学网络"><a href="#为什么要学网络" class="headerlink" title="为什么要学网络"></a>为什么要学网络</h3><p>安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。</p>
 <h3 id="需要学什么"><a href="#需要学什么" class="headerlink" title="需要学什么"></a>需要学什么</h3><p>对于写 PoC 来说，我们需要的并不是你去把 OSI 7 层模型的每一层都精通，你要精通了所有层的东西，你就不会坐在这里了。</p>
+=======
+          <h2 id="第_1_章_技能基础">第 1 章 技能基础</h2><h3 id="网络基础">网络基础</h3><h3 id="为什么要学网络">为什么要学网络</h3><p>安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。</p>
+<h3 id="需要学什么">需要学什么</h3><p>对于写 PoC 来说，我们需要的并不是你去把 OSI 7 层模型的每一层都精通，你要精通了所有层的东西，你就不会坐在这里了。</p>
+>>>>>>> github/master
 <p>好了，大概说一下我们需要了解哪些,相关的专业知识你可以去百度我不浪费时间了</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/26/poc_coding_1/#more" rel="contents">
@@ -645,9 +667,15 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。</p>
 <p>来来来，先上图, duang ~</p>
 <p><img src="/images/merry_christmas.gif" alt=""></p>
+=======
+          <h2 id="写在前面">写在前面</h2><p>圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。</p>
+<p>来来来，先上图, duang ~</p>
+<p><img src="http://i4.tietuku.com/cfd474925328fdb2.gif" alt=""></p>
+>>>>>>> github/master
 <blockquote>
 <p>怎么样，酷不酷，我是多寂寞的程序员啊。</p>
 </blockquote>
@@ -739,7 +767,11 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。</p>
+=======
+          <h2 id="引言">引言</h2><p>有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。</p>
+>>>>>>> github/master
 <p>这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。</p>
 <p>关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。</p>
 <p><strong>本教程为笔者原创，转载请征求笔者同意，笔者默认不同意</strong></p>
@@ -832,7 +864,11 @@
 
       
         
+<<<<<<< HEAD
           <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
+=======
+          <h3 id="写在前面">写在前面</h3><p>扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。</p>
+>>>>>>> github/master
 <p>Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS X 从10.4 开始，采用 launchd 进程来管理整个操作系统的服务及进程。传统的 UNIX 会使用 /etc/rc.* 或其他的机制来管理开机时要启动的启动服务，而现在的 OS X 则使用 launchd 来管理，它的启动服务称为 Launch Daemon/Agents, 利用 Launch Daemon/Agent，我们就可以令脚本程序在系统启动的时候在后台运行了。 </p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/29/osx_plist_startup/#more" rel="contents">
@@ -921,11 +957,19 @@
 
       
         
+<<<<<<< HEAD
           <h3 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h3><p>漏洞标题：<strong>Different arrays compare indentical due to integer key truncation</strong></p>
 <p>漏洞来源：<a href="https://bugs.php.net/bug.php?id=69892">https://bugs.php.net/bug.php?id=69892</a></p>
 <p>影响组件: PHP</p>
 <p>影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1</p>
 <h3 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>用一个 CTF 题目来说明一下上面的这个漏洞,顺便记录下 CTF 的一类题</p>
+=======
+          <h3 id="漏洞简介">漏洞简介</h3><p>漏洞标题：<strong>Different arrays compare indentical due to integer key truncation</strong></p>
+<p>漏洞来源：<a href="https://bugs.php.net/bug.php?id=69892">https://bugs.php.net/bug.php?id=69892</a></p>
+<p>影响组件: PHP</p>
+<p>影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1</p>
+<h3 id="实例说明">实例说明</h3><h4 id="题目">题目</h4><p>用一个 CTF 题目来说明一下上面的这个漏洞,顺便记录下 CTF 的一类题</p>
+>>>>>>> github/master
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/#more" rel="contents">
               阅读全文 &raquo;
@@ -1013,7 +1057,11 @@
 
       
         
+<<<<<<< HEAD
           <h4 id="先来看一段代码"><a href="#先来看一段代码" class="headerlink" title="先来看一段代码:"></a>先来看一段代码:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &apos;m&apos; in (&apos;medicean&apos;)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; &apos;m&apos; in [&apos;medicean&apos;]</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+=======
+          <h4 id="先来看一段代码:">先来看一段代码:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">'m'</span> <span class="keyword">in</span> (<span class="string">'medicean'</span>)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">'m'</span> <span class="keyword">in</span> [<span class="string">'medicean'</span>]</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+>>>>>>> github/master
 <p>为什么会出现这种结果呢？</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/08/python_why_m_in_medicean_is_true/#more" rel="contents">
@@ -1102,11 +1150,19 @@
 
       
         
+<<<<<<< HEAD
           <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>一年前在国外看到的 <a href="http://earwig.github.io/2014/06/01/obfuscating-hello-world.html">一篇文章</a> ，也是因为这个脚本，让我喜欢上了 Python。</p>
 <p>代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。</p>
 <p>今天突然想起来了，就靠着记忆重新写了一个。</p>
 <p>完成后的代码如下,我已经大概处理了一下，为了好看：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">  getattr(</span><br><span class="line">    __import__(True.__class__.__name__[_] +</span><br><span class="line">      [].__class__.__name__[__]),</span><br><span class="line">    ().__class__.__eq__.__class__.__name__[:__] +</span><br><span class="line">    ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">  )(</span><br><span class="line">    _, </span><br><span class="line">    (lambda _,__,___: _(_,__,___))</span><br><span class="line">    (lambda _,__,___: chr(___ % __) +</span><br><span class="line">      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">      ____&lt;&lt;______, </span><br><span class="line">      (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) +</span><br><span class="line">      (_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) -</span><br><span class="line">      _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) +_))</span><br><span class="line">      - (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) +</span><br><span class="line">      (((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) -</span><br><span class="line">        _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) +</span><br><span class="line">      _____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) -</span><br><span class="line">      ___) &lt;&lt; ((_____ &lt;&lt; ____) +___)) + (((((___ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) +</span><br><span class="line">      (((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) +</span><br><span class="line">      (((_____ &lt;&lt; ____) -___) &lt;&lt; ((_______ &lt;&lt; ___))) +</span><br><span class="line">      (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) +</span><br><span class="line">      _) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ((_ &lt;&lt; _____) - _)) -(((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) -</span><br><span class="line">      _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) +</span><br><span class="line">      (_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)(* (lambda _, __: _(_, __))(</span><br><span class="line">  lambda _, __:</span><br><span class="line">    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +</span><br><span class="line">    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],</span><br><span class="line">    (</span><br><span class="line">      lambda _: _,</span><br><span class="line">      lambda _, __: _,</span><br><span class="line">      lambda _, __, ___: _,</span><br><span class="line">      lambda _, __, ___, ____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+=======
+          <h2 id="写在前面">写在前面</h2><p>一年前在国外看到的 <a href="http://earwig.github.io/2014/06/01/obfuscating-hello-world.html">一篇文章</a> ，也是因为这个脚本，让我喜欢上了 Python。</p>
+<p>代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。</p>
+<p>今天突然想起来了，就靠着记忆重新写了一个。</p>
+<p>完成后的代码如下,我已经大概处理了一下，为了好看：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/usr/bin/env python</span></span><br><span class="line"><span class="list">(<span class="keyword">lambda</span> _,__,___,____,_____,______,_______, ________:</span><br><span class="line">  getattr<span class="list">(</span><br><span class="line">    <span class="keyword">__import__</span><span class="list">(<span class="keyword">True</span>.__class__.__name__[_] +</span><br><span class="line">      [].__class__.__name__[__])</span>,</span><br><span class="line">    <span class="list">()</span>.__class__.__eq__.__class__.__name__[<span class="keyword">:__</span>] +</span><br><span class="line">    <span class="list">()</span>.__iter__<span class="list">()</span>.__class__.__name__[_____<span class="keyword">:________</span>]</span><br><span class="line">  )</span><span class="list">(</span><br><span class="line">    <span class="keyword">_</span>, </span><br><span class="line">    <span class="list">(<span class="keyword">lambda</span> _,__,___: _<span class="list">(<span class="keyword">_</span>,__,___)</span>)</span></span><br><span class="line">    <span class="list">(<span class="keyword">lambda</span> _,__,___: chr<span class="list">(<span class="keyword">___</span> % __)</span> +</span><br><span class="line">      _<span class="list">(<span class="keyword">_</span>,__,___ // __)</span> if ___ else <span class="list">(<span class="keyword">lambda</span>: _)</span>.func_code.co_lnotab, </span><br><span class="line">      ____&lt;&lt;______, </span><br><span class="line">      <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; _____)</span> + _______)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; _______)</span> +</span><br><span class="line">      <span class="list">(<span class="keyword">_</span> &lt;&lt; __)</span>)</span>)</span> - <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> + _)</span> &lt;&lt; ____)</span> -</span><br><span class="line">      _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ____)</span> - _)</span> &lt;&lt; ___)</span> +_)</span>)</span></span><br><span class="line">      - <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; _____)</span> + _______)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_______</span> &lt;&lt; ____)</span>)</span>)</span> +</span><br><span class="line">      <span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; _____)</span> - ___)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> + _)</span> &lt;&lt; ___)</span> -</span><br><span class="line">        _)</span>)</span> - <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> - _)</span> &lt;&lt; ____)</span> +</span><br><span class="line">      _____)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; _____)</span> - ___)</span>)</span> + <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_______</span> &lt;&lt; ____)</span> -</span><br><span class="line">      ___)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; ____)</span> +___)</span>)</span> + <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> -</span><br><span class="line">      _)</span> &lt;&lt; ___)</span> + _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ___)</span> + _)</span>)</span> &lt;&lt; ___)</span> + <span class="list">(<span class="keyword">_</span> &lt;&lt; _)</span>)</span>)</span> +</span><br><span class="line">      <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> + _)</span> &lt;&lt; ___)</span> - ___)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ______)</span>)</span>)</span> +</span><br><span class="line">      <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; ____)</span> -___)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_______</span> &lt;&lt; ___)</span>)</span>)</span> +</span><br><span class="line">      <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ______)</span> + _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; ____)</span> - _)</span>)</span> - <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> +</span><br><span class="line">      _)</span> &lt;&lt; __)</span> + _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; ___)</span> - _)</span>)</span> - <span class="list">(<span class="list">(<span class="list">(<span class="keyword">_____</span> &lt;&lt; __)</span> -</span><br><span class="line">      _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; _____)</span> - _)</span>)</span> -<span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; _____)</span> + _)</span> &lt;&lt; <span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; ___)</span> -</span><br><span class="line">      _)</span>)</span> - <span class="list">(<span class="keyword">_____</span> &lt;&lt; <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ___)</span> + _)</span>)</span> &lt;&lt; _)</span>)</span>)</span> +</span><br><span class="line">      <span class="list">(<span class="keyword">_</span> &lt;&lt; <span class="list">(<span class="list">(<span class="list">(<span class="keyword">___</span> &lt;&lt; __)</span> + _)</span>)</span>)</span> + <span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="list">(<span class="keyword">_</span> &lt;&lt; ___)</span> + _)</span>)</span>)</span> &lt;&lt; ___)</span> + _</span><br><span class="line">    )</span></span><br><span class="line">  )</span></span><br><span class="line">)</span><span class="list">(<span class="keyword">*</span> <span class="list">(<span class="keyword">lambda</span> _, __: _<span class="list">(<span class="keyword">_</span>, __)</span>)</span><span class="list">(</span><br><span class="line">  <span class="keyword">lambda</span> _, __:</span><br><span class="line">    [__[<span class="list">(<span class="keyword">lambda</span>: _)</span>.func_code.co_nlocals].func_code.co_argcount] +</span><br><span class="line">    _<span class="list">(<span class="keyword">_</span>, __[<span class="list">(<span class="keyword">lambda</span> _: _)</span>.func_code.co_nlocals:])</span> if __ else [],</span><br><span class="line">    <span class="list">(</span><br><span class="line">      <span class="keyword">lambda</span> _: _,</span><br><span class="line">      lambda _, __: _,</span><br><span class="line">      lambda _, __, ___: _,</span><br><span class="line">      lambda _, __, ___, ____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">    )</span></span><br><span class="line">  )</span></span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+>>>>>>> github/master
 <p>怎么样？是不是吓到了。当时我感叹：<font color="red">逼还是你会装啊</font>。</p>
 <p>好吧来看分析吧。</p>
           <div class="post-more-link text-center">
@@ -1132,6 +1188,97 @@
 
 
     
+<<<<<<< HEAD
+=======
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/29/rsyncinstall/" itemprop="url">
+                Rsync 安装及配置
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-29T22:59:48+08:00" content="2015-10-29">
+            2015-10-29
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/29/rsyncinstall/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/29/rsyncinstall/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/29/rsyncinstall/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+>>>>>>> github/master
   </section>
 
   
@@ -1170,21 +1317,33 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
+<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
+=======
+              <span class="site-state-item-count">25</span>
+>>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
+<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
+=======
+              <span class="site-state-item-count">12</span>
+>>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
+<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
+=======
+              <span class="site-state-item-count">23</span>
+>>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

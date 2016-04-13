@@ -30,7 +30,11 @@
 
 
 
+<<<<<<< HEAD
   <meta name="keywords" content="brew,OSX," />
+=======
+  <meta name="keywords" content="OSX,brew," />
+>>>>>>> github/master
 
 
 
@@ -276,6 +280,7 @@
       
 
       
+<<<<<<< HEAD
         <span itemprop="articleBody"><h2 id="什么是-brew"><a href="#什么是-brew" class="headerlink" title="什么是 brew"></a>什么是 brew</h2><p>Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。</p>
 <p>项目地址: <a href="https://github.com/Homebrew/homebrew" target="_blank" rel="external">https://github.com/Homebrew/homebrew</a></p>
 <p>使用帮助: <a href="http://brew.sh" target="_blank" rel="external">http://brew.sh</a></p>
@@ -289,6 +294,21 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line"></span><br><span class="line">Stashing your changes:</span><br><span class="line"> M .travis.yml</span><br><span class="line"> M README.md</span><br><span class="line"> M SUPPORTERS.md</span><br><span class="line"> M share/doc/homebrew/Bottles.md</span><br><span class="line"> M share/doc/homebrew/Brew-Test-Bot-For-Core-Contributors.md</span><br><span class="line"> M share/doc/homebrew/El_Capitan_and_Homebrew.md</span><br><span class="line"> M share/doc/homebrew/Formula-Cookbook.md</span><br><span class="line"> M share/doc/homebrew/Gems,-Eggs-and-Perl-Modules.md</span><br><span class="line"> M share/doc/homebrew/Interesting-Taps-&amp;-Branches.md</span><br><span class="line"> M share/doc/homebrew/New-Maintainer-Checklist.md</span><br><span class="line"> M share/doc/homebrew/Xcode.md</span><br><span class="line"> M share/doc/homebrew/brew.1.html</span><br><span class="line"> M share/man/man1/brew.1</span><br><span class="line"></span><br><span class="line">fatal: Unable to create &apos;/usr/local/.git/index.lock&apos;: Permission denied</span><br><span class="line">Cannot save the current index state</span><br><span class="line">Error: Failure while executing: git stash save --include-untracked --quiet</span><br></pre></td></tr></table></figure>
 <p>提示权限不足</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo chgrp -R admin /usr/local</span><br><span class="line"># 确保目录归属管理组</span><br><span class="line">sudo chmod -R g+w /usr/local</span><br><span class="line"># 确保管理组可写</span><br></pre></td></tr></table></figure>
+=======
+        <span itemprop="articleBody"><h2 id="什么是_brew">什么是 brew</h2><p>Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。</p>
+<p>项目地址: <a href="https://github.com/Homebrew/homebrew" target="_blank" rel="external">https://github.com/Homebrew/homebrew</a></p>
+<p>使用帮助: <a href="http://brew.sh" target="_blank" rel="external">http://brew.sh</a></p>
+<p>但是国内有时候真是让人无语，于是还是考虑给 brew 换个国内的源。<br><a id="more"></a></p>
+<h2 id="brew_的镜像源">brew 的镜像源</h2><ul>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/homebrew/homebrew.git/" target="_blank" rel="external">清华 brew 源</a></li>
+<li><a href="http://mirrors.ustc.edu.cn/homebrew.git" target="_blank" rel="external">中科大 brew 源</a></li>
+</ul>
+<h2 id="更换_brew_源">更换 brew 源</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /usr/<span class="keyword">local</span>/</span><br><span class="line"># 关联远程仓库</span><br><span class="line">git remote <span class="keyword">set</span>-url origin http:<span class="comment">//mirrors.ustc.edu.cn/homebrew.git</span></span><br><span class="line"></span><br><span class="line"># 临时目录</span><br><span class="line"><span class="keyword">mkdir</span> ~/tmp/</span><br><span class="line"><span class="keyword">cd</span> ~/tmp/</span><br><span class="line">git clone http:<span class="comment">//mirrors.ustc.edu.cn/homebrew.git</span></span><br><span class="line"></span><br><span class="line"># 替换文件</span><br><span class="line">sudo <span class="keyword">rm</span> -rf /usr/<span class="keyword">local</span>/.git</span><br><span class="line">sudo <span class="keyword">rm</span> -rf /usr/<span class="keyword">local</span>/Library</span><br><span class="line">sudo cp -R homebrew/.git /usr/<span class="keyword">local</span>/</span><br><span class="line">sudo cp -R homebrew/Library /usr/<span class="keyword">local</span>/</span><br><span class="line"></span><br><span class="line"># 更新</span><br><span class="line">brew <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+<h2 id="排错">排错</h2><p>如果在执行 <code>brew update</code> 后出现如下错误</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="operator"><span class="keyword">update</span></span><br><span class="line"></span><br><span class="line">Stashing your changes:</span><br><span class="line"> <span class="keyword">M</span> .travis.yml</span><br><span class="line"> <span class="keyword">M</span> README.md</span><br><span class="line"> <span class="keyword">M</span> SUPPORTERS.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Bottles.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Brew-<span class="keyword">Test</span>-Bot-<span class="keyword">For</span>-Core-<span class="keyword">Contributors</span>.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/El_Capitan_and_Homebrew.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Formula-Cookbook.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Gems,-Eggs-<span class="keyword">and</span>-Perl-Modules.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Interesting-Taps-&amp;-Branches.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/<span class="keyword">New</span>-Maintainer-Checklist.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/Xcode.md</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/doc/homebrew/brew<span class="number">.1</span>.html</span><br><span class="line"> <span class="keyword">M</span> <span class="keyword">share</span>/man/man1/brew<span class="number">.1</span></span><br><span class="line"></span><br><span class="line">fatal: Unable <span class="keyword">to</span> <span class="keyword">create</span> <span class="string">'/usr/local/.git/index.lock'</span>: Permission denied</span><br><span class="line">Cannot <span class="keyword">save</span> the <span class="keyword">current</span> <span class="keyword">index</span> state</span><br><span class="line"><span class="keyword">Error</span>: <span class="keyword">Failure</span> <span class="keyword">while</span> executing: git stash <span class="keyword">save</span> <span class="comment">--include-untracked --quiet</span></span></span><br></pre></td></tr></table></figure>
+<p>提示权限不足</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo chgrp -R admin /usr/<span class="keyword">local</span></span><br><span class="line"><span class="comment"># 确保目录归属管理组</span></span><br><span class="line">sudo <span class="keyword">chmod</span> -R g+w /usr/<span class="keyword">local</span></span><br><span class="line"><span class="comment"># 确保管理组可写</span></span><br></pre></td></tr></table></figure>
+>>>>>>> github/master
 <p>最后使用 <code>brew update</code> 就可以更新了。</p>
 </span>
       
@@ -298,10 +318,17 @@
       
         <div class="post-tags">
           
+<<<<<<< HEAD
             <a href="/tags/brew/" rel="tag">#brew</a>
           
             <a href="/tags/OSX/" rel="tag">#OSX</a>
           
+=======
+            <a href="/tags/OSX/" rel="tag">#OSX</a>
+          
+            <a href="/tags/brew/" rel="tag">#brew</a>
+          
+>>>>>>> github/master
         </div>
       
 
@@ -381,21 +408,33 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
+<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
+=======
+              <span class="site-state-item-count">25</span>
+>>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
+<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
+=======
+              <span class="site-state-item-count">12</span>
+>>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
+<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
+=======
+              <span class="site-state-item-count">23</span>
+>>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -444,7 +483,11 @@
           <div class="post-toc">
             
             
+<<<<<<< HEAD
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-brew"><span class="nav-number">1.</span> <span class="nav-text">什么是 brew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brew-的镜像源"><span class="nav-number">2.</span> <span class="nav-text">brew 的镜像源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换-brew-源"><span class="nav-number">3.</span> <span class="nav-text">更换 brew 源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排错"><span class="nav-number">4.</span> <span class="nav-text">排错</span></a></li></ol></div>
+=======
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是_brew"><span class="nav-number">1.</span> <span class="nav-text">什么是 brew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brew_的镜像源"><span class="nav-number">2.</span> <span class="nav-text">brew 的镜像源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换_brew_源"><span class="nav-number">3.</span> <span class="nav-text">更换 brew 源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排错"><span class="nav-number">4.</span> <span class="nav-text">排错</span></a></li></ol></div>
+>>>>>>> github/master
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

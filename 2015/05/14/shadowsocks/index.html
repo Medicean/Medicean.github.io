@@ -30,7 +30,11 @@
 
 
 
+<<<<<<< HEAD
   <meta name="keywords" content="翻墙,shadowsocks," />
+=======
+  <meta name="keywords" content="shadowsocks,翻墙," />
+>>>>>>> github/master
 
 
 
@@ -288,6 +292,7 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
         <span itemprop="articleBody"><p>VPS上的VPN已经配置好了，并且可以使用了，但是对我来说不是很方便，因为我平时要靠VPN免费上网的，不可能同时挂两个VPN出来，于是就有了本文。</p>
 <p>Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时还没有照顾IPv6的原因吗？这就不得而知了。</p>
 <p>进入正题，本文没有什么原创的地方，大部分是搬运自Line牛的博客。我在此就是记录下。<br><a id="more"></a><br>Server:</p>
+<<<<<<< HEAD
 <p>1.安装pip和shadowsocks<br>Debian<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python-pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure></p>
 <p>CentOS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install python-setuptools &amp;&amp; easy_install pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure></p>
 <p>2.使用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#开启服务</span><br><span class="line">ssserver -p 443 -k password -m rc4-md5</span><br><span class="line">#如果要后台运行：</span><br><span class="line">sudo ssserver -p 443 -k password -m rc4-md5 --user nobody -d start</span><br><span class="line">#如果要停止：</span><br><span class="line">sudo ssserver -d stop</span><br><span class="line">#如果要检查日志：</span><br><span class="line">sudo less /var/log/shadowsocks.log</span><br></pre></td></tr></table></figure></p>
@@ -299,6 +304,19 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
 <p>于是我们直接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-1.1.4 -d=false -k=&quot;服务器的密码&quot; -m=&quot;aes-256-cfb&quot; -l=8118 -p=8118 -s=&quot;服务器的IP,写成ipv6的&quot;</span><br></pre></td></tr></table></figure></p>
 <p>这样其实就已经可以了。<br>但是呢我不想每次都在中继服务器上输入这么长的命令，那就搞配置文件吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@mediciyan ~]# cat /etc/shadowsocks.json</span><br><span class="line">&#123;</span><br><span class="line">&quot;server&quot;:&quot;xxxx:xxxx::xxxx:xxxx:xxxx:xxxxx&quot;,</span><br><span class="line">&quot;server_port&quot;:8118,</span><br><span class="line">&quot;local_port&quot;:8118,</span><br><span class="line">&quot;password&quot;:&quot;99cc41fa1xxxxxxxxxxxxxx&quot;,</span><br><span class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>嗯，密码是明文的，我是为了好记就放了个md5上去了。<br>然后就可以运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-1.1.4 -c /etc/shadowsocks.json</span><br><span class="line">#这里记住不要和Server那里搞混了哈.</span><br></pre></td></tr></table></figure></p>
+=======
+<p>1.安装pip和shadowsocks<br>Debian<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure></p>
+<p>CentOS<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> python-setuptools &amp;&amp; easy_install pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure></p>
+<p>2.使用:<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#开启服务</span></span><br><span class="line">ssserver -p <span class="number">443</span> -k password -m rc4-md5</span><br><span class="line"><span class="preprocessor">#如果要后台运行：</span></span><br><span class="line">sudo ssserver -p <span class="number">443</span> -k password -m rc4-md5 --user nobody -d start</span><br><span class="line"><span class="preprocessor">#如果要停止：</span></span><br><span class="line">sudo ssserver -d stop</span><br><span class="line"><span class="preprocessor">#如果要检查日志：</span></span><br><span class="line">sudo less /<span class="keyword">var</span>/log/shadowsocks.log</span><br></pre></td></tr></table></figure></p>
+<p>使用配置文件：<br>创建一个配置文件/etc/shadowsock.json ,这里我走的是IPv6的代理，IPv4的自己在github上有<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">"<span class="attribute">server</span>":<span class="value"><span class="string">"::"</span></span>,</span><br><span class="line">"<span class="attribute">server_port</span>":<span class="value"><span class="number">8118</span></span>,</span><br><span class="line">"<span class="attribute">local_port</span>":<span class="value"><span class="number">1080</span></span>,</span><br><span class="line">"<span class="attribute">password</span>":<span class="value"><span class="string">"mypassword"</span></span>,</span><br><span class="line">"<span class="attribute">timeout</span>":<span class="value"><span class="number">300</span></span>,</span><br><span class="line">"<span class="attribute">method</span>":<span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好吧大概说下，server是服务器的地址，ipv6就写成::就可以了。然后server_port是服务器的端口,local_port是本机端口。这里的password要说下，里面配置的是明文密码，然后在传输的时候会用aes加密，一开始我以为是密文，还纠结了一下。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">启动服务：</span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span></span><br><span class="line">以守护进程形式运行：</span><br><span class="line"></span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span> -d start</span><br><span class="line">ssserver -c /etc/shadowsocks<span class="class">.json</span> -d stop</span><br></pre></td></tr></table></figure></p>
+<p>Client:<br><strong>我这里说的Client其实不是真正在用的Client，是我一台在学校的服务器（172.18.19.xx），算是中继服务器吧，因为我拨号上网之后就没有IPv6了，所以我就用了这个。</strong></p>
+<p>Windows客户端就直接参见Line的博文吧：<a href="http://blog.l1n3.net/debian-7-5-install-shad0ws0cks/" target="_blank" rel="external">http://blog.l1n3.net/debian-7-5-install-shad0ws0cks/</a><br>下面我说下Linux的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//dl.chenyufei.info/shadowsocks/latest/shadowsocks-local-linux64-1.1.4.gz</span></span><br><span class="line">gunzip shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span>.gz</span><br><span class="line">chmod a+x shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span>.gz</span><br></pre></td></tr></table></figure></p>
+<p>然后：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-1.1.4 --help</span><br><span class="line"></span><br><span class="line">Usage of shadowsocks-local-linux64-1.1.4:</span><br><span class="line">-<span class="ruby">b=<span class="string">""</span><span class="symbol">:</span> local address, listen only to this address <span class="keyword">if</span> specified</span><br><span class="line"></span>-<span class="ruby">c=<span class="string">"config.json"</span><span class="symbol">:</span> specify config file</span><br><span class="line"></span>-<span class="ruby">d=<span class="symbol">false:</span> print debug message</span><br><span class="line"></span>-<span class="ruby">k=<span class="string">""</span><span class="symbol">:</span> password</span><br><span class="line"></span>-<span class="ruby">l=<span class="number">0</span><span class="symbol">:</span> local socks5 proxy port</span><br><span class="line"></span>-<span class="ruby">m=<span class="string">""</span><span class="symbol">:</span> encryption method, <span class="symbol">default:</span> aes-<span class="number">256</span>-cfb</span><br><span class="line"></span>-<span class="ruby">p=<span class="number">0</span><span class="symbol">:</span> server port</span><br><span class="line"></span>-<span class="ruby">s=<span class="string">""</span><span class="symbol">:</span> server address</span><br><span class="line"></span>-<span class="ruby">t=<span class="number">300</span><span class="symbol">:</span> timeout <span class="keyword">in</span> seconds</span><br><span class="line"></span>-<span class="ruby">version=<span class="symbol">false:</span> print version</span></span><br></pre></td></tr></table></figure></p>
+<p>于是我们直接：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span> -d=<span class="literal">false</span> -k=<span class="string">"服务器的密码"</span> -m=<span class="string">"aes-256-cfb"</span> -l=<span class="number">8118</span> -p=<span class="number">8118</span> -s=<span class="string">"服务器的IP,写成ipv6的"</span></span><br></pre></td></tr></table></figure></p>
+<p>这样其实就已经可以了。<br>但是呢我不想每次都在中继服务器上输入这么长的命令，那就搞配置文件吧。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@mediciyan ~]<span class="preprocessor"># cat /etc/shadowsocks.json</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"server"</span>:<span class="string">"xxxx:xxxx::xxxx:xxxx:xxxx:xxxxx"</span>,</span><br><span class="line"><span class="string">"server_port"</span>:<span class="number">8118</span>,</span><br><span class="line"><span class="string">"local_port"</span>:<span class="number">8118</span>,</span><br><span class="line"><span class="string">"password"</span>:<span class="string">"99cc41fa1xxxxxxxxxxxxxx"</span>,</span><br><span class="line"><span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，密码是明文的，我是为了好记就放了个md5上去了。<br>然后就可以运行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shadowsocks-local-linux64-<span class="number">1.1</span><span class="number">.4</span> -c /etc/shadowsocks.json</span><br><span class="line"><span class="preprocessor">#这里记住不要和Server那里搞混了哈.</span></span><br></pre></td></tr></table></figure></p>
+>>>>>>> github/master
 <p>为了不挂断<br>我们使用screen就可以啦。</p>
 <p>好了暂时就这样吧。</p>
 </span>
@@ -309,10 +327,17 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
       
         <div class="post-tags">
           
+<<<<<<< HEAD
             <a href="/tags/翻墙/" rel="tag">#翻墙</a>
           
             <a href="/tags/shadowsocks/" rel="tag">#shadowsocks</a>
           
+=======
+            <a href="/tags/shadowsocks/" rel="tag">#shadowsocks</a>
+          
+            <a href="/tags/翻墙/" rel="tag">#翻墙</a>
+          
+>>>>>>> github/master
         </div>
       
 
@@ -392,21 +417,33 @@ Linode给我的感觉就是IPv4很慢，但是IPv6还不错，是因为GFW暂时
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
+<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
+=======
+              <span class="site-state-item-count">25</span>
+>>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
+<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
+=======
+              <span class="site-state-item-count">12</span>
+>>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
+<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
+=======
+              <span class="site-state-item-count">23</span>
+>>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

@@ -49,15 +49,24 @@ UCloud：怪我喽？
 <meta property="og:description" content="引言最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。
 UCloud：怪我喽？
 事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，我也不认识 163">
+<<<<<<< HEAD
 <meta property="og:image" content="http://blog.evalbug.com/images/146/gwl.jpg">
 <meta property="og:image" content="http://blog.evalbug.com/images/146/wc.png">
 <meta property="og:updated_time" content="2016-04-13T02:33:04.000Z">
+=======
+<meta property="og:image" content="http://i13.tietuku.com/fa11f5d40df45ab2t.jpg">
+<meta property="og:image" content="http://i11.tietuku.com/0df6cf9e0e0b3129t.jpg">
+<meta property="og:updated_time" content="2015-10-23T02:03:49.000Z">
+>>>>>>> github/master
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="脱库漫谈">
 <meta name="twitter:description" content="引言最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。
 UCloud：怪我喽？
 事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，我也不认识 163">
+<<<<<<< HEAD
 <meta name="twitter:image" content="http://blog.evalbug.com/images/146/gwl.jpg">
+=======
+>>>>>>> github/master
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -288,7 +297,11 @@ UCloud：怪我喽？
       
 
       
+<<<<<<< HEAD
         <span itemprop="articleBody"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，<br>目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。<br>外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着<br>凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。</p>
+=======
+        <span itemprop="articleBody"><h2 id="引言">引言</h2><p>最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，<br>目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。<br>外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着<br>凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。</p>
+>>>>>>> github/master
 <p>UCloud：怪我喽？</p>
 <p>事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，<br>我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。</p>
 <p>上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前<br>两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。</p>
@@ -299,12 +312,17 @@ UCloud：怪我喽？
 </blockquote>
 <p><strong>脱库利用的是目标网站的漏洞，而撞库利用的是用户习惯的漏洞。</strong></p>
 <blockquote>
+<<<<<<< HEAD
 <p>支付宝:<br><img src="/images/146/gwl.jpg" alt=""></p>
+=======
+<p>支付宝:<br><img src="http://i13.tietuku.com/fa11f5d40df45ab2t.jpg" alt=""></p>
+>>>>>>> github/master
 </blockquote>
 <p>今天不谈别的，只谈三件事。</p>
 <p>第一件事，脱库。</p>
 <p>第二件事，脱库。</p>
 <p>第三件事，还是他X的脱库。</p>
+<<<<<<< HEAD
 <h2 id="常见的脱库手段"><a href="#常见的脱库手段" class="headerlink" title="常见的脱库手段"></a>常见的脱库手段</h2><h3 id="1-注入漏洞-使用注入直接强脱数据库"><a href="#1-注入漏洞-使用注入直接强脱数据库" class="headerlink" title="1. 注入漏洞,使用注入直接强脱数据库"></a>1. 注入漏洞,使用注入直接强脱数据库</h3><p> 有些时候，目标站存在一个 SQL 注入漏洞，但是权限又限制的各种死，没法拿到 Webshell,但是你又可以通过 SQL 注入遍历用户数据这张表<br><code>select * from user limit 0,1</code>,于是乎，你就可以一条一条地注入出来，最终把对方的整张用户表全 DUMP 到你的计算机。</p>
 <p> 这里我推荐使用 sqlmap.</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -u &quot;目标站点&quot; -D &quot;目标的数据库名&quot; -T &quot;目标表名&quot; -C &quot;字段名1,字段名2&quot; --dump-all</span><br><span class="line"></span><br><span class="line"># -C 如果不指定就是整个表的所有字段</span><br><span class="line"># --dump 是把目标的整个表结构 dump 出来</span><br><span class="line"># --dump-all 是把整个表的实体(也就是数据)下载下来</span><br><span class="line"># 使用多线程就在命令上加 --thread 10</span><br></pre></td></tr></table></figure>
@@ -313,12 +331,23 @@ UCloud：怪我喽？
 <p> 这个管理员居然允许了远程访问,这个管理员居然允许了远程访问,但是你不能一张口就说人家傻逼,可能是因为业务需要呀，但是那种直接让所有来源都可以登录的,就说不过去了啊,拖出去枪毙 5 分钟。</p>
 <p>说下 MySQL 数据库,一般会用 mysqldump 命令，用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h[hosname] -u[user_name] -p[password]</span><br><span class="line">--default-character-set=[char_set_name] [db_name] [table_name] [save_path]</span><br></pre></td></tr></table></figure></p>
 <p>给个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h111.111.111.111 -umysql -pmysql123 --default-character-set=utf8 inn0db --skip-lock-tables /tmp/inn0233.sql</span><br></pre></td></tr></table></figure></p>
+=======
+<h2 id="常见的脱库手段">常见的脱库手段</h2><h3 id="1-_注入漏洞,使用注入直接强脱数据库">1. 注入漏洞,使用注入直接强脱数据库</h3><p> 有些时候，目标站存在一个 SQL 注入漏洞，但是权限又限制的各种死，没法拿到 Webshell,但是你又可以通过 SQL 注入遍历用户数据这张表<br><code>select * from user limit 0,1</code>,于是乎，你就可以一条一条地注入出来，最终把对方的整张用户表全 DUMP 到你的计算机。</p>
+<p> 这里我推荐使用 sqlmap.</p>
+ <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -u <span class="string">"目标站点"</span> -D <span class="string">"目标的数据库名"</span> -T <span class="string">"目标表名"</span> -C <span class="string">"字段名1,字段名2"</span> --dump-all</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># -C 如果不指定就是整个表的所有字段</span></span><br><span class="line"><span class="preprocessor"># --dump 是把目标的整个表结构 dump 出来</span></span><br><span class="line"><span class="preprocessor"># --dump-all 是把整个表的实体(也就是数据)下载下来</span></span><br><span class="line"><span class="preprocessor"># 使用多线程就在命令上加 --thread 10</span></span><br></pre></td></tr></table></figure>
+<p> 这里再谈下这种方法的缺点，每 dump 一条数据,就要向目标服务器发送一次 HTTP 请求，这还是建立在你能一次请求就能下载一个实体的情况下，如果对方数据量不大，还能接受，如果说数据量太大，首先时间是个问题，其次目标服务器承载能力有限，最后，这么大的流量，管理员要是不傻，一看流量异常，直接查 web 日志发现这么多请求，直接 ban ip, 修复漏洞。然后你就可以说洗洗睡了。</p>
+<h3 id="2-_数据库配置不当,直接连接数据库">2. 数据库配置不当,直接连接数据库</h3><p> 通过文件下载漏洞，搞到了数据库配置文件，或者是弱口令爆出了数据库密码，反正就是人家知道你数据库连接的密码了。一般情况下，数据库的配置都是只允许 localhost 登录，但是有些管理员会修改这个。</p>
+<p> 这个管理员居然允许了远程访问,这个管理员居然允许了远程访问,但是你不能一张口就说人家傻逼,可能是因为业务需要呀，但是那种直接让所有来源都可以登录的,就说不过去了啊,拖出去枪毙 5 分钟。</p>
+<p>说下 MySQL 数据库,一般会用 mysqldump 命令，用法如下：<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h<span class="string">[hosname]</span> -u<span class="string">[user_name]</span> -p<span class="string">[password]</span></span><br><span class="line">--default-character-set=<span class="string">[char_set_name]</span> <span class="string">[db_name]</span> <span class="string">[table_name]</span> <span class="string">[save_path]</span></span><br></pre></td></tr></table></figure></p>
+<p>给个例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h111<span class="number">.111</span><span class="number">.111</span><span class="number">.111</span> -umysql -pmysql123 --<span class="keyword">default</span>-character-<span class="built_in">set</span>=utf8 inn0db --skip-lock-tables /tmp/inn0233.sql</span><br></pre></td></tr></table></figure></p>
+>>>>>>> github/master
 <blockquote>
 <p>上面的例子，就是使用 mysql 这个用户名，密码是 mysql123，把 111.111.111.111 这台数据库服务器的 inn0db 数据库中的所有表全导出到本地的 /tmp 目录下面,文件名是inn0233.sql</p>
 </blockquote>
 <p>这个工具那么强大,具体怎么用，你要么去 Google 要么去百度，或者直接 –help。</p>
 <p>至于像 Oracle 数据库,SQLServer 这些都是类似的。</p>
 <p>如果数据库服务器没做日志记录的话,管理员都不会发现自己什么时候被人把库给脱了。</p>
+<<<<<<< HEAD
 <h3 id="3-通过-WebShell-上传脱库脚本导出"><a href="#3-通过-WebShell-上传脱库脚本导出" class="headerlink" title="3. 通过 WebShell,上传脱库脚本导出"></a>3. 通过 WebShell,上传脱库脚本导出</h3><p> 这种方法也叫 <strong>数据库桥接</strong>，意思就是，我这台机器的 IP 不在你的数据库受信列表里面，我访问不了你，那我就用你信任的主机当个跳板来连你，然后就把你的数据全拖了。</p>
 <p> 这个方法也是用的最多的。大部分的数据库设置都会限制陌生的主机来访问，但是当这个脱库的请求是信任的主机发出的时候，那妥妥地放行啊，信任的你都要拦下来，你这是要大义灭亲还是要六亲不认？</p>
 <p> 还有一个特点就是方便，有一个 WebShell 就能搞，一个脱库脚本传上去，什么复杂的命令，什么权限提升，这些一般都可以不操心。最主要的，很难被管理员发现。Web 也会有日志记录呀，来我们先看看 一般的日志记录</p>
@@ -329,6 +358,18 @@ UCloud：怪我喽？
 <h3 id="5-命令执行漏洞"><a href="#5-命令执行漏洞" class="headerlink" title="5. 命令执行漏洞"></a>5. 命令执行漏洞</h3><p> 这个我就不想多说什么了，你都能执行命令了。上面这些基本上你都能做了。</p>
 <h3 id="6-其它"><a href="#6-其它" class="headerlink" title="6. 其它"></a>6. 其它</h3><p> 话不能说死，毕竟我是个娱乐型程序员，我得给我留个台阶下。</p>
 <h2 id="什么时候拖库"><a href="#什么时候拖库" class="headerlink" title="什么时候拖库"></a>什么时候拖库</h2><p>这个问题，其实是要结合着现实来说的。</p>
+=======
+<h3 id="3-_通过_WebShell,上传脱库脚本导出">3. 通过 WebShell,上传脱库脚本导出</h3><p> 这种方法也叫 <strong>数据库桥接</strong>，意思就是，我这台机器的 IP 不在你的数据库受信列表里面，我访问不了你，那我就用你信任的主机当个跳板来连你，然后就把你的数据全拖了。</p>
+<p> 这个方法也是用的最多的。大部分的数据库设置都会限制陌生的主机来访问，但是当这个脱库的请求是信任的主机发出的时候，那妥妥地放行啊，信任的你都要拦下来，你这是要大义灭亲还是要六亲不认？</p>
+<p> 还有一个特点就是方便，有一个 WebShell 就能搞，一个脱库脚本传上去，什么复杂的命令，什么权限提升，这些一般都可以不操心。最主要的，很难被管理员发现。Web 也会有日志记录呀，来我们先看看 一般的日志记录</p>
+<p>这是 access.log 的<br> <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0.0.1</span> - - <span class="string">[15/Oct/2015:17:13:35 +0800]</span> <span class="string">"<span class="keyword">GET</span> /test.php HTTP/1.1"</span> <span class="number">200</span> <span class="number">57</span> <span class="string">"-"</span> <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:41.0) Gecko/20100101 Firefox/41.0"</span></span><br></pre></td></tr></table></figure></p>
+<p>这里面会记录 IP地址，日期，请求的文件，UA 等等，这个请求的文件就是我要讲的了，如果你的脱库脚本名字是 tuoku.php, 管理员查日志的时候，一眼就看出来是什么了。小隐隐陵薮，大隐隐朝市。把文件名改成一个不起眼的名字，管理员疏忽了就很难发现你了。等他发现的时候，数据已经被你脱到手了，再 Ban 你的 IP 也为时已晚。</p>
+<p> 这种小脚本的原理都是通过查询然后保存数据，多不胜数了，我就不罗列了。</p>
+<h3 id="4-_备份文件处理不当">4. 备份文件处理不当</h3><p> 有些网站会有自动备份的功能，但是因为某些配置不当，把备份的 SQL 文件直接放在了网站某个目录里面，还没有做任何权限处理，你只要猜对了文件名，这些纯文本的数据库文件全是你的。</p>
+<h3 id="5-_命令执行漏洞">5. 命令执行漏洞</h3><p> 这个我就不想多说什么了，你都能执行命令了。上面这些基本上你都能做了。</p>
+<h3 id="6-_其它">6. 其它</h3><p> 话不能说死，毕竟我是个娱乐型程序员，我得给我留个台阶下。</p>
+<h2 id="什么时候拖库">什么时候拖库</h2><p>这个问题，其实是要结合着现实来说的。</p>
+>>>>>>> github/master
 <p>小偷什么时候去你家合适？当然是要趁你家没人的时候啦。你在家的时候进门偷东西的，那叫强盗，要么就是傻逼，正常人哪里能做得出这种事。</p>
 <p>我们来想想管理员一般什么时候不在线。</p>
 <ol>
@@ -338,18 +379,32 @@ UCloud：怪我喽？
 <li>其它时间。我说话就是这么严谨 2333，不排除人家在上面说的时间以外脱你数据库呀。</li>
 </ol>
 <p>一般很少有人会在晚上加班，有的话也是一两个人值守，利用的就是目标防御最弱的时候。所以，网络管理员也不好当啊。</p>
+<<<<<<< HEAD
 <h2 id="善意地提醒"><a href="#善意地提醒" class="headerlink" title="善意地提醒"></a>善意地提醒</h2><p>重要的数据都会有监控，一有异常就会有提醒，别以为挂几个 VPN 多搞层代理就没人抓得了你了。网管也不要因为有这些防护产品就消极怠慢了，也总有世外高人让你防不胜防。</p>
 <blockquote>
 <p>呀，我这话怎么跟没说一样。</p>
 </blockquote>
 <h2 id="被脱库了怎么办"><a href="#被脱库了怎么办" class="headerlink" title="被脱库了怎么办"></a>被脱库了怎么办</h2><ol>
+=======
+<h2 id="善意地提醒">善意地提醒</h2><p>重要的数据都会有监控，一有异常就会有提醒，别以为挂几个 VPN 多搞层代理就没人抓得了你了。网管也不要因为有这些防护产品就消极怠慢了，也总有世外高人让你防不胜防。</p>
+<blockquote>
+<p>呀，我这话怎么跟没说一样。</p>
+</blockquote>
+<h2 id="被脱库了怎么办">被脱库了怎么办</h2><ol>
+>>>>>>> github/master
 <li>发现黑客正在脱库，Ban IP 立刻，马上。</li>
 <li>查找后门，修补漏洞，如果需要很长时间修复，或者你修复不了，如果服务不是很重要的话，暂时可以把相关的程序服务停掉。</li>
 <li>提醒用户修改密码。</li>
 <li>联系公关，说明情况，必要时报警。</li>
+<<<<<<< HEAD
 <li>准备辞职报告。<br><img src="/images/146/wc.png" alt=""></li>
 </ol>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>上面的都是我乱说的。从我的文章理解，感觉很简单，其实涉及到的东西和方面特别多，一两句话要是能说清楚的话，你让这些人怎么活？</p>
+=======
+<li>准备辞职报告。<br><img src="http://i11.tietuku.com/0df6cf9e0e0b3129t.jpg" alt=""></li>
+</ol>
+<h2 id="最后">最后</h2><p>上面的都是我乱说的。从我的文章理解，感觉很简单，其实涉及到的东西和方面特别多，一两句话要是能说清楚的话，你让这些人怎么活？</p>
+>>>>>>> github/master
 </span>
       
     </div>
@@ -439,21 +494,33 @@ UCloud：怪我喽？
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
+<<<<<<< HEAD
               <span class="site-state-item-count">26</span>
+=======
+              <span class="site-state-item-count">25</span>
+>>>>>>> github/master
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
+<<<<<<< HEAD
               <span class="site-state-item-count">13</span>
+=======
+              <span class="site-state-item-count">12</span>
+>>>>>>> github/master
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
+<<<<<<< HEAD
               <span class="site-state-item-count">24</span>
+=======
+              <span class="site-state-item-count">23</span>
+>>>>>>> github/master
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -502,7 +569,11 @@ UCloud：怪我喽？
           <div class="post-toc">
             
             
+<<<<<<< HEAD
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的脱库手段"><span class="nav-number">2.</span> <span class="nav-text">常见的脱库手段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注入漏洞-使用注入直接强脱数据库"><span class="nav-number">2.1.</span> <span class="nav-text">1. 注入漏洞,使用注入直接强脱数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数据库配置不当-直接连接数据库"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据库配置不当,直接连接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-通过-WebShell-上传脱库脚本导出"><span class="nav-number">2.3.</span> <span class="nav-text">3. 通过 WebShell,上传脱库脚本导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-备份文件处理不当"><span class="nav-number">2.4.</span> <span class="nav-text">4. 备份文件处理不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-命令执行漏洞"><span class="nav-number">2.5.</span> <span class="nav-text">5. 命令执行漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-其它"><span class="nav-number">2.6.</span> <span class="nav-text">6. 其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候拖库"><span class="nav-number">3.</span> <span class="nav-text">什么时候拖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#善意地提醒"><span class="nav-number">4.</span> <span class="nav-text">善意地提醒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被脱库了怎么办"><span class="nav-number">5.</span> <span class="nav-text">被脱库了怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+=======
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的脱库手段"><span class="nav-number">2.</span> <span class="nav-text">常见的脱库手段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_注入漏洞,使用注入直接强脱数据库"><span class="nav-number">2.1.</span> <span class="nav-text">1. 注入漏洞,使用注入直接强脱数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_数据库配置不当,直接连接数据库"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据库配置不当,直接连接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_通过_WebShell,上传脱库脚本导出"><span class="nav-number">2.3.</span> <span class="nav-text">3. 通过 WebShell,上传脱库脚本导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_备份文件处理不当"><span class="nav-number">2.4.</span> <span class="nav-text">4. 备份文件处理不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_命令执行漏洞"><span class="nav-number">2.5.</span> <span class="nav-text">5. 命令执行漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-_其它"><span class="nav-number">2.6.</span> <span class="nav-text">6. 其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候拖库"><span class="nav-number">3.</span> <span class="nav-text">什么时候拖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#善意地提醒"><span class="nav-number">4.</span> <span class="nav-text">善意地提醒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#被脱库了怎么办"><span class="nav-number">5.</span> <span class="nav-text">被脱库了怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+>>>>>>> github/master
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
