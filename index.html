@@ -218,6 +218,100 @@
           
           
             
+              <a class="post-title-link" href="/2016/04/17/poc_coding_4/" itemprop="url">
+                PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-04-17T20:00:48+08:00" content="2016-04-17">
+            2016-04-17
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/17/poc_coding_4/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/17/poc_coding_4/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。</p>
+<p>再说积极的事，这个系列也帮助了一些人，其中有个兄弟写了一个 Python 的项目，里面就用到了我们 2.3 节中的 PoC：</p>
+<p><a href="https://github.com/pythonfucku/app">one python app for zoomeye 项目地址</a></p>
+<h2 id="2-4-基于时间的盲注的-SQL-注入-PoC-编写"><a href="#2-4-基于时间的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.4 基于时间的盲注的 SQL 注入 PoC 编写"></a>2.4 基于时间的盲注的 SQL 注入 PoC 编写</h2><p>本节原本打算找一个 PHP 语言的 CMS 的漏洞，环境好搭，找了半天没找到比较新的漏洞，最后决定直接用之前的漏洞。这次我们选择的漏洞为：</p>
+<p> <a href="http://wooyun.org/bugs/wooyun-2010-070827">CmsEasy 5.5 UTF-8 20140802/celive/live/header.php SQL注入漏洞</a></p>
+<p> 这个漏洞是我们 2.2 节《基于报错的 SQL 注入 PoC 编写》中使用过的一个漏洞。</p>
+<p> 选这个洞的意义在于，让读者能体会到，一个漏洞的不同利用方式，没错，不只有一种利用方式。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/17/poc_coding_4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/04/12/funny_things_152/" itemprop="url">
                 进入妹子电脑偷照片和密码实录
               </a>
@@ -460,9 +554,9 @@
         
           <h2 id="2-1-SQL-注入基础"><a href="#2-1-SQL-注入基础" class="headerlink" title="2.1 SQL 注入基础"></a>2.1 SQL 注入基础</h2><p>准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。</p>
 <h3 id="2-1-1-SQL-注入原理"><a href="#2-1-1-SQL-注入原理" class="headerlink" title="2.1.1 SQL 注入原理"></a>2.1.1 SQL 注入原理</h3><p>SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。</p>
-<p>如果你不懂什么是 SQL 注入的话，这里我推荐去看 <a href="https://github.com/Audi-1/sqli-labs">sqli-labs</a> 这是目前我见过的最详细讲解 SQL 注入的资料了。不过都是纯英文的，但是也没多少难度。FreeBuf 上有两篇对应的中文介绍，你也可以去看看，相信对你是有帮助的。 </p>
-<p><a href="http://www.freebuf.com/articles/web/34619.html">安全科普：SQLi Labs 指南 Part 1</a></p>
-<p><a href="http://www.freebuf.com/articles/web/38315.html">安全科普：SQLi Labs 指南 Part 2</a></p>
+<p>如果你不懂什么是 SQL 注入的话，这里我推荐去看 <a href="https://github.com/Audi-1/sqli-labs"><font color="red">sqli-labs</font></a> 这是目前我见过的最详细讲解 SQL 注入的资料了。不过都是纯英文的，但是也没多少难度。FreeBuf 上有两篇对应的中文介绍，你也可以去看看，相信对你是有帮助的。 </p>
+<p><a href="http://www.freebuf.com/articles/web/34619.html"><font color="red">安全科普：SQLi Labs 指南 Part 1</font></a></p>
+<p><a href="http://www.freebuf.com/articles/web/38315.html"><font color="red">安全科普：SQLi Labs 指南 Part 2</font></a></p>
 <blockquote>
 <p>倘若要是连 SQL 都不知道的话，我觉得吧，磨刀不误砍柴工，你觉得呢？</p>
 </blockquote>
@@ -1038,100 +1132,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/11/05/python_chaos_hello_world/" itemprop="url">
-                Python 混乱代码解析
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-11-05T23:43:48+08:00" content="2015-11-05">
-            2015-11-05
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Python/" itemprop="url" rel="index">
-                  <span itemprop="name">Python</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/11/05/python_chaos_hello_world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/05/python_chaos_hello_world/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>一年前在国外看到的 <a href="http://earwig.github.io/2014/06/01/obfuscating-hello-world.html">一篇文章</a> ，也是因为这个脚本，让我喜欢上了 Python。</p>
-<p>代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。</p>
-<p>今天突然想起来了，就靠着记忆重新写了一个。</p>
-<p>完成后的代码如下,我已经大概处理了一下，为了好看：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">  getattr(</span><br><span class="line">    __import__(True.__class__.__name__[_] +</span><br><span class="line">      [].__class__.__name__[__]),</span><br><span class="line">    ().__class__.__eq__.__class__.__name__[:__] +</span><br><span class="line">    ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">  )(</span><br><span class="line">    _, </span><br><span class="line">    (lambda _,__,___: _(_,__,___))</span><br><span class="line">    (lambda _,__,___: chr(___ % __) +</span><br><span class="line">      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">      ____&lt;&lt;______, </span><br><span class="line">      (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) +</span><br><span class="line">      (_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) -</span><br><span class="line">      _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) +_))</span><br><span class="line">      - (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) +</span><br><span class="line">      (((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) -</span><br><span class="line">        _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) +</span><br><span class="line">      _____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) -</span><br><span class="line">      ___) &lt;&lt; ((_____ &lt;&lt; ____) +___)) + (((((___ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) +</span><br><span class="line">      (((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) +</span><br><span class="line">      (((_____ &lt;&lt; ____) -___) &lt;&lt; ((_______ &lt;&lt; ___))) +</span><br><span class="line">      (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) +</span><br><span class="line">      _) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ((_ &lt;&lt; _____) - _)) -(((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) -</span><br><span class="line">      _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) +</span><br><span class="line">      (_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)(* (lambda _, __: _(_, __))(</span><br><span class="line">  lambda _, __:</span><br><span class="line">    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +</span><br><span class="line">    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],</span><br><span class="line">    (</span><br><span class="line">      lambda _: _,</span><br><span class="line">      lambda _, __: _,</span><br><span class="line">      lambda _, __, ___: _,</span><br><span class="line">      lambda _, __, ___, ____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>怎么样？是不是吓到了。当时我感叹：<font color="red">逼还是你会装啊</font>。</p>
-<p>好吧来看分析吧。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/05/python_chaos_hello_world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1170,7 +1170,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
