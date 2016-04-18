@@ -40,34 +40,19 @@
 
 
 <meta name="description" content="写在前面圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。
-来来来，先上图, duang ~
-
-
-怎么样，酷不酷，我是多寂寞的程序员啊。
-
-好了，懂的人自然懂是什么原理，不懂的，来来来，我给你讲讲你就懂了。">
+来来来，先上图, duang ~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="(圣诞礼物)在终端下画个圣诞树陪你过节">
 <meta property="og:url" content="http://blog.evalbug.com/2015/12/25/py_fun_0/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
 <meta property="og:description" content="写在前面圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。
-来来来，先上图, duang ~
-
-
-怎么样，酷不酷，我是多寂寞的程序员啊。
-
-好了，懂的人自然懂是什么原理，不懂的，来来来，我给你讲讲你就懂了。">
+来来来，先上图, duang ~">
 <meta property="og:image" content="http://blog.evalbug.com/images/merry_christmas.gif">
-<meta property="og:updated_time" content="2016-04-13T02:29:21.000Z">
+<meta property="og:updated_time" content="2016-04-18T08:53:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(圣诞礼物)在终端下画个圣诞树陪你过节">
 <meta name="twitter:description" content="写在前面圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。
-来来来，先上图, duang ~
-
-
-怎么样，酷不酷，我是多寂寞的程序员啊。
-
-好了，懂的人自然懂是什么原理，不懂的，来来来，我给你讲讲你就懂了。">
+来来来，先上图, duang ~">
 <meta name="twitter:image" content="http://blog.evalbug.com/images/merry_christmas.gif">
 
 
@@ -103,14 +88,6 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <script>
-    (function(){
-        var bp = document.createElement('script');
-        bp.src = '//push.zhanzhang.baidu.com/push.js';
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
 
 
@@ -289,11 +266,12 @@
       
         <span itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。</p>
 <p>来来来，先上图, duang ~</p>
+<a id="more"></a>
 <p><img src="/images/merry_christmas.gif" alt=""></p>
 <blockquote>
 <p>怎么样，酷不酷，我是多寂寞的程序员啊。</p>
 </blockquote>
-<p>好了，懂的人自然懂是什么原理，不懂的，来来来，我给你讲讲你就懂了。<br><a id="more"></a></p>
+<p>好了，懂的人自然懂是什么原理，不懂的，来来来，我给你讲讲你就懂了。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>其实就是趁你不注意的时候，把终端清屏，然后画一个图，然后再趁你一不留神，又清屏，又画一张图。啊，就这么简单。</p>
 <p>当然，windows 下是 cls, 类 Unix 下是 clear, 于是这里要注意一下。</p>
 <p>至于颜色嘛，终端的字符颜色是用转义序列控制的，是文本模式下的系统显示功能，和具体的语言无关。转义序列是以 ESC 开头,可以用 \033 完成相同的工作（ESC 的 ASCII 码用十进制表 示就是 27， = 用八进制表示的 33）。</p>
