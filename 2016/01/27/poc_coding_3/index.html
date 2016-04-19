@@ -39,33 +39,24 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
-2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
-
-原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
-
-根据原文中分析我们知道了">
+<meta name="description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)">
 <meta property="og:url" content="http://blog.evalbug.com/2016/01/27/poc_coding_3/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
-2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
-
-原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
-
-根据原文中分析我们知道了">
+<meta property="og:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-6.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-7.png">
-<meta property="og:updated_time" content="2016-04-17T18:21:45.000Z">
+<meta property="og:updated_time" content="2016-04-19T02:33:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)">
-<meta name="twitter:description" content="2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
-2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。
-
-原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。
-
-根据原文中分析我们知道了">
+<meta name="twitter:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+2.3 基于布尔的盲注的 SQL 注入 PoC 编写这次我们选择的漏洞为 MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞。
+2.3.1 漏洞分析想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的">
 <meta name="twitter:image" content="http://blog.evalbug.com/images/poc_coding_img/2-6.png">
 
 
@@ -277,7 +268,8 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><a href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.3 基于布尔的盲注的 SQL 注入 PoC 编写"></a>2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166" target="_blank" rel="external">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
+        <span itemprop="articleBody"><p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/" target="_blank" rel="external">http://poc.evalbug.com/</a></p>
+<h2 id="2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><a href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.3 基于布尔的盲注的 SQL 注入 PoC 编写"></a>2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166" target="_blank" rel="external">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
 <h3 id="2-3-1-漏洞分析"><a href="#2-3-1-漏洞分析" class="headerlink" title="2.3.1 漏洞分析"></a>2.3.1 漏洞分析</h3><p>想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。</p>
 <blockquote>
 <p>原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。</p>

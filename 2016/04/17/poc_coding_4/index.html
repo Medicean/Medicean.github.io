@@ -39,24 +39,24 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
-再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta name="description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)">
 <meta property="og:url" content="http://blog.evalbug.com/2016/04/17/poc_coding_4/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
-再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta property="og:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-8.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-9.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-10.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-11.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/poc_coding_img/2-12.png">
-<meta property="og:updated_time" content="2016-04-17T18:19:53.000Z">
+<meta property="og:updated_time" content="2016-04-19T02:32:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)">
-<meta name="twitter:description" content="写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。
-再说积极的事，这个系列也帮助了一些人，其中有个兄弟">
+<meta name="twitter:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+写在前面《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网">
 <meta name="twitter:image" content="http://blog.evalbug.com/images/poc_coding_img/2-8.png">
 
 
@@ -268,7 +268,8 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。</p>
+        <span itemprop="articleBody"><p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/" target="_blank" rel="external">http://poc.evalbug.com/</a></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。</p>
 <p>再说积极的事，这个系列也帮助了一些人，其中有个兄弟写了一个 Python 的项目，里面就用到了我们 2.3 节中的 PoC：</p>
 <p><a href="https://github.com/pythonfucku/app" target="_blank" rel="external">one python app for zoomeye 项目地址</a></p>
 <h2 id="2-4-基于时间的盲注的-SQL-注入-PoC-编写"><a href="#2-4-基于时间的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.4 基于时间的盲注的 SQL 注入 PoC 编写"></a>2.4 基于时间的盲注的 SQL 注入 PoC 编写</h2><p>本节原本打算找一个 PHP 语言的 CMS 的漏洞，环境好搭，找了半天没找到比较新的漏洞，最后决定直接用之前的漏洞。这次我们选择的漏洞为：</p>
