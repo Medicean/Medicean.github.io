@@ -752,7 +752,7 @@ body {
   width: 960px;
 }
 .one-column .header-inner {
-  width: 700px;
+  width: 750px;
 }
 .main {
   padding-bottom: 150px;
@@ -762,10 +762,10 @@ body {
   width: 960px;
 }
 .one-column .main-inner {
-  width: 700px;
+  width: 750px;
 }
 .main-inner .content {
-  width: 700px;
+  width: 750px;
 }
 .footer {
   position: absolute;
@@ -778,7 +778,7 @@ body {
   width: 960px;
 }
 .one-column .footer-inner {
-  width: 700px;
+  width: 750px;
 }
 .headband {
   height: 3px;
@@ -1054,7 +1054,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff8eb9;
+  background: #daffff;
 }
 .sidebar-nav {
   margin: 0;
