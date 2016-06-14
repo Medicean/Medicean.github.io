@@ -1,0 +1,779 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="不是路人甲的闲人丁,娱乐型选手" />
+
+
+
+  <meta name="keywords" content="Bugscan," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="题目延缓关闭，可以体验一波 http://114.55.62.235/
+当了一回擂主，出了一道擂台赛题目，套路了一波。于是贱贱的出来分享一下摆龙门阵的过程了。如果有老司机愿意当擂主，希望这篇文章能帮到你。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 BugScan Chaos Memos 看摆龙门阵">
+<meta property="og:url" content="http://blog.evalbug.com/2016/06/13/bugscan_chaos_memos/index.html">
+<meta property="og:site_name" content="Medici.Yan's Blog">
+<meta property="og:description" content="题目延缓关闭，可以体验一波 http://114.55.62.235/
+当了一回擂主，出了一道擂台赛题目，套路了一波。于是贱贱的出来分享一下摆龙门阵的过程了。如果有老司机愿意当擂主，希望这篇文章能帮到你。">
+<meta property="og:updated_time" content="2016-06-14T01:54:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从 BugScan Chaos Memos 看摆龙门阵">
+<meta name="twitter:description" content="题目延缓关闭，可以体验一波 http://114.55.62.235/
+当了一回擂主，出了一道擂台赛题目，套路了一波。于是贱贱的出来分享一下摆龙门阵的过程了。如果有老司机愿意当擂主，希望这篇文章能帮到你。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 从 BugScan Chaos Memos 看摆龙门阵 | Medici.Yan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?35fe43c56e8a4a68a6a2ae899b9028fb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Medici.Yan's Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-funny">
+          <a href="/funny" rel="section">
+            <i class="menu-item-icon icon-next-funny"></i> <br />
+            趣推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form" >
+  <input type="text" id="ts-search-input" class="menu-search-input">
+</form>
+<script>
+  var option = {
+    engineKey: 'c9b47bfaa23404adf331'
+  };
+  (function(w,d,t,u,n,s,e){
+    s = d.createElement(t);
+    s.src = u;
+    s.async = 1;
+    w[n] = function(r){
+      w[n].opts = r;
+    };
+    e = d.getElementsByTagName(t)[0];
+    e.parentNode.insertBefore(s, e);
+  })(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+  _ts(option);
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              从 BugScan Chaos Memos 看摆龙门阵
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-06-13T23:00:48+08:00" content="2016-06-13">
+            2016-06-13
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Bugscan/" itemprop="url" rel="index">
+                  <span itemprop="name">Bugscan</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/06/13/bugscan_chaos_memos/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/13/bugscan_chaos_memos/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><strong>题目延缓关闭，可以体验一波 <a href="http://114.55.62.235/" target="_blank" rel="external">http://114.55.62.235/</a></strong></p>
+<p>当了一回擂主，出了一道擂台赛题目，套路了一波。于是贱贱的出来分享一下摆龙门阵的过程了。如果有老司机愿意当擂主，希望这篇文章能帮到你。</p>
+<a id="more"></a>
+<h3 id="选材"><a href="#选材" class="headerlink" title="选材"></a>选材</h3><p> 热门，关注度高，好玩的漏洞。</p>
+<p> 从选材上，我挑选了近期热门的漏洞 S2-032 命令执行漏洞，安全研究人员应该密切关注国内外最新漏洞。这里提一下为什么不选 S2-033，这个时间，S2-033 的 Exp 其实已经出来了，但是全民使用的利用工具还没有普及，是的，太新的东西不能用，不然你会觉得我是来骗 Exp 的。为什么不选 S2-033 其实还有个原因，后面会提到。</p>
+<h3 id="现实意义"><a href="#现实意义" class="headerlink" title="现实意义"></a>现实意义</h3><p> 尽可能的有现实意义。</p>
+<p> BugScan Chaos Memos 整体背景是一个内网渗透， Flag 在一台内网 FTP 服务器上，需要通过 Web 当跳板，访问 FTP 服务拿到 Flag。这在现实中，是经常碰到的。</p>
+<p> 在 Web 漏洞展示上，这里没有用 <code>.action</code> 或者 <code>.do</code>，在大多数人的眼里，判断是不是 Struts2 就是看 URL 是不是 <code>.action</code> 或者 <code>.do</code>。这显然是一个误区，所以这次第一关的目的就是纠正这个错误的观念。<code>asp</code>, <code>aspx</code>, <code>jsp</code>, <code>php</code> 后缀各种乱上都可以成功访问。</p>
+<p> 没错，Web 服务指纹识别难就难在程序员可以这么整你。怎么才能提高扫描器的识别准确率，这确实是值得我们思考。</p>
+<h3 id="难度定位"><a href="#难度定位" class="headerlink" title="难度定位"></a>难度定位</h3><p> 难度需要适中，不宜简单至送分，也不能难的不讲道理。</p>
+<p> 一开始，我计划的是通过 Web 迷惑，一旦你识破了是 S2-032, 就可以直接读到 Flag。这样的话，这个题最多就只有 50 积分了。太简单。但是也不能像那些CTF比赛一样，难到没朋友，什么 PHP 出了一个 Bug，把这个利用起来，那种实在是太难了。</p>
+<p> S2-032 代码执行，比较简单，Curl 读 FTP 也比较简单，但是组合起来，就比较有意思了。所以我推荐的就是组合拳。</p>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><p> 题目本身需要保证安全性。要防止有人搅屎。权限限制必须要严格。</p>
+<p> 这次比较尴尬的地方是 xss, 我一开始想呈现的是一个完整功能的网站，为的就是模拟真实。后来发现用户输入这里是可以 XSS 的，写了一个 XssFilter 又不敢上。Exp 里面有特殊字符，怕过滤了之后影响命令执行。但是上线的时候各种不看 hint 各种 XSS，于是本宝宝生气了，把其它功能给阉了。不过后面发现，我是手抖了一下，把 <code>id</code> 弄成 String 类型了，改成 int 就没问题了。</p>
+<p> 同时，因为命令执行，如果用户到服务器上，把整个网站目录给删除了，会影响其它同学什么什么的。</p>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p> 推荐使用 Docker 来构建，写成 Dockerfile 布署方便，安全性相对比较好。一旦有人搅屎，能快速恢复环境。如果你不会 Docker 的话，我推荐你看这本书：<a href="http://udn.yyuap.com/doc/docker_practice/" target="_blank" rel="external">《Docker - 从入门到实践》</a>。</p>
+<h3 id="挖坑过程"><a href="#挖坑过程" class="headerlink" title="挖坑过程"></a>挖坑过程</h3><p> 好了，上面说了那么多，都是一些基本原则。需要擂主都注意的。这里我就说说我挖坑的过程。我们就按做题角度来说一说我都挖了哪些坑。</p>
+<ol>
+<li><p>样式</p>
+<p>如果你看过 S2-033 的漏洞的演示站点，就会发现，这次的 UI 和那个站点是一模一样的。那个站点在 Struts2 安装包里面就有，叫 <code>struts-rest-showcase</code>。没错，<strong>第1个坑</strong>，就是这个 UI，会将见过这个站点的人思路导向最新的 S2-033，也许你会拿着 S2-033 的 PoC 测试一通，哈哈哈，坑的就是你。当然，这个 UI 也在一定程度上提醒了老司机，这个可能是 Struts2(<strong>第 1 处tips</strong>)。</p>
+</li>
+<li><p>后缀</p>
+<p>S2-032 的漏洞，如果是按常理出牌，是会将 URL 以 <code>.action</code> 或者是 <code>.do</code> 结尾。所以我要隐藏掉这个典型的后缀。</p>
+<p>在 <code>struts.xml</code> 里面配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;constant name=&quot;struts.action.extension&quot; value=&quot;php,asp,aspx,jsp&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>如此就将后缀成功修改。此处就是<strong>第2个坑</strong>。</p>
+</li>
+<li><p>错误页面</p>
+<p>从 IIS 的配置信息里面，将错误页面抠出来，放到 <code>/WebContent/errors/</code> 目录下，然后在 web.xml 里面配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;error-page&gt;</span><br><span class="line">	&lt;error-code&gt;404&lt;/error-code&gt;</span><br><span class="line">	&lt;location&gt;/errors/404.htm&lt;/location&gt;</span><br><span class="line">&lt;/error-page&gt;</span><br><span class="line">&lt;error-page&gt;</span><br><span class="line">	&lt;error-code&gt;500&lt;/error-code&gt;</span><br><span class="line">	&lt;location&gt;/errors/500.htm&lt;/location&gt;</span><br><span class="line">&lt;/error-page&gt;</span><br></pre></td></tr></table></figure>
+<p>如此就把 404 与 500 错误页面成功伪造成 IIS 的啦，<strong>第 3 处坑</strong>。</p>
+<p>其实在添加数据，删除数据后的跳转页面，整体风格用的 thinkphp 的默认风格，有没有被骗到？嘻嘻嘻。</p>
+</li>
+<li><p>页面信息</p>
+<p>在页脚部分，加入 <code>Powered By</code> 字样，见过的人一眼就能看出来不是，但是，对于一些扫描器来说，这些都是判断的依据。<strong>第4处坑</strong>。</p>
+<p>当然页面里面，也隐藏了提示。</p>
+<p><code>Pwoered By</code> 后面加了 <code>that&#39;s true?</code> ，最下方的 <code>Seeing Isn&#39;t Beliving (译：眼见为虚)</code> 统统都暗示页面很多信息都是伪造的，<em>第2处提示</em>。</p>
+<p><strong>第3处提示</strong>就比较难懂了。一开始进入页面后，有3条数据，前两个都是最近才爆出的通用型漏洞，第3条，指引关注近期热门漏洞。但是，这些放在那里其实没什么太大用处，因为可以被任何人删除。所以我刻意写到了注释里面。</p>
+</li>
+<li><p>头部伪造</p>
+<p><strong>第5处坑</strong>，很多人判断是不是 tomcat 容器，都是看 HTTP 返回头部的 Server 字段，所以我就将他修改成 nginx 了。</p>
+<p>修改 tomcat 的 server.xml，在 Connector 里面加上 <code>server=&quot;nginx&quot;</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector server=&quot;nginx&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">              connectionTimeout=&quot;20000&quot;</span><br><span class="line">              redirectPort=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>所以前端展示的信息里面，url 上是 asp,aspx,jsp,php，报错页面是 IIS 的，返回头部是 nginx 的。总体上，切合了主题：BugScan Chaos(混乱的) Memos。</p>
+<p>天使酱说我应该把所有的全部伪装成某一种语言的，我要真这么搞，再故意卖一个伪注入的破绽，我的天呐，我还想活着呢。</p>
+</li>
+<li><p>用户信息伪造</p>
+<p>进入服务器之后相信很多人，<code>whoami</code> 一下后发现用户是 <code>nt_authority_system</code>,没错这就是<strong>第6处坑</strong>啦。不注意看，会真当成 Windows 其实还可以再装的像一点的。</p>
+<p>使用这个用户，还有个用处就是降权, 我们来看一下 Dockerfile 里面部分内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RUN set -x \</span><br><span class="line">    &amp;&amp; useradd -r nt_authority_system \</span><br><span class="line">    &amp;&amp; chmod a+x $CATALINA_HOME/bin/*.sh \</span><br><span class="line">    &amp;&amp; chmod a+w $CATALINA_HOME/logs/ \</span><br><span class="line">    &amp;&amp; chmod a+w -R $CATALINA_HOME/work/Catalina/ \</span><br><span class="line">    &amp;&amp; chmod a+w -R $CATALINA_HOME/temp/</span><br><span class="line"></span><br><span class="line">USER nt_authority_system</span><br></pre></td></tr></table></figure>
+<p><code>-r</code> 创建系统账户，也就是当个服务账号来用，只给这个用户几个目录可以写，网站目录是只能读不能写的。所以，你想传 webshell 上去？踩<strong>第7处坑</strong>了吧？使用 docker 的好处之一就是系统很精简，所以很多库都没有，后来我看到有些同学还在 /tmp 目录里面各种传远控，不过大部分都跑不起来吧。</p>
+</li>
+<li><p>迷惑的目录名</p>
+<p>我们先看一下相关的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ENV WIN_DIR /C:\\Windows/System32/tomcat/bin/</span><br><span class="line">RUN mkdir -p &quot;$WIN_DIR&quot;</span><br><span class="line">WORKDIR $WIN_DIR</span><br></pre></td></tr></table></figure>
+<p>目录名这里，我新建了一个目录，<code>/C:\\Windows/System32/tomcat/bin/</code> 哈哈哈，注意前面的 <code>/</code>，不注意看的时候，就会看走眼。其实本来是想把整个网站也放在这个目录下面的，这样就更有迷惑性了。</p>
+<p>WORKDIR 将启动的目录放在这个目录下面，所以，你一进去，习惯性的 <code>ls</code>, <code>dir</code> 返回的东西是空的，空的，空的！没错，就是造成一个执行出错的假像，<strong>第8处坑</strong>。</p>
+</li>
+<li><p>配置文件</p>
+<p>首先是<strong>第3处提示</strong>, <code>echo &quot;hahaha, flag is not in this mechine.&quot;&gt;/f1ag_is_n0t_H3r3</code> 在根目录下面放了这个文件，提示 flag 不在这台服务器上，于是很自然的就会想到需要内网渗透。那么，就需要去翻配置文件了。</p>
+<p>一般配置文件里面会留下一些连接的信息，比如数据库，比如备份服务器密码等。</p>
+<p>拿到一个 JSP 的站点，首先应该去看 <code>web.xml</code>,之后再看其它的文件，那么在 web.xml 里面看到了配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 	</span><br><span class="line">	&lt;conn&gt;</span><br><span class="line">	&lt;conndb&gt;</span><br><span class="line">		&lt;type&gt;mysql&lt;/type&gt;</span><br><span class="line">		&lt;host&gt;localhost&lt;/host&gt;</span><br><span class="line">		&lt;port&gt;3306&lt;/port&gt;</span><br><span class="line">		&lt;user&gt;root&lt;/user&gt;</span><br><span class="line">		&lt;password&gt;Kd72Cb4AD498458D&lt;/password&gt;</span><br><span class="line">	&lt;/conndb&gt;</span><br><span class="line">	Backup Server</span><br><span class="line">	&lt;ftp&gt;</span><br><span class="line">		&lt;host&gt;bugscan&lt;/host&gt;</span><br><span class="line">		&lt;user&gt;ftp&lt;/user&gt;</span><br><span class="line">		&lt;password&gt;Kd72Cb4AD498458D&lt;/password&gt;</span><br><span class="line">	&lt;/ftp&gt;</span><br><span class="line">&lt;/conn&gt;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<p>这里是<strong>第9处坑</strong>，我故意加了一个 mysql 的配置，不为别的，就是恶心你，因为<code>netstat</code>命令被干掉了(这里忘记了 <code>ss</code> 命令，好尴尬)，你看不到是不是真的开了这个服务。但是，另一方面，提示已经说了不在这台机器上，于是 mysql 就可以直接排除了。问题是，你信吗？hahaha. 其实当时有想过把 hosts 地址改成 <code>bugscan.net</code>。</p>
+</li>
+<li><p>FTP 配置</p>
+<p>FTP 这里实际上是一个虚拟的 ftp, 西瓜大牛用 py 重写的一个 ftp。这里是<strong>第10处坑</strong>，ftp 外部是不能访问的，只能由这台服务器代你访问，当时是真的想把 hosts 文件改成 bugscan.net, 这样就能坑到更多人了。</p>
+<p>首先需要用配置文件里面的用户名密码拿到 readme.txt，之后就是拿 flag 了。没错，ftp 命令被干掉了。但是故意留下了 <code>curl</code>，So, 快去看 curl 怎么访问 ftp 吧。</p>
+</li>
+</ol>
+<h3 id="擂主提交的东西"><a href="#擂主提交的东西" class="headerlink" title="擂主提交的东西"></a>擂主提交的东西</h3><p>如果是 Web 的题目，只需要将相关的文件全部写成 Dockerfile 形式，再加上布署的文档，就 OK 啦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">➜  bugscan_chaos_memos tree -L 2</span><br><span class="line">.</span><br><span class="line">├── java8</span><br><span class="line">│   └── Dockerfile</span><br><span class="line">├── python27</span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   ├── get-pip.py</span><br><span class="line">│   └── python.tar.xz</span><br><span class="line">├── pyftp</span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   └── ftpserver.py</span><br><span class="line">├── s2-032</span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   └── apache-tomcat-7.0.68.tar.gz</span><br><span class="line">└── README.md</span><br><span class="line"></span><br><span class="line">4 directories, 11 files</span><br></pre></td></tr></table></figure>
+<p>像上面的目录结构就是我本次提交的目录结构，其实 java8 和 python27 是可以通过 docker hub 来安装的，但是我这边网速不是慢嘛，自己 build image 的时候太慢了，于是我就先把这两个基础 image 弄出来了。</p>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><p>s2-032 + curl 访问 ftp ，整体思路是撕开内网一个口子，然后，通过这个口子去进一步攻击内网。到这里，如果你还说你对内网渗透一脸懵逼的话，那真的是太尴尬了。</p>
+<ul>
+<li><code>.php</code> 不一定是 <code>PHP</code> 写的</li>
+<li><code>Server:nginx</code> 不一定是 nginx</li>
+<li>看到默认的错误页面，不一定是真的错误页面</li>
+</ul>
+<p><strong>Seeing isn’t beliving~</strong></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Bugscan/" rel="tag">#Bugscan</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/25/poc_coding_5/" rel="next">PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+  
+      <div id="ad" class="post-spread">
+        <p>既然读到这里了，不如点一下广告支持一下？</p>
+        <!-- Begin BidVertiser code -->
+        <SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=724508&bid=1796850" TYPE="text/javascript"></SCRIPT>
+        <!-- End BidVertiser code --> 
+      </div>
+  
+
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/06/13/bugscan_chaos_memos/"
+                   data-title="从 BugScan Chaos Memos 看摆龙门阵" data-url="http://blog.evalbug.com/2016/06/13/bugscan_chaos_memos/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Medici.Yan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Medici.Yan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不是路人甲的闲人丁,娱乐型选手</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/medicean" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/medicean" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Friends</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.l1n3.net" target="_blank">LinE</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://xiyv.net/" target="_blank">Wolf</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#选材"><span class="nav-number">1.</span> <span class="nav-text">选材</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现实意义"><span class="nav-number">2.</span> <span class="nav-text">现实意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难度定位"><span class="nav-number">3.</span> <span class="nav-text">难度定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全性"><span class="nav-number">4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">5.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挖坑过程"><span class="nav-number">6.</span> <span class="nav-text">挖坑过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#擂主提交的东西"><span class="nav-number">7.</span> <span class="nav-text">擂主提交的东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结一下"><span class="nav-number">8.</span> <span class="nav-text">总结一下</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Medici.Yan</span>
+</div>
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"medicean"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
