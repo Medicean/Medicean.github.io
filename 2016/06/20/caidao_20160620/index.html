@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="Medici.Yan,PoC,Python,Blog,inn0team,PoC编写,漏洞" />
+  <meta name="keywords" content="webshell," />
 
 
 
@@ -39,28 +39,46 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
-以下方法win7 win8都可以，暂时以win7为例子。
-（一）Win7下直接用wubi来装
-ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
-由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
+<meta name="description" content="6月17号，某牛在朋友圈发了消息:
+
+
+史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界
+
+当时有消息声称 6 月底将会发布新版菜刀。
+果然在 6 月 20 日，原本已经关闭的 maicaidao.com 又开放了，而且下载量瞬间就到了 660 +。
+
+话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。
+注意：菜">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装win + ubuntu 双系统步骤及引导解决方案">
-<meta property="og:url" content="http://blog.evalbug.com/2015/05/12/win_ubuntu_grub/index.html">
+<meta property="og:title" content="中国菜刀 20160620 初体验">
+<meta property="og:url" content="http://blog.evalbug.com/2016/06/20/caidao_20160620/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
-<meta property="og:description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
-以下方法win7 win8都可以，暂时以win7为例子。
-（一）Win7下直接用wubi来装
-ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
-由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
-<meta property="og:updated_time" content="2015-10-13T19:06:44.000Z">
+<meta property="og:description" content="6月17号，某牛在朋友圈发了消息:
+
+
+史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界
+
+当时有消息声称 6 月底将会发布新版菜刀。
+果然在 6 月 20 日，原本已经关闭的 maicaidao.com 又开放了，而且下载量瞬间就到了 660 +。
+
+话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。
+注意：菜">
+<meta property="og:image" content="http://blog.evalbug.com/images/160/1.png">
+<meta property="og:image" content="http://blog.evalbug.com/images/160/2.png">
+<meta property="og:updated_time" content="2016-06-21T02:47:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装win + ubuntu 双系统步骤及引导解决方案">
-<meta name="twitter:description" content="现在装windows和ubuntu13.04双系统已经是很常见了。
-以下方法win7 win8都可以，暂时以win7为例子。
-（一）Win7下直接用wubi来装
-ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。
-由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。">
+<meta name="twitter:title" content="中国菜刀 20160620 初体验">
+<meta name="twitter:description" content="6月17号，某牛在朋友圈发了消息:
+
+
+史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界
+
+当时有消息声称 6 月底将会发布新版菜刀。
+果然在 6 月 20 日，原本已经关闭的 maicaidao.com 又开放了，而且下载量瞬间就到了 660 +。
+
+话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。
+注意：菜">
+<meta name="twitter:image" content="http://blog.evalbug.com/images/160/1.png">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -70,7 +88,7 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
   };
 </script>
 
-  <title> 安装win + ubuntu 双系统步骤及引导解决方案 | Medici.Yan's Blog </title>
+  <title> 中国菜刀 20160620 初体验 | Medici.Yan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +247,7 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
           
           
             
-              安装win + ubuntu 双系统步骤及引导解决方案
+              中国菜刀 20160620 初体验
             
           
         </h1>
@@ -238,8 +256,8 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-05-12T18:31:41+08:00" content="2015-05-12">
-            2015-05-12
+          <time itemprop="dateCreated" datetime="2016-06-20T23:00:48+08:00" content="2016-06-20">
+            2016-06-20
           </time>
         </span>
 
@@ -248,8 +266,8 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Linux/" itemprop="url" rel="index">
-                  <span itemprop="name">Linux</span>
+                <a href="/categories/webshell/" itemprop="url" rel="index">
+                  <span itemprop="name">webshell</span>
                 </a>
               </span>
 
@@ -264,8 +282,8 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/05/12/win_ubuntu_grub/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/12/win_ubuntu_grub/" itemprop="commentsCount"></span>
+              <a href="/2016/06/20/caidao_20160620/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/caidao_20160620/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -279,48 +297,145 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
       
 
       
-        <span itemprop="articleBody"><p>现在装windows和ubuntu13.04双系统已经是很常见了。</p>
-<p>以下方法win7 win8都可以，暂时以win7为例子。</p>
-<p>（一）Win7下直接用wubi来装</p>
-<p>ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装系统。</p>
-<p>由于Ubuntu13.04工期的问题，官方没有来得及制作wubi，所以通过硬盘像软件一样安装Ubuntu的方法就不适用了。安装方法在此略过。<br><a id="more"></a><br>（二）Win7下装ubuntu</p>
-<p>准备：UltraIS（软碟通）、U盘、Ubuntu13.04的ISO</p>
-<p>1.打开磁盘管理，压缩出30G的空间</p>
-<p>2.用UltraIS制作了U盘启动盘。</p>
+        <span itemprop="articleBody"><p>6月17号，某牛在朋友圈发了消息:</p>
+<p><img src="/images/160/1.png" alt=""></p>
 <blockquote>
-<p><strong>在此提示下：适用UltraIS制作U盘启动盘时，需要选 便携启动 里的添加syslinux引导扇区，否则会无法启动。之后修改/isolinux/目录下的 isolinux.cfg和syslinux.cfg 两个文件（两个文件内容相同），将 default vesamenu.c32 改为 #**</strong>default vesamenu.c32 这样就可以正确进入安装了。**</p>
-<p>正确配置文件的内容如下：</p>
-<p><div># D-I config version 2.0</div></p>
-<p><div>include menu.cfg</div></p>
-<p><div>#default vesamenu.c32</div></p>
-<p><div>prompt 0</div></p>
-<p><div>timeout 50</div></p>
-<p><div>ui gfxboot bootlogo</div></p>
-<p><div>3.开机进入Ubuntu安装界面进行安装，这里就不再赘述。</div></p>
-<p><div></div></p>
-<p><div></div></p>
-<p><div>安装后的具体问题，安装win7+ubuntu13.04双系统，ubuntu不能启动，具体如下：win7是先安装的，在C盘，然后有D、E、F、G四个逻辑分区，接着是ubuntu自己创建的ext与swap。安装ubuntu之后（提示安装完成）重启，直接进入win7，完全没有ubuntu的影子，包括grub。</div></p>
+<p>史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界</p>
 </blockquote>
-<p>解决办法如下：</p>
-<p>用ubuntu安装盘启动试用，然后打开终端，用<strong>sudo -i</strong> 切换到超级用户，用 <strong>fdisk -l</strong> 命令查看分区，找到ubuntu所在的分区。挂载ubuntu所在的分区<strong>mount /dev/sda9  /mnt</strong> （注意：你的不一定是sda9） ，如果有单独的boot分区，则挂载boot分区<strong>mount /dev/sda10 /mnt/boot</strong>，sda10为boot所在的独立分区（你的也不一定是sda10），然后后依次执行如下内容：</p>
-<p><strong>mount  –bind  /dev/  /mnt/dev     </strong><br><strong>mount  –bind  /usr/  /mnt/usr     </strong><br><strong>mount  –bind  /proc/  /mnt/proc     </strong><br><strong>chroot  /mnt     </strong><br><strong>update-grub     </strong><br><strong>grub-install  /dev/sda </strong></p>
-<p>现在重新启动电脑（记得拿掉ubuntu安装盘），就进入ubuntu了，但是进不了win7<br>启动ubuntu之后，打开终端，执行<strong> sudo  update-grub </strong> 搞定。再启动的时候win7被列在最后一项。</p>
-<div></div><br><div></div><br><div>（三）Ubuntu下装Win</div><br><div></div><br><div><br><br>首先解释下ubuntu的 live CD即你将ubuntu系统的安装光盘或USB HDD硬盘镜象.<br><br>装好后情况：ubuntu一个主要盘（/dev/sda1），winodws7一个盘（/dev/sda2），还有两个ubuntu的（/dev/sda3，Extended； /dev/sda5， linux swap）<br><br>思路：ubuntu是用grub2引导的，装了windows7后mbr会被修改，grub2就会没用。<br><br>所以表现就是装好windows7后会直接进入windows，没有给你选择系统的grub2选择界面，也没有开机引导界面。<br><br>下面按我自己的情况说下过程（本人情况很简单）：<br><br>1、需要工具（2个）：一个windows7的安装光盘/安装U盘，一个ubuntu12.04的安装光盘/安装U盘。——-这两个都可以自己制作哦<br><br>2、分区：我是默认一个分区（装了ubuntu），所以要分区，已经有分区的孩子就可以跳过了。<br><br>我这里分区有点麻烦了。我是先用ubuntu安装光盘用光驱启动到ubuntu的install里面，用里面的正式安装前的“手动分区”选项把原来都给ubuntu的ext4的盘分出了50G的空闲区域，然后退出。<br><br>进入到ubuntu系统里，安装ubuntu的分区工具：<br><br>图形化分区工具：gparted 安装命令：<strong>sudo apt-get install gparted</strong><br><br>把之前分出来50G空闲做成ntfs主分区（不可以直接就在gparted里分出空闲然后再做ntfs）<br><br>3、安装windows7：分出个区后就可以用U盘启动安装windows7了（我是U盘的），选择那个你分出的区域，安装步骤不用多说了。<br><br>安装完毕后电脑表现为只能进入windows7（grub2没用了）<br><br>4、修复grub2：这里就用到ubuntu安装光盘（我是光盘）里的live CD了，就是CD盘里的ubuntu（这样简单点）。<br><br>进入live CD后打开terminal（终端），输入：<strong>sudo fdisk -l </strong>（小写的L哦），会显示你系统盘里系统的情况：<br><br>我的：<br><br>Disk /dev/sda: 100.0 GB, 100030242816 bytes<br>……………………………………<br><br>……………………<br>Device Boot      Start         End      Blocks   Id  System<br>/dev/sda1               1        5286    39956055   83  Linux<br>/dev/sda2   <em>        5286       12390    53710848    7  HPFS/NTFS<br>/dev/sda3           12391       12922     4016129    5  Extended<br>/dev/sda5           12391       12922     4016128   82  Linux swap / Solaris<br><br>那个/dev/sda1就是我ubuntu的盘了，在其他盘的同学可以看看Id和System，Id是83，System是Linux<br><br>然后输入：sudo -i （得到root权限，无需再输入密码，便于下面操作）<br><br>输入：<strong>mkdir /media/tempdir </strong>（用来挂载sda1的，就是创建一个tempdir，名字什么的自己定）<br><br>输入：<strong>mount /dev/sda1 /media/tempdir</strong> （将sda1挂载在tempdir下）<br><br>输入：<strong>grub-install –root-directory=/media/tempdir /dev/sda</strong> （重新安装grub2到硬盘的主引导记录（mbr））<br><br>操作成功出现：Installation finished.No Error Reported.<br><br>输入：reboot （重启电脑）<br><br>5、修复windows7在grub2下的引导：<br><br>重启后系统就可以进入ubuntu12.04了，但是windows暂时无法引导，下面就是更新grub2让它可以引导windows7.<br><br>进入到ubuntu后打开Terminal，输入：<strong>sudo update-grub2</strong><br><br>输入密码。<br><br>应该出现一堆表示成功的话，多少可以看懂一些。<br><br>最下面有windows7的什么什么。<br><br>done<br>没出现的话到新立得搜索grub，安装带ubuntu标志的grub-pc。<br><br>成功后再输入命令：<strong>sudo update-grub2</strong> 就可以了。<br><br><strong>小结：</strong><br><br><em>*针对两个双系统的安装方法，后面的恢复引导的办法其实是一样的，都是为了恢复被Windows破坏的MBR。</em></em><br><br></div></span>
+<p>当时有消息声称 6 月底将会发布新版菜刀。</p>
+<p>果然在 6 月 20 日，原本已经关闭的 <code>maicaidao.com</code> 又开放了，而且下载量瞬间就到了 660 +。</p>
+<p><img src="/images/160/2.png" alt=""></p>
+<p>话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。</p>
+<p><strong>注意：菜刀的唯一官网是：</strong> <code>www.maicaidao.com</code></p>
+<a id="more"></a>
+<p>下载后解压，密码是 <code>www.maicaidao.com</code></p>
+<blockquote>
+<p>具体的信息来源参考 readme.txt。</p>
+</blockquote>
+<h3 id="文件说明"><a href="#文件说明" class="headerlink" title="文件说明"></a>文件说明</h3><p>caidao.exe    菜刀程序</p>
+<p>db.mdb           菜刀的主数据库</p>
+<p>caidao.conf    配置文件（重要，千万别删除）</p>
+<p>cache.tmp    菜刀的缓存数据库(可删除)</p>
+<p>readme.txt    说明文档(可删除)</p>
+<p>ip.dat        一个IP库，用于IP地址识别(可删除)</p>
+<p><code>&lt;CCC&gt;</code>        菜刀的自写脚本目录(可删除)</p>
+<p><code>&lt;Customize&gt;</code>    Customize模式的服务端(可删除)</p>
+<p>我们可以发现，新版本中多了 <code>caidao.conf</code>，这个配置文件，这个文件作者自己的评价是<code>重要，千万别删除</code>。而药丸君觉得这个看似小小的一个改动，甚至可以让中国菜刀起死回生，过 waf。</p>
+<p>我们知道，菜刀的源代码不是公开的，自从停止更新以后，各种 waf 都对其数据包进行了里三层外三层的分析。在那个年代里，想做到过 waf，通常有下面这几种做法：</p>
+<ol>
+<li><p>过 waf 一句话。通过变形，混淆一句话 webshell 逃过检查。(然后就出了对请求进行分析的 waf)</p>
+</li>
+<li><p>反编译修改发包特征过 waf。这种方法成本相对比较高，你要会逆向呀，然后还有个尴尬的问题就是你能改的地方实在是有限。</p>
+</li>
+<li><p>中转脚本修改数据包过 waf。这种方法应该是用菜刀过 waf 用的最多而且方便的了。但是你得要开一个中转的 web 服务，我的尴尬症又犯了。</p>
+</li>
+</ol>
+<p>正是因为有诸多不便，加上菜刀本身不能跨平台，近些年开源的 webshell 管理工具层出不穷，典型的有药丸朋友蚁逅开发的 <code>AntSword</code> 使用 <code>nodejs</code> 与 <code>ES6</code> 开发，跨平台，并且开源。以及 <code>Altman</code>，使用 <code>C#</code> 开发，支持跨平台，源代码也已经在 github 开源。还有 <code>Java</code> 开发的开源 webshell 管理软件 <code>Cknife</code>。诸如此类软件相当之多了。</p>
+<p>好吧，来跟药丸君一起看看如何玩转这个 <code>caidao.conf</code> 吧。</p>
+<h3 id="caidao-conf"><a href="#caidao-conf" class="headerlink" title="caidao.conf"></a>caidao.conf</h3><p>对，我得事先解释一下，菜刀能过 waf 的前提，是你需要会改这些配置，不然，你手里的只能是生锈了的菜刀。</p>
+<ol>
+<li><p><code>&lt;FLAG&gt;</code> </p>
+<p>返回的内容分隔符，只限三个字符。我们知道原来的分割符是 <code>-&gt;|</code> 与 <code>|&lt;-</code>, 有些 waf  会拦截这个字符，所以，我们可以用生辟点的字符，比如说 <code>~&gt;$</code>。</p>
+</li>
+<li><p><code>&lt;UA&gt;</code></p>
+<p>定制 HTTP 请求中的 User-Agent 部分，我们看到默认的 <code>caidao.conf</code> 中将 UA 改成了百度蜘蛛的 UA, 当然你可以改成 Google 的嘛。有些时候需要改改，大部分情况下这个参数可以不用改。</p>
+</li>
+<li><p><code>&lt;K1&gt;</code> 与 <code>&lt;K2&gt;</code></p>
+<p>POST的参数名称，默认情况下, K1 是 z1，K2 是 z2。一般情况下，waf 是不会拦这个，所以可以不用改。</p>
+</li>
+<li><p><code>&lt;PHP_BASE&gt;</code>,<code>&lt;ASP_BASE&gt;</code>,<code>&lt;ASPX_BASE&gt;</code>,<code>&lt;PHP_BASE.加密示例&gt;</code></p>
+<p>这4个是webshell的基础代码部分，所有的功能代码都会发到这里进行组装，然后发送到服务端去。这里基本不用改，但是如果你服务端的 webshell 做了一层加解密操作，比如服务端代码是这样的<code>&lt;?php @eval(base64_decode($_POST[&#39;caidao&#39;]));?&gt;</code> 那么，你就可以在这里修改配置为 <code>&lt;PHP_BASE.加密示例&gt;eval(base64_decode($_POST[id]));&amp;id=%s&lt;/PHP_BASE.加密示例&gt;</code>。</p>
+<p><strong>可以负责任的讲，免杀，过 waf 大部分都是在这里作文章的，后面基本都是一些功能函数，waf 是不会杀的，他要是敢杀，就证明他的业务中不需要那类操作。</strong></p>
+<p>这里就有意思了，你想，以前的菜刀只有一个 <code>base64_decode</code> 那现在，你就可以随便改了，比如说，你用 <code>hex</code>, 再比如你可以用凯撒密码，又或者是栅栏密码，再过分点，你可以用 AES, DES，最过分的就是自己写一个加密解密的算法。那样 waf 想拦就很尴尬了。（作者说的过 waf 大概就是这层意思吧）</p>
+</li>
+<li><p><code>&lt;GETBASEINFO&gt;</code></p>
+<p>获取基础信息的功能代码。比如你添加完 shell, 直接去虚拟终端，一进去就会显示当前路径，当前用户，系统类型什么的这些。</p>
+</li>
+<li><p><code>&lt;SHOWFOLDER&gt;</code></p>
+<p>文件目录查看功能代码。这里主要就是用户传进来一个路径，然后把这个路径下的目录，文件全都显示出来，包括一些属性，比如文件时间，权限，类型等。</p>
+</li>
+<li><p><code>&lt;SHOWTXTFILE&gt;</code></p>
+<p>查看文件内容，编辑文件也首先调用的就是这里。</p>
+</li>
+<li><p><code>&lt;SAVETXTFILE&gt;</code></p>
+<p>保存文件。</p>
+</li>
+<li><p><code>&lt;DELETEFILE&gt;</code></p>
+<p>删除文件。</p>
+</li>
+<li><p><code>&lt;DOWNFILE&gt;</code></p>
+<p>下载服务器文件到本地。</p>
+</li>
+<li><p><code>&lt;UPLOADFILE&gt;</code></p>
+<p>上传文件到服务端。</p>
+</li>
+<li><p><code>&lt;PASTEFILE&gt;</code></p>
+<p>粘贴文件。</p>
+</li>
+<li><p><code>&lt;NEWFOLDER&gt;</code></p>
+<p>新建目录。</p>
+</li>
+<li><p><code>&lt;WGET&gt;</code></p>
+<p>从远程下载一个文件到服务器。</p>
+</li>
+<li><p><code>&lt;SHELL&gt;</code></p>
+<p>执行系统命令，这里比较尴尬的地方，就是相关函数被干掉的话，基本是没戏。</p>
+</li>
+<li><p><code>&lt;RENAME&gt;</code></p>
+<p>修改文件名称。</p>
+</li>
+<li><p><code>&lt;SETTIME&gt;</code></p>
+<p>修改文件时间。</p>
+<p><strong>其它的就是一些数据库的功能代码了，我实在是不想写了，就那几个单词，百度翻译都知道是什么意思，我就不翻译了哈。</strong></p>
+</li>
+</ol>
+<h3 id="过-WAF"><a href="#过-WAF" class="headerlink" title="过 WAF"></a>过 WAF</h3><p>虽然我上面已经提到了一些过 WAF 的点，不过为了凑字数，我还是在这系统总结一下。</p>
+<p>这里就不得不提到一些 WAF 的特性了。</p>
+<ol>
+<li><p>基于正则类 waf</p>
+<p>这一类的 waf，太好绕了，可以说，你都不用改菜刀的配置就可以做到，比如你把一句话 <code>base64</code>一下，再 <code>base64</code> 一下, 这就绕过去了。如果他查你的 Request, 那你就把 <code>&lt;PHP_BASE&gt;</code> 这里随便改改就能像过大街一样过 waf 了。比如 xxx 狗。</p>
+</li>
+<li><p>基于hook机制的 waf</p>
+<p>比如 PHP 中，诸如 <code>eval</code>, <code>create_function</code>, <code>preg_replace</code>, <code>assert</code> 等能够将 string 以脚本代码执行的函数都会经过脚本层的 API <code>compile_string</code>。这类的 waf 从底层 hook 了这个 API, 如果有脚本调用了该 API，直接干，往死里干，不解释，一般情况下正常的网站都不会用这些个功能，如果真的有，那就走白名单就行了。所以一句话要怎么过这种的 WAF 呢？想啥呢，还想用一句话？你要是能挖一个 PHP 的本地代码执行漏洞，那你直接上远控就行了还用一句话？</p>
+<p>所以这类 waf 要怎么用菜刀连？ CUSTOM 类型呀。CUSTOM 类型的webshell,你完全可以理解成一个大马。只是输入输出用菜刀去解析了而已。这时一些功能代码都是直接在服务端的，所以不用经过 <code>compile_string</code> 这个 API，所以可以正常使用。但是要想执行 <code>system</code> 命令的话，那就是另一回事了。ahahaha，再提一句，这个功能是旧版菜刀支持的。这类的 WAF 典型的比如 D 盾。</p>
+</li>
+</ol>
+<p><strong>总结一下，所以 WAF 分为两类，一类是随便过的，一类是过不了的，：）</strong>。</p>
+<h3 id="有关菜刀后门"><a href="#有关菜刀后门" class="headerlink" title="有关菜刀后门"></a>有关菜刀后门</h3><p>菜刀自从被曝有后门之后，大部分的人都不再相信爱情了。太可怕了，黑吃黑。这也是不少人放弃使用中国菜刀转投自己开发自己的 webshell 管理工具的原因。</p>
+<p>经过某牛检测过的，最近几个历史版本中无后门的菜刀 hash  如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">文件: caidao-20100928.exe</span><br><span class="line">大小: 200192 字节</span><br><span class="line">MD5: C05D44DBE353525F492208D891B53875</span><br><span class="line"></span><br><span class="line">文件: caidao-20111116.exe</span><br><span class="line">大小: 220672 字节</span><br><span class="line">MD5: 5001EF50C7E869253A7C152A638EAB8A</span><br><span class="line"></span><br><span class="line">文件: caidao-20141213.exe</span><br><span class="line">大小: 220160 字节</span><br><span class="line">MD5: 4B4A956B9C7DC734F339FA05E4C2A990</span><br></pre></td></tr></table></figure>
+<p>这一次菜刀将所有发包功能使用配置文件形式，在很大程度上是解决了后门的问题。</p>
+<p><strong>没错，以后你想要求过xxx的菜刀的时候，不需要再去拷整个文件了，直接求一个过xxx的配置文件就行了。</strong></p>
+<p>那么问题来了，这样真的就没后门了吗？</p>
+<p><strong>显然不是</strong></p>
+<p>可以杜绝菜刀主程序没后门，但是，配置文件里面可以做点手脚呀。我举个例子哈，比如我给 <code>&lt;wget&gt;</code> 中加入一段后门代码，当你执行 wget 的时候，会把 shell 信息发送到我后门服务器。</p>
+<blockquote>
+<p>你会说，谁有那么傻逼呀，一看就看出来了。</p>
+</blockquote>
+<p>真的是这样吗？讲道理，安全从业者大部分的人都不会写代码，连简单的正则过 waf 什么的都不会，你还指望他能看懂多少行代码，再加上编码混淆一下什么的，画面太美我不敢想。以前的菜刀，为了加后门，必须得逆向，而且受长度限制，现在使用配置文件了，加后门什么的，更方便了，也更难查了。</p>
+<p>最后打个广告，蚁剑 2.0 会在近期发布，为极客定制，如果你到现在都不懂 Webshell 的原理的话，还是建议你花点时间学一学基础，不会有害的〜</p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webshell/" rel="tag">#webshell</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/12/ubuntu_vpn_share_network/" rel="prev">Ubuntu建立vpn服务器实现共享网络</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/13/bugscan_chaos_memos/" rel="next">从 BugScan Chaos Memos 看摆龙门阵</a>
             
           </div>
         </div>
@@ -354,8 +469,8 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/05/12/win_ubuntu_grub/"
-                   data-title="安装win + ubuntu 双系统步骤及引导解决方案" data-url="http://blog.evalbug.com/2015/05/12/win_ubuntu_grub/">
+              <div class="ds-thread" data-thread-key="2016/06/20/caidao_20160620/"
+                   data-title="中国菜刀 20160620 初体验" data-url="http://blog.evalbug.com/2016/06/20/caidao_20160620/">
               </div>
             
           </div>
@@ -462,7 +577,7 @@ ubuntu社区版自带了wubi，可以像在Windows下安装一个软件一样装
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件说明"><span class="nav-number">1.</span> <span class="nav-text">文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caidao-conf"><span class="nav-number">2.</span> <span class="nav-text">caidao.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过-WAF"><span class="nav-number">3.</span> <span class="nav-text">过 WAF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有关菜刀后门"><span class="nav-number">4.</span> <span class="nav-text">有关菜刀后门</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
