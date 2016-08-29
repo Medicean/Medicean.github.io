@@ -16,10 +16,7 @@
     </array>
     <key>RunAtLoad</key>
         <true/>
-    <key>StartCalendarInterval</key>
-    <dict>
-        <key>Second</key>
-        <integer>1</integer>
-    </dict>
+    <key>StartInterval</key>
+    <integer>300</integer>
 </dict>
 </plist>
