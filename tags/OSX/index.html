@@ -314,7 +314,7 @@
             <p class="site-author-name">Friends</p>
             
               <span class="links-of-author-item">
-              <a href="http://antoor.github.io" target="_blank">蚁逅</a>
+              <a href="http://github.com/antoor" target="_blank">蚁逅</a>
               </span>
             
               <span class="links-of-author-item">
@@ -322,11 +322,15 @@
               </span>
             
               <span class="links-of-author-item">
-              <a href="http://xiyv.net/" target="_blank">Wolf</a>
+              <a href="http://xiyv.net" target="_blank">Wolf</a>
               </span>
             
               <span class="links-of-author-item">
               <a href="http://www.exp1oit.com" target="_blank">Exploit School</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://and-rev.blogspot.com" target="_blank">Wyc</a>
               </span>
             
           
@@ -409,6 +413,38 @@
 
   <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
+t" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
 
