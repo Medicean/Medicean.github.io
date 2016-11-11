@@ -18,7 +18,7 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+  <link rel="stylesheet" type="text/css" href="/statics/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
@@ -53,7 +53,7 @@
 于是就有了现在这篇文章和下面的这个工具了.
 项目地址 https://coding.net/u/medicean/p/socks5validate/git
 思">
-<meta property="og:updated_time" content="2015-10-14T03:12:16.000Z">
+<meta property="og:updated_time" content="2016-11-11T02:53:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Socks5代理用户名密码批量认证爆破工具">
 <meta name="twitter:description" content="前言:Angel有1w个socks5代理的账号,要验证哪些还能用,哪些不能用,然后就有了这个工具.
@@ -304,7 +304,7 @@
 <p>下面是RFC文档中给出的已经有的取值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">The values currently defined for METHOD are:</span><br><span class="line"></span><br><span class="line">    o  X&apos;00&apos; NO AUTHENTICATION REQUIRED</span><br><span class="line">    o  X&apos;01&apos; GSSAPI</span><br><span class="line">    o  X&apos;02&apos; USERNAME/PASSWORD</span><br><span class="line">    o  X&apos;03&apos; to X&apos;7F&apos; IANA ASSIGNED</span><br><span class="line">    o  X&apos;80&apos; to X&apos;FE&apos; RESERVED FOR PRIVATE METHODS</span><br><span class="line">    o  X&apos;FF&apos; NO ACCEPTABLE METHODS</span><br></pre></td></tr></table></figure>
 <p>于是我们这里就取x02就好.</p>
-<p>so,可以想到第一步的payload就是:<br><code>payload1=&#39;x05x01x02&#39;</code></p>
+<p>so,可以想到第一步的payload就是:<br><code>payload1=&#39;\\x05\\x01\\x02&#39;</code></p>
 <h3 id="2-Server-To-Client"><a href="#2-Server-To-Client" class="headerlink" title="2.Server To Client"></a>2.Server To Client</h3><p>Server在接收到Client的请求之后,Server会从Client支持的验证方式中选择一个合适的验证方法,告诉Client.格式如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">|VER | METHOD |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  |   1    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure>
 <p>很简单的报文.就不分析了.</p>
@@ -322,8 +322,11 @@
 <p>报文格式也是简单粗暴:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+----+--------+</span><br><span class="line">|VER | STATUS |</span><br><span class="line">+----+--------+</span><br><span class="line">| 1  |   1    |</span><br><span class="line">+----+--------+</span><br></pre></td></tr></table></figure></p>
 <p>VER:版本号</p>
 <p>STATUS:状态.</p>
-<p>状态这里,如果认证成功就是x00 如果不成功,返回的就不是x00</p>
-<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>分析到这里,已经可以编码了.代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">debug=False</span><br><span class="line">def validate(host,port,username,password):</span><br><span class="line">    try:</span><br><span class="line">        s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">        socket.setdefaulttimeout(20)</span><br><span class="line">        s.connect((host,port))</span><br><span class="line">        payload1=&apos;x05x01x02&apos;#socks 5 版本1 02采用用户名密码验证</span><br><span class="line">        s.send(payload1)</span><br><span class="line">        data1=s.recv(1024)</span><br><span class="line">        if data1!=&apos;x05x02&apos;: # Server response 05 02 use username/password validate </span><br><span class="line">            if debug:</span><br><span class="line">                print &quot;Don&apos;t support user/pass auth&quot;</span><br><span class="line">            s.close()</span><br><span class="line">            return False</span><br><span class="line">        #send validate data</span><br><span class="line">        #version len(username) username len(password) password</span><br><span class="line">        payload2=struct.pack(&apos;!BB&apos;+str(len(username))+&apos;sB&apos;+str(len(password))+&apos;s&apos;,1,len(username),username,len(password),password)</span><br><span class="line">        s.send(payload2)</span><br><span class="line">        data2=s.recv(1024)</span><br><span class="line">        if data2 ==&apos;x01x00&apos;: #success</span><br><span class="line">            if debug:</span><br><span class="line">                print &apos;username:%stPassword:%s---Success!&apos;%(username,password)</span><br><span class="line">            Flag=True</span><br><span class="line">        else:</span><br><span class="line">            if debug:</span><br><span class="line">                print &apos;Auth Fail!&apos;</span><br><span class="line">            Flag=False</span><br><span class="line">        s.close()</span><br><span class="line">    except:</span><br><span class="line">        if debug:</span><br><span class="line">            print &apos;validate host:%s with  %s/%s occurred some exception.&apos;</span><br><span class="line">        Flag=False</span><br><span class="line">        if s:</span><br><span class="line">            s.close()</span><br><span class="line"></span><br><span class="line">    return Flag</span><br></pre></td></tr></table></figure></p>
+<p>状态这里,如果认证成功就是x00 如果不成功,返回的就不是<code>\\x00</code></p>
+<blockquote>
+<p>值得注意的是，VER 包含了子版本号，所以会出现返回 <code>\\x05\\x00</code> 和 <code>\\x01\\x00</code> 这种情况，我之前的代码就没考虑到这些</p>
+</blockquote>
+<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>分析到这里,已经可以编码了.代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">debug=False</span><br><span class="line">def validate(host,port,username,password):</span><br><span class="line">    try:</span><br><span class="line">        s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">        socket.setdefaulttimeout(20)</span><br><span class="line">        s.connect((host,port))</span><br><span class="line">        payload1=&apos;\\x05\\x01\\x02&apos;#socks 5 版本1 02采用用户名密码验证</span><br><span class="line">        s.send(payload1)</span><br><span class="line">        data1=s.recv(1024)</span><br><span class="line">        if data1!=&apos;\\x05\\x02&apos;: # Server response 05 02 use username/password validate </span><br><span class="line">            if debug:</span><br><span class="line">                print &quot;Don&apos;t support user/pass auth&quot;</span><br><span class="line">            s.close()</span><br><span class="line">            return False</span><br><span class="line">        #send validate data</span><br><span class="line">        #version len(username) username len(password) password</span><br><span class="line">        payload2=struct.pack(&apos;!BB&apos;+str(len(username))+&apos;sB&apos;+str(len(password))+&apos;s&apos;,1,len(username),username,len(password),password)</span><br><span class="line">        s.send(payload2)</span><br><span class="line">        data2=s.recv(1024)</span><br><span class="line">        if data2[1] ==&apos;\\x00&apos;: #success</span><br><span class="line">            if debug:</span><br><span class="line">                print &apos;username:%stPassword:%s---Success!&apos;%(username,password)</span><br><span class="line">            Flag=True</span><br><span class="line">        else:</span><br><span class="line">            if debug:</span><br><span class="line">                print &apos;Auth Fail!&apos;</span><br><span class="line">            Flag=False</span><br><span class="line">        s.close()</span><br><span class="line">    except:</span><br><span class="line">        if debug:</span><br><span class="line">            print &apos;validate host:%s with  %s/%s occurred some exception.&apos;</span><br><span class="line">        Flag=False</span><br><span class="line">        if s:</span><br><span class="line">            s.close()</span><br><span class="line"></span><br><span class="line">    return Flag</span><br></pre></td></tr></table></figure></p>
 <p>这样只是对一个主机进行认证,要做到批量,就写个for,加个外壳就好了,这里就不说这些了.要爆破什么的,都是在这个基础上搞了…</p>
 <p>最后再贴上源码地址: <a href="https://coding.net/u/medicean/p/socks5validate/git" target="_blank" rel="external">https://coding.net/u/medicean/p/socks5validate/git</a></p>
 </span>
@@ -528,7 +531,7 @@
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/statics/jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -556,15 +559,15 @@
     
   
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/statics/fancybox/source/jquery.fancybox.pack.js"></script>
   <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
 
   <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
   
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/statics/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/statics/velocity/velocity.ui.min.js"></script>
 
   <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
 
@@ -572,7 +575,7 @@
 
 
   <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/statics/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
