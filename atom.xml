@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Medici.Yan&#39;s Blog</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.evalbug.com/"/>
+  <updated>2016-11-08T02:36:57.000Z</updated>
+  <id>http://blog.evalbug.com/</id>
+  
+  <author>
+    <name>Medici.Yan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>当蚁剑遇到了 BurpSuite...</title>
+    <link href="http://blog.evalbug.com/2016/11/08/antsword_burp/"/>
+    <id>http://blog.evalbug.com/2016/11/08/antsword_burp/</id>
+    <published>2016-11-08T02:00:48.000Z</published>
+    <updated>2016-11-08T02:36:57.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://github.com/antoor/antsword&quot;&gt;AntSword&lt;/a&gt; 在 v.1.1.2 版本开始就已经内置了代理的功能，貌似除了隐藏身份就没什么用了？&lt;/p&gt;
+&lt;p&gt;当有一天，&lt;strong&gt;AntSword 遇到了 BurpSuite…&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="antsword" scheme="http://blog.evalbug.com/categories/antsword/"/>
+    
+    
+      <category term="antsword" scheme="http://blog.evalbug.com/tags/antsword/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>偷换同事 Mac 壁纸</title>
+    <link href="http://blog.evalbug.com/2016/08/29/osx_desktop_wallpaper/"/>
+    <id>http://blog.evalbug.com/2016/08/29/osx_desktop_wallpaper/</id>
+    <published>2016-08-29T14:00:48.000Z</published>
+    <updated>2016-09-05T08:21:22.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我先讲个故事，在我们公司流行这么一个风气:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;起身上厕所或者是去抽烟或者是什么原因离开个人电脑了，忘记锁屏了。&lt;/p&gt;
+&lt;p&gt;然后回来发现自己壁纸被换了&lt;/p&gt;
+&lt;p&gt;或者是密码被改了 = =！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;其实是为了提醒同事要有安全意识，不过到后来，就演变出了一些套路……&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="osx" scheme="http://blog.evalbug.com/categories/osx/"/>
+    
+    
+      <category term="osx" scheme="http://blog.evalbug.com/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建自己的 Docker Mirror</title>
+    <link href="http://blog.evalbug.com/2016/08/28/docker_mirror/"/>
+    <id>http://blog.evalbug.com/2016/08/28/docker_mirror/</id>
+    <published>2016-08-28T04:00:48.000Z</published>
+    <updated>2016-08-28T05:03:48.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在国内从 Docker Hub 上 pull 镜像的时候实在是蛋疼，虽然国内中科大已经有 Docker 的 Mirror 了，但是公司的网最近实在是太慢了，于是我就在内网整了一台 Docker Hub 的 Mirror。&lt;/p&gt;
+&lt;p&gt;弄好之后，那速度爽的我不要不要的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="docker" scheme="http://blog.evalbug.com/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="http://blog.evalbug.com/tags/docker/"/>
+    
+      <category term="mirror" scheme="http://blog.evalbug.com/tags/mirror/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中国菜刀 20160620 初体验</title>
+    <link href="http://blog.evalbug.com/2016/06/20/caidao_20160620/"/>
+    <id>http://blog.evalbug.com/2016/06/20/caidao_20160620/</id>
+    <published>2016-06-20T15:00:48.000Z</published>
+    <updated>2016-06-21T02:48:48.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;6月17号，某牛在朋友圈发了消息:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/160/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当时有消息声称 6 月底将会发布新版菜刀。&lt;/p&gt;
+&lt;p&gt;果然在 6 月 20 日，原本已经关闭的 &lt;code&gt;maicaidao.com&lt;/code&gt; 又开放了，而且下载量瞬间就到了 660 +。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/160/2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：菜刀的唯一官网是：&lt;/strong&gt; &lt;code&gt;www.maicaidao.com&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="webshell" scheme="http://blog.evalbug.com/categories/webshell/"/>
+    
+    
+      <category term="webshell" scheme="http://blog.evalbug.com/tags/webshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从 BugScan Chaos Memos 看摆龙门阵</title>
+    <link href="http://blog.evalbug.com/2016/06/13/bugscan_chaos_memos/"/>
+    <id>http://blog.evalbug.com/2016/06/13/bugscan_chaos_memos/</id>
+    <published>2016-06-13T15:00:48.000Z</published>
+    <updated>2016-06-14T01:54:48.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;题目延缓关闭，可以体验一波 &lt;a href=&quot;http://114.55.62.235/&quot;&gt;http://114.55.62.235/&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当了一回擂主，出了一道擂台赛题目，套路了一波。于是贱贱的出来分享一下摆龙门阵的过程了。如果有老司机愿意当擂主，希望这篇文章能帮到你。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Bugscan" scheme="http://blog.evalbug.com/categories/Bugscan/"/>
+    
+    
+      <category term="Bugscan" scheme="http://blog.evalbug.com/tags/Bugscan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 2 章 SQL 注入类 PoC 总结篇)</title>
+    <link href="http://blog.evalbug.com/2016/05/25/poc_coding_5/"/>
+    <id>http://blog.evalbug.com/2016/05/25/poc_coding_5/</id>
+    <published>2016-05-24T19:00:48.000Z</published>
+    <updated>2016-05-25T02:31:29.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章开始前说点别的，本来打算6月份才更的，原本以为没人看的。最近收到一封热心读者的邮件，很是感动啊，谢谢支持。也感谢一起参与到这个教程编写中的每一位朋友。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;博客这边其实不是特别想更新的，毕竟阅读起来没 gitbook 体验那么好。而且发现博客这里章节序号和那边不一样，自己也不想改了，下一章直接会跳到第4章，不要惊讶。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之前讲了一堆，都是编写的过程，在这一章最后总结一下，把需要用到的 Payload 规范整理了一份列表出来，供大家参考。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)</title>
+    <link href="http://blog.evalbug.com/2016/04/17/poc_coding_4/"/>
+    <id>http://blog.evalbug.com/2016/04/17/poc_coding_4/</id>
+    <published>2016-04-17T12:00:48.000Z</published>
+    <updated>2016-05-25T02:38:17.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。&lt;/p&gt;
+&lt;p&gt;再说积极的事，这个系列也帮助了一些人，其中有个兄弟写了一个 Python 的项目，里面就用到了我们 2.3 节中的 PoC：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/pythonfucku/app&quot;&gt;one python app for zoomeye 项目地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-4-基于时间的盲注的-SQL-注入-PoC-编写&quot;&gt;&lt;a href=&quot;#2-4-基于时间的盲注的-SQL-注入-PoC-编写&quot; class=&quot;headerlink&quot; title=&quot;2.4 基于时间的盲注的 SQL 注入 PoC 编写&quot;&gt;&lt;/a&gt;2.4 基于时间的盲注的 SQL 注入 PoC 编写&lt;/h2&gt;&lt;p&gt;本节原本打算找一个 PHP 语言的 CMS 的漏洞，环境好搭，找了半天没找到比较新的漏洞，最后决定直接用之前的漏洞。这次我们选择的漏洞为：&lt;/p&gt;
+&lt;p&gt; &lt;a href=&quot;http://wooyun.org/bugs/wooyun-2010-070827&quot;&gt;CmsEasy 5.5 UTF-8 20140802/celive/live/header.php SQL注入漏洞&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; 这个漏洞是我们 2.2 节《基于报错的 SQL 注入 PoC 编写》中使用过的一个漏洞。&lt;/p&gt;
+&lt;p&gt; 选这个洞的意义在于，让读者能体会到，一个漏洞的不同利用方式，没错，不只有一种利用方式。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进入妹子电脑偷照片和密码实录</title>
+    <link href="http://blog.evalbug.com/2016/04/12/funny_things_152/"/>
+    <id>http://blog.evalbug.com/2016/04/12/funny_things_152/</id>
+    <published>2016-04-12T03:41:48.000Z</published>
+    <updated>2016-04-12T15:58:30.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;最近因为在忙论文的事情，一直没时间去写博客，《PoC 编写指南》也停更了几个月的样子。今天交了初稿，松了口气，抽时间更新一下博客。文章是去年圣诞节写的，由于各种原因，一直没发。&lt;strong&gt;重点是思路&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;2015 年 8 月圈子沙龙提的一个想法，之后因为各种事情一直没把这个想法实现出来。其实我感觉文章水分有点大(我就这么随口说说，别当真)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本故事纯属虚构，看看就好，不管你信不信，我反正信了。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;事情大概就是这样的，妹子是某公司的研发攻程狮，某天问我渗透网站是不是要先用扫描器？我想了想，还是回答了一个是。接着人又问我什么扫描器好使。&lt;/p&gt;
+&lt;p&gt;她要是知道后面电脑会被我黑了，所有密码沦陷了，估计她再也不想问我什么东西了吧。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="bugscan" scheme="http://blog.evalbug.com/categories/bugscan/"/>
+    
+    
+      <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
+    
+      <category term="bugscan" scheme="http://blog.evalbug.com/tags/bugscan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)</title>
+    <link href="http://blog.evalbug.com/2016/01/27/poc_coding_3/"/>
+    <id>http://blog.evalbug.com/2016/01/27/poc_coding_3/</id>
+    <published>2016-01-27T12:00:48.000Z</published>
+    <updated>2016-04-19T02:33:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-3-基于布尔的盲注的-SQL-注入-PoC-编写&quot;&gt;&lt;a href=&quot;#2-3-基于布尔的盲注的-SQL-注入-PoC-编写&quot; class=&quot;headerlink&quot; title=&quot;2.3 基于布尔的盲注的 SQL 注入 PoC 编写&quot;&gt;&lt;/a&gt;2.3 基于布尔的盲注的 SQL 注入 PoC 编写&lt;/h2&gt;&lt;p&gt;这次我们选择的漏洞为 &lt;a href=&quot;http://www.wooyun.org/bugs/wooyun-2015-0119166&quot;&gt;MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;2-3-1-漏洞分析&quot;&gt;&lt;a href=&quot;#2-3-1-漏洞分析&quot; class=&quot;headerlink&quot; title=&quot;2.3.1 漏洞分析&quot;&gt;&lt;/a&gt;2.3.1 漏洞分析&lt;/h3&gt;&lt;p&gt;想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;根据原文中分析我们知道了，存在 SQL 注入的文件是 /include/global/listmod.php , 存在注入的变量是 $serch_sql。&lt;/p&gt;
+&lt;p&gt;在 listmod.php 文件 200 行的位置拼接了 SQL 语句，在拼接 SQL 语句之前，对 $serch_sql 变量进行了初始化操作，但是呢，控制它是否初始化的另一个变量为 $imgproduct。&lt;/p&gt;
+&lt;p&gt;当这个 $imgproduct 变量非 search 的任意字符的时候，导致 $serch_sql 不能进行初始化，从而可以自定义 $serch_sql 进行注入。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 上篇)</title>
+    <link href="http://blog.evalbug.com/2015/12/27/poc_coding_2/"/>
+    <id>http://blog.evalbug.com/2015/12/27/poc_coding_2/</id>
+    <published>2015-12-26T16:00:48.000Z</published>
+    <updated>2016-04-19T02:33:40.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-1-SQL-注入基础&quot;&gt;&lt;a href=&quot;#2-1-SQL-注入基础&quot; class=&quot;headerlink&quot; title=&quot;2.1 SQL 注入基础&quot;&gt;&lt;/a&gt;2.1 SQL 注入基础&lt;/h2&gt;&lt;p&gt;准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-1-SQL-注入原理&quot;&gt;&lt;a href=&quot;#2-1-1-SQL-注入原理&quot; class=&quot;headerlink&quot; title=&quot;2.1.1 SQL 注入原理&quot;&gt;&lt;/a&gt;2.1.1 SQL 注入原理&lt;/h3&gt;&lt;p&gt;SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。&lt;/p&gt;
+&lt;p&gt;如果你不懂什么是 SQL 注入的话，这里我推荐去看 &lt;a href=&quot;https://github.com/Audi-1/sqli-labs&quot;&gt;&lt;font color=&quot;red&quot;&gt;sqli-labs&lt;/font&gt;&lt;/a&gt; 这是目前我见过的最详细讲解 SQL 注入的资料了。不过都是纯英文的，但是也没多少难度。FreeBuf 上有两篇对应的中文介绍，你也可以去看看，相信对你是有帮助的。 &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.freebuf.com/articles/web/34619.html&quot;&gt;&lt;font color=&quot;red&quot;&gt;安全科普：SQLi Labs 指南 Part 1&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.freebuf.com/articles/web/38315.html&quot;&gt;&lt;font color=&quot;red&quot;&gt;安全科普：SQLi Labs 指南 Part 2&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;倘若要是连 SQL 都不知道的话，我觉得吧，磨刀不误砍柴工，你觉得呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;2-1-2-SQL-注入分类&quot;&gt;&lt;a href=&quot;#2-1-2-SQL-注入分类&quot; class=&quot;headerlink&quot; title=&quot;2.1.2 SQL 注入分类&quot;&gt;&lt;/a&gt;2.1.2 SQL 注入分类&lt;/h3&gt;&lt;p&gt;分类这种东西对是相对的,看你站在什么角度了,我一直都很讨厌这些分类,如果你仔细去研究这些个分类,你会觉得这世界上的发明家太多了,想一出是一出啊。&lt;/p&gt;
+&lt;p&gt;反正我也是发明家，下面这些个分类是我个人的见解。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 1 章 技能基础)</title>
+    <link href="http://blog.evalbug.com/2015/12/26/poc_coding_1/"/>
+    <id>http://blog.evalbug.com/2015/12/26/poc_coding_1/</id>
+    <published>2015-12-25T17:47:48.000Z</published>
+    <updated>2016-04-19T02:33:14.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;第-1-章-技能基础&quot;&gt;&lt;a href=&quot;#第-1-章-技能基础&quot; class=&quot;headerlink&quot; title=&quot;第 1 章 技能基础&quot;&gt;&lt;/a&gt;第 1 章 技能基础&lt;/h2&gt;&lt;h3 id=&quot;网络基础&quot;&gt;&lt;a href=&quot;#网络基础&quot; class=&quot;headerlink&quot; title=&quot;网络基础&quot;&gt;&lt;/a&gt;网络基础&lt;/h3&gt;&lt;h3 id=&quot;为什么要学网络&quot;&gt;&lt;a href=&quot;#为什么要学网络&quot; class=&quot;headerlink&quot; title=&quot;为什么要学网络&quot;&gt;&lt;/a&gt;为什么要学网络&lt;/h3&gt;&lt;p&gt;安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。&lt;/p&gt;
+&lt;h3 id=&quot;需要学什么&quot;&gt;&lt;a href=&quot;#需要学什么&quot; class=&quot;headerlink&quot; title=&quot;需要学什么&quot;&gt;&lt;/a&gt;需要学什么&lt;/h3&gt;&lt;p&gt;对于写 PoC 来说，我们需要的并不是你去把 OSI 7 层模型的每一层都精通，你要精通了所有层的东西，你就不会坐在这里了。&lt;/p&gt;
+&lt;p&gt;好了，大概说一下我们需要了解哪些,相关的专业知识你可以去百度我不浪费时间了&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(圣诞礼物)在终端下画个圣诞树陪你过节</title>
+    <link href="http://blog.evalbug.com/2015/12/25/py_fun_0/"/>
+    <id>http://blog.evalbug.com/2015/12/25/py_fun_0/</id>
+    <published>2015-12-25T03:00:48.000Z</published>
+    <updated>2016-04-18T08:53:33.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。&lt;/p&gt;
+&lt;p&gt;来来来，先上图, duang ~&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://blog.evalbug.com/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PoC 编写指南(第 0 章 基础知识)</title>
+    <link href="http://blog.evalbug.com/2015/12/23/poc_coding_0/"/>
+    <id>http://blog.evalbug.com/2015/12/23/poc_coding_0/</id>
+    <published>2015-12-23T15:39:48.000Z</published>
+    <updated>2016-04-19T02:33:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;有感而发，想写一系列的教程，帮助刚入安全圈的新手朋友。假如有一天，这个系列的教程真的帮到了你，别忘了回来给我点个赞，不为别的，只想看看这玩意有没有用。&lt;/p&gt;
+&lt;p&gt;这一系列我将其命名为 《PoC 编写指南》，为什么要叫这个名字呢，感觉这个名字应该好听一些，如果你在阅读的时候有更好的名字，可以推荐给我。&lt;/p&gt;
+&lt;p&gt;关于版权问题，我向来不反对转载的，但是我特别鄙视那些纯复制粘贴过后，仅仅是改了作者名字的人。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本教程为笔者原创，转载请征求笔者同意，笔者默认不同意&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在本教程中，你将会同我一起，以真实案例为背景，针对当下主流的漏洞来分析漏洞，并且一步一步编写对应的 PoC。当然本教程肯定不会覆盖到所有种类的漏洞，因为我不会，哈哈哈。不过，关于 PoC 的编写都是触类旁通的，我相信，你会在学习了现有的章节之后，举一反三。&lt;/p&gt;
+&lt;p&gt;没错，如果你在看了所有的章节之后学到的不是编写的思想，那恭喜你，你获得了再看一次的机会。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
+    
+    
+      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac OS X 开机启动脚本(自动构建 Bugscan 节点)</title>
+    <link href="http://blog.evalbug.com/2015/11/29/osx_plist_startup/"/>
+    <id>http://blog.evalbug.com/2015/11/29/osx_plist_startup/</id>
+    <published>2015-11-29T15:04:48.000Z</published>
+    <updated>2015-11-29T15:05:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;扫描的时候常时间不看有时候节点会掉，每次都去手动构建一次真的很烦，于是考虑用计划任务来自动构建节点。Linux 下关于 corntab 的文章多了去了，这里我记录下 Mac OS X 的计划任务，构建节点只是一个用处而己。用 Mac 的人那么多，真正关心这个的人倒没多少。&lt;/p&gt;
+&lt;p&gt;Mac OS X内置的一种称为 Launch Daemon/Agent 的机制来实现系统启动时自动执行脚本程序。OS X 从10.4 开始，采用 launchd 进程来管理整个操作系统的服务及进程。传统的 UNIX 会使用 /etc/rc.* 或其他的机制来管理开机时要启动的启动服务，而现在的 OS X 则使用 launchd 来管理，它的启动服务称为 Launch Daemon/Agents, 利用 Launch Daemon/Agent，我们就可以令脚本程序在系统启动的时候在后台运行了。 &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OSX" scheme="http://blog.evalbug.com/categories/OSX/"/>
+    
+    
+      <category term="OSX" scheme="http://blog.evalbug.com/tags/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP 不同数组之间比较由于整数键截断导致结果相同</title>
+    <link href="http://blog.evalbug.com/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/"/>
+    <id>http://blog.evalbug.com/2015/11/10/different_arrays_compare_indentical_due_to_integer_key_truncation/</id>
+    <published>2015-11-09T19:23:48.000Z</published>
+    <updated>2016-04-16T17:58:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;漏洞简介&quot;&gt;&lt;a href=&quot;#漏洞简介&quot; class=&quot;headerlink&quot; title=&quot;漏洞简介&quot;&gt;&lt;/a&gt;漏洞简介&lt;/h3&gt;&lt;p&gt;漏洞标题：&lt;strong&gt;Different arrays compare indentical due to integer key truncation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;漏洞来源：&lt;a href=&quot;https://bugs.php.net/bug.php?id=69892&quot;&gt;https://bugs.php.net/bug.php?id=69892&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;影响组件: PHP&lt;/p&gt;
+&lt;p&gt;影响版本：5.4.0 - 5.4.43, 5.5.0 - 5.5.26, 5.6.0 - 5.6.10, 7.0.0alpha1&lt;/p&gt;
+&lt;h3 id=&quot;实例说明&quot;&gt;&lt;a href=&quot;#实例说明&quot; class=&quot;headerlink&quot; title=&quot;实例说明&quot;&gt;&lt;/a&gt;实例说明&lt;/h3&gt;&lt;h4 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h4&gt;&lt;p&gt;用一个 CTF 题目来说明一下上面的这个漏洞,顺便记录下 CTF 的一类题&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://blog.evalbug.com/categories/PHP/"/>
+    
+    
+      <category term="PHP" scheme="http://blog.evalbug.com/tags/PHP/"/>
+    
+      <category term="安全" scheme="http://blog.evalbug.com/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么 &#39;m&#39; in (&#39;medicean&#39;) 是 True</title>
+    <link href="http://blog.evalbug.com/2015/11/08/python_why_m_in_medicean_is_true/"/>
+    <id>http://blog.evalbug.com/2015/11/08/python_why_m_in_medicean_is_true/</id>
+    <published>2015-11-08T15:43:48.000Z</published>
+    <updated>2015-11-08T16:36:54.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;先来看一段代码&quot;&gt;&lt;a href=&quot;#先来看一段代码&quot; class=&quot;headerlink&quot; title=&quot;先来看一段代码:&quot;&gt;&lt;/a&gt;先来看一段代码:&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;apos;m&amp;apos; in (&amp;apos;medicean&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;apos;m&amp;apos; in [&amp;apos;medicean&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;False&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;为什么会出现这种结果呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://blog.evalbug.com/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 混乱代码解析</title>
+    <link href="http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/"/>
+    <id>http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/</id>
+    <published>2015-11-05T15:43:48.000Z</published>
+    <updated>2015-11-08T16:39:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;一年前在国外看到的 &lt;a href=&quot;http://earwig.github.io/2014/06/01/obfuscating-hello-world.html&quot;&gt;一篇文章&lt;/a&gt; ，也是因为这个脚本，让我喜欢上了 Python。&lt;/p&gt;
+&lt;p&gt;代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。&lt;/p&gt;
+&lt;p&gt;今天突然想起来了，就靠着记忆重新写了一个。&lt;/p&gt;
+&lt;p&gt;完成后的代码如下,我已经大概处理了一下，为了好看：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!/usr/bin/env python&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(lambda _,__,___,____,_____,______,_______, ________:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  getattr(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    __import__(True.__class__.__name__[_] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      [].__class__.__name__[__]),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ().__class__.__eq__.__class__.__name__[:__] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ().__iter__().__class__.__name__[_____:________]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    _, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (lambda _,__,___: _(_,__,___))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (lambda _,__,___: chr(___ % __) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ____&amp;lt;&amp;lt;______, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_____ &amp;lt;&amp;lt; _____) + _______) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; _______) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (_ &amp;lt;&amp;lt; __))) - (((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ____) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ((((_ &amp;lt;&amp;lt; ____) - _) &amp;lt;&amp;lt; ___) +_))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      - (((_____ &amp;lt;&amp;lt; _____) + _______) &amp;lt;&amp;lt; ((_______ &amp;lt;&amp;lt; ____))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((___ &amp;lt;&amp;lt; _____) - ___) &amp;lt;&amp;lt; ((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ___) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        _)) - (((((___ &amp;lt;&amp;lt; __) - _) &amp;lt;&amp;lt; ____) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _____) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; _____) - ___)) + (((_______ &amp;lt;&amp;lt; ____) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ___) &amp;lt;&amp;lt; ((_____ &amp;lt;&amp;lt; ____) +___)) + (((((___ &amp;lt;&amp;lt; __) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ___) + _) &amp;lt;&amp;lt; (((((_ &amp;lt;&amp;lt; ___) + _)) &amp;lt;&amp;lt; ___) + (_ &amp;lt;&amp;lt; _))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ___) - ___) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; ______))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_____ &amp;lt;&amp;lt; ____) -___) &amp;lt;&amp;lt; ((_______ &amp;lt;&amp;lt; ___))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_ &amp;lt;&amp;lt; ______) + _) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; ____) - _)) - (((((___ &amp;lt;&amp;lt; __) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ((_____ &amp;lt;&amp;lt; ___) - _)) - (((_____ &amp;lt;&amp;lt; __) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; _____) - _)) -(((_ &amp;lt;&amp;lt; _____) + _) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; ___) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _)) - (_____ &amp;lt;&amp;lt; (((((_ &amp;lt;&amp;lt; ___) + _)) &amp;lt;&amp;lt; _))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (_ &amp;lt;&amp;lt; (((___ &amp;lt;&amp;lt; __) + _))) + (((((_ &amp;lt;&amp;lt; ___) + _))) &amp;lt;&amp;lt; ___) + _&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)(* (lambda _, __: _(_, __))(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  lambda _, __:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______, _______: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______, _______, ________: _&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;怎么样？是不是吓到了。当时我感叹：&lt;font color=&quot;red&quot;&gt;逼还是你会装啊&lt;/font&gt;。&lt;/p&gt;
+&lt;p&gt;好吧来看分析吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://blog.evalbug.com/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rsync 安装及配置</title>
+    <link href="http://blog.evalbug.com/2015/10/29/rsyncinstall/"/>
+    <id>http://blog.evalbug.com/2015/10/29/rsyncinstall/</id>
+    <published>2015-10-29T14:59:48.000Z</published>
+    <updated>2015-10-29T11:20:54.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://blog.evalbug.com/categories/Linux/"/>
+    
+    
+      <category term="linux" scheme="http://blog.evalbug.com/tags/linux/"/>
+    
+      <category term="ubuntu" scheme="http://blog.evalbug.com/tags/ubuntu/"/>
+    
+      <category term="rsync" scheme="http://blog.evalbug.com/tags/rsync/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OS X brew 更换源</title>
+    <link href="http://blog.evalbug.com/2015/10/28/osx_brew_sourcelist/"/>
+    <id>http://blog.evalbug.com/2015/10/28/osx_brew_sourcelist/</id>
+    <published>2015-10-28T12:59:48.000Z</published>
+    <updated>2015-10-29T11:30:51.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是-brew&quot;&gt;&lt;a href=&quot;#什么是-brew&quot; class=&quot;headerlink&quot; title=&quot;什么是 brew&quot;&gt;&lt;/a&gt;什么是 brew&lt;/h2&gt;&lt;p&gt;Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。&lt;/p&gt;
+&lt;p&gt;项目地址: &lt;a href=&quot;https://github.com/Homebrew/homebrew&quot;&gt;https://github.com/Homebrew/homebrew&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用帮助: &lt;a href=&quot;http://brew.sh&quot;&gt;http://brew.sh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但是国内有时候真是让人无语，于是还是考虑给 brew 换个国内的源。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="OSX" scheme="http://blog.evalbug.com/categories/OSX/"/>
+    
+    
+      <category term="brew" scheme="http://blog.evalbug.com/tags/brew/"/>
+    
+      <category term="OSX" scheme="http://blog.evalbug.com/tags/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>脱库漫谈</title>
+    <link href="http://blog.evalbug.com/2015/10/20/dumpdatabase/"/>
+    <id>http://blog.evalbug.com/2015/10/20/dumpdatabase/</id>
+    <published>2015-10-20T14:59:48.000Z</published>
+    <updated>2016-04-13T02:33:04.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，&lt;br&gt;目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。&lt;br&gt;外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着&lt;br&gt;凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。&lt;/p&gt;
+&lt;p&gt;UCloud：怪我喽？&lt;/p&gt;
+&lt;p&gt;事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，&lt;br&gt;我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。&lt;/p&gt;
+&lt;p&gt;上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前&lt;br&gt;两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。&lt;/p&gt;
+&lt;p&gt;话说回来，今天我们就来谈谈脱库。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="inn0team" scheme="http://blog.evalbug.com/categories/inn0team/"/>
+    
+      <category term="SWUSEC" scheme="http://blog.evalbug.com/categories/inn0team/SWUSEC/"/>
+    
+    
+      <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
+    
+  </entry>
+  
+</feed>
