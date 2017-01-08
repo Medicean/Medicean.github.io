@@ -220,6 +220,106 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/27/poc_coding_2/" itemprop="url">
+                PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 上篇)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-27T00:00:48+08:00" content="2015-12-27">
+            2015-12-27
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/27/poc_coding_2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/27/poc_coding_2/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/">http://poc.evalbug.com/</a></p>
+<h2 id="2-1-SQL-注入基础"><a href="#2-1-SQL-注入基础" class="headerlink" title="2.1 SQL 注入基础"></a>2.1 SQL 注入基础</h2><p>准备完这些通用的基础知识之后，我们就可以开始编写自己的第一个 PoC 了。为什么要选 SQL 注入作第一个呢？因为它最常见，相信看本教程的你肯定在这之前都了解了，没了解我也装作你了解了给你讲，你上学的时候老师不都这么干的嘛。</p>
+<h3 id="2-1-1-SQL-注入原理"><a href="#2-1-1-SQL-注入原理" class="headerlink" title="2.1.1 SQL 注入原理"></a>2.1.1 SQL 注入原理</h3><p>SQL 注入漏洞是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。</p>
+<p>如果你不懂什么是 SQL 注入的话，这里我推荐去看 <a href="https://github.com/Audi-1/sqli-labs"><font color="red">sqli-labs</font></a> 这是目前我见过的最详细讲解 SQL 注入的资料了。不过都是纯英文的，但是也没多少难度。FreeBuf 上有两篇对应的中文介绍，你也可以去看看，相信对你是有帮助的。 </p>
+<p><a href="http://www.freebuf.com/articles/web/34619.html"><font color="red">安全科普：SQLi Labs 指南 Part 1</font></a></p>
+<p><a href="http://www.freebuf.com/articles/web/38315.html"><font color="red">安全科普：SQLi Labs 指南 Part 2</font></a></p>
+<blockquote>
+<p>倘若要是连 SQL 都不知道的话，我觉得吧，磨刀不误砍柴工，你觉得呢？</p>
+</blockquote>
+<h3 id="2-1-2-SQL-注入分类"><a href="#2-1-2-SQL-注入分类" class="headerlink" title="2.1.2 SQL 注入分类"></a>2.1.2 SQL 注入分类</h3><p>分类这种东西对是相对的,看你站在什么角度了,我一直都很讨厌这些分类,如果你仔细去研究这些个分类,你会觉得这世界上的发明家太多了,想一出是一出啊。</p>
+<p>反正我也是发明家，下面这些个分类是我个人的见解。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/27/poc_coding_2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/26/poc_coding_1/" itemprop="url">
                 PoC 编写指南(第 1 章 技能基础)
               </a>
@@ -1044,112 +1144,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/20/dumpdatabase/" itemprop="url">
-                脱库漫谈
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-10-20T22:59:48+08:00" content="2015-10-20">
-            2015-10-20
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/inn0team/" itemprop="url" rel="index">
-                  <span itemprop="name">inn0team</span>
-                </a>
-              </span>
-
-              
-              
-                ， 
-              
-
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/inn0team/SWUSEC/" itemprop="url" rel="index">
-                  <span itemprop="name">SWUSEC</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/10/20/dumpdatabase/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/dumpdatabase/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，<br>目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。<br>外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着<br>凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。</p>
-<p>UCloud：怪我喽？</p>
-<p>事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，<br>我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。</p>
-<p>上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前<br>两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。</p>
-<p>话说回来，今天我们就来谈谈脱库。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/20/dumpdatabase/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-
-
-
-    
   </section>
 
   
@@ -1188,21 +1182,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1276,7 +1270,7 @@
       <div class="footer-inner"> <div class="copyright" >
   
   &copy; &nbsp;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2016-11-08T02:36:57.000Z</updated>
+  <updated>2017-01-08T08:38:45.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git Flow 实践</title>
+    <link href="http://blog.evalbug.com/2017/01/08/git_flow/"/>
+    <id>http://blog.evalbug.com/2017/01/08/git_flow/</id>
+    <published>2017-01-08T08:20:23.000Z</published>
+    <updated>2017-01-08T08:38:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在内部推行Git的时候，推广下去之后，大家也是只会机械的用&lt;code&gt;add&lt;/code&gt;、&lt;code&gt;commit&lt;/code&gt;、&lt;code&gt;push&lt;/code&gt;、&lt;code&gt;pull&lt;/code&gt;这几个命令，很多开始接触Git的同学根本体会不出Git在协作时的优点，把Git活生生用成了FTP。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;很僵&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个是我在公司内部分享时做的一张图，拿出来分享一下，结合了一下我司目前的项目情况。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://blog.evalbug.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://blog.evalbug.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>当蚁剑遇到了 BurpSuite...</title>
@@ -481,32 +505,6 @@
       <category term="brew" scheme="http://blog.evalbug.com/tags/brew/"/>
     
       <category term="OSX" scheme="http://blog.evalbug.com/tags/OSX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>脱库漫谈</title>
-    <link href="http://blog.evalbug.com/2015/10/20/dumpdatabase/"/>
-    <id>http://blog.evalbug.com/2015/10/20/dumpdatabase/</id>
-    <published>2015-10-20T14:59:48.000Z</published>
-    <updated>2016-04-13T02:33:04.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;最近网易邮箱 163 邮箱用户数据泄露事件又让安全圈子高潮了一回，&lt;br&gt;目前网易公关给的解释是当然不会被脱库啦，你们想什么样呢，别闹了，好好上班。&lt;br&gt;外界自然是唏嘘声一片，就着那 100 条还有密保问题的可疑数据，居然有家电视台也跟着&lt;br&gt;凑起了热闹，闹就闹吧，好好的乌云就被报道成了 UCloud。&lt;/p&gt;
-&lt;p&gt;UCloud：怪我喽？&lt;/p&gt;
-&lt;p&gt;事实是什么，反正我不知道，我也不敢乱下定论，我又不认识某种产业的人，&lt;br&gt;我也不认识 163 的，前面都是说给你听的，认识我也要说不认识。&lt;/p&gt;
-&lt;p&gt;上一回高潮是今年 9 月的 Xcode Ghost，哦不，上一回应该算是前&lt;br&gt;两天的支付宝实名认证的漏洞了。我想支付宝的公关估计现在正在偷着乐吧。&lt;/p&gt;
-&lt;p&gt;话说回来，今天我们就来谈谈脱库。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="inn0team" scheme="http://blog.evalbug.com/categories/inn0team/"/>
-    
-      <category term="SWUSEC" scheme="http://blog.evalbug.com/categories/inn0team/SWUSEC/"/>
-    
-    
-      <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
     
   </entry>
   
