@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2017-01-08T08:38:45.000Z</updated>
+  <updated>2017-01-08T08:40:46.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.evalbug.com/2017/01/08/git_flow/"/>
     <id>http://blog.evalbug.com/2017/01/08/git_flow/</id>
     <published>2017-01-08T08:20:23.000Z</published>
-    <updated>2017-01-08T08:38:45.000Z</updated>
+    <updated>2017-01-08T08:40:46.000Z</updated>
     
     <summary type="html">
     
@@ -231,9 +231,9 @@
       <category term="bugscan" scheme="http://blog.evalbug.com/categories/bugscan/"/>
     
     
-      <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
-    
       <category term="bugscan" scheme="http://blog.evalbug.com/tags/bugscan/"/>
+    
+      <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
     
   </entry>
   
@@ -502,9 +502,9 @@
       <category term="OSX" scheme="http://blog.evalbug.com/categories/OSX/"/>
     
     
-      <category term="brew" scheme="http://blog.evalbug.com/tags/brew/"/>
-    
       <category term="OSX" scheme="http://blog.evalbug.com/tags/OSX/"/>
+    
+      <category term="brew" scheme="http://blog.evalbug.com/tags/brew/"/>
     
   </entry>
   
