@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2017-01-08T08:40:46.000Z</updated>
+  <updated>2017-04-09T07:50:55.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>漏洞预警_PHPCMSv9前台GetShell (2017/04/09)</title>
+    <link href="http://blog.evalbug.com/2017/04/09/phpcmsv9_getshell_20170409_pre/"/>
+    <id>http://blog.evalbug.com/2017/04/09/phpcmsv9_getshell_20170409_pre/</id>
+    <published>2017-04-09T07:03:23.000Z</published>
+    <updated>2017-04-09T07:50:55.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;把预警的文章在博客同步一下，毕竟半年没写东西了&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;版权声明：&lt;br&gt;本文首发于微信号：inn0team&lt;br&gt;此文章版权归属于 inn0team 所有&lt;br&gt;转载请务必保留此声明，违者必究。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;首先感谢小蝈蝈 &lt;code&gt;Zvonimir&lt;/code&gt; 一同完成的漏洞分析与发现。&lt;/p&gt;
+&lt;p&gt;先上一张效果图（官方Demo）&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="php" scheme="http://blog.evalbug.com/categories/php/"/>
+    
+    
+      <category term="phpcms" scheme="http://blog.evalbug.com/tags/phpcms/"/>
+    
+  </entry>
   
   <entry>
     <title>Git Flow 实践</title>
@@ -231,9 +256,9 @@
       <category term="bugscan" scheme="http://blog.evalbug.com/categories/bugscan/"/>
     
     
-      <category term="bugscan" scheme="http://blog.evalbug.com/tags/bugscan/"/>
-    
       <category term="hack" scheme="http://blog.evalbug.com/tags/hack/"/>
+    
+      <category term="bugscan" scheme="http://blog.evalbug.com/tags/bugscan/"/>
     
   </entry>
   
@@ -480,31 +505,6 @@
       <category term="ubuntu" scheme="http://blog.evalbug.com/tags/ubuntu/"/>
     
       <category term="rsync" scheme="http://blog.evalbug.com/tags/rsync/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OS X brew 更换源</title>
-    <link href="http://blog.evalbug.com/2015/10/28/osx_brew_sourcelist/"/>
-    <id>http://blog.evalbug.com/2015/10/28/osx_brew_sourcelist/</id>
-    <published>2015-10-28T12:59:48.000Z</published>
-    <updated>2015-10-29T11:30:51.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是-brew&quot;&gt;&lt;a href=&quot;#什么是-brew&quot; class=&quot;headerlink&quot; title=&quot;什么是 brew&quot;&gt;&lt;/a&gt;什么是 brew&lt;/h2&gt;&lt;p&gt;Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。&lt;/p&gt;
-&lt;p&gt;项目地址: &lt;a href=&quot;https://github.com/Homebrew/homebrew&quot;&gt;https://github.com/Homebrew/homebrew&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;使用帮助: &lt;a href=&quot;http://brew.sh&quot;&gt;http://brew.sh&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;但是国内有时候真是让人无语，于是还是考虑给 brew 换个国内的源。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="OSX" scheme="http://blog.evalbug.com/categories/OSX/"/>
-    
-    
-      <category term="OSX" scheme="http://blog.evalbug.com/tags/OSX/"/>
-    
-      <category term="brew" scheme="http://blog.evalbug.com/tags/brew/"/>
     
   </entry>
   

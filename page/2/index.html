@@ -220,6 +220,104 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/27/poc_coding_3/" itemprop="url">
+                PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-27T20:00:48+08:00" content="2016-01-27">
+            2016-01-27
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/PoC/" itemprop="url" rel="index">
+                  <span itemprop="name">PoC</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/27/poc_coding_3/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/poc_coding_3/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/">http://poc.evalbug.com/</a></p>
+<h2 id="2-3-基于布尔的盲注的-SQL-注入-PoC-编写"><a href="#2-3-基于布尔的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.3 基于布尔的盲注的 SQL 注入 PoC 编写"></a>2.3 基于布尔的盲注的 SQL 注入 PoC 编写</h2><p>这次我们选择的漏洞为 <a href="http://www.wooyun.org/bugs/wooyun-2015-0119166">MetInfo 5.3 /include/global/listmod.php SQL 注入漏洞</a>。</p>
+<h3 id="2-3-1-漏洞分析"><a href="#2-3-1-漏洞分析" class="headerlink" title="2.3.1 漏洞分析"></a>2.3.1 漏洞分析</h3><p>想看原文分析的可以点上面的链接去研究，你别看我的标题和原文作者的不一样，内容其实是一样的。</p>
+<blockquote>
+<p>原文中的分析不是太详细，但是呢，我暂时不想详解这个漏洞，后面再看吧，如果有需要的话。</p>
+</blockquote>
+<p>根据原文中分析我们知道了，存在 SQL 注入的文件是 /include/global/listmod.php , 存在注入的变量是 $serch_sql。</p>
+<p>在 listmod.php 文件 200 行的位置拼接了 SQL 语句，在拼接 SQL 语句之前，对 $serch_sql 变量进行了初始化操作，但是呢，控制它是否初始化的另一个变量为 $imgproduct。</p>
+<p>当这个 $imgproduct 变量非 search 的任意字符的时候，导致 $serch_sql 不能进行初始化，从而可以自定义 $serch_sql 进行注入。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/27/poc_coding_3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/27/poc_coding_2/" itemprop="url">
                 PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 上篇)
               </a>
@@ -1051,99 +1149,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/28/osx_brew_sourcelist/" itemprop="url">
-                OS X brew 更换源
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-10-28T20:59:48+08:00" content="2015-10-28">
-            2015-10-28
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/OSX/" itemprop="url" rel="index">
-                  <span itemprop="name">OSX</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/10/28/osx_brew_sourcelist/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/28/osx_brew_sourcelist/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="什么是-brew"><a href="#什么是-brew" class="headerlink" title="什么是 brew"></a>什么是 brew</h2><p>Brew 是OS X 上的一个软件包管理器,有些类似 apt-get 和 yum,它依托于Github。</p>
-<p>项目地址: <a href="https://github.com/Homebrew/homebrew">https://github.com/Homebrew/homebrew</a></p>
-<p>使用帮助: <a href="http://brew.sh">http://brew.sh</a></p>
-<p>但是国内有时候真是让人无语，于是还是考虑给 brew 换个国内的源。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/28/osx_brew_sourcelist/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-
-
-
-    
   </section>
 
   
@@ -1182,21 +1187,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
