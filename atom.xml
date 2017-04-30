@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2017-04-09T07:50:55.000Z</updated>
+  <updated>2017-04-30T08:32:02.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -16,11 +16,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>BugScan小程序v0.0.2演示</title>
+    <link href="http://blog.evalbug.com/2017/04/30/bugscan_xcx_002/"/>
+    <id>http://blog.evalbug.com/2017/04/30/bugscan_xcx_002/</id>
+    <published>2017-04-30T07:03:23.000Z</published>
+    <updated>2017-04-30T08:32:02.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;4月2号时候的样子，因为最近在调整用户系统，所以就直接内置了我自己的账号进去，目前还没做用户系统。&lt;/p&gt;
+&lt;p&gt;话不多说，看视频先。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="bugscan" scheme="http://blog.evalbug.com/categories/bugscan/"/>
+    
+    
+      <category term="bugscan" scheme="http://blog.evalbug.com/tags/bugscan/"/>
+    
+  </entry>
+  
+  <entry>
     <title>漏洞预警_PHPCMSv9前台GetShell (2017/04/09)</title>
     <link href="http://blog.evalbug.com/2017/04/09/phpcmsv9_getshell_20170409_pre/"/>
     <id>http://blog.evalbug.com/2017/04/09/phpcmsv9_getshell_20170409_pre/</id>
     <published>2017-04-09T07:03:23.000Z</published>
-    <updated>2017-04-09T07:50:55.000Z</updated>
+    <updated>2017-04-30T08:29:08.000Z</updated>
     
     <summary type="html">
     
@@ -28,7 +49,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;版权声明：&lt;br&gt;本文首发于微信号：inn0team&lt;br&gt;此文章版权归属于 inn0team 所有&lt;br&gt;转载请务必保留此声明，违者必究。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;首先感谢小蝈蝈 &lt;code&gt;Zvonimir&lt;/code&gt; 一同完成的漏洞分析与发现。&lt;/p&gt;
+&lt;p&gt;首先感谢某个朋友，一同完成的漏洞分析与发现。&lt;/p&gt;
 &lt;p&gt;先上一张效果图（官方Demo）&lt;/p&gt;
     
     </summary>
@@ -481,30 +502,6 @@
     
     
       <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rsync 安装及配置</title>
-    <link href="http://blog.evalbug.com/2015/10/29/rsyncinstall/"/>
-    <id>http://blog.evalbug.com/2015/10/29/rsyncinstall/</id>
-    <published>2015-10-29T14:59:48.000Z</published>
-    <updated>2015-10-29T11:20:54.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Rsync 是类 unix 系统下的数据镜像备份工具—— remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他 SSH、rsync 主机同步。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://blog.evalbug.com/categories/Linux/"/>
-    
-    
-      <category term="linux" scheme="http://blog.evalbug.com/tags/linux/"/>
-    
-      <category term="ubuntu" scheme="http://blog.evalbug.com/tags/ubuntu/"/>
-    
-      <category term="rsync" scheme="http://blog.evalbug.com/tags/rsync/"/>
     
   </entry>
   

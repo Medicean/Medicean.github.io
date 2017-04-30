@@ -220,6 +220,96 @@
           
           
             
+              <a class="post-title-link" href="/2015/05/14/openwrt_ram_flash/" itemprop="url">
+                查看OpenWrt的RAM和FLASH
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-14T17:52:23+08:00" content="2015-05-14">
+            2015-05-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/" itemprop="url" rel="index">
+                  <span itemprop="name">Linux</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Linux/校园网/" itemprop="url" rel="index">
+                  <span itemprop="name">校园网</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h2 id="今天就不写太多了。短一点。"><a href="#今天就不写太多了。短一点。" class="headerlink" title="今天就不写太多了。短一点。"></a>今天就不写太多了。短一点。</h2><div class="body-text"><br><br>买来一个OpenWrt的路由器，今天刚到的货，赶快拆开看看是不是替我换了RAM和FLASH的。那么怎么查看它是不是真的有那么大呢？<br><br>在字符界面下，查看RAM的命令是这个：<br><br>cat /proc/meminfo<br>&gt; 1.  root@OpenWrt:~# cat /proc/meminfo<br>&gt; 2.  MemTotal:          61984 kB<br>查看FLASH的命令是这个：<br><br>dmesg | grep spi<br>&gt; 1.  dmesg | grep spi<br>&gt; 2.  [    0.670000] m25p80 spi0.0: mx25l6405d (8192 Kbytes)<br>这样就可以消除自己的疑虑了。<br><br></div></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/05/14/fw150r_wr703n_openwrt/" itemprop="url">
                 FW150R 和 TP-Link WR703N 刷 OpenWrt 及 相关配置
               </a>
@@ -686,7 +776,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
