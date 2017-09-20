@@ -220,6 +220,95 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/05/python_chaos_hello_world/" itemprop="url">
+                Python 混乱代码解析
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-11-05T23:43:48+08:00" content="2015-11-05">
+            2015-11-05
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Python/" itemprop="url" rel="index">
+                  <span itemprop="name">Python</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>一年前在国外看到的 <a href="http://earwig.github.io/2014/06/01/obfuscating-hello-world.html">一篇文章</a> ，也是因为这个脚本，让我喜欢上了 Python。</p>
+<p>代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。</p>
+<p>今天突然想起来了，就靠着记忆重新写了一个。</p>
+<p>完成后的代码如下,我已经大概处理了一下，为了好看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">(lambda _,__,___,____,_____,______,_______, ________:</span><br><span class="line">  getattr(</span><br><span class="line">    __import__(True.__class__.__name__[_] +</span><br><span class="line">      [].__class__.__name__[__]),</span><br><span class="line">    ().__class__.__eq__.__class__.__name__[:__] +</span><br><span class="line">    ().__iter__().__class__.__name__[_____:________]</span><br><span class="line">  )(</span><br><span class="line">    _, </span><br><span class="line">    (lambda _,__,___: _(_,__,___))</span><br><span class="line">    (lambda _,__,___: chr(___ % __) +</span><br><span class="line">      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, </span><br><span class="line">      ____&lt;&lt;______, </span><br><span class="line">      (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_ &lt;&lt; _______) +</span><br><span class="line">      (_ &lt;&lt; __))) - (((((___ &lt;&lt; __) + _) &lt;&lt; ____) -</span><br><span class="line">      _) &lt;&lt; ((((_ &lt;&lt; ____) - _) &lt;&lt; ___) +_))</span><br><span class="line">      - (((_____ &lt;&lt; _____) + _______) &lt;&lt; ((_______ &lt;&lt; ____))) +</span><br><span class="line">      (((___ &lt;&lt; _____) - ___) &lt;&lt; ((((___ &lt;&lt; __) + _) &lt;&lt; ___) -</span><br><span class="line">        _)) - (((((___ &lt;&lt; __) - _) &lt;&lt; ____) +</span><br><span class="line">      _____) &lt;&lt; ((___ &lt;&lt; _____) - ___)) + (((_______ &lt;&lt; ____) -</span><br><span class="line">      ___) &lt;&lt; ((_____ &lt;&lt; ____) +___)) + (((((___ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ___) + _) &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; ___) + (_ &lt;&lt; _))) +</span><br><span class="line">      (((((___ &lt;&lt; __) + _) &lt;&lt; ___) - ___) &lt;&lt; ((_ &lt;&lt; ______))) +</span><br><span class="line">      (((_____ &lt;&lt; ____) -___) &lt;&lt; ((_______ &lt;&lt; ___))) +</span><br><span class="line">      (((_ &lt;&lt; ______) + _) &lt;&lt; ((___ &lt;&lt; ____) - _)) - (((((___ &lt;&lt; __) +</span><br><span class="line">      _) &lt;&lt; __) + _) &lt;&lt; ((_____ &lt;&lt; ___) - _)) - (((_____ &lt;&lt; __) -</span><br><span class="line">      _) &lt;&lt; ((_ &lt;&lt; _____) - _)) -(((_ &lt;&lt; _____) + _) &lt;&lt; ((___ &lt;&lt; ___) -</span><br><span class="line">      _)) - (_____ &lt;&lt; (((((_ &lt;&lt; ___) + _)) &lt;&lt; _))) +</span><br><span class="line">      (_ &lt;&lt; (((___ &lt;&lt; __) + _))) + (((((_ &lt;&lt; ___) + _))) &lt;&lt; ___) + _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)(* (lambda _, __: _(_, __))(</span><br><span class="line">  lambda _, __:</span><br><span class="line">    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +</span><br><span class="line">    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],</span><br><span class="line">    (</span><br><span class="line">      lambda _: _,</span><br><span class="line">      lambda _, __: _,</span><br><span class="line">      lambda _, __, ___: _,</span><br><span class="line">      lambda _, __, ___, ____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______: _,</span><br><span class="line">      lambda _, __, ___, ____, _____, ______, _______, ________: _</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>怎么样？是不是吓到了。当时我感叹：<font color="red">逼还是你会装啊</font>。</p>
+<p>好吧来看分析吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/05/python_chaos_hello_world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/29/rsyncinstall/" itemprop="url">
                 Rsync 安装及配置
               </a>
@@ -1044,106 +1133,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/14/phpmysqldump/" itemprop="url">
-                mysql脱库工具php版
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-05-14T18:09:39+08:00" content="2015-05-14">
-            2015-05-14
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/PHP/" itemprop="url" rel="index">
-                  <span itemprop="name">PHP</span>
-                </a>
-              </span>
-
-              
-              
-                ， 
-              
-
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/PHP/自制工具/" itemprop="url" rel="index">
-                  <span itemprop="name">自制工具</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>发现自己之前写的php导出sql数据为Excel文件在导出一些数据的时候出现了精度的问题，比如导出身份证号的时候会把后面变成0000。暂时先把这个问题留下，有空去看看到底是什么问题。</p>
-<p>写了一个导出sql的工具。稍微加了下界面，把功能也做多了点，简单来说，就是三个功能：</p>
-<p>1.直接在浏览器上显示sql文件内容。</p>
-<p>2.直接导出到服务器上，要求目录要可写。</p>
-<p>3.直接下载到本地，脱库时感觉还不错。</p>
-<p>好了直接贴上代码：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/14/phpmysqldump/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-
-
-
-    
   </section>
 
   
@@ -1182,7 +1171,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1196,7 +1185,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

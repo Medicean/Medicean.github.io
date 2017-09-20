@@ -220,6 +220,89 @@
           
           
             
+              <a class="post-title-link" href="/2017/09/21/phpdecode_01/" itemprop="url">
+                PHPDecode 在线解密工具
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2017-09-21T01:03:00+08:00" content="2017-09-21">
+            2017-09-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/php/" itemprop="url" rel="index">
+                  <span itemprop="name">php</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( <a href="http://d.evalbug.com/">http://d.evalbug.com/</a>)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/09/21/phpdecode_01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2017/04/30/bugscan_xcx_002/" itemprop="url">
                 BugScan小程序v0.0.2演示
               </a>
@@ -989,96 +1072,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/04/17/poc_coding_4/" itemprop="url">
-                PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 下篇)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-04-17T20:00:48+08:00" content="2016-04-17">
-            2016-04-17
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/PoC/" itemprop="url" rel="index">
-                  <span itemprop="name">PoC</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><font color="red">《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：</font> <a href="http://poc.evalbug.com/">http://poc.evalbug.com/</a></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>《PoC 编写指南》有 3 个月没更了，基本上我写博文都是在半夜两三点的时候写的，最近几个月有些忙，睡的也比较早，就一直停更了。当然也有一些别的方面的原因，每次写篇博文都是尽可能的把涉及到的东西讲清楚，写详细，自己在这个上面花的时间特别多，结果有些网站一个爬虫就全带走了，多多少少还是有些不爽，毕竟还是希望读者看过之后能给出一些宝贵的意见。</p>
-<p>再说积极的事，这个系列也帮助了一些人，其中有个兄弟写了一个 Python 的项目，里面就用到了我们 2.3 节中的 PoC：</p>
-<p><a href="https://github.com/pythonfucku/app">one python app for zoomeye 项目地址</a></p>
-<h2 id="2-4-基于时间的盲注的-SQL-注入-PoC-编写"><a href="#2-4-基于时间的盲注的-SQL-注入-PoC-编写" class="headerlink" title="2.4 基于时间的盲注的 SQL 注入 PoC 编写"></a>2.4 基于时间的盲注的 SQL 注入 PoC 编写</h2><p>本节原本打算找一个 PHP 语言的 CMS 的漏洞，环境好搭，找了半天没找到比较新的漏洞，最后决定直接用之前的漏洞。这次我们选择的漏洞为：</p>
-<p> <a href="http://wooyun.org/bugs/wooyun-2010-070827">CmsEasy 5.5 UTF-8 20140802/celive/live/header.php SQL注入漏洞</a></p>
-<p> 这个漏洞是我们 2.2 节《基于报错的 SQL 注入 PoC 编写》中使用过的一个漏洞。</p>
-<p> 选这个洞的意义在于，让读者能体会到，一个漏洞的不同利用方式，没错，不只有一种利用方式。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/17/poc_coding_4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-
-
-
-    
   </section>
 
   
@@ -1117,7 +1110,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1131,7 +1124,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

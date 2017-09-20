@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2017-04-30T08:32:02.000Z</updated>
+  <updated>2017-09-20T18:23:30.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHPDecode 在线解密工具</title>
+    <link href="http://blog.evalbug.com/2017/09/21/phpdecode_01/"/>
+    <id>http://blog.evalbug.com/2017/09/21/phpdecode_01/</id>
+    <published>2017-09-20T17:03:00.000Z</published>
+    <updated>2017-09-20T18:23:30.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( &lt;a href=&quot;http://d.evalbug.com/&quot;&gt;http://d.evalbug.com/&lt;/a&gt;)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="php" scheme="http://blog.evalbug.com/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://blog.evalbug.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>BugScan小程序v0.0.2演示</title>
@@ -469,32 +489,6 @@
     
       &lt;h4 id=&quot;先来看一段代码&quot;&gt;&lt;a href=&quot;#先来看一段代码&quot; class=&quot;headerlink&quot; title=&quot;先来看一段代码:&quot;&gt;&lt;/a&gt;先来看一段代码:&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;apos;m&amp;apos; in (&amp;apos;medicean&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;apos;m&amp;apos; in [&amp;apos;medicean&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;False&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;为什么会出现这种结果呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://blog.evalbug.com/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 混乱代码解析</title>
-    <link href="http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/"/>
-    <id>http://blog.evalbug.com/2015/11/05/python_chaos_hello_world/</id>
-    <published>2015-11-05T15:43:48.000Z</published>
-    <updated>2015-11-08T16:39:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;一年前在国外看到的 &lt;a href=&quot;http://earwig.github.io/2014/06/01/obfuscating-hello-world.html&quot;&gt;一篇文章&lt;/a&gt; ，也是因为这个脚本，让我喜欢上了 Python。&lt;/p&gt;
-&lt;p&gt;代码只有一行，有人看了会爱上 Python ，比如像我这么萌萌哒的人。&lt;/p&gt;
-&lt;p&gt;今天突然想起来了，就靠着记忆重新写了一个。&lt;/p&gt;
-&lt;p&gt;完成后的代码如下,我已经大概处理了一下，为了好看：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!/usr/bin/env python&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(lambda _,__,___,____,_____,______,_______, ________:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  getattr(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    __import__(True.__class__.__name__[_] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      [].__class__.__name__[__]),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ().__class__.__eq__.__class__.__name__[:__] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ().__iter__().__class__.__name__[_____:________]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    _, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (lambda _,__,___: _(_,__,___))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (lambda _,__,___: chr(___ % __) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _(_,__,___ // __) if ___ else (lambda: _).func_code.co_lnotab, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ____&amp;lt;&amp;lt;______, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_____ &amp;lt;&amp;lt; _____) + _______) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; _______) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (_ &amp;lt;&amp;lt; __))) - (((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ____) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ((((_ &amp;lt;&amp;lt; ____) - _) &amp;lt;&amp;lt; ___) +_))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      - (((_____ &amp;lt;&amp;lt; _____) + _______) &amp;lt;&amp;lt; ((_______ &amp;lt;&amp;lt; ____))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((___ &amp;lt;&amp;lt; _____) - ___) &amp;lt;&amp;lt; ((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ___) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        _)) - (((((___ &amp;lt;&amp;lt; __) - _) &amp;lt;&amp;lt; ____) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _____) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; _____) - ___)) + (((_______ &amp;lt;&amp;lt; ____) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      ___) &amp;lt;&amp;lt; ((_____ &amp;lt;&amp;lt; ____) +___)) + (((((___ &amp;lt;&amp;lt; __) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ___) + _) &amp;lt;&amp;lt; (((((_ &amp;lt;&amp;lt; ___) + _)) &amp;lt;&amp;lt; ___) + (_ &amp;lt;&amp;lt; _))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((((___ &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ___) - ___) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; ______))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_____ &amp;lt;&amp;lt; ____) -___) &amp;lt;&amp;lt; ((_______ &amp;lt;&amp;lt; ___))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (((_ &amp;lt;&amp;lt; ______) + _) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; ____) - _)) - (((((___ &amp;lt;&amp;lt; __) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; __) + _) &amp;lt;&amp;lt; ((_____ &amp;lt;&amp;lt; ___) - _)) - (((_____ &amp;lt;&amp;lt; __) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _) &amp;lt;&amp;lt; ((_ &amp;lt;&amp;lt; _____) - _)) -(((_ &amp;lt;&amp;lt; _____) + _) &amp;lt;&amp;lt; ((___ &amp;lt;&amp;lt; ___) -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _)) - (_____ &amp;lt;&amp;lt; (((((_ &amp;lt;&amp;lt; ___) + _)) &amp;lt;&amp;lt; _))) +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      (_ &amp;lt;&amp;lt; (((___ &amp;lt;&amp;lt; __) + _))) + (((((_ &amp;lt;&amp;lt; ___) + _))) &amp;lt;&amp;lt; ___) + _&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)(* (lambda _, __: _(_, __))(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  lambda _, __:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [__[(lambda: _).func_code.co_nlocals].func_code.co_argcount] +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    _(_, __[(lambda _: _).func_code.co_nlocals:]) if __ else [],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______, _______: _,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      lambda _, __, ___, ____, _____, ______, _______, ________: _&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;怎么样？是不是吓到了。当时我感叹：&lt;font color=&quot;red&quot;&gt;逼还是你会装啊&lt;/font&gt;。&lt;/p&gt;
-&lt;p&gt;好吧来看分析吧。&lt;/p&gt;
     
     </summary>
     
