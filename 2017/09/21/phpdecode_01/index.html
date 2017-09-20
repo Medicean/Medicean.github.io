@@ -49,8 +49,8 @@
 <meta property="og:description" content="诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( http://d.evalbug.com/)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/1.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/2.png">
-<meta property="og:image" content="http://blog.evalbug.com/images/166/2.png">
-<meta property="og:updated_time" content="2017-09-20T18:23:30.000Z">
+<meta property="og:image" content="http://blog.evalbug.com/images/166/3.png">
+<meta property="og:updated_time" content="2017-09-20T18:29:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPDecode 在线解密工具">
 <meta name="twitter:description" content="诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( http://d.evalbug.com/)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。">
@@ -280,7 +280,7 @@
 <p>诸如此类的 WebShell 特别多，每次手工去解挺麻烦的，有没有什么好思路呢？答案是：有</p>
 <h2 id="一句话-WebShell-共性"><a href="#一句话-WebShell-共性" class="headerlink" title="一句话 WebShell 共性"></a>一句话 WebShell 共性</h2><p>一句话 WebShell 再怎么变形，它们的行为是一致的：「<strong>执行客户端发送过来的代码</strong>」，为了方便嘛。</p>
 <p>关于这个「代码执行」，方法就比较多了，举几个简单常见的能引起代码执行的函数（方法）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evalpreg_replace 函数中的 /e 修饰符 create_functionassertcall_user_funccall_user_func_arrayusortuksortarray_maparray_walkarray_filter$a($b) // 动态组装代码执行unserialize //反序列化导致代码执行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">eval</span><br><span class="line">preg_replace 函数中的 /e 修饰符 create_function</span><br><span class="line">assert</span><br><span class="line">call_user_func</span><br><span class="line">call_user_func_array</span><br><span class="line">usort</span><br><span class="line">uksort</span><br><span class="line">array_map</span><br><span class="line">array_walk</span><br><span class="line">array_filter</span><br><span class="line">$a($b) // 动态组装代码执行</span><br><span class="line">unserialize //反序列化导致代码执行</span><br></pre></td></tr></table></figure>
 <p>说这些函数有什么用呢？是想收集然后做正则吗？</p>
 <blockquote>
 <p>累不死你</p>
@@ -329,7 +329,7 @@
 <li><p>将两个文件打包成 zip 文件，然后上传</p>
 </li>
 <li><p>酱酱〜，就解完了</p>
-<p><img src="/images/166/2.png" alt=""></p>
+<p><img src="/images/166/3.png" alt=""></p>
 </li>
 </ol>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>说下服务端，基于 Flask 和 MongoDB 做的，总共花了2天时间（写页面就花了1天半，强迫症害死人），暂时就先这样吧，不完善的地方还比较多，不打算现在放出来给大家玩了，就只邀请了几个朋友参与内测。</p>
