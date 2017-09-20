@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/funny/index.html</loc>
+    
+    <lastmod>2017-09-20T18:37:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2017/09/21/phpdecode_01/</loc>
     
     <lastmod>2017-09-20T18:29:50.000Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://blog.evalbug.com/2016/08/29/osx_desktop_wallpaper/</loc>
     
     <lastmod>2016-09-05T08:21:22.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.evalbug.com/funny/index.html</loc>
-    
-    <lastmod>2016-08-28T05:13:31.000Z</lastmod>
     
   </url>
   
