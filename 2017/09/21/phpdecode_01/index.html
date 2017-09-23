@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://blog.evalbug.com/images/166/3.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/4.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/5.gif">
-<meta property="og:updated_time" content="2017-09-23T05:31:46.000Z">
+<meta property="og:updated_time" content="2017-09-23T06:00:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPDecode 在线解密工具">
 <meta name="twitter:description" content="诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( http://d.evalbug.com/)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。">
@@ -355,6 +355,17 @@
 </ol>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>说下服务端，基于 Flask 和 MongoDB 做的，总共花了2天时间（写页面就花了1天半，强迫症害死人），暂时就先这样吧，不完善的地方还比较多，不打算现在放出来给大家玩了，就只邀请了几个朋友参与内测。</p>
 <p>在线解的话肯定不怎么灵活，建议呢，自己去装老外写的那个 evalhook 来解「防同行马」喽〜</p>
+<h3 id="邀请码"><a href="#邀请码" class="headerlink" title="邀请码"></a>邀请码</h3><p>如果有兴趣，欢迎来体验「会删档」的内测，有什么好的建议欢迎<strong>邮件</strong>交流</p>
+<blockquote>
+<p>PS: 还有一个页面没写完 2333</p>
+</blockquote>
+<ul>
+<li>873225de-fd6f-5de3-b55a-9eb43629215d</li>
+<li>0d2de847-f873-5801-8dfe-4252694da74d</li>
+<li>7c8875c4-6214-5875-b6fd-1d619b76e671</li>
+<li>62dcca8f-388a-5999-b65b-9c1fc94af7e4</li>
+<li>b1779fed-4a3f-5e42-acac-0da991a65c53</li>
+</ul>
 </span>
       
     </div>
@@ -528,7 +539,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从-WebShell-混淆说起"><span class="nav-number">1.</span> <span class="nav-text">从 WebShell 混淆说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一句话-WebShell-共性"><span class="nav-number">2.</span> <span class="nav-text">一句话 WebShell 共性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Hook-机制检测"><span class="nav-number">3.</span> <span class="nav-text">基于 Hook 机制检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线解密工具-PHPDecode"><span class="nav-number">4.</span> <span class="nav-text">在线解密工具 PHPDecode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个工具做了什么？"><span class="nav-number">4.1.</span> <span class="nav-text">这个工具做了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#酱酱〜首页"><span class="nav-number">4.2.</span> <span class="nav-text">酱酱〜首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#酱酱〜登录后"><span class="nav-number">4.3.</span> <span class="nav-text">酱酱〜登录后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单文件解密"><span class="nav-number">4.4.</span> <span class="nav-text">单文件解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多文件解密"><span class="nav-number">4.5.</span> <span class="nav-text">多文件解密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实战解密之「PwnHub-傻-fufu-的工作日"><span class="nav-number">4.5.1.</span> <span class="nav-text">实战解密之「PwnHub 傻 fufu 的工作日</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">4.6.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从-WebShell-混淆说起"><span class="nav-number">1.</span> <span class="nav-text">从 WebShell 混淆说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一句话-WebShell-共性"><span class="nav-number">2.</span> <span class="nav-text">一句话 WebShell 共性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Hook-机制检测"><span class="nav-number">3.</span> <span class="nav-text">基于 Hook 机制检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线解密工具-PHPDecode"><span class="nav-number">4.</span> <span class="nav-text">在线解密工具 PHPDecode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个工具做了什么？"><span class="nav-number">4.1.</span> <span class="nav-text">这个工具做了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#酱酱〜首页"><span class="nav-number">4.2.</span> <span class="nav-text">酱酱〜首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#酱酱〜登录后"><span class="nav-number">4.3.</span> <span class="nav-text">酱酱〜登录后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单文件解密"><span class="nav-number">4.4.</span> <span class="nav-text">单文件解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多文件解密"><span class="nav-number">4.5.</span> <span class="nav-text">多文件解密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实战解密之「PwnHub-傻-fufu-的工作日"><span class="nav-number">4.5.1.</span> <span class="nav-text">实战解密之「PwnHub 傻 fufu 的工作日</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">4.6.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邀请码"><span class="nav-number">4.7.</span> <span class="nav-text">邀请码</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
