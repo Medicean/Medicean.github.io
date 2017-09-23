@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://blog.evalbug.com/images/166/3.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/4.png">
 <meta property="og:image" content="http://blog.evalbug.com/images/166/5.gif">
-<meta property="og:updated_time" content="2017-09-23T05:25:02.000Z">
+<meta property="og:updated_time" content="2017-09-23T05:31:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPDecode 在线解密工具">
 <meta name="twitter:description" content="诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( http://d.evalbug.com/)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。">
@@ -343,8 +343,6 @@
 <li><p>直接解该文件没成功，说明存在调用才会解密的情况，从 <code>index.php</code> 里发现了调用的代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> if($_FILES) &#123;</span><br><span class="line">    include &apos;UploadFile.class.php&apos;;</span><br><span class="line">    $dist = &apos;upload&apos;;</span><br><span class="line">    $upload = new UploadFile($dist, &apos;upfile&apos;);</span><br><span class="line">    $data = $upload-&gt;upload();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol>
 <li><p>把原来的 <code>index.php</code> 拿过来，我们需要在上面2中的代码前构造表单里的变量，让它能成功执行，所以我们最终的 <code>index.php</code> 是这个样子</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">$_FILES[&quot;upfile&quot;] = array(</span><br><span class="line">    &quot;name&quot; =&gt; &quot;1303.jpg&quot;,</span><br><span class="line">    &quot;type&quot; =&gt; &quot;image/jpeg&quot;,</span><br><span class="line">    &quot;tmp_name&quot; =&gt; &quot;/tmp/php/phpSDsuf7&quot;,</span><br><span class="line">    &quot;error&quot; =&gt; 0,</span><br><span class="line">    &quot;size&quot; =&gt; 1024</span><br><span class="line">);</span><br><span class="line">// 上面的代码是加的</span><br><span class="line">if($_FILES) &#123;</span><br><span class="line">    include &apos;UploadFile.class.php&apos;;</span><br><span class="line">    $dist = &apos;upload&apos;;</span><br><span class="line">    $upload = new UploadFile($dist, &apos;upfile&apos;);</span><br><span class="line">    $data = $upload-&gt;upload();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">....后面省略</span><br></pre></td></tr></table></figure>
 </li>
