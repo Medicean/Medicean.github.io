@@ -261,6 +261,13 @@
 
         
           
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/01/27/poc_coding_3/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/27/poc_coding_3/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
         
       </div>
     </header>
@@ -492,6 +499,10 @@
         
           <div class="comments" id="comments">
             
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
           </div>
         
       </div>
@@ -648,6 +659,27 @@
     
     
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'medicean-blog';
+      var disqus_identifier = '2016/01/27/poc_coding_3/';
+      var disqus_title = 'PoC 编写指南(第 2 章 SQL 注入类 PoC 编写 中篇)';
+      var disqus_url = 'http://blog.evalbug.com/2016/01/27/poc_coding_3/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
   
 
 

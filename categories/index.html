@@ -2,6 +2,8 @@
 <html class="theme-next use-motion theme-next-mist">
 <head>
   
+    
+
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -234,6 +236,10 @@
         
           <div class="comments" id="comments">
             
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
           </div>
         
       </div>
@@ -370,6 +376,27 @@
     
     
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'medicean-blog';
+      var disqus_identifier = 'categories/index.html';
+      var disqus_title = '分类';
+      var disqus_url = 'http://blog.evalbug.com/categories/index.html';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
   
 
 
