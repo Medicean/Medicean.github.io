@@ -220,6 +220,99 @@
           
           
             
+              <a class="post-title-link" href="/2018/08/07/flask_decorator_sequence/" itemprop="url">
+                Flask 装饰器顺序问题
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2018-08-07T16:00:00+08:00" content="2018-08-07">
+            2018-08-07
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/flask/" itemprop="url" rel="index">
+                  <span itemprop="name">flask</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2018/08/07/flask_decorator_sequence/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/07/flask_decorator_sequence/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>上周 RealWorld CTF 2018 web 题 bookhub 有个未授权访问的漏洞，比较有意思，赛后看了一下公开的 WriteUp,大家也都没写清楚，所以就有了这篇博文。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这个题是用 flask 框架写的,在 <code>www/bookhub/views/user.py</code> 中，<code>refresh_session</code>方法存在未授权访问漏洞，代码是这样写的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@login_required</span><br><span class="line">@user_blueprint.route(&apos;/admin/system/refresh_session/&apos;, methods=[&apos;POST&apos;])</span><br><span class="line">def refresh_session():</span><br><span class="line">    pass # 这里省略内容</span><br></pre></td></tr></table></figure>
+<p>注意看 <code>@login_required</code> 这个装饰器写在了 <code>route</code> 装饰器上面了，导致了 <code>login_required</code> 未调用。那么，为什么会这样子呢？</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/08/07/flask_decorator_sequence/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2018/07/25/antsword_prompt_shell/" itemprop="url">
                 WebShell下的交互式Shell
               </a>
@@ -465,7 +558,7 @@
 
       
         
-          <p>诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( <a href="http://d.poetn.cc/">http://d.poetn.cc/</a>)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。</p>
+          <p>诈尸水一篇博文。8月份写的一个解密加密PHP源码的工具( <a href="http://d.poetn.cc:7727/">http://d.poetn.cc:7727/</a>)，打算小范围使用。刚好最近看到 PwnHub 上有个解密的题目，p神微博上吐槽居然有人花钱解密了，2333 那分享一波另类解密思路吧。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/09/21/phpdecode_01/#more" rel="contents">
               阅读全文 &raquo;
@@ -1049,105 +1142,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/06/20/caidao_20160620/" itemprop="url">
-                中国菜刀 20160620 初体验
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-06-20T23:00:48+08:00" content="2016-06-20">
-            2016-06-20
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/webshell/" itemprop="url" rel="index">
-                  <span itemprop="name">webshell</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/06/20/caidao_20160620/#comments" itemprop="discussionUrl">
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/20/caidao_20160620/" itemprop="commentsCount"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>6月17号，某牛在朋友圈发了消息:</p>
-<p><img src="/images/160/1.png" alt=""></p>
-<blockquote>
-<p>史上最牛逼的中国菜刀即将发布，过市面上所有的 waf，而且把 webshell 玩到让你瞠目结舌的境界</p>
-</blockquote>
-<p>当时有消息声称 6 月底将会发布新版菜刀。</p>
-<p>果然在 6 月 20 日，原本已经关闭的 <code>maicaidao.com</code> 又开放了，而且下载量瞬间就到了 660 +。</p>
-<p><img src="/images/160/2.png" alt=""></p>
-<p>话不多说，下载一个体验一波到底有多牛逼。文章发布时站点又关闭了，具体原因不得而知。</p>
-<p><strong>注意：菜刀的唯一官网是：</strong> <code>www.maicaidao.com</code></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/20/caidao_20160620/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-
-
-
-    
   </section>
 
   
@@ -1186,21 +1180,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
