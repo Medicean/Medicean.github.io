@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.evalbug.com/2019/05/23/antsword_bypass_waf/</loc>
+    
+    <lastmod>2019-06-10T02:55:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.evalbug.com/2018/08/07/flask_decorator_sequence/</loc>
     
-    <lastmod>2018-08-07T08:20:39.000Z</lastmod>
+    <lastmod>2018-08-07T08:29:23.000Z</lastmod>
     
   </url>
   

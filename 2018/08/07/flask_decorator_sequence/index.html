@@ -51,7 +51,7 @@
 <meta property="og:description" content="上周 RealWorld CTF 2018 web 题 bookhub 有个未授权访问的漏洞，比较有意思，赛后看了一下公开的 WriteUp,大家也都没写清楚，所以就有了这篇博文。
 前言这个题是用 flask 框架写的,在 www/bookhub/views/user.py 中，refresh_session方法存在未授权访问漏洞，代码是这样写的：
 1234@login_required@user">
-<meta property="og:updated_time" content="2018-08-07T08:20:39.000Z">
+<meta property="og:updated_time" content="2018-08-07T08:29:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask 装饰器顺序问题">
 <meta name="twitter:description" content="上周 RealWorld CTF 2018 web 题 bookhub 有个未授权访问的漏洞，比较有意思，赛后看了一下公开的 WriteUp,大家也都没写清楚，所以就有了这篇博文。
@@ -301,14 +301,19 @@
 <p>这段代码相当于：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这里没有装饰器</span><br><span class="line">def refresh_session():</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">login_wrapped = login_required(refresh_session) # login 装饰器</span><br><span class="line">both_wrapped = app.route(&apos;/admin/refresh_session/&apos;)(login_wrapped)    # route 装饰器</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>/admin/refresh_session/</code> 这条路由指向的实际是 <code>login_wrapped</code>,这样就会经过 login 检查</p>
+<p><code>/admin/refresh_session/</code> 这条路由指向的实际是 <code>login_wrapped</code>,当访问 <code>/admin/refresh_session</code>时，会调用 <code>login_wrapped</code>，接着再调用 <code>refresh_session</code>。这样就经过了认证检查。</p>
 </blockquote>
 <h4 id="错误写法"><a href="#错误写法" class="headerlink" title="错误写法"></a>错误写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@login_required</span><br><span class="line">@user_blueprint.route(&apos;/admin/refresh_session/&apos;, methods=[&apos;POST&apos;])</span><br><span class="line">def refresh_session():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
 <p>这段代码相当于：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这里没有装饰器</span><br><span class="line">def refresh_session():</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">route_wrapped = app.route(&apos;/admin/refresh_session/&apos;)(refresh_session)    # route 装饰器</span><br><span class="line">login_wrapped = login_required(route_wrapped)      # login 装饰器</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>/admin/refresh_session/</code> 这条路由指向的实际是 <code>refresh_session</code>, 而 <code>login_wrapped</code> 并没有与路由挂勾，所以不会被调用</p>
+<p><code>/admin/refresh_session/</code> 这条路由指向的实际是 <code>refresh_session</code>, 当访问 <code>/admin/refresh_session</code>时，会调用 <code>refresh_session</code> 函数，而 <code>login_wrapped</code> 并没有与路由挂勾，所以不会被调用。</p>
 </blockquote>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/#login-required-decorator" target="_blank" rel="external">Login Required Decorator说明</a></li>
+<li><a href="https://segmentfault.com/a/1190000007837364" target="_blank" rel="external">Python 装饰器执行顺序迷思</a></li>
+<li><a href="https://stackoverflow.com/questions/47467658/flask-why-app-route-decorator-should-always-be-the-outermost" target="_blank" rel="external">Flask: why app.route() decorator, should always be the outermost?</a></li>
+</ul>
 </span>
       
     </div>
@@ -325,6 +330,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/23/antsword_bypass_waf/" rel="prev">蚁剑绕WAF进化图鉴</a>
             
           </div>
 
@@ -404,7 +411,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -486,7 +493,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方文档"><span class="nav-number">2.</span> <span class="nav-text">官方文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-装饰器顺序说明"><span class="nav-number">3.</span> <span class="nav-text">Python 装饰器顺序说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回过头来看-Flask"><span class="nav-number">4.</span> <span class="nav-text">回过头来看 Flask</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确写法"><span class="nav-number">4.0.1.</span> <span class="nav-text">正确写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误写法"><span class="nav-number">4.0.2.</span> <span class="nav-text">错误写法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方文档"><span class="nav-number">2.</span> <span class="nav-text">官方文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-装饰器顺序说明"><span class="nav-number">3.</span> <span class="nav-text">Python 装饰器顺序说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回过头来看-Flask"><span class="nav-number">4.</span> <span class="nav-text">回过头来看 Flask</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确写法"><span class="nav-number">4.0.1.</span> <span class="nav-text">正确写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误写法"><span class="nav-number">4.0.2.</span> <span class="nav-text">错误写法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">5.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -503,7 +510,7 @@
       <div class="footer-inner"> <div class="copyright" >
   
   &copy; &nbsp;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>
