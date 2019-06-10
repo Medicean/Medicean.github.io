@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.evalbug.com/"/>
-  <updated>2019-06-10T02:55:39.000Z</updated>
+  <updated>2019-06-10T03:05:56.000Z</updated>
   <id>http://blog.evalbug.com/</id>
   
   <author>
@@ -16,15 +16,56 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>WAF拦了蚁剑发送的其它参数时怎么操作</title>
+    <link href="http://blog.evalbug.com/2019/06/04/antsword_waf_bypass_2/"/>
+    <id>http://blog.evalbug.com/2019/06/04/antsword_waf_bypass_2/</id>
+    <published>2019-06-04T12:00:00.000Z</published>
+    <updated>2019-06-10T03:05:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;点此阅读：&lt;a href=&quot;https://mp.weixin.qq.com/s/ai3dW8H_ZnlFMPo-pgoqZw&quot;&gt;《WAF拦了蚁剑发送的其它参数时怎么操作》&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="antsword" scheme="http://blog.evalbug.com/categories/antsword/"/>
+    
+    
+      <category term="antsword" scheme="http://blog.evalbug.com/tags/antsword/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Defcon China 1.0 胸卡破解笔记</title>
+    <link href="http://blog.evalbug.com/2019/06/03/defcon_china/"/>
+    <id>http://blog.evalbug.com/2019/06/03/defcon_china/</id>
+    <published>2019-06-03T12:00:00.000Z</published>
+    <updated>2019-06-10T03:04:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;点此阅读：&lt;a href=&quot;https://mp.weixin.qq.com/s/j4Dqhko9nnxeuDkLZKftDA&quot;&gt;《Defcon China 1.0 胸卡破解笔记》&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="other" scheme="http://blog.evalbug.com/categories/other/"/>
+    
+    
+      <category term="other" scheme="http://blog.evalbug.com/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
     <title>蚁剑绕WAF进化图鉴</title>
     <link href="http://blog.evalbug.com/2019/05/23/antsword_bypass_waf/"/>
     <id>http://blog.evalbug.com/2019/05/23/antsword_bypass_waf/</id>
     <published>2019-05-22T20:00:00.000Z</published>
-    <updated>2019-06-10T02:55:39.000Z</updated>
+    <updated>2019-06-10T03:04:34.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;这次主要说一下蚁剑和 WAF 之间互相对抗的进化过程。这篇文章之前在公众号上已经发过一次了：&lt;a href=&quot;https://mp.weixin.qq.com/s/u8_d8MXvFuwOyIMZZMBsog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;
+      &lt;p&gt;这次主要说一下蚁剑和 WAF 之间互相对抗的进化过程。&lt;/p&gt;
+&lt;p&gt;点此阅读：&lt;a href=&quot;https://mp.weixin.qq.com/s/u8_d8MXvFuwOyIMZZMBsog&quot;&gt;《蚁剑绕WAF进化图鉴》&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -443,50 +484,6 @@
     
     
       <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PoC 编写指南(第 1 章 技能基础)</title>
-    <link href="http://blog.evalbug.com/2015/12/26/poc_coding_1/"/>
-    <id>http://blog.evalbug.com/2015/12/26/poc_coding_1/</id>
-    <published>2015-12-25T17:47:48.000Z</published>
-    <updated>2016-04-19T02:33:14.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;font color=&quot;red&quot;&gt;《PoC 编写指南》现已经同步至 gitbook，博客和 gitbook 会同步更新，地址：&lt;/font&gt; &lt;a href=&quot;http://poc.evalbug.com/&quot;&gt;http://poc.evalbug.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;第-1-章-技能基础&quot;&gt;&lt;a href=&quot;#第-1-章-技能基础&quot; class=&quot;headerlink&quot; title=&quot;第 1 章 技能基础&quot;&gt;&lt;/a&gt;第 1 章 技能基础&lt;/h2&gt;&lt;h3 id=&quot;网络基础&quot;&gt;&lt;a href=&quot;#网络基础&quot; class=&quot;headerlink&quot; title=&quot;网络基础&quot;&gt;&lt;/a&gt;网络基础&lt;/h3&gt;&lt;h3 id=&quot;为什么要学网络&quot;&gt;&lt;a href=&quot;#为什么要学网络&quot; class=&quot;headerlink&quot; title=&quot;为什么要学网络&quot;&gt;&lt;/a&gt;为什么要学网络&lt;/h3&gt;&lt;p&gt;安全界不缺乏有一些人连计算机网络是什么都不清楚，但是拿站，渗透一搞一个准。然而像我这种整天把基础知识挂在嘴边的人，拿站的时候照样怂。基础知识在我看来，是种常识，是种工具，不能说不会基础知识的人就一定不能怎么样，我只能说，我建议，我推荐，我支持先从基础学起来，这样在后面的学习当中就会如鱼得水。&lt;/p&gt;
-&lt;h3 id=&quot;需要学什么&quot;&gt;&lt;a href=&quot;#需要学什么&quot; class=&quot;headerlink&quot; title=&quot;需要学什么&quot;&gt;&lt;/a&gt;需要学什么&lt;/h3&gt;&lt;p&gt;对于写 PoC 来说，我们需要的并不是你去把 OSI 7 层模型的每一层都精通，你要精通了所有层的东西，你就不会坐在这里了。&lt;/p&gt;
-&lt;p&gt;好了，大概说一下我们需要了解哪些,相关的专业知识你可以去百度我不浪费时间了&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="PoC" scheme="http://blog.evalbug.com/categories/PoC/"/>
-    
-    
-      <category term="PoC" scheme="http://blog.evalbug.com/tags/PoC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(圣诞礼物)在终端下画个圣诞树陪你过节</title>
-    <link href="http://blog.evalbug.com/2015/12/25/py_fun_0/"/>
-    <id>http://blog.evalbug.com/2015/12/25/py_fun_0/</id>
-    <published>2015-12-25T03:00:48.000Z</published>
-    <updated>2016-04-18T08:53:33.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;圣诞节快乐，老早之前看过一个老外闲得蛋疼，用 Perl 在终端上画了一个圣诞树，这不瞅着时间刚好圣诞节嘛，用我们的大 Python 画了一个。下文会讲讲怎么画出这么个东西出来。&lt;/p&gt;
-&lt;p&gt;来来来，先上图, duang ~&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://blog.evalbug.com/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://blog.evalbug.com/tags/Python/"/>
     
   </entry>
   
